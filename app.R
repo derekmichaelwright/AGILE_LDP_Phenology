@@ -3,7 +3,7 @@
 ##############################################################################
 # Libraries
 ##############################################################################
-# setwd("C:/Google Drive/writingretreat/Phenology_Vignette")
+# setwd("C:/Google Drive/gitfolder/AGILE_LDP_Phenology")
 library(shiny); library(shinythemes); library(plotly);
 library(leaflet); library(leaflet.minicharts)
 library(tidyverse)  # data wrangling
@@ -21,7 +21,6 @@ library(plot3D)     # 3D plots
 ##############################################################################
 # Pre-App R work
 ##############################################################################
-#setwd("C:/Google Drive/writingretreat/Phenology_Vignette")
 # General color palettes
 colors <- c("darkred",   "darkorange3", "darkgoldenrod2", "deeppink3",
             "steelblue", "darkorchid4", "cornsilk4",      "darkgreen")
@@ -83,7 +82,8 @@ pca <- read.csv("data/data_PCA_Results.csv") %>%
   mutate(Cluster = factor(Cluster))
 ldp <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry")
 # Tf, Pf, PTT
-ptt <- read.csv("data/data_Tf_Pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT)
+ptt <- read.csv("data/data_Tf_Pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
+  mutate(Expt = factor(Expt, levels = names_Expt))
 # Prep raw data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
 rr <- read.csv("data/data_Raw.csv") %>%
@@ -120,7 +120,7 @@ xx <- dd %>%
   summarise_at(vars(DTE, DTF, DTS, DTM), funs(min, mean, max), na.rm = T) %>%
   ungroup()
 ff <- read.csv("data/data_Info.csv") %>%
-  mutate(Start = as.Date(Start)) %>%
+  mutate(Start = as.Date(Start), Expt = factor(Expt, levels = names_Expt)) %>%
   left_join(xx, by = "Expt")
 for(i in unique(ee$Expt)) {
   ee <- ee %>%
@@ -148,15 +148,24 @@ ff <- ff %>% left_join(tt, by = "Expt") %>%
 # ggplot theme
 theme_AGL <- theme_bw() + theme(strip.background = element_rect(fill = "White"))
 #
+# R^2 function
+modelR2 <- function(x, y) {
+  1 - ( sum((x - y)^2, na.rm = T) / sum((x - mean(x, na.rm = T))^2, na.rm = T))
+}
+# RMSE function
+modelRMSE <- function(x, y) {
+  sqrt(sum((x-y)^2) / length(x))
+}
 ##############################################################################
 # User interface
 ##############################################################################
-ui <- fluidPage(theme = shinytheme("yeti"),
+ui <- fluidPage(theme = shinytheme("yeti"), br(),
   sidebarLayout(
     sidebarPanel(numericInput("Entry", "Entry", 1, 1, 324, 1),
                  tableOutput("EntryTable"),
                  radioButtons("Plot_Entry", "Plot Entry", c(T, F), T, inline = T),
                  selectInput("Trait", "Trait", trts, "DTF"),
+                 checkboxGroupInput("MyClusters", "Clusters", c("1","2","3","4","5","6","7","8"), c("1","2","3","4","5","6","7","8"), inline = T),
                  selectInput("Expt", "Expt", names_Expt, "Rosthern, Canada 2016"),
                  checkboxGroupInput("Expts", "Expts", names_Expt, selected = names_Expt),
                  width = 2),
@@ -193,12 +202,15 @@ ui <- fluidPage(theme = shinytheme("yeti"),
                             column(radioButtons("Plot_DTS", "Plot DTS Window", c(T,F), F, inline = T), width = 2),
                             column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
                    plotOutput("EnvData", height = 500)),
+          tabPanel("Expt",  
+                   radioButtons("GroupByCluster", "Group Cy Cluster", c(T,F), F, inline = T),
+                   plotlyOutput("Violin",  height = 500) ),
           tabPanel("Expts", plotlyOutput("Violins", height = 500) ),
-          tabPanel("Expt",  plotlyOutput("Violin",  height = 500) ),
           tabPanel("Map", leafletOutput("Data_Map", height = 500)),
           tabPanel("Corr", 
                    fluidRow(column(selectInput("Trait2", "Trait (x axis)", trts, "DTS"), width = 2),
-                            column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3)),
+                            column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3),
+                            column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
                    plotlyOutput("Corr", height = 500) ),
           tabPanel("Phenology", plotOutput("Phenology") )
         ) ),
@@ -285,21 +297,21 @@ server <- function(input, output) {
   #
   # -Data
   #
-  # input <- list(Expts = names_Expt, Trait = "DTF", Plot_Entry = "TRUE", Entry = 1)
+  # input <- list(Expts = names_Expt, Trait = "DTF", Plot_Entry = "TRUE", Entry = 1, MyClusters = c("1","2","3","4"))
   output$Violins <- renderPlotly({
     xx <- dd %>% select(Entry, Name, Expt, ExptShort, Origin, Cluster, input$Trait) %>%
-      filter(Expt %in% input$Expts) %>%
+      filter(Expt %in% input$Expts, Cluster %in% input$MyClusters) %>%
       left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
       gather(Trait, Value, input$Trait) %>%
       mutate(Trait = factor(Trait, levels = c(input$Trait)) )
-    mp <- ggplot(xx, aes(x = ExptShort, y = Value, fill = MacroEnv)) +
-      geom_violin(alpha = 0.25, color = NA) +
-      geom_quasirandom(size = 0.2, alpha = 0.5,
-                       aes(key1 = Entry, key2 = Name, key3 = Origin, key4 = Cluster, key5 = Expt)) +
+    mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
+      geom_violin(aes(fill = MacroEnv), alpha = 0.25, color = NA) +
+      geom_quasirandom(aes(key1 = Entry, key2 = Name, key3 = Origin, key4 = Cluster, key5 = Expt, color = Cluster), alpha = 0.5) +
       theme_AGL +
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
             legend.position = "none") +
       scale_fill_manual(values = c("darkgreen","darkred","darkblue")) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)])
       labs(x = NULL, y = input$Trait)
     if(input$Plot_Entry == T) {
       mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
@@ -308,17 +320,18 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1)
+  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, GroupByCluster = F, MyClusters = c("1","2","3","4"))
   output$Violin <- renderPlotly({
     xx <- dd %>% select(Entry, Name, Expt, ExptShort, Origin, Cluster, input$Trait) %>%
-      filter(Expt == input$Expt) %>%
+      filter(Expt == input$Expt, Cluster %in% input$MyClusters) %>%
       left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
       gather(Trait, Value, input$Trait) %>%
       mutate(Trait = factor(Trait, levels = c(input$Trait)) )
+    if(input$GroupByCluster == F) { xx <- xx %>% mutate(Cluster = "1") }
     mp <- ggplot(xx, aes(x = Cluster, y = Value)) +
       geom_violin(aes(fill = Cluster), alpha = 0.5, color = NA) +
       geom_quasirandom(aes(key1 = Entry, key2 = Name, key3 = Origin)) +
-      scale_fill_manual(values = colors) +
+      scale_fill_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
       labs(title = input$Expt, y = input$Trait)
@@ -329,7 +342,7 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1)
+  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
   output$Data_Map <- renderLeaflet({
     xx <- dd %>% filter(Expt == input$Expt) %>%
       gather(Trait, Value, DTE, DTF, DTF2, DTS, DTM, VEG, REP, RDTF, DTF2_scaled, Tb, Tf, Pc, Pf, PTT) %>%
@@ -337,8 +350,9 @@ server <- function(input, output) {
       left_join(select(ldp, Entry, Lat=Lat3, Lon=Lon3), by = "Entry") %>%
       filter(!is.na(Lat), !is.na(Lon)) %>%
       select(Entry, Name, Origin, Cluster, Lat, Lon, Expt, Trait, Value)
-    pal <- colorNumeric(c("darkgoldenrod2", "darkblue"), xx$Value)
     xE <- xx %>% filter(Entry == input$Entry)
+    pal <- colorNumeric(c("darkgoldenrod2", "darkblue"), xx$Value)
+    xx <- xx %>% filter(Cluster %in% input$MyClusters)
     #
     mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
       addMinicharts(
@@ -352,19 +366,23 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Expt2 = "Rosthern, Canada 2017", Trait2 = "DTS", Plot_Entry = T, Entry = 1)
+  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Expt2 = "Rosthern, Canada 2017", Trait2 = "DTS", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
   output$Corr <- renderPlotly({
     x1 <- dd %>% select(Entry, Name, Expt, Origin, Cluster, input$Trait) %>%
-      filter(Expt %in% input$Expt) 
+      filter(Expt %in% input$Expt, Cluster %in% input$MyClusters) 
     x2 <- dd %>% filter(Expt %in% input$Expt2) %>% select(Entry, input$Trait2)
     xx <- left_join(x1, x2, by = "Entry") %>% as.data.frame()
-    m <- round(cor.test(xx[,input$Trait2], xx[,input$Trait], method = "pearson", na.rm = T)$estimate, 3)
-    mp <- ggplot(xx, aes(y = get(input$Trait2), x = get(input$Trait), color = Cluster)) +
-      geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin)) +
-      scale_color_manual(values = colors) +
+    r2 <- round(cor(xx[,input$Trait2], xx[,input$Trait], method = "pearson", use = "complete"), 3)
+    rmse <- round(modelRMSE(xx[,input$Trait2], xx[,input$Trait]), 1)
+    coefs <- round(lm(xx[,input$Trait2] ~ xx[,input$Trait])$coefficients, 3)
+    mp <- ggplot(xx, aes(y = get(input$Trait2), x = get(input$Trait)))
+    if(input$AddTrendline == T) { mp <- mp + geom_smooth(method = "lm") }
+    mp <- mp +
+      geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       theme(legend.position = "none") +
-      labs(title = paste(input$Expt, "| RR = ", m), 
+      labs(title = paste(input$Expt, "| RR = ", r2, " | RMSE = ", rmse, " | y = ", coefs[2],"x + ", coefs[1]), 
            x = paste(input$Expt2, input$Trait2, sep = " - "), 
            y = paste(input$Expt, input$Trait, sep = " - ") )
     if(input$Plot_Entry == T) {
@@ -533,7 +551,7 @@ server <- function(input, output) {
           chartdata = select(xx, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`),
           colorPalette = pal(1:8) )
   })
-  # input <- list(Plot_Entry = T, Entry = 1, PCA_Map_Points = "All")
+  # input <- list(Plot_Entry = T, Entry = 1, PCA_Map_Points = "All", MyClusters = c("a","2","3","4"))
   output$PCA_Points <- renderLeaflet({
     pal <- colorFactor(colors, domain = 1:8)
     xx <- ldp %>% select(-Lat, -Lon)
@@ -542,6 +560,7 @@ server <- function(input, output) {
     } else { xx <- xx %>% rename(Lat=Lat2, Lon=Lon2) %>% select(-Lat3,-Lon3) }
     xx <- xx %>% filter(!is.na(Lat), !is.na(Lon))
     xE <- xx %>% filter(Entry == input$Entry)
+    xx <- xx %>% filter(Cluster %in% input$MyClusters)
     #
     mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
       addMinicharts(lng = xx$Lon, lat = xx$Lat, width = 10,
@@ -602,20 +621,20 @@ server <- function(input, output) {
   #
   # -PhotoThermal Model
   #
-  # input <- list(Entry = 1)
+  # input <- list(Entry = 3)
   output$Modeling_3D <- renderPlot({
     xx <- rr %>% filter(!is.na(RDTF)) %>%
-      left_join(select(ff, Expt, T_mean, P_mean), by = "Expt")
+      left_join(select(ff, Expt, T_mean, P_mean, MacroEnv), by = "Expt")
     #
-    x1 <- xx %>% filter(Entry == input$Entry) %>% arrange(Expt)
+    x1 <- xx %>% filter(Entry == input$Entry) %>% arrange(Expt) %>% 
+      mutate(myPal = as.character(plyr::mapvalues(MacroEnv, 
+               c("Temperate", "South Asia", "Mediterranean"), c("darkgreen", "darkred", "darkblue"))))
     x <- x1$T_mean
     y <- x1$P_mean
     z <- x1$RDTF
-    w <- x1$ExptShort %>%
-      plyr::mapvalues(., names_ExptShort, colors_Expt) %>% as.character()
     fit <- lm(z ~ x + y)
     # predict values on regular xy grid
-    grid.lines = 26
+    grid.lines = 12
     x.pred <- seq(min(x), max(x), length.out = grid.lines)
     y.pred <- seq(min(y), max(y), length.out = grid.lines)
     xy <- expand.grid( x = x.pred, y = y.pred)
@@ -625,16 +644,17 @@ server <- function(input, output) {
     fitpoints <- predict(fit)
     # scatter plot with regression plane
     par(mar=c(1.5, 2.5, 1.5, 0.5))
-    scatter3D(x, y, z, pch = 18, cex = 2, zlim = c(0.005,0.03), col = "Black",
+    scatter3D(x, y, z, pch = 18, cex = 2, zlim = c(0.005,0.03), 
+              col = x1$myPal, colvar = as.numeric(x1$MacroEnv), colkey = F,
               theta = 40, phi = 25, ticktype = "detailed", cex.lab = 1, cex.axis = 0.5,
               xlab = "Temperature", ylab = "Photoperiod", zlab = "1 / DTF",
               surf = list(x = x.pred, y = y.pred, z = z.pred, col = "black",
                           facets = NA, fit = fitpoints), main = unique(x1$Name))
   })
-  # input <- list(Expts = names_Expt, Plot_Entry = T, Entry = 1)
+  # input <- list(Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$Modeling <- renderPlotly({
-    xx <- m1 %>% filter(!is.na(DTF), Expt %in% input$Expts) %>%
-      left_join(select(pca, Entry, Origin, Cluster), by = "Entry")
+    xx <- m1 %>% left_join(select(pca, Entry, Origin, Cluster), by = "Entry") %>%
+      filter(!is.na(DTF), Expt %in% input$Expts, Cluster %in% input$MyClusters)
     mymean <- mean(xx$DTF)
     r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
@@ -654,10 +674,10 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1)
+  # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$Modeling_Expt <- renderPlotly({
-    xx <- m1 %>% filter(!is.na(DTF), Expt == input$Expt) %>%
-      left_join(select(pca, Entry, Origin, Cluster), by = "Entry")
+    xx <- m1 %>% left_join(select(pca, Entry, Origin, Cluster), by = "Entry") %>%
+      filter(!is.na(DTF), Expt == input$Expt, Cluster %in% input$MyClusters)
     mymean <- mean(xx$DTF)
     r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
@@ -669,7 +689,7 @@ server <- function(input, output) {
       geom_abline() +
       scale_x_continuous(limits = c(mymin,mymax)) +
       scale_y_continuous(limits = c(mymin,mymax)) +
-      scale_color_manual(name = NULL, values = colors) +
+      scale_color_manual(name = NULL, values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       labs(title = paste(input$Expt, "| RR =", r2), y = "Predicted", x = "Observed")
     if(input$Plot_Entry == T) {
@@ -679,9 +699,10 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Plot_Entry = T, Entry = 1)
+  # input <- list(Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$Modeling_Expts <- renderPlot({
-    xx <- m1 %>% filter(!is.na(DTF))
+    xx <- m1 %>% left_join(select(pca, Entry, Origin, Cluster), by = "Entry") %>%
+      filter(!is.na(DTF), Cluster %in% input$MyClusters)
     mymean <- mean(xx$DTF)
     r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
@@ -712,12 +733,13 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Plot_Entry = T, Entry = 1)
+  # input <- list(Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$abc <- renderPlotly({
     xx <- m2 %>%
       left_join(select(pca, Entry, Origin, Cluster), by = "Entry") %>%
       select(Entry, Name, Origin, Cluster, a, b, c) %>%
-      gather(Trait, Value, a, b, c)
+      gather(Trait, Value, a, b, c) %>%
+      filter(Cluster %in% input$MyClusters)
     xE <- xx %>% filter(Entry == input$Entry)
     mp <- ggplot(xx, aes(x = Cluster, y = Value * 10000) ) +
       geom_violin(aes(fill = Cluster), color = NA, alpha = 0.7) +
@@ -735,7 +757,8 @@ server <- function(input, output) {
   })
   # input <- list(Expt = "Rosthern, Canada 2016", Trait = "DTF", Select_abc = "c", Plot_Entry = T, Entry = 1)
   output$TraitxCoef <- renderPlotly({
-    x1 <- dd %>% filter(Expt == input$Expt) %>% select(Entry, Trait=input$Trait)
+    x1 <- dd %>% filter(Expt == input$Expt) %>% 
+      select(Entry, Trait=input$Trait)
     xx <- m2 %>% rename(Coef=input$Select_abc) %>%
       left_join(select(pca, Entry, Origin, Cluster), by = "Entry") %>%
       left_join(x1, by = "Entry")
@@ -1003,7 +1026,7 @@ server <- function(input, output) {
       write.csv(xx, file, row.names = F)
       }
   )
-  # input <- list(TempIncrease = 1, Expts = names_Expt, Plot_Entry = T, Entry = 1)
+  # input <- list(TempIncrease = 1, Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$PCA_TempInc_Expts <- renderPlotly({
     xx <- dd %>%
       select(Entry, Name, Expt, ExptShort, Origin, Cluster, DTF) %>%
@@ -1014,11 +1037,11 @@ server <- function(input, output) {
              DTF_P  = 1 / (a + b * T_mean + c * P_mean),
              Diff = DTF_P - DTF_GW,
              Expt = factor(Expt, levels = names_Expt)) %>%
-      filter(Expt %in% input$Expts)
+      filter(Expt %in% input$Expts, Cluster %in% input$MyClusters)
     # Plot
-    mp <- ggplot(xx, aes(x = ExptShort, y = Diff, fill = MacroEnv)) +
-      geom_violin(alpha = 0.3, color = NA) +
-      geom_quasirandom(size = 0.2, aes(key1 = Entry, key2 = Name, key3 = Origin, key4 = Cluster)) +
+    mp <- ggplot(xx, aes(x = ExptShort, y = Diff)) +
+      geom_violin(aes(fill = MacroEnv), alpha = 0.3, color = NA) +
+      geom_quasirandom(size = 0.7, aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
       facet_grid(.~MacroEnv, scales = "free_x") + #
       theme_AGL +
       theme(legend.position = "none",
@@ -1027,6 +1050,7 @@ server <- function(input, output) {
       scale_y_continuous(minor_breaks = seq(1,30,1),
                          breaks = seq(0,30,5)) +
       scale_fill_manual(values = c("darkgreen","darkred","darkblue")) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       labs(title = paste("Temperature Increase of", input$TempIncrease),
            y = "Decrease in days to flower", x = NULL)
     if(input$Plot_Entry == T) {
@@ -1035,7 +1059,7 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(TempIncrease = 1, Expt = names_Expt, Plot_Entry = T, Entry = 1)
+  # input <- list(TempIncrease = 1, Expt = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   observe({
     output$PCA_TempInc_Clusters <- renderPlot({
       xx <- dd %>%
@@ -1047,7 +1071,7 @@ server <- function(input, output) {
                DTF_P  = 1 / (a + b * T_mean + c * P_mean),
                Diff = DTF_P - DTF_GW,
                Expt = factor(Expt, levels = names_Expt)) %>%
-        filter(Expt %in% input$Expts)
+        filter(Expt %in% input$Expts, Cluster %in% input$MyClusters)
       mp <- ggplot(xx, aes(x = Cluster, y = Diff, fill = Cluster)) +
         geom_violin(color = NA, alpha = 0.5) +
         geom_quasirandom() +
@@ -1063,7 +1087,7 @@ server <- function(input, output) {
       mp
     }, height = 250*length(input$Expts) )
   })
-  # input <- list(TempIncrease = 1, Expt = "Rosthern, Canada 2017", Plot_Entry = T, Entry = 1)
+  # input <- list(TempIncrease = 1, Expt = "Rosthern, Canada 2017", Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   output$PCA_TempInc_Cluster <- renderPlotly({
     xx <- dd %>%
       select(Entry, Name, Expt, ExptShort, Origin, Cluster, DTF) %>%
@@ -1074,7 +1098,7 @@ server <- function(input, output) {
              DTF_P  = 1 / (a + b * T_mean + c * P_mean),
              Diff = DTF_P - DTF_GW,
              Expt = factor(Expt, levels = names_Expt)) %>%
-      filter(Expt == input$Expt)
+      filter(Expt == input$Expt, Cluster %in% input$MyClusters)
     mp <- ggplot(xx, aes(x = Cluster, y = Diff)) +
       geom_violin(aes(fill = Cluster), color = NA, alpha = 0.5) +
       geom_quasirandom(aes(key1 = Entry, key2 = Name, key3 = Origin)) +

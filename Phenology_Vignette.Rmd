@@ -1,11 +1,11 @@
 ---
 title: "Vignette"
 subtitle: "Phenological characterization and modeling of diverse lentil (*Lens culinaris* Medik.) germplasm grown in multiple environments"
-author: "Derek Wright"
+author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -790,11 +790,10 @@ mp4
 ```{r eval = F}
 # Prep data
 xx <- rr %>% filter(!is.na(RDTF)) %>%
-  left_join(select(ff, Expt, T_mean, P_mean), by = "Expt")
+  left_join(select(ff, Expt, T_mean, P_mean, MacroEnv), by = "Expt")
 # Create plotting function
 gg_PTplane <- function(x, i, colored = T) {
   x1 <- x %>% filter(Entry == i) %>% 
-    left_join(select(ff, Expt, MacroEnv), by = "Expt") %>% 
     arrange(MacroEnv) %>% 
     mutate(myPal = as.character(plyr::mapvalues(MacroEnv, 
      c("Temperate", "South Asia", "Mediterranean"), c("darkgreen", "darkred", "darkblue"))))
@@ -1033,6 +1032,7 @@ gg_model_2 <- function(x, myX = "DTF", myY = "Predicted_DTF", title = NULL,
 modelR2 <- function(x, y) {
   1 - ( sum((x - y)^2, na.rm = T) / sum((x - mean(x, na.rm = T))^2, na.rm = T))
 }
+# RMSE function
 modelRMSE <- function(x, y) {
   sqrt(sum((x-y)^2) / length(x))
 }
@@ -1088,11 +1088,12 @@ write.csv(mc, "data/model_18_coefs.csv", row.names = F)
 # Plot Each Entry
 for(i in 1:324) {
   mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
-           xmin = min(x$DTF), xmax = max(x$DTF), 
-           ymin = min(x$Predicted_DTF), ymax = max(x$Predicted_DTF))
+           xmin = min(x$DTF)-2, xmax = max(x$DTF)+2, 
+           ymin = min(x$Predicted_DTF)-2, ymax = max(x$Predicted_DTF)+2)
   mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"), 
-           xmin = min(x$RDTF), xmax = max(x$RDTF), 
-           ymin = min(x$Predicted_RDTF), ymax = max(x$Predicted_RDTF), type = 2)
+           xmin = min(x$RDTF)-0.001, xmax = max(x$RDTF)+0.001, 
+           ymin = min(x$Predicted_RDTF)-0.001, ymax = max(x$Predicted_RDTF)+0.001,
+           type = 2)
   mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
   fname <- paste0("Additional/Model/Model_Entry_", stringr::str_pad(i, 3, pad = "0"), ".png")
   ggsave(fname, mp, width = 12, height = 5) 
@@ -1103,9 +1104,10 @@ for(i in 1:324) {
   mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
            xmin = min(x$DTF)-2, xmax = max(x$DTF)+2, 
            ymin = min(x$Predicted_DTF)-2, ymax = max(x$Predicted_DTF)+2)
-  mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"), 
+  mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"),  
            xmin = min(x$RDTF)-0.001, xmax = max(x$RDTF)+0.001, 
-           ymin = min(x$Predicted_RDTF)-0.001, ymax = max(x$Predicted_RDTF)+0.001, type = 2)
+           ymin = min(x$Predicted_RDTF)-0.001, ymax = max(x$Predicted_RDTF)+0.001,
+           type = 2)
   print(ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right"))
 }
 dev.off()
