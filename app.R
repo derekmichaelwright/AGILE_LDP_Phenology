@@ -168,7 +168,7 @@ ui <- fluidPage(theme = shinytheme("yeti"),
                  p("Contact: derek.wright@usask.ca"),
                  p("Associated Paper:"),
                  p(strong("Phenological characterization and modeling of diverse lentil (", em("Lens culinaris"), " Medik.) germplasm grown in multiple environments")),
-                 p("Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra6, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett"),
+                 p("Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett"),
                  uiOutput("AgileLogo"), hr(), 
                  p(strong("Project Collaborators:")),
                  p("- Department of Plant Sciences and Crop Development Centre, University of Saskatchewan, Saskatoon, Saskatchewan, Canada"),
@@ -215,8 +215,9 @@ ui <- fluidPage(theme = shinytheme("yeti"),
           tabPanel("Origins",
                    checkboxGroupInput("PCA_Countries", "Countries", unique(ldp$Origin), selected = c("Canada", "India"), inline = T),
                    tabsetPanel(
-                     tabPanel("Expts", plotOutput("PCA_Origins_Expts")),
-                     tabPanel("Expt",  plotlyOutput("PCA_Origins_Expt"))
+                     tabPanel("Expt",  plotlyOutput("PCA_Origins_Expt")),
+                     tabPanel("Expts", plotOutput("PCA_Origins_Expts"))
+                     
           ) ) ) ),
         tabPanel("PhotoThermal Model", tabsetPanel(
           tabPanel("PhotoThermal Plane", br(), plotOutput("Modeling_3D" , height = 500) ),
@@ -635,10 +636,10 @@ server <- function(input, output) {
     xx <- m1 %>% filter(!is.na(DTF), Expt %in% input$Expts) %>%
       left_join(select(pca, Entry, Origin, Cluster), by = "Entry")
     mymean <- mean(xx$DTF)
-    r2  <- 1 - (sum((xx$DTF - xx$DTF_Predict)^2) / (sum((xx$DTF - mymean)^2)))
+    r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
     #
-    mp <- ggplot(xx, aes(x = DTF, y = DTF_Predict, color = Expt)) +
+    mp <- ggplot(xx, aes(x = DTF, y = Predicted_DTF, color = Expt)) +
       geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, key4 = Cluster), alpha = 0.8) +
       geom_abline() +
       scale_x_continuous(limits = c(30,160)) +
@@ -658,12 +659,12 @@ server <- function(input, output) {
     xx <- m1 %>% filter(!is.na(DTF), Expt == input$Expt) %>%
       left_join(select(pca, Entry, Origin, Cluster), by = "Entry")
     mymean <- mean(xx$DTF)
-    r2  <- 1 - (sum((xx$DTF - xx$DTF_Predict)^2) / (sum((xx$DTF - mymean)^2)))
+    r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
     mymin <- min(xx$DTF, na.rm = T)
     mymax <- max(xx$DTF, na.rm = T)
     #
-    mp <- ggplot(xx, aes(x = DTF, y = DTF_Predict, color = Cluster)) +
+    mp <- ggplot(xx, aes(x = DTF, y = Predicted_DTF, color = Cluster)) +
       geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin), alpha = 0.8) +
       geom_abline() +
       scale_x_continuous(limits = c(mymin,mymax)) +
@@ -682,7 +683,7 @@ server <- function(input, output) {
   output$Modeling_Expts <- renderPlot({
     xx <- m1 %>% filter(!is.na(DTF))
     mymean <- mean(xx$DTF)
-    r2  <- 1 - (sum((xx$DTF - xx$DTF_Predict)^2) / (sum((xx$DTF - mymean)^2)))
+    r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
     x1 <- xx %>% group_by(Expt) %>%
       summarise(Mean = mean(DTF)) %>% ungroup() %>%
@@ -690,11 +691,11 @@ server <- function(input, output) {
     #
     for(i in 1:nrow(x1)) {
       xi <- xx %>% filter(Expt == x1$Expt[i])
-      x1[i,"r2"]<-round(1 - (sum((xi$DTF - xi$DTF_Predict)^2) /
+      x1[i,"r2"]<-round(1 - (sum((xi$DTF - xi$Predicted_DTF)^2) /
                                sum((xi$DTF - x1$Mean[i])^2)), 2)
     }
     #
-    mp <- ggplot(xx, aes(x = DTF, y = DTF_Predict)) +
+    mp <- ggplot(xx, aes(x = DTF, y = Predicted_DTF)) +
       geom_point(aes(fill = Expt), color = "black", pch = 21, alpha = 0.8) + geom_abline() +
       geom_label(x = 26, y = 143, color = "black", hjust = 0, vjust = 0,
                 aes(label = r2), size = 3, data = x1) +
