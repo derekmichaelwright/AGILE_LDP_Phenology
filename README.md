@@ -44,6 +44,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
   - Supplemental Tables
   - Supplemental Figures
   - Additional Figures
+  - R Code Vignette
   - Shiny App
 
 ## Shiny App

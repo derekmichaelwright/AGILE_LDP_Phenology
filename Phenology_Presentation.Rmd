@@ -1,0 +1,304 @@
+---
+title: "Lentil Diversity Panel"
+author: "Derek M. Wright"
+date: "October 11, 2019"
+output:
+  ioslides_presentation:
+    logo: www/Logo_Agile.png
+    widescreen: no
+  slidy_presentation: default
+subtitle: "Phenology & Modeling of Days to Flower"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<style type="text/css">
+
+.gdbar img {
+  width: 300px !important;
+  height: 150px !important;
+  margin: 8px 8px;
+} 
+
+.gdbar {
+  width: 400px !important;
+  height: 170px !important;
+}
+
+slides > slide:not(.nobackground):before {
+  background-image: url(www/Logo_Agile.png) !important;  
+  width: 100px;
+  height: 50px;
+  bottom: 10px;
+  left: 50px;
+  background-size: 100px 50px;
+}
+
+.title-slide h2 {
+  margin-top: -0px;
+  margin-bottom: -0px;
+}
+
+h2 {
+  margin-top: -15px;
+  margin-bottom: -30px;
+  font-size: 40px;
+}
+
+</style>
+
+## Lentil Diversity Panel
+
+**LDP**: 324 accesions representing global genetic diversity
+
+<center><img src="Additional/AdditionalFigure01_LDPOriginMap.png" width="775"/></center>
+
+## Field Trials
+
+<center><img src="Figure1_FieldTrialInfo.png" width="700"/></center>
+
+## Phenology - DTF DTS DTM
+
+<center><img src="Additional/AdditionalFigure02_DTFDTSDTM.png" width="700"/></center>
+
+## Macro-Environments
+
+<center><img src="Additional/AdditionalFigure03_MacroEnvPhenology.png" width="725"/></center>
+
+## Phenology - DTF DTS DTM
+
+<center><img src="Temp/Temp_F2_4.png" width="800"/></center>
+
+<center><img src="Temp/Temp_F2_6.png" width="800"/></center>
+
+## Phenology - VEG REP
+
+<center><img src="Temp/Temp_F2_5.png" width="800"/></center>
+
+<center><img src="Temp/Temp_F2_6.png" width="800"/></center>
+
+## Correlations  
+
+<center>
+<img src="SupplementalFigure3_Correlations.png" height="550"/>
+</center>
+
+## Adaptation
+
+- Many genotypes do not flower and/or make it to full maturity in South Asia
+
+<center><img src="SupplementalFigure2_PercentFlowered.png" width="800"/></center>
+
+## Photothermal Model
+
+<br><br>
+<center>
+**$\frac{1}{f}$ = *a* + *b*$\overline{T}$ + *c*$\overline{P}$**
+</center>
+<br>
+
+- *f* = Days to flower
+- $\overline{T}$ = Temperature
+- $\overline{P}$ = Photoperiod
+- *a b c* = Genotype specific constants
+
+## Photothermal Model
+
+<center>
+<br>
+**$\frac{1}{f}$ = *a* + *b*$\overline{T}$ + *c*$\overline{P}$**
+
+<br>
+
+**Thermal Model**:
+
+$\frac{1}{f}$ = *a* + *b*$\overline{T}$
+
+<br>
+
+**Photoperiodic Model**:
+
+$\frac{1}{f}$ = *a* + *c*$\overline{P}$
+</center>
+
+## Temperature & Photoperiod
+
+<center>
+<img src="Temp/Temp_F3_3.png" width="800"/>
+</center>
+
+## Photothermal Model
+
+<br><br>
+
+<center>
+<img src="Temp/Temp_F3_4.png" width="800"/>
+<br>
+
+$\frac{1}{f}$ = *a* + *b*$\overline{T}$ + *c*$\overline{P}$
+</center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_128.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_076.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_094.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_145.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_146.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_126.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_322.png" height="600"/></center>
+
+##
+
+<center><img src="Additional/3D/3D_Entry_033.png" height="600"/></center>
+
+## Photothermal Model: $\frac{1}{f}$ = *a* + *b*$\overline{T}$ + *c*$\overline{P}$
+
+<center><img src="Figure4_Model.png" width="700"/></center>
+
+## Photothermal Model: Validation  
+
+- Each location Removed from the model proir to training
+
+<center><img src="Temp/Temp_F5_1.png" width="800"/></center>
+
+## Photothermal Model: Validation
+
+- Model trained with only 3 locations
+
+<center><img src="Temp/Temp_F5_2.png" width="800"/></center>
+
+## Photothermal Model: Constants
+
+<center><img src="SupplementalFigure5_ConstantsCompare.png" width="800"/></center>
+
+- **AGILE-18**: ALL environments used to train model
+- **AGILE-3**: one site-year from each macro-environment used to train model 
+
+## Photothermal Model: Constants
+
+<center><img src="SupplementalFigure4_CompareConstants.png" height="550"/></center>
+
+## Photothermal Model: Equations
+
+<br>
+**Photothermal Model**: $\frac{1}{f}$ = *a* + *b*$\overline{T}$ + *c*$\overline{P}$
+
+<br>
+**"Base Temperature"**: $T_{b}$ = -(*a* + *c*$\overline{P}$) / *b*
+
+**thermal sum**: $T_{f}$  = $\sum_{i = 1}^{f} (T_{i} - T_{b})$ = 1 / *b*
+
+<br>
+**"Critical Photoperiod"**: $P_{c}$ = -(*a* + *b*$\overline{T}$) / *c*
+
+**Photoperiodic Sum**: $P_{f}$ = $\sum_{i = 1}^{f} (P_{i} - P_{c})$ = 1 / *c*
+
+
+## Base Temperature
+
+<center><img src="Temp/Temp_F6_1.png" width="700"/></center>
+
+## Critical Photoperiod 
+
+<center><img src="Temp/Temp_F6_2.png" width="700"/></center>
+
+## Thermal Sum Required For Flowering 
+
+<center>
+<img src="Temp/Temp_S6_1.png" width="800"/>
+thermal sum = $T_{f}$ = $\sum_{i = 1}^{f} (T_{i} - T_{b})$ = 1 / *b*
+</center>
+
+## Photoperiodic Sum Required For Flowering 
+
+<center>
+<img src="Temp/Temp_S7_1.png" width="800"/>
+photoperiodic sum = $P_{f}$ = $\sum_{i = 1}^{f} (P_{i} - P_{c})$ = 1 / *c*
+</center>
+
+## Increased Temperatures
+
+<center><img src="Figure8_TempIncrease.png" width="750"/></center>
+
+## Principle Component Analysis
+
+<center><img src="SupplementalFigure1_Scaling.png" width="800"/></center>
+
+## Principle Component Analysis
+
+<center><img src="Additional/AdditionalFigure10_PCA.png" width="800"/></center>
+
+## Principle Component Analysis
+
+<center><img src="Temp/Temp_F11_1.png" width="800"/></center>
+<center><img src="Temp/Temp_F11_2.png" width="800"/></center>
+
+## Principle Component Analysis
+
+<center><img src="Temp/Temp_F11_2.png" width="700"/></center>
+<center><img src="Temp/Temp_F11_3.png" width="800"/></center>
+
+## Principle Component Analysis
+
+<br><br><br>
+<center><img src="Temp/Temp_S9_2.png" width="800"/></center>
+
+## Principle Component Analysis
+
+<br>
+<center><img src="Additional/AdditionalFigure11_LDPOriginsByCluster.png" width="800"/></center>
+
+## Dissemination From Origin
+
+<br>
+<center><img src="Temp/Temp_F9_1.png" width="800"/></center>
+
+## Dissemination From Origin
+
+<br>
+<center><img src="Temp/Temp_F9_2.png" width="800"/></center>
+
+## Adaptation
+
+<br><br><br>
+<center><img src="Temp/Temp_SF8_1.png" width="800"/></center>
+
+## Adaptation
+
+<br><br><br>
+<center><img src="Temp/Temp_SF8_2.png" width="800"/></center>
+
+## Adaptation
+
+<br><br><br>
+<center><img src="Temp/Temp_SF8_3.png" width="800"/></center>
+
+## Adaptation
+
+<br><br><br>
+<center><img src="Temp/Temp_SF8_4.png" width="800"/></center>
+
+## Questions???
+
+<center><img src="Additional/Animation_3D.gif" height="600"/></center>

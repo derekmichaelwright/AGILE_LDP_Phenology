@@ -39,6 +39,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - Supplemental Tables
 - Supplemental Figures
 - Additional Figures
+- R Code Vignette
 - Shiny App
 
 ## Shiny App
