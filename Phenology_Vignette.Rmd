@@ -244,7 +244,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
 ggsave("SupplementalFigure1_Scaling.png", mp, width = 8, height = 5)
 ```
 
-```{r echo = F, fig.width = 8, fig.height = 5}
+```{r echo = F, out.width = "100%", fig.height = 5}
 mp
 ```
 
@@ -1099,25 +1099,21 @@ write.csv(mc, "data/model_18_coefs.csv", row.names = F)
 # Plot Each Entry
 for(i in 1:324) {
   mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
-           xmin = min(x$DTF) - 2, xmax = max(x$DTF) + 2, 
-           ymin = min(x$Predicted_DTF) - 2, ymax = max(x$Predicted_DTF) + 2)
+           xmin = min(mr$DTF) - 2, xmax = max(mr$DTF) + 2, 
+           ymin = min(mr$Predicted_DTF) - 2, ymax = max(mr$Predicted_DTF) + 2)
   mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"), type = 2,
-           xmin = min(x$RDTF) - 0.001, xmax = max(x$RDTF) + 0.001, 
-           ymin = min(x$Predicted_RDTF) - 0.001, ymax = max(x$Predicted_RDTF) + 0.001)
+           xmin = min(mr$RDTF) - 0.001, xmax = max(mr$RDTF) + 0.001, 
+           ymin = min(mr$Predicted_RDTF) - 0.001, ymax = max(mr$Predicted_RDTF) + 0.001)
   mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
   fname <- paste0("Additional/Model/Model_Entry_", str_pad(i, 3, pad = "0"), ".png")
   ggsave(fname, mp, width = 12, height = 5) 
 }
 # Create pdf
-pdf("Additional/Plots_Model.pdf",  width = 12, height = 5)
+pdf("Additional/Plots_Model.pdf",  width = 8, height = 5)
 for(i in 1:324) { 
-  mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
-           xmin = min(x$DTF)-2, xmax = max(x$DTF)+2, 
-           ymin = min(x$Predicted_DTF)-2, ymax = max(x$Predicted_DTF)+2)
-  mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"), type = 2, 
-           xmin = min(x$RDTF) - 0.001, xmax = max(x$RDTF) + 0.001, 
-           ymin = min(x$Predicted_RDTF) - 0.001, ymax = max(x$Predicted_RDTF) + 0.001)
-  print(ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right"))
+  print(gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
+           xmin = min(mr$DTF)-2, xmax = max(mr$DTF)+2, 
+           ymin = min(mr$Predicted_DTF)-2, ymax = max(mr$Predicted_DTF)+2) )
 }
 dev.off()
 ```

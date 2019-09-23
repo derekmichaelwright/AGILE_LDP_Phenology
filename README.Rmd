@@ -42,6 +42,10 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - R Code Vignette
 - Shiny App
 
+## R Code Vignette
+
+![](www/pdf.png)
+
 ## Shiny App
 
 Download this folder and run `app.R` in `R`

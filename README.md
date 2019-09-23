@@ -1,7 +1,7 @@
 Phenological characterization and modeling of diverse lentil (*Lens
 culinaris* Medik.) germplasm grown in multiple environments
 ================
-2019-09-20
+2019-09-23
 
 Contact: <derek.wright@usask.ca>
 
@@ -46,6 +46,10 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
   - Additional Figures
   - R Code Vignette
   - Shiny App
+
+## R Code Vignette
+
+![](www/pdf.png)
 
 ## Shiny App
 
