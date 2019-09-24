@@ -80,15 +80,17 @@ theme_AGL <- theme_bw() + theme(strip.background = element_rect(fill = "White"))
 # Prep data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
 rr <- read.csv("data/data_Raw.csv") %>% 
-  mutate(Rep = factor(Rep), Year = factor(Year), PlantingDate = as.Date(PlantingDate),
-         Location    = factor(Location, levels = names_Location),
-         Expt        = factor(Expt,     levels = names_Expt),
-         ExptShort   = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
-         ExptShort   = factor(ExptShort, levels = names_ExptShort),
-         DTF2_scaled = traitScale(., "DTF2"),
-         RDTF = round(1 / DTF2, 6),
-         VEG  = DTF - DTE,
-         REP  = DTM - DTF)
+  mutate(Rep          = factor(Rep), 
+         Year         = factor(Year), 
+         PlantingDate = as.Date(PlantingDate),
+         Location     = factor(Location, levels = names_Location),
+         Expt         = factor(Expt,     levels = names_Expt),
+         ExptShort    = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
+         ExptShort    = factor(ExptShort, levels = names_ExptShort),
+         DTF2_scaled  = traitScale(., "DTF2"),
+         RDTF         = round(1 / DTF2, 6),
+         VEG          = DTF - DTE,
+         REP          = DTM - DTF)
 # Average raw data
 dd <- rr %>% group_by(Entry, Name, Expt, ExptShort, Location, Year) %>%
   summarise_at(vars(DTE, DTF, DTS, DTM, VEG, REP, RDTF, DTF2, DTF2_scaled),
@@ -124,12 +126,12 @@ xx <- xx %>% group_by(Location, Year) %>%
   mutate(Expt = paste(Location, Year)) %>%
   select(-Location, -Year)
 ff <- ff %>% left_join(xx, by = "Expt") %>% 
-  mutate(Expt      = factor(Expt,      levels = names_Expt),
-         ExptShort = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
+  mutate(ExptShort = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
          ExptShort = factor(ExptShort, levels = names_ExptShort),
-         MacroEnv  = factor(MacroEnv, levels = macroEnvs),
-         T_mean = round(T_mean, 1),
-         P_mean = round(P_mean, 1))
+         Expt      = factor(Expt,      levels = names_Expt),
+         MacroEnv  = factor(MacroEnv,  levels = macroEnvs),
+         T_mean    = round(T_mean, 1),
+         P_mean    = round(P_mean, 1))
 # Lentil Diversity Panel metadata
 ldp <- read.csv("data/data_LDP.csv")
 # Country info
@@ -139,10 +141,10 @@ ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
 #
 write.csv(select(ldp, Entry, Name, Origin, Source), 
           "SupplementalTable1.csv", row.names = F)
-write.csv(select(ff, Location, Year, `Short Name`=ExptShort, `Planting Date`=Start, 
-                 `Temperature (mean)`=T_mean, `Photoperiod (mean)`=P_mean, 
-                 Latitude=Lat, Longitude=Lon, 
-                 `Number of Seeds Sown`=Number_of_Seeds_Sown, `Plot Type`=Plot_Type), 
+write.csv(select(ff, Location, Year, 
+            `Short Name` = ExptShort, `Planting Date` = Start, Latitude = Lat, 
+            Longitude = Lon, `Temperature (mean)` = T_mean, `Photoperiod (mean)` = P_mean, 
+            `Number of Seeds Sown` = Number_of_Seeds_Sown, `Plot Type` = Plot_Type), 
           "SupplementalTable2.csv", row.names = F)
 ```
 
@@ -969,7 +971,7 @@ im <- image_append(c(im1, im2), stack = T)
 image_write(im, "Figure3_2D3D_colored.png")
 ```
 
-```{r out.width = "100%"}
+```{r echo = F, out.width = "100%"}
 im
 ```
 

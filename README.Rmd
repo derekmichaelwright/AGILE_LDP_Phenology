@@ -44,6 +44,8 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 ## R Code Vignette
 
+`Phenology_Vignette.pdf`
+
 ![](www/pdf.png)
 
 ## Shiny App

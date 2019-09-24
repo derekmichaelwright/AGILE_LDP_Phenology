@@ -49,6 +49,8 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 ## R Code Vignette
 
+`Phenology_Vignette.pdf`
+
 ![](www/pdf.png)
 
 ## Shiny App
