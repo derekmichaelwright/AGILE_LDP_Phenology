@@ -4,8 +4,8 @@ subtitle: "Phenological characterization and modeling of diverse lentil (*Lens c
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -63,17 +63,6 @@ names_ExptShort <- c("Ro16", "Ro17", "Su16", "Su17", "Su18", "Us18",
                      "Sp16", "Sp17", "Mo16", "Mo17", "It16", "It17" )
 # Macro-Environments
 macroEnvs <- c("Temperate", "South Asia", "Mediterranean")
-# Scaling function
-traitScale <- function(x, trait) {
-  xout <- rep(NA, nrow(x))
-  for(i in unique(x$Expt)) {
-    mn <- x %>% filter(Expt == i) %>% pull(trait) %>% min(na.rm = T)
-    mx <- x %>% filter(Expt == i) %>% pull(trait) %>% max(na.rm = T)
-    rg <- mx - mn
-    xout <- ifelse(x$Expt == i, rescale(x %>% pull(trait), c(1,5), c(mn,mx)), xout)
-  }
-  xout
-}
 # ggplot theme
 theme_AGL <- theme_bw() + theme(strip.background = element_rect(fill = "White"))
 #
@@ -87,14 +76,29 @@ rr <- read.csv("data/data_Raw.csv") %>%
          Expt         = factor(Expt,     levels = names_Expt),
          ExptShort    = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
          ExptShort    = factor(ExptShort, levels = names_ExptShort),
-         DTF2_scaled  = traitScale(., "DTF2"),
          RDTF         = round(1 / DTF2, 6),
          VEG          = DTF - DTE,
          REP          = DTM - DTF)
 # Average raw data
 dd <- rr %>% group_by(Entry, Name, Expt, ExptShort, Location, Year) %>%
-  summarise_at(vars(DTE, DTF, DTS, DTM, VEG, REP, RDTF, DTF2, DTF2_scaled),
-               funs(mean), na.rm = T) %>% ungroup()
+  summarise_at(vars(DTE, DTF, DTS, DTM, VEG, REP, RDTF, DTF2),
+               funs(mean), na.rm = T) %>% ungroup() %>%
+  mutate(DTF2_scaled = NA)
+# scale DTF2 from 1-5
+for(k in names_Expt) {
+  xk <- dd %>% filter(Expt == k)
+  mn <- xk %>% pull("DTF2") %>% min(na.rm = T)
+  mx <- xk %>% pull("DTF2") %>% max(na.rm = T)
+  for(i in 1:324) {
+    xi <- dd %>% filter(Entry == i, Expt == k) %>% pull("DTF2")
+    dd[dd$Entry == i & dd$Expt == k, "DTF2_scaled"] <- rescale(xi , c(1,5), c(mn,mx))
+    for(r in 1:3){
+      xi <- rr %>% filter(Entry == i, Expt == k, Rep == r) %>% pull("DTF2")
+      rr[rr$Entry == i & rr$Expt == k & rr$Rep == r, "DTF2_scaled"] <- 
+        rescale(xi , c(1,5), c(mn,mx))
+    }
+  }
+}
 # Prep environmental data
 ee <- read.csv("data/data_Env.csv") %>%
   mutate(Date      = as.Date(Date),
@@ -819,7 +823,7 @@ gg_PTplane <- function(x, i, colored = T) {
   grid.lines <- 12
   x.p <- seq(min(x), max(x), length.out = grid.lines)
   y.p <- seq(min(y), max(y), length.out = grid.lines)
-  xy <- expand.grid(x = x.pred, y = y.pred)
+  xy <- expand.grid(x = x.p, y = y.p)
   z.p <- matrix(predict(fit, newdata = xy), nrow = grid.lines, ncol = grid.lines)
   # Plot with regression plane
   par(mar=c(1.5, 2.5, 1.5, 0.5))
@@ -2170,3 +2174,50 @@ mp
 ```
 
 ---
+
+# Additional Figure 13 ggridges
+
+```{r}
+library(ggridges)
+xx <- dd %>% select(Expt, DTF, DTS, DTM) %>% 
+  gather(Trait, Value, DTF, DTS, DTM) %>%
+  mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
+mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) + 
+  geom_density_ridges() +
+  scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
+  theme(legend.position = "none") +
+  labs(y = NULL, x = NULL)
+ggsave("Additional/AdditionalFigure13_ggridges.png", mp, width = 6, height = 4)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 4}
+mp
+```
+
+# Additional Figure 14 aRt
+
+```{r}
+yy <- read.csv("data/data_PCA_Results.csv") %>% 
+  mutate(Cluster = factor(Cluster))
+xx <- dd %>% left_join(select(yy, Entry, Cluster), by = "Entry") %>%
+  group_by(Cluster, Expt) %>%
+  summarise_at(vars(DTF2_scaled), funs(mean, sd, min, max), na.rm = T) %>%
+  ungroup() 
+#
+mp <- ggplot(xx, aes(x = Expt, y = mean, group = Cluster)) +
+  geom_ribbon(aes(ymin = min, ymax = max, fill = Cluster), alpha = 0.5) +
+  scale_fill_manual(name = "Counts", values = colors) +
+  theme_classic() +
+  theme(plot.margin=grid::unit(c(-0.57,-0.665,-0.6,-0.64),"cm"),
+        panel.background = element_rect(fill = "grey90", colour = "black"),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        legend.position = "none") +
+  labs(y = NULL, x = NULL)
+ggsave("Additional/AdditionalFigure14_aRt.png", mp, width = 6, height = 4)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 4}
+mp
+```
+
