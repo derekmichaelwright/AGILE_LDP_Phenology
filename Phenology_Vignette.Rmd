@@ -4,8 +4,8 @@ subtitle: "Phenological characterization and modeling of diverse lentil (*Lens c
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -65,16 +65,7 @@ names_ExptShort <- c("Ro16", "Ro17", "Su16", "Su17", "Su18", "Us18",
 macroEnvs <- c("Temperate", "South Asia", "Mediterranean")
 # ggplot theme
 theme_AGL <- theme_bw() + theme(strip.background = element_rect(fill = "White"))
-# Create scaling function
-traitScale <- function(x, trait) {
-  xout <- rep(NA, nrow(x))
-  for(i in unique(x$Expt)) {
-    mn <- x %>% filter(Expt == i) %>% pull(trait) %>% min(na.rm = T)
-    mx <- x %>% filter(Expt == i) %>% pull(trait) %>% max(na.rm = T)
-    xout <- ifelse(x$Expt == i, rescale(x %>% pull(trait), c(1,5), c(mn,mx)), xout)
-  }
-  xout
-}
+#
 # Prep data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
 rr <- read.csv("data/data_Raw.csv") %>% 
@@ -85,7 +76,6 @@ rr <- read.csv("data/data_Raw.csv") %>%
          Expt         = factor(Expt,     levels = names_Expt),
          ExptShort    = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
          ExptShort    = factor(ExptShort, levels = names_ExptShort),
-         DTF2_scaled = traitScale(., "DTF2"),
          RDTF         = round(1 / DTF2, 6),
          VEG          = DTF - DTE,
          REP          = DTM - DTF)
@@ -93,8 +83,22 @@ rr <- read.csv("data/data_Raw.csv") %>%
 dd <- rr %>% group_by(Entry, Name, Expt, ExptShort, Location, Year) %>%
   summarise_at(vars(DTE, DTF, DTS, DTM, VEG, REP, RDTF, DTF2),
                funs(mean), na.rm = T) %>% ungroup() %>%
-  mutate(DTF2_scaled = traitScale(., "DTF2"))
-
+  mutate(DTF2_scaled = NA)
+# scale DTF2 from 1-5
+for(k in names_Expt) {
+  xk <- dd %>% filter(Expt == k)
+  mn <- xk %>% pull("DTF2") %>% min(na.rm = T)
+  mx <- xk %>% pull("DTF2") %>% max(na.rm = T)
+  for(i in 1:324) {
+    xi <- dd %>% filter(Entry == i, Expt == k) %>% pull("DTF2")
+    dd[dd$Entry == i & dd$Expt == k, "DTF2_scaled"] <- rescale(xi , c(1,5), c(mn,mx))
+    for(r in 1:3){
+      xi <- rr %>% filter(Entry == i, Expt == k, Rep == r) %>% pull("DTF2")
+      rr[rr$Entry == i & rr$Expt == k & rr$Rep == r, "DTF2_scaled"] <- 
+        rescale(xi , c(1,5), c(mn,mx))
+    }
+  }
+}
 # Prep environmental data
 ee <- read.csv("data/data_Env.csv") %>%
   mutate(Date      = as.Date(Date),
@@ -636,7 +640,7 @@ xx <- dd %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
 # Create plotting function
 ggCorPlot <- function(x, legend.title, colNums) {
   # Plot A)
-  r2 <- round(cor(x$DTF, x$DTS, use ="complete", method = "pearson")^2, 2)
+  r2 <- round(cor(x$DTF, x$DTS, use ="complete", method = "pearson"), 2)
   tp1 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTF, y = DTS, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
@@ -644,7 +648,7 @@ ggCorPlot <- function(x, legend.title, colNums) {
     scale_color_manual(name = legend.title, values = colors_Expt[colNums]) +
     scale_shape_manual(name = legend.title, values = c(15,16,17,15,16,17))
   # Plot B)
-  r2 <- round(cor(x$DTF, x$DTM, use ="complete.obs", method = "pearson")^2, 2)
+  r2 <- round(cor(x$DTF, x$DTM, use ="complete.obs", method = "pearson"), 2)
   tp2 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTF, y = DTM, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
@@ -652,7 +656,7 @@ ggCorPlot <- function(x, legend.title, colNums) {
     scale_color_manual(name = legend.title, values = colors_Expt[colNums]) +
     scale_shape_manual(name = legend.title, values = c(15,16,17,15,16,17))
   # Plot C)
-  r2 <- round(cor(x$DTS, x$DTM, use = "complete", method = "pearson")^2, 2)
+  r2 <- round(cor(x$DTS, x$DTM, use = "complete", method = "pearson"), 2)
   tp3 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTS, y = DTM, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
@@ -707,8 +711,9 @@ my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...)
   x <- eval_data_col(data, mapping$x) 
   y <- eval_data_col(data, mapping$y)
   #
-  r2 <- cor(x, y, method = "pearson", use = "complete.obs")^2
-  rt <- format(r2, digits = 2)[1]
+  ct <- cor.test(x, y, method = "pearson")
+  r <- unname(ct$estimate^2)
+  rt <- format(r, digits = 2)[1]
   cex <- max(sizeRange)
   tt <- as.character(rt)
   # plot the cor value
@@ -716,14 +721,14 @@ my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...)
                    xP = 0.5, yP = 0.5, size = 6,  ... ) + theme_bw() 
   # Create color palette
   corColors <- RColorBrewer::brewer.pal(n = 10, name = "RdBu")[2:9]
-  if        (r2 <= -0.9)              { corCol <- alpha(corColors[1], 0.5) 
-  } else if (r2 >= -0.9 & r2 <= -0.6) { corCol <- alpha(corColors[2], 0.5)
-  } else if (r2 >= -0.6 & r2 <= -0.3) { corCol <- alpha(corColors[3], 0.5)
-  } else if (r2 >= -0.3 & r2 <= 0)    { corCol <- alpha(corColors[4], 0.5)
-  } else if (r2 >= 0    & r2 <= 0.3)  { corCol <- alpha(corColors[5], 0.5) 
-  } else if (r2 >= 0.3  & r2 <= 0.6)  { corCol <- alpha(corColors[6], 0.5)
-  } else if (r2 >= 0.6  & r2 <= 0.9)  { corCol <- alpha(corColors[7], 0.5) 
-  } else                              { corCol <- alpha(corColors[8], 0.5) }
+  if        (r <= -0.9)             { corCol <- alpha(corColors[1], 0.5) 
+  } else if (r >= -0.9 & r <= -0.6) { corCol <- alpha(corColors[2], 0.5)
+  } else if (r >= -0.6 & r <= -0.3) { corCol <- alpha(corColors[3], 0.5)
+  } else if (r >= -0.3 & r <= 0)    { corCol <- alpha(corColors[4], 0.5)
+  } else if (r >= 0    & r <= 0.3)  { corCol <- alpha(corColors[5], 0.5) 
+  } else if (r >= 0.3  & r <= 0.6)  { corCol <- alpha(corColors[6], 0.5)
+  } else if (r >= 0.6  & r <= 0.9)  { corCol <- alpha(corColors[7], 0.5) 
+  } else                            { corCol <- alpha(corColors[8], 0.5) }
   # Plot
   p <- p +
     theme(panel.background = element_rect(fill = corCol),
@@ -1021,7 +1026,7 @@ gg_model_2 <- function(x, myX = "DTF", myY = "Predicted_DTF", title = NULL,
     summarise(Mean = mean(DTF)) %>% ungroup() %>%
     mutate(r2 = NA, RMSE = NA)
   for(i in 1:nrow(xf)) {
-    xi <- x %>% filter(Expt == xf$Expt[i])
+    xi <- x %>% filter(Expt == xx$Expt[i])
     xf[i,"r2"]   <- round(modelR2(x = xi[,myX],   y = xi[,myY]), 2)
     xf[i,"RMSE"] <- round(modelRMSE(x = xi[,myX], y = xi[,myY]), 1)
   }
@@ -1874,19 +1879,6 @@ mp
 # Figure 10 AMMI
 
 ```{r eval = F}
-# scale DTF2 from 1-5
-for(k in names_Expt) {
-  xk <- rr %>% filter(Expt == k)
-  mn <- xk %>% pull("DTF2") %>% min(na.rm = T)
-  mx <- xk %>% pull("DTF2") %>% max(na.rm = T)
-  for(i in 1:324) {
-    for(r in 1:3){
-      xi <- rr %>% filter(Entry == i, Expt == k, Rep == r) %>% pull("DTF2")
-      rr[rr$Entry == i & rr$Expt == k & rr$Rep == r, "DTF2_scaled"] <- 
-        rescale(xi , c(1,5), c(mn,mx))
-    }
-  }
-}
 # Run AMMI
 model.dtf <- with(rr,  AMMI(ExptShort, Entry, Rep, DTF2_scaled, console = F))
 # Save AMMI results
