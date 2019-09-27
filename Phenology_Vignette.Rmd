@@ -4,15 +4,16 @@ subtitle: "Phenological characterization and modeling of diverse lentil (*Lens c
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document: default
-  html_document: default
+  html_document:
+    toc: yes
+    toc_float: true
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA)
 ```
-
-\tableofcontents
 
 ---
 
@@ -1601,7 +1602,7 @@ xx <- read.csv("data/data_Tf_Pf.csv") %>%
   mutate(Expt = factor(Expt, levels = names_Expt),
          MacroEnv = factor(MacroEnv, levels = macroEnvs))
 # Plot A)
-mp1 <- gg_model_2(xx, "Pf", "predicted_Pf", "A) Thermal sum required for flowering",
+mp1 <- gg_model_2(xx, "Pf", "predicted_Pf", "A) Photoperiodic sum required for flowering",
                   190, 190, 1350, 1150)
 # Plot B)
 mp2 <- gg_model_2(xx, "DTF", "predicted_DTF_Pf", "B) Days from sowing to flower",
