@@ -1,38 +1,39 @@
-\contentsline {section}{Preliminary Steps}{2}{section*.2}% 
-\contentsline {section}{Figure 1 Field Trial Info}{5}{section*.3}% 
-\contentsline {section}{Supplemental Figure 1 Scaling}{6}{section*.4}% 
-\contentsline {section}{Figure 2 Data Overview}{8}{section*.5}% 
-\contentsline {section}{Supplemental Figure 2 Missing Data}{13}{section*.6}% 
-\contentsline {section}{Supplemental Figure 3 Correlation Plots}{14}{section*.7}% 
-\contentsline {section}{PhotoThermal Plane}{16}{section*.8}% 
-\contentsline {section}{Figure 3 Regressions}{18}{section*.9}% 
-\contentsline {section}{Figure 4 Modeling DTF}{21}{section*.10}% 
-\contentsline {section}{Figure 5 Test Model}{25}{section*.11}% 
-\contentsline {section}{Supplemental Figure 4 Compare Constants Entry}{29}{section*.12}% 
-\contentsline {section}{Supplemental Figure 5 Compare Constants All}{31}{section*.13}% 
-\contentsline {section}{Base Temperature \& Critical Photoperiod}{32}{section*.14}% 
-\contentsline {section}{Figure 6 Tb and Pc}{33}{section*.15}% 
-\contentsline {section}{Figure 7 Tf}{34}{section*.16}% 
-\contentsline {section}{Supplemental Figure 6 Thermal Sums}{35}{section*.17}% 
-\contentsline {section}{Supplemental Figure 7 Photoperiodic Sums}{38}{section*.18}% 
-\contentsline {section}{Figure 8 Temperature Increase By MacroEnv}{40}{section*.19}% 
-\contentsline {section}{Figure 9 Origin Constants}{41}{section*.20}% 
-\contentsline {section}{Supplemental Figure 8 Adapted}{43}{section*.21}% 
-\contentsline {section}{Figure 10 AMMI}{47}{section*.22}% 
-\contentsline {section}{Figure 11 PCA}{48}{section*.23}% 
-\contentsline {section}{Supplemental Figure 9 Cluster Origins}{52}{section*.24}% 
-\contentsline {section}{Additional Figures - Phenology pdf}{53}{section*.25}% 
-\contentsline {section}{Additional Figures - Correlations}{54}{section*.26}% 
-\contentsline {section}{Additional Figure 1 LDP Origin Map}{57}{section*.27}% 
-\contentsline {section}{Additional Figure 2 DTF DTS DTM}{57}{section*.28}% 
-\contentsline {section}{Additional Figure 3 MacroEnv Phenology}{58}{section*.29}% 
-\contentsline {section}{Additional Figure 4 Modeling DTF}{60}{section*.30}% 
-\contentsline {section}{Additional Figure 5 \& 6 Testing Model}{60}{section*.31}% 
-\contentsline {section}{Additional Figure 7 Pc}{60}{section*.32}% 
-\contentsline {section}{Additional Figure 8 Tf Pc PTT}{62}{section*.33}% 
-\contentsline {section}{Additional Figure 9 Temperature Increase By Cluster}{63}{section*.34}% 
-\contentsline {section}{Additional Figure 10 PCA}{64}{section*.35}% 
-\contentsline {section}{Additional Figure 11 LDP Origins By Cluster}{64}{section*.36}% 
-\contentsline {section}{Additional Figure 12 DTF By Cluster}{65}{section*.37}% 
-\contentsline {section}{Additional Figure 13 ggridges}{66}{section*.38}% 
-\contentsline {section}{Additional Figure 14 aRt}{67}{section*.39}% 
+\contentsline {section}{Preliminary Steps}{3}{section*.2}% 
+\contentsline {section}{Supplemental tables}{5}{section*.3}% 
+\contentsline {section}{Figure 1 Field Trial Info}{5}{section*.4}% 
+\contentsline {section}{Supplemental Figure 1 Scaling}{7}{section*.5}% 
+\contentsline {section}{Figure 2 Data Overview}{8}{section*.6}% 
+\contentsline {section}{Supplemental Figure 2 Missing Data}{13}{section*.7}% 
+\contentsline {section}{Supplemental Figure 3 Correlation Plots}{14}{section*.8}% 
+\contentsline {section}{PhotoThermal Plane}{16}{section*.9}% 
+\contentsline {section}{Figure 3 Regressions}{18}{section*.10}% 
+\contentsline {section}{Figure 4 Modeling DTF}{21}{section*.11}% 
+\contentsline {section}{Figure 5 Test Model}{25}{section*.12}% 
+\contentsline {section}{Supplemental Figure 4 Compare Constants Entry}{29}{section*.13}% 
+\contentsline {section}{Supplemental Figure 5 Compare Constants All}{31}{section*.14}% 
+\contentsline {section}{Base Temperature \& Critical Photoperiod}{32}{section*.15}% 
+\contentsline {section}{Figure 6 Tb and Pc}{33}{section*.16}% 
+\contentsline {section}{Figure 7 Tf}{34}{section*.17}% 
+\contentsline {section}{Supplemental Figure 6 Thermal Sums}{35}{section*.18}% 
+\contentsline {section}{Supplemental Figure 7 Photoperiodic Sums}{38}{section*.19}% 
+\contentsline {section}{Figure 8 Temperature Increase By MacroEnv}{40}{section*.20}% 
+\contentsline {section}{Figure 9 Origin Constants}{41}{section*.21}% 
+\contentsline {section}{Supplemental Figure 8 Adapted}{43}{section*.22}% 
+\contentsline {section}{Figure 10 AMMI}{47}{section*.23}% 
+\contentsline {section}{Figure 11 PCA}{48}{section*.24}% 
+\contentsline {section}{Supplemental Figure 9 Cluster Origins}{52}{section*.25}% 
+\contentsline {section}{Additional Figures - Phenology pdf}{53}{section*.26}% 
+\contentsline {section}{Additional Figures - Correlations}{54}{section*.27}% 
+\contentsline {section}{Additional Figure 1 LDP Origin Map}{57}{section*.28}% 
+\contentsline {section}{Additional Figure 2 DTF DTS DTM}{57}{section*.29}% 
+\contentsline {section}{Additional Figure 3 MacroEnv Phenology}{58}{section*.30}% 
+\contentsline {section}{Additional Figure 4 Modeling DTF}{60}{section*.31}% 
+\contentsline {section}{Additional Figure 5 \& 6 Testing Model}{60}{section*.32}% 
+\contentsline {section}{Additional Figure 7 Pc}{60}{section*.33}% 
+\contentsline {section}{Additional Figure 8 Tf Pc PTT}{62}{section*.34}% 
+\contentsline {section}{Additional Figure 9 Temperature Increase By Cluster}{63}{section*.35}% 
+\contentsline {section}{Additional Figure 10 PCA}{64}{section*.36}% 
+\contentsline {section}{Additional Figure 11 LDP Origins By Cluster}{64}{section*.37}% 
+\contentsline {section}{Additional Figure 12 DTF By Cluster}{65}{section*.38}% 
+\contentsline {section}{Additional Figure 13 ggridges}{66}{section*.39}% 
+\contentsline {section}{Additional Figure 14 aRt}{67}{section*.40}% 

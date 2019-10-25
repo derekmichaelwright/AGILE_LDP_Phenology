@@ -137,16 +137,6 @@ ff <- ff %>% left_join(xx, by = "Expt") %>%
 ldp <- read.csv("data/data_LDP.csv")
 # Country info
 ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
-#
-# Supplemental tables
-#
-write.csv(select(ldp, Entry, Name, Origin, Source), 
-          "SupplementalTable1.csv", row.names = F)
-write.csv(select(ff, Location, Year, 
-            `Short Name` = ExptShort, `Planting Date` = Start, Latitude = Lat, 
-            Longitude = Lon, `Temperature (mean)` = T_mean, `Photoperiod (mean)` = P_mean, 
-            `Number of Seeds Sown` = Number_of_Seeds_Sown, `Plot Type` = Plot_Type), 
-          "SupplementalTable2.csv", row.names = F)
 ```
 
 - `ldp` = Lentil Diversity Panel Metadata
@@ -155,6 +145,20 @@ write.csv(select(ff, Location, Year,
 - `ee`  = Environmental Data
 - `ff`  = Field Trial Info
 - `ct`  = Country Info
+
+---
+
+# Supplemental tables
+
+```{r}
+write.csv(select(ldp, Entry, Name, Origin, Source), 
+          "SupplementalTable1.csv", row.names = F)
+write.csv(select(ff, Location, Year, 
+            `Short Name` = ExptShort, `Planting Date` = Start, Latitude = Lat, 
+            Longitude = Lon, `Temperature (mean)` = T_mean, `Photoperiod (mean)` = P_mean, 
+            `Number of Seeds Sown` = Number_of_Seeds_Sown, `Plot Type` = Plot_Type), 
+          "SupplementalTable2.csv", row.names = F)
+```
 
 ---
 
