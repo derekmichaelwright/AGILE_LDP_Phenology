@@ -4,11 +4,11 @@ subtitle: "Phenological characterization and modeling of diverse lentil (*Lens c
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
+  pdf_document:
+    toc: yes
   html_document:
     toc: yes
     toc_float: true
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -155,32 +155,6 @@ write.csv(select(ff, Location, Year,
 - `ee`  = Environmental Data
 - `ff`  = Field Trial Info
 - `ct`  = Country Info
-
----
-
-# Additional Figure 1 LDP Origin Map
-
-```{r}
-# Prep data
-x1 <- ldp %>% filter(Origin != "ICARDA") %>% 
-  group_by(Origin) %>% summarise(Count = n()) %>% 
-  left_join(select(ct, Origin = Country, Lat, Lon), by = "Origin") %>% 
-  ungroup() %>% as.data.frame()
-x1[is.na(x1)] <- 0
-# Plot map
-invisible(png("Additional/AdditionalFigure01_LDPOriginMap.png", 
-              width = 1200, height = 685, res = 150))
-par(mai = c(0,0,0,0), xaxs = "i",yaxs = "i")
-mapBubbles(dF = x1, nameX = "Lon", nameY = "Lat", 
-        nameZSize = "Count", nameZColour = "darkred",
-        xlim = c(-140,110), ylim = c(5,20),
-        oceanCol = "grey90", landCol = "white", borderCol = "black")
-invisible(dev.off())
-```
-
-```{r echo = F, out.width = "100%"}
-image_read("Additional/AdditionalFigure01_LDPOriginMap.png")
-```
 
 ---
 
@@ -477,118 +451,6 @@ mp
 
 ---
 
-# Additional Figure 2 DTF DTS DTM
-
-```{r}
-# Prep data
-xx <- dd %>% select(Entry, Expt, ExptShort, DTF, DTS, DTM) %>%
-  left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
-  gather(Trait, Value, DTF, DTS, DTM) %>% 
-  mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")) )
-# Plot DTF, DTS, DTM
-mp <- ggplot(xx, aes(x = Expt, y = Value)) +
-  geom_violin(fill = "grey", alpha = 0.25, color = NA) + 
-  geom_quasirandom(size = 0.1, alpha = 0.5, aes(color = MacroEnv)) +
-  facet_grid(Trait ~ MacroEnv, scales = "free") + 
-  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
-  theme_AGL +
-  theme(legend.position = "none",
-        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
-  labs(x = NULL, y = NULL)
-ggsave("Additional/AdditionalFigure02_DTFDTSDTM.png", mp, width = 8, height = 6)
-```
-
-```{r echo = F, fig.width = 8, fig.height = 6}
-mp
-```
-
----
-
-# Additional Figure 3 MacroEnv Phenology
-
-```{r}
-# Prep data
-xx <- ee %>% filter(ExptShort %in% c("Su17", "Ba17", "It17"))
-yy <- ff %>% filter(Expt %in% unique(xx$Expt)) %>% 
-  mutate(DTF_min = Start + DTF_min, DTF_max = Start + DTF_max,
-         DTM_min = Start + DTM_min, DTM_max = Start + DTM_max)
-y1 <- select(yy, Expt, Location, Year, min = DTF_min, max = DTF_max) %>% 
-  mutate(Trait = "DTF")
-y2 <- select(yy, Expt, Location, Year, min = DTM_min, max = DTM_max) %>% 
-  mutate(Trait = "DTM")
-yy <- bind_rows(y1, y2)
-# Plot DTF, DTM, T and P
-mp <- ggplot(xx) +
-  geom_rect(data = yy, aes(xmin = min, xmax = max, fill = Trait), 
-            ymin = 0, ymax = 40, alpha = 0.4) +
-  geom_line(aes(x = Date, y = DayLength_rescaled, color = "Blue")) +
-  geom_line(aes(x = Date, y = Temp_mean, color = "darkred") ) +
-  geom_ribbon(aes(x = Date, ymin = Temp_min, ymax = Temp_max),
-              fill = alpha("darkred", 0.25), color = alpha("darkred", 0.25)) +
-  facet_grid(Location ~ ., scales = "free_x", space = "free_x") +
-  scale_color_manual(name = NULL, values = c("Blue", "darkred"), 
-                    labels = c("Day length", "Temperature") ) +
-  scale_fill_manual(name = NULL, values = c("darkgreen", "darkgoldenrod2")) +
-  coord_cartesian(ylim = c(0,40)) +
-  theme_AGL +
-  theme(legend.position = "bottom",
-        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
-  scale_x_date(breaks = "1 month", labels = date_format("%B")) +
-  scale_y_continuous(sec.axis = sec_axis(~ (16.62 - 9.11) * . / (40 - 0) + 9.11, 
-                     breaks = c(10, 12, 14, 16), name = "Hours")) +
-  labs(title = "2017 - 2018", y = expression(paste(degree, "Celcius"), x = NULL)) +
-  guides(colour = guide_legend(order = 1), fill = guide_legend(order = 2))
-ggsave("Additional/AdditionalFigure03_MacroEnvPhenology.png", mp, width = 8, height = 6)
-```
-
-```{r echo = F, fig.width = 8, fig.height = 6}
-mp
-```
-
----
-
-# Additional Figures - Phenology pdf
-
-```{r eval = F}
-# Create plotting function
-gg_phenol <- function(x, xE, colnums) {
-  ggplot(xE, aes(x = Trait, y = Value, group = Entry, color = ExptShort)) +
-    geom_line(data = x, color = "grey", alpha = 0.5) +
-    geom_line() + geom_point() +
-    facet_grid(MacroEnv ~ ExptShort) +
-    scale_color_manual(values = colors_Expt[colnums]) +
-    theme_AGL + 
-    theme(legend.position = "none") +
-    ylim(c(min(x$Value, na.rm = T), max(x$Value, na.rm = T))) +
-    labs(x = NULL, y = NULL)
-}
-# Prep data
-xx <- dd %>% select(Entry, Name, ExptShort, DTF, DTS, DTM) %>% 
-  left_join(select(ff, ExptShort, MacroEnv), by = "ExptShort") %>%
-  gather(Trait, Value, DTF, DTS, DTM) %>%
-  mutate(Trait = factor(Trait, levels = c("DTF","DTS","DTM")))
-x1 <- xx %>% filter(MacroEnv == "Temperate")
-x2 <- xx %>% filter(MacroEnv == "South Asia")
-x3 <- xx %>% filter(MacroEnv == "Mediterranean")
-# Create PDF
-pdf("Additional/Plots_Phenology.pdf") #, width = 600, height = 600
-par(mar=c(1.5, 2.5, 1.5, 0.5))
-for(i in 1:324) {
-  xE1 <- xx %>% filter(Entry == i, MacroEnv == "Temperate")
-  xE2 <- xx %>% filter(Entry == i, MacroEnv == "South Asia")
-  xE3 <- xx %>% filter(Entry == i, MacroEnv == "Mediterranean")
-  mp1 <-  gg_phenol(x1, xE1, 1:6)
-  mp2 <-  gg_phenol(x2, xE2, 7:12)
-  mp3 <-  gg_phenol(x3, xE3, 13:18)
-  mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1) %>%
-    annotate_figure(top = text_grob(paste("Entry", i, "|", unique(xE1$Name)), hjust=1.73))
-  print(mp)
-}
-dev.off()
-```
-
----
-
 # Supplemental Figure 2 Missing Data
 
 ```{r}
@@ -675,123 +537,6 @@ ggsave("SupplementalFigure3_Correlations.png", mp, width = 10, height = 8)
 
 ```{r echo = F, out.width = "100%"}
 image_read("SupplementalFigure3_Correlations.png")
-```
-
----
-
-# Additional Figures - Correlations
-
-```{r}
-# Prep data
-xx <- dd %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
-  mutate(DTE = ifelse(Location == "Cordoba, Spain", NA, DTE))
-x1 <- xx %>% filter(MacroEnv == "Temperate")
-x2 <- xx %>% filter(MacroEnv == "South Asia")
-x3 <- xx %>% filter(MacroEnv == "Mediterranean")
-# Create plotting functions
-my_lower <- function(data, mapping, cols = colors_Expt, ...) {
-  ggplot(data = data, mapping = mapping) +
-    geom_point(alpha = 0.5, size = 0.3, aes(color = Expt)) +
-    theme_bw() + 
-    scale_color_manual(values = cols)
-}
-my_middle <- function(data, mapping, cols = colors_Expt, ...) {
-  ggplot(data = data, mapping = mapping) + 
-    geom_density(alpha = 0.5) + theme_bw() +
-    scale_color_manual(name = NULL, values = cols) +
-    scale_fill_manual(name = NULL, values = cols) +
-    guides(color = F, fill = guide_legend(nrow = 3, byrow = T))
-}
-# See: https://github.com/ggobi/ggally/issues/139
-my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...) {
-  # Prep data
-  x <- eval_data_col(data, mapping$x) 
-  y <- eval_data_col(data, mapping$y)
-  #
-  r2 <- cor(x, y, method = "pearson", use = "complete.obs")^2
-  rt <- format(r2, digits = 2)[1]
-  cex <- max(sizeRange)
-  tt <- as.character(rt)
-  # plot the cor value
-  p <- ggally_text(label = tt, mapping = aes(), color = color, 
-                   xP = 0.5, yP = 0.5, size = 6,  ... ) + theme_bw() 
-  # Create color palette
-  corColors <- RColorBrewer::brewer.pal(n = 10, name = "RdBu")[2:9]
-  if        (r2 <= -0.9)              { corCol <- alpha(corColors[1], 0.5) 
-  } else if (r2 >= -0.9 & r2 <= -0.6) { corCol <- alpha(corColors[2], 0.5)
-  } else if (r2 >= -0.6 & r2 <= -0.3) { corCol <- alpha(corColors[3], 0.5)
-  } else if (r2 >= -0.3 & r2 <= 0)    { corCol <- alpha(corColors[4], 0.5)
-  } else if (r2 >= 0    & r2 <= 0.3)  { corCol <- alpha(corColors[5], 0.5) 
-  } else if (r2 >= 0.3  & r2 <= 0.6)  { corCol <- alpha(corColors[6], 0.5)
-  } else if (r2 >= 0.6  & r2 <= 0.9)  { corCol <- alpha(corColors[7], 0.5) 
-  } else                              { corCol <- alpha(corColors[8], 0.5) }
-  # Plot
-  p <- p +
-    theme(panel.background = element_rect(fill = corCol),
-          panel.grid.major = element_blank(), 
-          panel.grid.minor = element_blank(),
-          axis.text = element_text(size = 5))
-  p
-}
-# Plot Correlations for each Expt
-for(i in names_Expt) {
-  mp <- ggpairs(xx %>% filter(Expt == i), 
-               columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
-        upper  = list(continuous = my_upper), 
-        diag   = list(continuous = my_middle),
-        lower  = list(continuous = wrap(my_lower, cols = "black")),
-        title  = i) + 
-    theme(strip.background = element_rect(fill = "White"))
-  ggsave(paste0("Additional/Corr/Corr_Expt", i, ".png"), mp, width = 6, height = 6)
-}
-# Plot A) Temperate
-mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
-               aes(color = Expt, fill = Expt),
-        upper=list(continuous = my_upper),
-        diag =list(continuous = wrap(my_middle, cols = colors_Expt[1:6])),
-        lower=list(continuous = wrap(my_lower,  cols = colors_Expt[1:6])),
-        title = "A) Temperate", 
-        legend = c(2,2)) +
-  theme(strip.background = element_rect(fill = "White"),
-        legend.position = "bottom")
-ggsave("Additional/Corr/Corr_Temperate.png", mp1, width = 6, height = 6)
-# Plot B) South Asia
-mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
-               aes(color = Expt, fill = Expt),
-        upper  = list(continuous = my_upper),
-        diag   = list(continuous = wrap(my_middle, cols = colors_Expt[7:12])),
-        lower  = list(continuous = wrap(my_lower,  cols = colors_Expt[7:12])),
-        title  = "B) South Asia", 
-        legend = c(2,2)) +
-  theme(strip.background = element_rect(fill = "White"),
-        legend.position = "bottom")
-ggsave("Additional/Corr/Corr_SouthAsia.png", mp2, width = 6, height = 6)
-# Plot C) Mediterranean
-mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
-               aes(color = Expt, fill = Expt),
-        upper  = list(continuous = my_upper),
-        diag   = list(continuous = wrap(my_middle, cols = colors_Expt[13:18])),
-        lower  = list(continuous = wrap(my_lower,  cols = colors_Expt[13:18])),
-        title  = "C) Mediterranean", 
-        legend = c(2,2)) +
-  theme(strip.background = element_rect(fill = "White"),
-        legend.position = "bottom")
-ggsave("Additional/Corr/Corr_Mediterranean.png", mp3, width = 6, height = 6)
-# Plot All
-mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
-        aes(color = ExptShort, fill = ExptShort),
-        upper  = list(continuous = my_upper), 
-        diag   = list(continuous = my_middle),
-        lower  = list(continuous = my_lower),
-        title  = "D) ALL", 
-        legend = c(2,2)) +
-  theme(strip.background = element_rect(fill = "White"),
-        legend.position = "bottom")
-ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6)
-```
-
-```{r echo = F, fig.width = 6, fig.height = 6}
-mp4
 ```
 
 ---
@@ -1505,70 +1250,6 @@ mp
 
 ---
 
-# Additional Figure 7 Pc
-
-```{r}
-# Prep data
-xx <- read.csv("data/data_Tf_Pf.csv") %>% 
-  mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
-x1 <- xx %>% select(Entry, Expt, ExptShort, MacroEnv, Pf_0, Pf_7, Pf) %>%
-  gather(Trait, Value, Pf_0, Pf_7, Pf) %>%
-  mutate(Trait = factor(Trait, levels = c("Pf_0", "Pf_7", "Pf")))
-new.lab <- as_labeller(c(
-  Pf_0 = "italic(P)[italic(c)]==0", Pf_7 = "italic(P)[italic(c)]==5",
-  Pf = "italic(P)[italic(c)]==equation~3", Mediterranean = "Mediterranean",
-  Temperate = "Temperate", `South Asia` = "South~Asia"), label_parsed)
-# Plot Tf
-mp <- ggplot(x1, aes(x = ExptShort, y = Value)) +
-  geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
-  geom_quasirandom(size = 0.1, alpha = 0.2, aes(color = MacroEnv)) + 
-  facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
-  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
-  theme_AGL +
-  theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
-  labs(y = expression(italic("P")[italic("f")]), x = NULL)
-ggsave("Additional/AdditionalFigure07_Pc.png", mp, width = 6, height = 4)
-```
-
-```{r echo = F, fig.width = 6, fig.height = 4}
-mp
-```
-
----
-
-# Additional Figure 8 Tf Pc PTT
-
-```{r}
-# Prep data
-xx <- read.csv("data/data_Tf_Pf.csv") %>% 
-  mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
-x1 <- xx %>% select(Entry, Expt, ExptShort, MacroEnv, PTT, Tf, Pf) %>%
-  gather(Trait, Value, PTT, Tf, Pf) %>%
-  mutate(Trait = factor(Trait, levels = c("Tf", "Pf", "PTT")))
-new.lab <- as_labeller(c(
-  Tf = "italic(T)[italic(f)]", Pf = "italic(P)[italic(f)]", PTT = "PTT",
-  Mediterranean = "Mediterranean", Temperate = "Temperate", 
-  `South Asia` = "South~Asia"), label_parsed)
-# Plot
-mp <- ggplot(x1, aes(x = ExptShort, y = Value)) +
-  geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
-  geom_quasirandom(size = 0.1, alpha = 0.2, aes(color = MacroEnv)) + 
-  facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
-  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
-  theme_AGL +
-  theme(legend.position = "none", 
-        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
-  labs(y = NULL, x = NULL)
-ggsave("Additional/AdditionalFigure08_TfPcPTT.png", mp,width = 6, height = 4)
-```
-
-```{r echo = F, fig.width = 6, fig.height = 4}
-mp
-```
-
----
-
 # Supplemental Figure 6 Thermal Sums
 
 ```{r}
@@ -1664,31 +1345,6 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Diff)) +
                      breaks = seq(0,30,5)) + 
   labs(y = "Decrease in days to flower", x = NULL)
 ggsave("Figure8_TempIncrease.png", mp, width = 7, height = 5)
-```
-
-```{r echo = F, fig.width = 7, fig.height = 5}
-mp
-```
-
----
-
-# Additional Figure 9 Temperature Increase By Cluster
-
-```{r}
-x1 <- read.csv("data/data_Temp_Increase.csv") %>% filter(GW == "A")
-x2 <- select(read.csv("data/data_PCA_Results.csv"), Entry, Cluster)
-xx <- left_join(x1, x2, by = "Entry") %>%
-  mutate(Cluster = factor(Cluster)) %>% 
-  filter(ExptShort %in% c("Su17", "It17", "Ba17")) 
-mp <- ggplot(xx, aes(x = Cluster, y = Diff, fill = Cluster)) + 
-  geom_violin(color = NA, alpha = 0.6) +
-  geom_quasirandom(color = "Black", alpha = 0.6) + 
-  facet_grid(ExptShort ~ ., scales = "free") +
-  theme_AGL + 
-  theme(legend.position = "none") + 
-  scale_fill_manual(name = NULL, values = colors) + 
-  labs(y = "Decrease in days to flower", x = NULL)
-ggsave("Additional/AdditionalFigure09_TempIncreaseByCluster.png", mp, width = 7, height = 5)
 ```
 
 ```{r echo = F, fig.width = 7, fig.height = 5}
@@ -2060,27 +1716,6 @@ mp
 
 ---
 
-# Additional Figure 10 PCA
-
-```{r}
-# Prep data
-xx <- read.csv("data/data_PCA_Results.csv") %>% 
-  mutate(Region = ifelse(Origin == "ICARDA", "ICARDA", as.character(Region)))
-# Plot PCA
-mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
-  geom_point(alpha = 0.7, size = 2) +
-  scale_color_manual(values = colors[c(1,5,3,8,7)]) + 
-  scale_shape_manual(values = c(16,17,18,15,13)) +
-  theme_AGL
-ggsave("Additional/AdditionalFigure10_PCA.png", mp, width = 6, height = 4)
-```
-
-```{r echo = F, fig.width = 6, fig.height = 4}
-mp
-```
-
----
-
 # Supplemental Figure 9 Cluster Origins
 
 ```{r}
@@ -2123,6 +1758,383 @@ image_write(im, "SupplementalFigure9_ClusterOrigins1.png")
 
 ```{r echo = F, out.width = "100%"}
 image_read("SupplementalFigure9_ClusterOrigins1.png")
+```
+
+---
+
+# Additional Figures - Phenology pdf
+
+```{r eval = F}
+# Create plotting function
+gg_phenol <- function(x, xE, colnums) {
+  ggplot(xE, aes(x = Trait, y = Value, group = Entry, color = ExptShort)) +
+    geom_line(data = x, color = "grey", alpha = 0.5) +
+    geom_line() + geom_point() +
+    facet_grid(MacroEnv ~ ExptShort) +
+    scale_color_manual(values = colors_Expt[colnums]) +
+    theme_AGL + 
+    theme(legend.position = "none") +
+    ylim(c(min(x$Value, na.rm = T), max(x$Value, na.rm = T))) +
+    labs(x = NULL, y = NULL)
+}
+# Prep data
+xx <- dd %>% select(Entry, Name, ExptShort, DTF, DTS, DTM) %>% 
+  left_join(select(ff, ExptShort, MacroEnv), by = "ExptShort") %>%
+  gather(Trait, Value, DTF, DTS, DTM) %>%
+  mutate(Trait = factor(Trait, levels = c("DTF","DTS","DTM")))
+x1 <- xx %>% filter(MacroEnv == "Temperate")
+x2 <- xx %>% filter(MacroEnv == "South Asia")
+x3 <- xx %>% filter(MacroEnv == "Mediterranean")
+# Create PDF
+pdf("Additional/Plots_Phenology.pdf") #, width = 600, height = 600
+par(mar=c(1.5, 2.5, 1.5, 0.5))
+for(i in 1:324) {
+  xE1 <- xx %>% filter(Entry == i, MacroEnv == "Temperate")
+  xE2 <- xx %>% filter(Entry == i, MacroEnv == "South Asia")
+  xE3 <- xx %>% filter(Entry == i, MacroEnv == "Mediterranean")
+  mp1 <-  gg_phenol(x1, xE1, 1:6)
+  mp2 <-  gg_phenol(x2, xE2, 7:12)
+  mp3 <-  gg_phenol(x3, xE3, 13:18)
+  mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1) %>%
+    annotate_figure(top = text_grob(paste("Entry", i, "|", unique(xE1$Name)), hjust=1.73))
+  print(mp)
+}
+dev.off()
+```
+
+---
+
+# Additional Figures - Correlations
+
+```{r}
+# Prep data
+xx <- dd %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
+  mutate(DTE = ifelse(Location == "Cordoba, Spain", NA, DTE))
+x1 <- xx %>% filter(MacroEnv == "Temperate")
+x2 <- xx %>% filter(MacroEnv == "South Asia")
+x3 <- xx %>% filter(MacroEnv == "Mediterranean")
+# Create plotting functions
+my_lower <- function(data, mapping, cols = colors_Expt, ...) {
+  ggplot(data = data, mapping = mapping) +
+    geom_point(alpha = 0.5, size = 0.3, aes(color = Expt)) +
+    theme_bw() + 
+    scale_color_manual(values = cols)
+}
+my_middle <- function(data, mapping, cols = colors_Expt, ...) {
+  ggplot(data = data, mapping = mapping) + 
+    geom_density(alpha = 0.5) + theme_bw() +
+    scale_color_manual(name = NULL, values = cols) +
+    scale_fill_manual(name = NULL, values = cols) +
+    guides(color = F, fill = guide_legend(nrow = 3, byrow = T))
+}
+# See: https://github.com/ggobi/ggally/issues/139
+my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...) {
+  # Prep data
+  x <- eval_data_col(data, mapping$x) 
+  y <- eval_data_col(data, mapping$y)
+  #
+  r2 <- cor(x, y, method = "pearson", use = "complete.obs")^2
+  rt <- format(r2, digits = 2)[1]
+  cex <- max(sizeRange)
+  tt <- as.character(rt)
+  # plot the cor value
+  p <- ggally_text(label = tt, mapping = aes(), color = color, 
+                   xP = 0.5, yP = 0.5, size = 6,  ... ) + theme_bw() 
+  # Create color palette
+  corColors <- RColorBrewer::brewer.pal(n = 10, name = "RdBu")[2:9]
+  if        (r2 <= -0.9)              { corCol <- alpha(corColors[1], 0.5) 
+  } else if (r2 >= -0.9 & r2 <= -0.6) { corCol <- alpha(corColors[2], 0.5)
+  } else if (r2 >= -0.6 & r2 <= -0.3) { corCol <- alpha(corColors[3], 0.5)
+  } else if (r2 >= -0.3 & r2 <= 0)    { corCol <- alpha(corColors[4], 0.5)
+  } else if (r2 >= 0    & r2 <= 0.3)  { corCol <- alpha(corColors[5], 0.5) 
+  } else if (r2 >= 0.3  & r2 <= 0.6)  { corCol <- alpha(corColors[6], 0.5)
+  } else if (r2 >= 0.6  & r2 <= 0.9)  { corCol <- alpha(corColors[7], 0.5) 
+  } else                              { corCol <- alpha(corColors[8], 0.5) }
+  # Plot
+  p <- p +
+    theme(panel.background = element_rect(fill = corCol),
+          panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text = element_text(size = 5))
+  p
+}
+# Plot Correlations for each Expt
+for(i in names_Expt) {
+  mp <- ggpairs(xx %>% filter(Expt == i), 
+               columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+        upper  = list(continuous = my_upper), 
+        diag   = list(continuous = my_middle),
+        lower  = list(continuous = wrap(my_lower, cols = "black")),
+        title  = i) + 
+    theme(strip.background = element_rect(fill = "White"))
+  ggsave(paste0("Additional/Corr/Corr_Expt", i, ".png"), mp, width = 6, height = 6)
+}
+# Plot A) Temperate
+mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+               aes(color = Expt, fill = Expt),
+        upper=list(continuous = my_upper),
+        diag =list(continuous = wrap(my_middle, cols = colors_Expt[1:6])),
+        lower=list(continuous = wrap(my_lower,  cols = colors_Expt[1:6])),
+        title = "A) Temperate", 
+        legend = c(2,2)) +
+  theme(strip.background = element_rect(fill = "White"),
+        legend.position = "bottom")
+ggsave("Additional/Corr/Corr_Temperate.png", mp1, width = 6, height = 6)
+# Plot B) South Asia
+mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+               aes(color = Expt, fill = Expt),
+        upper  = list(continuous = my_upper),
+        diag   = list(continuous = wrap(my_middle, cols = colors_Expt[7:12])),
+        lower  = list(continuous = wrap(my_lower,  cols = colors_Expt[7:12])),
+        title  = "B) South Asia", 
+        legend = c(2,2)) +
+  theme(strip.background = element_rect(fill = "White"),
+        legend.position = "bottom")
+ggsave("Additional/Corr/Corr_SouthAsia.png", mp2, width = 6, height = 6)
+# Plot C) Mediterranean
+mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+               aes(color = Expt, fill = Expt),
+        upper  = list(continuous = my_upper),
+        diag   = list(continuous = wrap(my_middle, cols = colors_Expt[13:18])),
+        lower  = list(continuous = wrap(my_lower,  cols = colors_Expt[13:18])),
+        title  = "C) Mediterranean", 
+        legend = c(2,2)) +
+  theme(strip.background = element_rect(fill = "White"),
+        legend.position = "bottom")
+ggsave("Additional/Corr/Corr_Mediterranean.png", mp3, width = 6, height = 6)
+# Plot All
+mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+        aes(color = ExptShort, fill = ExptShort),
+        upper  = list(continuous = my_upper), 
+        diag   = list(continuous = my_middle),
+        lower  = list(continuous = my_lower),
+        title  = "D) ALL", 
+        legend = c(2,2)) +
+  theme(strip.background = element_rect(fill = "White"),
+        legend.position = "bottom")
+ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 6}
+mp4
+```
+
+---
+
+# Additional Figure 1 LDP Origin Map
+
+```{r}
+# Prep data
+x1 <- ldp %>% filter(Origin != "ICARDA") %>% 
+  group_by(Origin) %>% summarise(Count = n()) %>% 
+  left_join(select(ct, Origin = Country, Lat, Lon), by = "Origin") %>% 
+  ungroup() %>% as.data.frame()
+x1[is.na(x1)] <- 0
+# Plot map
+invisible(png("Additional/AdditionalFigure01_LDPOriginMap.png", 
+              width = 1200, height = 685, res = 150))
+par(mai = c(0,0,0,0), xaxs = "i",yaxs = "i")
+mapBubbles(dF = x1, nameX = "Lon", nameY = "Lat", 
+        nameZSize = "Count", nameZColour = "darkred",
+        xlim = c(-140,110), ylim = c(5,20),
+        oceanCol = "grey90", landCol = "white", borderCol = "black")
+invisible(dev.off())
+```
+
+```{r echo = F, out.width = "100%"}
+image_read("Additional/AdditionalFigure01_LDPOriginMap.png")
+```
+
+---
+
+# Additional Figure 2 DTF DTS DTM
+
+```{r}
+# Prep data
+xx <- dd %>% select(Entry, Expt, ExptShort, DTF, DTS, DTM) %>%
+  left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
+  gather(Trait, Value, DTF, DTS, DTM) %>% 
+  mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")) )
+# Plot DTF, DTS, DTM
+mp <- ggplot(xx, aes(x = Expt, y = Value)) +
+  geom_violin(fill = "grey", alpha = 0.25, color = NA) + 
+  geom_quasirandom(size = 0.1, alpha = 0.5, aes(color = MacroEnv)) +
+  facet_grid(Trait ~ MacroEnv, scales = "free") + 
+  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
+  theme_AGL +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  labs(x = NULL, y = NULL)
+ggsave("Additional/AdditionalFigure02_DTFDTSDTM.png", mp, width = 8, height = 6)
+```
+
+```{r echo = F, fig.width = 8, fig.height = 6}
+mp
+```
+
+---
+
+# Additional Figure 3 MacroEnv Phenology
+
+```{r}
+# Prep data
+xx <- ee %>% filter(ExptShort %in% c("Su17", "Ba17", "It17"))
+yy <- ff %>% filter(Expt %in% unique(xx$Expt)) %>% 
+  mutate(DTF_min = Start + DTF_min, DTF_max = Start + DTF_max,
+         DTM_min = Start + DTM_min, DTM_max = Start + DTM_max)
+y1 <- select(yy, Expt, Location, Year, min = DTF_min, max = DTF_max) %>% 
+  mutate(Trait = "DTF")
+y2 <- select(yy, Expt, Location, Year, min = DTM_min, max = DTM_max) %>% 
+  mutate(Trait = "DTM")
+yy <- bind_rows(y1, y2)
+# Plot DTF, DTM, T and P
+mp <- ggplot(xx) +
+  geom_rect(data = yy, aes(xmin = min, xmax = max, fill = Trait), 
+            ymin = 0, ymax = 40, alpha = 0.4) +
+  geom_line(aes(x = Date, y = DayLength_rescaled, color = "Blue")) +
+  geom_line(aes(x = Date, y = Temp_mean, color = "darkred") ) +
+  geom_ribbon(aes(x = Date, ymin = Temp_min, ymax = Temp_max),
+              fill = alpha("darkred", 0.25), color = alpha("darkred", 0.25)) +
+  facet_grid(Location ~ ., scales = "free_x", space = "free_x") +
+  scale_color_manual(name = NULL, values = c("Blue", "darkred"), 
+                    labels = c("Day length", "Temperature") ) +
+  scale_fill_manual(name = NULL, values = c("darkgreen", "darkgoldenrod2")) +
+  coord_cartesian(ylim = c(0,40)) +
+  theme_AGL +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  scale_x_date(breaks = "1 month", labels = date_format("%B")) +
+  scale_y_continuous(sec.axis = sec_axis(~ (16.62 - 9.11) * . / (40 - 0) + 9.11, 
+                     breaks = c(10, 12, 14, 16), name = "Hours")) +
+  labs(title = "2017 - 2018", y = expression(paste(degree, "Celcius"), x = NULL)) +
+  guides(colour = guide_legend(order = 1), fill = guide_legend(order = 2))
+ggsave("Additional/AdditionalFigure03_MacroEnvPhenology.png", mp, width = 8, height = 6)
+```
+
+```{r echo = F, fig.width = 8, fig.height = 6}
+mp
+```
+
+---
+
+# Additional Figure 4 Modeling DTF
+
+[Additional Figure 4 Modeling DTF](#figure_4_modeling_dtf)
+
+---
+
+# Additional Figure 5 & 6 Testing Model
+
+[Additional Figures 5 & 6 Testing Model](#figure_5_test_model)
+
+---
+
+# Additional Figure 7 Pc
+
+```{r}
+# Prep data
+xx <- read.csv("data/data_Tf_Pf.csv") %>% 
+  mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
+x1 <- xx %>% select(Entry, Expt, ExptShort, MacroEnv, Pf_0, Pf_7, Pf) %>%
+  gather(Trait, Value, Pf_0, Pf_7, Pf) %>%
+  mutate(Trait = factor(Trait, levels = c("Pf_0", "Pf_7", "Pf")))
+new.lab <- as_labeller(c(
+  Pf_0 = "italic(P)[italic(c)]==0", Pf_7 = "italic(P)[italic(c)]==5",
+  Pf = "italic(P)[italic(c)]==equation~3", Mediterranean = "Mediterranean",
+  Temperate = "Temperate", `South Asia` = "South~Asia"), label_parsed)
+# Plot Tf
+mp <- ggplot(x1, aes(x = ExptShort, y = Value)) +
+  geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
+  geom_quasirandom(size = 0.1, alpha = 0.2, aes(color = MacroEnv)) + 
+  facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
+  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
+  theme_AGL +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  labs(y = expression(italic("P")[italic("f")]), x = NULL)
+ggsave("Additional/AdditionalFigure07_Pc.png", mp, width = 6, height = 4)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 4}
+mp
+```
+
+---
+
+# Additional Figure 8 Tf Pc PTT
+
+```{r}
+# Prep data
+xx <- read.csv("data/data_Tf_Pf.csv") %>% 
+  mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
+x1 <- xx %>% select(Entry, Expt, ExptShort, MacroEnv, PTT, Tf, Pf) %>%
+  gather(Trait, Value, PTT, Tf, Pf) %>%
+  mutate(Trait = factor(Trait, levels = c("Tf", "Pf", "PTT")))
+new.lab <- as_labeller(c(
+  Tf = "italic(T)[italic(f)]", Pf = "italic(P)[italic(f)]", PTT = "PTT",
+  Mediterranean = "Mediterranean", Temperate = "Temperate", 
+  `South Asia` = "South~Asia"), label_parsed)
+# Plot
+mp <- ggplot(x1, aes(x = ExptShort, y = Value)) +
+  geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
+  geom_quasirandom(size = 0.1, alpha = 0.2, aes(color = MacroEnv)) + 
+  facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
+  scale_color_manual(values = c("darkgreen", "darkred", "darkblue")) +
+  theme_AGL +
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  labs(y = NULL, x = NULL)
+ggsave("Additional/AdditionalFigure08_TfPcPTT.png", mp,width = 6, height = 4)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 4}
+mp
+```
+
+---
+
+# Additional Figure 9 Temperature Increase By Cluster
+
+```{r}
+x1 <- read.csv("data/data_Temp_Increase.csv") %>% filter(GW == "A")
+x2 <- select(read.csv("data/data_PCA_Results.csv"), Entry, Cluster)
+xx <- left_join(x1, x2, by = "Entry") %>%
+  mutate(Cluster = factor(Cluster)) %>% 
+  filter(ExptShort %in% c("Su17", "It17", "Ba17")) 
+mp <- ggplot(xx, aes(x = Cluster, y = Diff, fill = Cluster)) + 
+  geom_violin(color = NA, alpha = 0.6) +
+  geom_quasirandom(color = "Black", alpha = 0.6) + 
+  facet_grid(ExptShort ~ ., scales = "free") +
+  theme_AGL + 
+  theme(legend.position = "none") + 
+  scale_fill_manual(name = NULL, values = colors) + 
+  labs(y = "Decrease in days to flower", x = NULL)
+ggsave("Additional/AdditionalFigure09_TempIncreaseByCluster.png", mp, width = 7, height = 5)
+```
+
+```{r echo = F, fig.width = 7, fig.height = 5}
+mp
+```
+
+---
+
+# Additional Figure 10 PCA
+
+```{r}
+# Prep data
+xx <- read.csv("data/data_PCA_Results.csv") %>% 
+  mutate(Region = ifelse(Origin == "ICARDA", "ICARDA", as.character(Region)))
+# Plot PCA
+mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
+  geom_point(alpha = 0.7, size = 2) +
+  scale_color_manual(values = colors[c(1,5,3,8,7)]) + 
+  scale_shape_manual(values = c(16,17,18,15,13)) +
+  theme_AGL
+ggsave("Additional/AdditionalFigure10_PCA.png", mp, width = 6, height = 4)
+```
+
+```{r echo = F, fig.width = 6, fig.height = 4}
+mp
 ```
 
 ---
