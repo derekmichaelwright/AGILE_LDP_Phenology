@@ -74,9 +74,9 @@ ldp <- read.csv("data/data_LDP.csv") %>%
          Lon3 = ifelse(duplicated(Lon3), jitter(Lon3, 1, 0.1), Lon3)
          )
 # Modeling
-m1 <- read.csv("data/model_18_d.csv") %>%
+m1 <- read.csv("data/model_T+P_d.csv") %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
-m2 <- read.csv("data/model_18_coefs.csv")
+m2 <- read.csv("data/model_T+P_coefs.csv")
 # PCA results
 pca <- read.csv("data/data_PCA_Results.csv") %>%
   mutate(Cluster = factor(Cluster))
@@ -203,7 +203,7 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                             column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
                    plotOutput("EnvData", height = 500)),
           tabPanel("Expt",  
-                   radioButtons("GroupByCluster", "Group Cy Cluster", c(T,F), F, inline = T),
+                   radioButtons("GroupByCluster", "Group by Cluster", c(T,F), F, inline = T),
                    plotlyOutput("Violin",  height = 500) ),
           tabPanel("Expts", plotlyOutput("Violins", height = 500) ),
           tabPanel("Map", leafletOutput("Data_Map", height = 500)),
