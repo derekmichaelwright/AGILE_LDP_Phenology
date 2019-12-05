@@ -215,7 +215,7 @@ x1 <- ldp %>% filter(Origin != "ICARDA") %>%
   left_join(select(ct, Origin = Country, Lat, Lon), by = "Origin") %>% 
   ungroup() %>% as.data.frame()
 x1[is.na(x1)] <- 0
-# Plot map
+# Plot
 invisible(png("Additional/Additional_Figure_01_LDPOriginMap.png", 
               width = 1200, height = 685, res = 150))
 par(mai = c(0,0,0,0), xaxs = "i",yaxs = "i")
@@ -242,7 +242,7 @@ xx <- dd %>% select(Entry, Expt, ExptShort, DTF, DTF2_scaled) %>%
   gather(Trait, Value, DTF, DTF2_scaled) %>% 
   mutate(Trait = plyr::mapvalues(Trait, c("DTF", "DTF2_scaled"), levs),
          Trait = factor(Trait, levels = levs) )
-# Plot DTF
+# Plot
 mp <- ggplot(xx, aes(x = ExptShort, y = Value)) + 
   geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
   geom_quasirandom(aes(color = MacroEnv), size = 0.1, alpha = 0.5) +
@@ -362,6 +362,7 @@ mp3.3 <- ggEnvPlot(ee %>% filter(MacroEnv == "Mediterranean"), mybreaks = c(50,1
         axis.ticks.y.left = element_blank())
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h",
                  legend = "bottom", common.legend = T, widths = c(1.1,1,1.1))
+# Save
 ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_2.png", mp2, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_3.png", mp3, width = 12, height = 4)
@@ -405,7 +406,6 @@ x2 <- xx %>% filter(MacroEnv == "South Asia")
 x3 <- xx %>% filter(MacroEnv == "Mediterranean")
 # Create PDF
 pdf("Additional/pdf_Phenology.pdf", width = 8, height = 6)
-#par(mar=c(1.5, 2.5, 1.5, 0.5))
 for(i in 1:324) {
   xE1 <- xx %>% filter(Entry == i, !is.na(Value), MacroEnv == "Temperate") 
   xE2 <- xx %>% filter(Entry == i, !is.na(Value), MacroEnv == "South Asia")
@@ -433,7 +433,7 @@ xx <- dd %>% select(Entry, Expt, ExptShort, DTF, DTS, DTM) %>%
   left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
   gather(Trait, Value, DTF, DTS, DTM) %>% 
   mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")) )
-# Plot DTF, DTS, DTM
+# Plot
 mp <- ggplot(xx, aes(x = Expt, y = Value)) +
   geom_violin(fill = "grey", alpha = 0.25, color = NA) + 
   geom_quasirandom(size = 0.1, alpha = 0.5, aes(color = MacroEnv)) +
@@ -465,7 +465,7 @@ y1 <- select(yy, Expt, Location, Year, MacroEnv, min = DTF_min, max = DTF_max) %
 y2 <- select(yy, Expt, Location, Year, MacroEnv, min = DTM_min, max = DTM_max) %>% 
   mutate(Trait = "DTM")
 yy <- bind_rows(y1, y2)
-# Plot DTF, DTM, T and P
+# Plot
 mp <- ggplot(xx) +
   geom_rect(data = yy, aes(xmin = min, xmax = max, fill = Trait), 
             ymin = 0, ymax = 40, alpha = 0.4) +
@@ -500,9 +500,11 @@ image_read("Additional/Additional_Figure_03_MacroEnvPhenology.png")
 # Additional Figure 4 ggridges
 
 ```{r}
+# Prep data
 xx <- dd %>% select(Expt, DTF, DTS, DTM) %>% 
   gather(Trait, Value, DTF, DTS, DTM) %>%
   mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
+# Plot
 mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) + 
   ggridges::geom_density_ridges() +
   scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
@@ -536,7 +538,7 @@ xx <- dd %>%
          Percent = round(100 * Flowered / Total),
          Label = paste0(Percent, "%"),
          Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
-# Plot Percent Flowered
+# Plot
 mp <- ggplot(xx, aes(x = Trait, y = Percent, fill = Trait)) + 
   geom_bar(stat = "identity", color = "black", alpha = 0.7) + 
   geom_text(aes(label = Label), nudge_y = -3, size = 3.5) + 
@@ -593,7 +595,7 @@ ggCorPlot <- function(x, legend.title, colNums) {
                   common.legend = T, legend = "right") 
   mp
 }
-# Plot Correlations
+# Plot
 mp1 <- ggCorPlot(xx %>% filter(MacroEnv == "Temperate"),     "Temperate",      1:6 )
 mp2 <- ggCorPlot(xx %>% filter(MacroEnv == "South Asia"),    "South Asia",     7:12)
 mp3 <- ggCorPlot(xx %>% filter(MacroEnv == "Mediterranean"), "Mediterranean", 13:18)
@@ -747,7 +749,7 @@ x1 <- mypcaH[[4]]$X %>%
   left_join(select(ct, Origin=Country, Region), by = "Origin") %>%
   select(Entry, Name, Origin, Region, everything())
 write.csv(x1, "data/data_PCA_Results.csv", row.names = F)
-#
+# Prep data
 x2 <- dd %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
   group_by(Expt, ExptShort, Cluster) %>% 
   summarise(mean = mean(DTF2_scaled, na.rm = T), sd = sd(DTF2_scaled, na.rm = T)) %>%
@@ -820,7 +822,7 @@ xx <- xx %>% filter(Origin != "ICARDA") %>%
   left_join(select(ct, Origin=Country, Lat, Lon), by = "Origin") %>% 
   ungroup() %>% as.data.frame()
 xx[is.na(xx)] <- 0 
-invisible(png("Additional/Temp/Temp_F03_3.png", width = 2400, height = 1100, res = 150)) # 1200, 550
+invisible(png("Additional/Temp/Temp_F03_3.png", width = 2400, height = 1100, res = 150))
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapPies(dF = xx, nameX = "Lon", nameY = "Lat", zColours = colors,
         nameZs = c("1","2","3","4","5","6","7","8"), symbolSize = 1, lwd = 2,
@@ -829,7 +831,7 @@ mapPies(dF = xx, nameX = "Lon", nameY = "Lat", zColours = colors,
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
        pch = 16, cex = 2, pt.cex = 4, box.lwd = 2)
 invisible(dev.off())
-#
+# Append A), B) and C)
 im1 <- image_read("Additional/Temp/Temp_F03_1.png") %>% 
   image_annotate("A)", size = 60, location = "+0+0")
 im2 <- image_read("Additional/Temp/Temp_F03_2.png") %>% 
