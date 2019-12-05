@@ -192,10 +192,10 @@ ggsave("Additional/Temp/Temp_F01_2.png", mp, width = 7, height = 3)
 # Labels were added to "Additional/Temp/Temp_F1_1.png" in image editing software
 # Append A) and B)
 im1 <- image_read("Additional/Temp/Temp_F01_1_1.png") %>% 
-  image_annotate("A)", size = 30, boxcolor = "white")
+  image_annotate("A)", size = 30)
 im2 <- image_read("Additional/Temp/Temp_F01_2.png") %>% 
   image_scale("1200x") %>%
-  image_annotate("B)", size = 30, boxcolor = "white")
+  image_annotate("B)", size = 30)
 im <- image_append(c(im1,im2), stack = T)
 image_write(im, "Figure_01_FieldTrialInfo.png")
 ```
@@ -288,8 +288,7 @@ mp1.1 <- ggDistroDTF(xx %>% filter(MacroEnv == "Temperate"))
 mp1.2 <- ggDistroDTF(xx %>% filter(MacroEnv == "South Asia"))
 mp1.3 <- ggDistroDTF(xx %>% filter(MacroEnv == "Mediterranean"))
 mp1 <- ggmatrix(list(mp1.1, mp1.2, mp1.3), nrow = 1, ncol = 3, 
-                title = "A)", ylab = "Days After Planting",
-                xAxisLabels = macroEnvs) +
+                ylab = "Days After Planting", xAxisLabels = macroEnvs) +
   theme_AGL +
   theme(plot.margin = unit(c(0,1,0,0), "cm"),
         plot.title = element_text(hjust = -0.04)) 
@@ -316,7 +315,7 @@ mp2.1 <- ggDistroREP(xx %>% filter(MacroEnv == "Temperate"))
 mp2.2 <- ggDistroREP(xx %>% filter(MacroEnv == "South Asia"))
 mp2.3 <- ggDistroREP(xx %>% filter(MacroEnv == "Mediterranean"))
 mp2 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), 
-                nrow = 1, ncol = 3, title = "B)", ylab = "Days") +
+                nrow = 1, ncol = 3, ylab = "Days") +
   theme_AGL +
   theme(plot.margin = unit(c(0,1,0,0), "cm"),
         plot.title = element_text(hjust = -0.04))
@@ -347,8 +346,8 @@ ggEnvPlot <- function(x, nr = 2, nc = 3, mybreaks) {
 }
 # Plot C) T and P
 mp3.1 <- ggEnvPlot(ee %>% filter(MacroEnv == "Temperate"), mybreaks = c(25,50,75)) +
-  labs(title = "C)", y = expression(paste(degree, "Celcius"))) +
-  theme(plot.margin = unit(c(0,0,0,0), "cm"),
+  labs(y = expression(paste(degree, "Celcius"))) +
+  theme(plot.margin = unit(c(0,0,0,0.15), "cm"),
         plot.title = element_text(hjust = -0.11))
 mp3.2 <- ggEnvPlot(ee %>% filter(MacroEnv == "South Asia"), mybreaks = c(25,75,125)) +
   theme(plot.margin = unit(c(0,0,0,0), "cm"),
@@ -367,9 +366,12 @@ ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_2.png", mp2, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_3.png", mp3, width = 12, height = 4)
 # Append A), B) and C)
-mp1 <- image_read("Additional/Temp/Temp_F02_1.png")
-mp2 <- image_read("Additional/Temp/Temp_F02_2.png")
-mp3 <- image_read("Additional/Temp/Temp_F02_3.png")
+mp1 <- image_read("Additional/Temp/Temp_F02_1.png")  %>% 
+  image_annotate("A)", size = 60)
+mp2 <- image_read("Additional/Temp/Temp_F02_2.png") %>% 
+  image_annotate("B)", size = 60)
+mp3 <- image_read("Additional/Temp/Temp_F02_3.png") %>% 
+  image_annotate("C)", size = 60)
 mp <- image_append(c(mp1, mp2, mp3), stack = T)
 image_write(mp, "Figure_02_DataOverview.png")
 ```
@@ -848,10 +850,6 @@ summary(x1$Cluster)
 image_read("Figure_03_PCA.png")
 ```
 
-```{r}
-x1 <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
-```
-
 ---
 
 # Additional Figure 5 Cluster Origins
@@ -867,7 +865,7 @@ x1 <- xx %>% filter(Origin != "ICARDA") %>%
   left_join(select(ct, Origin=Country, Lat, Lon), by = "Origin") %>% 
   ungroup() %>% as.data.frame()
 x1[is.na(x1)] <- 0 
-# Plot A) Bars
+# Plot
 mp <- ggplot(xx, aes(x = Origin, fill = Cluster)) + 
   geom_bar(stat = "count") + 
   facet_grid(. ~ Cluster, scales = "free", space = "free") + 
@@ -891,7 +889,7 @@ image_read("Additional/Additional_Figure_05_ClusterOrigins.png")
 # Prep data
 xx <- read.csv("data/data_PCA_Results.csv") %>% 
   mutate(Region = ifelse(Origin == "ICARDA", "ICARDA", as.character(Region)))
-# Plot PCA
+# Plot
 mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   geom_point(alpha = 0.7, size = 2) +
   scale_color_manual(values = colors[c(1,5,3,8,7)]) + 
@@ -949,7 +947,7 @@ xx <- ldp %>% select(Entry, Name, Lat, Lon) %>% left_join(x1, by = "Entry") %>%
          Lon = ifelse(is.na(Lon), cLon, Lon),
          Lat = ifelse(duplicated(Lat), jitter(Lat, 1, 1), Lat),
          Lon = ifelse(duplicated(Lon), jitter(Lon, 1, 1), Lon), Size = 1)
-# Plot Map
+# Plot
 invisible(png("Additional/Additional_Figure_08_LDPOriginsByCluster.png", width = 2400, height = 1100, res = 150))
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
@@ -1108,7 +1106,8 @@ mp1 <- ggplot(xx, aes(x = T_mean, y = RDTF)) +
   scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
   scale_color_manual(name = "Macro-environment", values = myfills) +
   theme_AGL + facet_grid(. ~ Name) + 
-  theme(plot.margin = unit(c(0,0,0,0), "cm")) +
+  theme(axis.title.y = element_text(size = 9),
+        plot.margin = unit(c(0,0,0,0), "cm")) +
   guides(colour = guide_legend(override.aes = list(size = 3))) +
   labs(y = "1 / DTF", x = expression(paste("Temperature (", degree, "C)", sep = "")))
 # Plot B) 1/f = a + cP
@@ -1122,22 +1121,24 @@ mp2 <- ggplot(xx, aes(x = P_mean, y = RDTF)) +
   scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
   scale_color_manual(name = "Macro-environment", values = myfills) +
   theme_AGL + facet_grid(. ~ Name) + 
-  theme(plot.margin = unit(c(0,0,0,0), "cm")) +
+  theme(axis.title.y = element_text(size = 9),
+        plot.margin = unit(c(0,0,0,0), "cm")) +
   guides(colour = guide_legend(override.aes = list(size = 3))) +
   labs(y = "1 / DTF",x = "Photoperiod (hours)")
 # Append A) and B)
 mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom") 
-ggsave("Additional/Temp/Temp_SF04_1.png", mp, width = 6, height = 4)
+ggsave("Additional/Temp/Temp_SF04_1.png", mp, width = 6, height = 3.75)
 # Append C)s
 im1 <- image_read("Additional/Temp/3D_Entry_094.png")
 im2 <- image_read("Additional/Temp/3D_Entry_235.png") #3D_Entry_076.png
 im3 <- image_read("Additional/Temp/3D_Entry_128.png")
 im <- image_append(c(im1, im2, im3)) %>% image_scale("1800x")
 image_write(im, "Additional/Temp/Temp_SF04_2.png")
-# D) 
+# Prep data 
 xx <- dd %>% filter(Name %in% yy) %>% 
   mutate(Name = gsub(" AGL", "", Name),
          Name = factor(Name, levels = gsub(" AGL", "", yy)))
+# Plot D)
 mp3 <- ggplot(dd, aes(x = ExptShort, y = DTF2_scaled, group = Name)) + 
   geom_line(color = "black", alpha = 0.1) +
   geom_line(data = xx, aes(color = Name), size = 2) + 
@@ -1146,12 +1147,13 @@ mp3 <- ggplot(dd, aes(x = ExptShort, y = DTF2_scaled, group = Name)) +
   theme_AGL + labs(y = "DTF (scaled 1-5)", x = NULL) +
   theme(legend.position = "bottom",
         plot.margin = unit(c(0,0,0,0), "cm"),
+        axis.title.y = element_text(size = 9),
         axis.text.x = element_text(angle = 90, vjust = 0.5))
-ggsave("Additional/Temp/Temp_SF04_3.png", mp3, width = 6, height = 3)
+ggsave("Additional/Temp/Temp_SF04_3.png", mp3, width = 6, height = 2.5)
 # Append A), B), C) and D)
 im1 <- image_read("Additional/Temp/Temp_SF04_1.png") %>% 
-  image_annotate("A)", size = 40, location = "+0+10") %>% 
-  image_annotate("B)", size = 40, location = "+0+550")
+  image_annotate("A)", size = 40, location = "+0+0") %>% 
+  image_annotate("B)", size = 40, location = "+0+500")
 im2 <- image_read("Additional/Temp/Temp_SF04_2.png") %>% 
   image_annotate("C)", size = 40)
 im3 <- image_read("Additional/Temp/Temp_SF04_3.png") %>% 
@@ -1162,12 +1164,6 @@ image_write(im, "Supplemental_Figure_04_Regressions.png")
 
 ```{r echo = F}
 image_read("Supplemental_Figure_04_Regressions.png")
-```
-
-```{r}
-e1 <- ee %>% filter(ExptShort == "It17")
-nrow(e1)
-nrow(e1%>%filter(Temp_mean < 15))
 ```
 
 ---
@@ -1183,13 +1179,11 @@ gg_model_1 <- function(x, title = NULL, type = 1,
   x <- x %>% mutate(Flowered = ifelse(is.na(DTF), "Did not Flower", "Flowered"))
   # Prep data
   if(type == 1) {
-    myx <- "DTF"
-    myy <- "Predicted_DTF"
+    myx <- "DTF"; myy <- "Predicted_DTF"
     x <- x %>% filter(!is.na(DTF))
   }
   if(type == 2) {
-    myx <- "RDTF"
-    myy <- "Predicted_RDTF"
+    myx <- "RDTF"; myy <- "Predicted_RDTF"
     x <- x %>% filter(!is.na(RDTF))
   }
   myPal <- colors_Expt[names_Expt %in% unique(x$Expt)]
@@ -1250,7 +1244,7 @@ modelR2 <- function(x, y) {
 }
 # RMSE function
 modelRMSE <- function(x, y) {
-  sqrt(sum((x-y)^2) / length(x))
+  sqrt(sum((x-y)^2, na.rm = T) / length(x))
 }
 ```
 
@@ -1347,6 +1341,7 @@ image_read("Additional/Model/Model_2_1.png")
 ```
 
 ```{r}
+# Plot Observed vs Predicted for Temperate Locations
 mp <- gg_model_2(xx %>% filter(ExptShort %in% c("Ro16","Ro17","Su16","Su17","Su18","Us18")))
 ggsave("Additional/Model/Model_3_1.png", mp ,width = 8, height = 3)
 ```
@@ -1434,12 +1429,13 @@ image_read("Additional/Model/Model_2_2.png")
 # Supplemental Table 3 Model Constants
 
 ```{r}
-# Supplemental Table 03
+# Prep data
 x1 <- read.csv("data/model_T+P_coefs.csv")
 x2 <- read.csv("data/model_TxP_coefs.csv")
 xx <- bind_rows(x1, x2) %>% arrange(Entry) %>% 
   select(Entry, Name, a, b, c, d, RR, Environments, 
          a_p.value=aP, b_p.value=bP, c_p.value=cP, d_p.value=dP)
+# Save
 write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
 ```
 
@@ -1448,6 +1444,7 @@ write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
 # Additional Figure 9 significant T x P interactions
 
 ```{r}
+# Prep data
 x1 <- read.csv("data/model_T+P_coefs.csv") %>% mutate(Model = "T + P")
 x2 <- read.csv("data/model_TxP_coefs.csv") %>% mutate(Model = "T x P")
 xx <- bind_rows(x1, x2) %>% arrange(Entry) %>% 
@@ -1458,6 +1455,7 @@ xx <- xx %>% filter(Entry %in% ents)
 write.csv(xx, "Additional/Additional_Table_01.csv", na = "", row.names = F)
 xx <- xx %>% arrange(RR) %>% mutate(Entry = factor(Entry, levels = unique(Entry)))
 length(ents)
+# Plot
 mp <- ggplot(xx, aes(x = Entry, y = RR, fill = Model)) + 
   geom_bar(stat = "identity", position = "dodge") +
   scale_y_continuous(breaks = seq(0,1,0.1), minor_breaks = seq(0,1,0.01)) +
@@ -1477,14 +1475,18 @@ image_read("Additional/Additional_Figure_09_TxPRR.png")
 # Prep data
 xx <- read.csv("data/model_T+P_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
-mp1 <- gg_model_1(xx, title = expression(paste("A) ", italic("1 / f = a + bT + cP"))))
+mp1 <- gg_model_1(xx, title = expression(paste("A) ", italic(" 1 / f = a + bT + cP"))))
 # Prep data
 xx <- read.csv("data/model_TxP_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
-mp2 <- gg_model_1(xx, title = expression(paste("B) ", italic("1 / f = a + bT + cP + dTP"))))
+mp2 <- gg_model_1(xx, title = expression(paste("B) ", italic(" 1 / f = a + bT + cP + dTP"))))
 # Append
 mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
 ggsave("Supplemental_Figure_05_Models.png", mp, width = 12, height = 5)
+```
+
+```{r echo = F}
+image_read("Supplemental_Figure_05_Models.png")
 ```
 
 ---
@@ -1492,12 +1494,14 @@ ggsave("Supplemental_Figure_05_Models.png", mp, width = 12, height = 5)
 # Additional Figure 10 Constants
 
 ```{r}
+# Prep data
 pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
 x1 <- read.csv("data/model_T+P_coefs.csv") %>% mutate(Model = "T+P")
 x2 <- read.csv("data/model_TxP_coefs.csv") %>% mutate(Model = "TxP")
 xx <- bind_rows(x1, x2) %>% 
   gather(Coef, Value, a,b,c,d) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
+# Plot
 mp1 <- ggplot(xx%>%filter(Model=="T+P"), aes(x = Cluster, y = Value, color = Cluster)) + 
   geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
@@ -1519,11 +1523,13 @@ image_read("Additional/Additional_Figure_10_Coefs.png")
 # Additional Figure 11 Coefficient p-values
 
 ```{r}
+# Prep data
 pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
 x1 <- read.csv("data/model_T+P_coefs.csv") %>% mutate(Model = "T+P")
 x2 <- read.csv("data/model_TxP_coefs.csv") %>% mutate(Model = "TxP")
 xx <- bind_rows(x1, x2) %>% gather(Coef, Value, aP,bP,cP,dP) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
+# Plot
 mp1 <- ggplot(xx%>%filter(Model=="T+P"), aes(x = Cluster, y = Value, color = Cluster)) + 
   geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
@@ -1545,7 +1551,7 @@ image_read("Additional/Additional_Figure_11_CoefsP.png")
 # Additional Figure 12 p-values b c
 
 ```{r}
-# Prep A)
+# Prep data
 pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
 xx <- read.csv("data/model_T+P_coefs.csv") %>% 
   mutate(Sig = factor(ifelse(bP > 0.0001, "Sig","Less Sig"))) %>%
@@ -1553,6 +1559,7 @@ xx <- read.csv("data/model_T+P_coefs.csv") %>%
   gather(Trait, Value, p.value, b) %>%
   left_join(pca, by = "Entry")
 x1 <- xx %>% filter(Sig == "Sig", Trait == "p.value")
+# Plot A)
 mp1 <- ggplot(xx, aes(x = 1, y = Value)) +
   geom_quasirandom(aes(color = Cluster)) +
     geom_point(data = x1, size = 2.5, pch = 25, color = "black", fill = "darkblue") +
@@ -1562,13 +1569,14 @@ mp1 <- ggplot(xx, aes(x = 1, y = Value)) +
   scale_color_manual(values = colors) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "A)", x = NULL, y = NULL)
-# Prep B)
+# Prep data
 xx <- read.csv("data/model_T+P_coefs.csv") %>% 
   mutate(Sig = factor(ifelse(cP > 0.000001, "Sig","Less Sig"))) %>%
   select(Entry, Sig, p.value=cP, c) %>% 
   gather(Trait, Value, p.value, c) %>%
   left_join(pca, by = "Entry")
 x1 <- xx %>% filter(Sig == "Sig")
+# Plot B)
 mp2 <- ggplot(xx, aes(x = 1, y = Value)) +
   geom_quasirandom(aes(color = Cluster)) +
   geom_point(data = x1, size = 2.5, pch = 25, color = "black", fill = "darkred") +
@@ -1578,6 +1586,7 @@ mp2 <- ggplot(xx, aes(x = 1, y = Value)) +
   scale_color_manual(values = colors) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "B)", x = NULL, y = NULL)
+# Append A) and B)
 mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom")
 ggsave("Additional/Additional_Figure_12_bP.png", mp, width = 8, height = 4)
 ```
@@ -1640,8 +1649,10 @@ image_read("Additional/Model/Model_1_3.png")
 
 ```{r}
 modelR2(xx$DTF, xx$Predicted_DTF)
+modelRMSE(xx$DTF, xx$Predicted_DTF)
 # Plot A)
-mp <- gg_model_2(xx) #title = expression(paste("Overall ",italic("R")^2, " = 0.804")
+mp <- gg_model_2(xx, title = expression(paste("Overall: ",
+        italic("R")^2, " = 0.804 | RMSE = 15.0")))
 ggsave("Figure_04_ModelPrediction.png", mp, width = 8, height = 5.5)
 mp <- gg_model_2(xx, title = "Model = T + P | Location Out")
 ggsave("Additional/Model/Model_2_3.png", mp, width = 8, height = 5.5)
@@ -1668,10 +1679,7 @@ mt <- data.frame(Temperate_Location     = rep(names_ExptShort[1:6],  each = 36),
   mutate(Mediterranean_Location = rep(names_ExptShort[13:18], 36),
                  RR = NA, Genotypes = NA)
 sum(duplicated(paste(mt$Temperate_Location,mt$SouthAsian_Location,mt$Mediterranean_Location)))
-#
-#t<-names_ExptShort[1]
-#s<-names_ExptShort[7]
-#m<-names_ExptShort[13]
+# Run each combination
 for(t in names_ExptShort[1:6]) { # Temperate site-years
   for(s in names_ExptShort[7:12]) { # South asian site-years
     for(m in names_ExptShort[13:18]) { # Mediterranean site-years
@@ -1702,15 +1710,6 @@ for(t in names_ExptShort[1:6]) { # Temperate site-years
 }
 # Save
 write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
-#
-xx <- mt %>% 
-  mutate(Model = paste(Temperate_Location, SouthAsian_Location, Mediterranean_Location, sep = "-")) %>%
-  arrange(rev(RR)) %>%
-  mutate(Model = factor(Model, levels = unique(Model)))
-mp <- ggplot(xx, aes(x = Model, y = RR)) + 
-  geom_bar(stat = "identity") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-ggsave("Additional/Model_3_Locations.png", mp, width = 30, height = 5)
 ```
 
 ---
@@ -1927,7 +1926,7 @@ xx <- bind_rows(x1, x2.1, x2.2, x3, x4, x5) %>%
          Expt = factor(Expt, levels = c("AGILE - All 18 Site-years", 
                   "AGILE - 3 Best Site-years", "AGILE - 3 Worst Site-years",
                   "Summerfield 1985 -V", "Summerfield 1985 +V", "Roberts 1988")))
-# Plot a, b and c
+# Plot
 mp <- ggplot(xx, aes(x = Expt, y = Value * 10000, shape = Expt)) + 
   geom_quasirandom(size = 2, width = 0.2) + 
   facet_grid(Constant ~ Name, scales = "free_y") +
@@ -1962,12 +1961,11 @@ x2 <- read.csv("data/model_3Best_coefs.csv") %>%
   mutate(Expt = levs[2])
 x3 <- read.csv("data/model_3Worst_coefs.csv") %>% 
   mutate(Expt = levs[3])
-
 xx <- bind_rows(x1, x2,x3) %>% 
   left_join(pca, by = "Entry") %>%
   gather(Trait, Value, a, b, c) %>%
   mutate(Expt = factor(Expt,levels = levs))
-# Plot a, b, and c
+# Plot
 mp <- ggplot(xx, aes(x = Expt, y = Value * 10000 )) +
   geom_violin(alpha = 0.3, color = NA, fill = "grey") + 
   geom_quasirandom(aes(color = Cluster), size = 0.3) + 
@@ -2080,11 +2078,11 @@ mp1 <- ggplot(xx, aes(x = Cluster, y = Value * 10000) ) +
   theme_AGL +
   theme(strip.text = element_text(face = "italic"),
         legend.margin     = unit(c(0,0,0,0), "cm"),
-        plot.title = element_text(hjust = -0.085),
+        #plot.title = element_text(hjust = -0.085, vjust = -10),
         legend.position = "none") +
   scale_fill_manual(name = NULL, values = colors) +
   guides(fill = F) +
-  labs(title = "A)", y = "x 10000")
+  labs(y = "x 10000")
 #ggsave("Additional/Temp/Temp_F06_1.png", mp1, width = 6, height = 2.5)
 # Prep data
 xx <- read.csv("data/data_Tf_Pf.csv") %>% 
@@ -2106,9 +2104,10 @@ mp2.1 <- ggplot(x1, aes(x = 1, y = Tb)) +
   theme(axis.text.x        = element_blank(), 
         axis.ticks.x       = element_blank(),
         panel.grid.minor.x = element_blank(),
-        plot.title = element_text(hjust = -0.17)) +
+        #plot.title = element_text(hjust = -0.17, vjust = -10)
+        ) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size=2))) +
-  labs(title = "B)", x = NULL,
+  labs(x = NULL,
        y = expression(paste(italic("T")[italic("b")], " = -(", italic("a"), " + ",
                             italic("cP"), ") / ", italic("b"))))
 # Plot B) Pc
@@ -2125,15 +2124,18 @@ mp2.2 <- ggplot(x1, aes(x = 1, y = Pc)) +
   theme(axis.text.x        = element_blank(),
         axis.ticks.x       = element_blank(),
         panel.grid.minor.x = element_blank(),
-        plot.title = element_text(hjust = -0.17)) +
+        #plot.title = element_text(hjust = -0.17, vjust = -10)
+        ) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size=2))) +
-  labs(title = "C)", x = NULL,
+  labs(x = NULL,
        y = expression(paste(italic("P")[italic("c")], " = -(", italic("a"), " + ", 
                             italic("bT"), ") / ", italic("c"))))
-mp2 <- ggarrange(mp2.1, mp2.2, nrow = 1, ncol = 2, common.legend = T, legend = "bottom")
+mp2 <- ggarrange(mp2.1, mp2.2, nrow = 1, ncol = 2, common.legend = T, legend = "bottom",
+                 labels = c("B)","C)"), font.label = list(face = "plain"))
 #ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 7, height = 5)
 # Append ALL
-mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "hv") #heights = c(1,1.75),
+mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "hv", 
+                labels = c("A)",""), font.label = list(face = "plain")) #heights = c(1,1.75),
 #mp1 <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, heights = c(1,1.75), align = "v")
 #mp2 <- ggarrange(mp3, mp4, nrow = 1, ncol = 2, common.legend = T, legend = "bottom")
 #mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, heights = c(2,1.25))
@@ -2174,7 +2176,8 @@ mp1 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
-  labs(title = "A)", y = expression(italic("T")[italic("f")]), x = NULL)
+  labs(title = "A) Thermal sum required for flowering", 
+       y = expression(italic("T")[italic("f")]), x = NULL)
 # Prep data for B) Pf
 x1 <- xx %>% 
   select(Entry, Expt, ExptShort, MacroEnv, Cluster, Pf_0, Pf_7, Pf) %>%
@@ -2195,22 +2198,14 @@ mp2 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
-  labs(title = "B)", y = expression(italic("P")[italic("f")]), x = NULL)
+  labs(title = "B) Photoperiodic sum required for flowering", 
+       y = expression(italic("P")[italic("f")]), x = NULL)
 
 # Append A) B) C)
 mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
 # Save
 ggsave("Additional/Temp/Temp_SF09_1.png", mp1, width = 10, height = 13 * 3 / 8.2)
 ggsave("Additional/Temp/Temp_SF09_2.png", mp2, width = 10, height = 13 * 3 / 8.2)
-#
-#im1 <- image_read("Additional/Temp/Temp_SF09_1.png") %>% 
-#  image_annotate("A)", size = 60, location = "+0+0")
-#im2 <- image_read("Additional/Temp/Temp_SF09_2.png") %>% 
-#  image_annotate("B)", size = 60, location = "+0+0")
-#im3 <- image_read("Additional/Temp/Temp_SF09_3.png") %>%
-#  image_annotate("C)", size = 60, location = "+0+0")
-#im <- image_append(c(im1, im2), stack = T)
-#image_write(im, "Supplemental_Figure_09_TfPcPTT.png")
 ggsave("Supplemental_Figure_09_TfPc.png", mp, width = 8, height = 10)
 ```
 
