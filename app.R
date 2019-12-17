@@ -79,7 +79,8 @@ m1 <- read.csv("data/model_T+P_d.csv") %>%
 m2 <- read.csv("data/model_T+P_coefs.csv")
 # PCA results
 pca <- read.csv("data/data_PCA_Results.csv") %>%
-  mutate(Cluster = factor(Cluster))
+  mutate(Cluster = factor(Cluster)) %>%
+  select(Entry, Name, Origin, Region, Cluster, everything())
 ldp <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry")
 # Tf, Pf, PTT
 ptt <- read.csv("data/data_Tf_Pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
@@ -194,26 +195,33 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                  p("- GenomePrairie"),
                  p("- GenomeCanada"),
                  p("- Saskatchewan Ministry of Agriculture")
-        ),
-        tabPanel("LDP", h1("Lentil Diversity Panel"), DT::dataTableOutput("LDP_Table") ),
-        tabPanel("Data", tabsetPanel(
-          tabPanel("EnvData",
+        ), #Home tab
+        tabPanel("Tables", tabsetPanel(
+          tabPanel("LDP", h1("Lentil Diversity Panel"), DT::dataTableOutput("Table_LDP")),
+          tabPanel("Field Trials", h1("Field Trial Info"), DT::dataTableOutput("Table_FieldTrials")),
+          tabPanel("PCA", h1("PCA and Hierarchical Clustering of DTF"), DT::dataTableOutput("Table_PCA")),
+          tabPanel("Coefs", h1("Photothermal Model Coeficients"), DT::dataTableOutput("Table_Coefs")),
+          tabPanel("DTF Predictions", h1("Field Trial Info"), DT::dataTableOutput("Table_Model")) 
+          )), #Tables tab
+        tabPanel("Phenology", tabsetPanel(
+          tabPanel("Trait 1",  
+                   radioButtons("GroupByCluster", "Group by Cluster", c(T,F), F, inline = T),
+                   plotlyOutput("Violin",  height = 500) ),
+          tabPanel("Trait 2", plotlyOutput("Violins", height = 500) ),
+          tabPanel("EnvData 1",
                    fluidRow(column(radioButtons("Plot_DTF", "Plot DTF Window", c(T,F), F, inline = T), width = 2),
                             column(radioButtons("Plot_DTS", "Plot DTS Window", c(T,F), F, inline = T), width = 2),
                             column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
                    plotOutput("EnvData", height = 500)),
-          tabPanel("Expt",  
-                   radioButtons("GroupByCluster", "Group by Cluster", c(T,F), F, inline = T),
-                   plotlyOutput("Violin",  height = 500) ),
-          tabPanel("Expts", plotlyOutput("Violins", height = 500) ),
+          tabPanel("EnvData 2", plotOutput("Phenology") ),
           tabPanel("Map", leafletOutput("Data_Map", height = 500)),
           tabPanel("Corr", 
                    fluidRow(column(selectInput("Trait2", "Trait (x axis)", trts, "DTS"), width = 2),
                             column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3),
                             column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
-                   plotlyOutput("Corr", height = 500) ),
-          tabPanel("Phenology", plotOutput("Phenology") )
-        ) ),
+                   plotlyOutput("Corr", height = 500) ))
+                   
+        ) ), #Phenology tab
         tabPanel("HCPC", tabsetPanel(
           tabPanel("PCA",
                    radioButtons("PC_Type","Plot", c("PC1 x PC2","PC1 x PC3","PC2 x PC3"), "PC1 x PC2", inline = T),
@@ -281,21 +289,30 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
 ##############################################################################
 server <- function(input, output) {
   #
-  # -Sidebar
+  # - Sidebar
   #
   output$EntryTable <- renderTable({
     ldp %>% filter(Entry == input$Entry) %>% select(Name, Origin)
   })
   #
-  # -Home
+  # - Home
   #
   output$AgileLogo     <- renderUI({img(src = "Logo_Agile.png", height = 150)})
   #
-  # -LDP
+  # - Tables
   #
-  output$LDP_Table <- DT::renderDataTable(ldp %>% select(-Lat2, -Lat3, -Lon2, -Lon3), options = list(pageLength = 324))
+  output$Table_LDP <- DT::renderDataTable(ldp %>% select(-Lat2, -Lat3, -Lon2, -Lon3, -Cluster), options = list(pageLength = 324))
   #
-  # -Data
+  output$Table_FieldTrials <- DT::renderDataTable(ff %>% select(ExptShort, Expt, MacroEnv, Start, End, Days, T_mean, P_mean, Lat, Lon), options = list(pageLength = 18))
+  #
+  output$Table_PCA <- DT::renderDataTable(pca, options = list(pageLength = 324))
+  #
+  output$Table_Coefs <- DT::renderDataTable(m2, options = list(pageLength = 324))
+  #
+  output$Table_Model <- DT::renderDataTable(m1%>%filter(Expt%in% input$Expts), options = list(pageLength = 324))
+  #
+  #
+  # - Data
   #
   # input <- list(Expts = names_Expt, Trait = "DTF", Plot_Entry = "TRUE", Entry = 1, MyClusters = c("1","2","3","4"))
   output$Violins <- renderPlotly({
