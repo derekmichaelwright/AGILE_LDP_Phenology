@@ -221,7 +221,7 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                             column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
                    plotlyOutput("Corr", height = 500) ))
                    
-        ) ), #Phenology tab
+        ), #Phenology tab
         tabPanel("HCPC", tabsetPanel(
           tabPanel("PCA",
                    radioButtons("PC_Type","Plot", c("PC1 x PC2","PC1 x PC3","PC2 x PC3"), "PC1 x PC2", inline = T),
@@ -238,7 +238,7 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                      tabPanel("Expt",  plotlyOutput("PCA_Origins_Expt")),
                      tabPanel("Expts", plotOutput("PCA_Origins_Expts"))
                      
-          ) ) ) ),
+          ) ) ) ), #HCPC tab
         tabPanel("PhotoThermal Model", tabsetPanel(
           tabPanel("PhotoThermal Plane", br(), plotOutput("Modeling_3D" , height = 500) ),
           tabPanel("Obs x Pre", plotlyOutput("Modeling", height = 500)),

@@ -147,7 +147,7 @@ ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
 # Supplemental tables 1 & 2
 
 ```{r}
-write.csv(select(ldp, Entry, Name, Origin, Source), 
+write.csv(select(ldp, Entry, Name, Origin, Source, Synonyms), 
           "Supplemental_Table_01.csv", row.names = F)
 write.csv(select(ff, Location, Year, 
             `Short Name` = ExptShort, `Planting Date` = Start, Latitude = Lat, 
@@ -279,11 +279,12 @@ ggEnvPlot <- function(x, nr = 2, nc = 3, mybreaks) {
 }
 # Plot C) T and P
 mp1.1 <- ggEnvPlot(ee %>% filter(MacroEnv == "Temperate"), mybreaks = c(25,50,75)) +
-  labs(title = "A)", y = expression(paste(degree, "Celcius"))) +
-  theme(strip.background = element_rect(fill = alpha("darkgreen", 0.3)),
+  labs(y = expression(paste(degree, "Celcius"))) + #title = "A)", 
+  theme(strip.background = element_rect(alpha("darkgreen", 0.3)),
         plot.margin = unit(c(0,0,0,0.155), "cm"),
-        plot.title = element_text(hjust = -0.11, vjust = -20))
+        plot.title = element_text(hjust = -0.12, vjust = -10))
 mp1.2 <- ggEnvPlot(ee %>% filter(MacroEnv == "South Asia"), mybreaks = c(25,75,125)) +
+  labs(x = "Days After Planting") +
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
         axis.text.y = element_blank(), 
         axis.ticks.y = element_blank())
@@ -295,7 +296,7 @@ mp1.3 <- ggEnvPlot(ee %>% filter(MacroEnv == "Mediterranean"), mybreaks = c(50,1
         axis.text.y.left = element_blank(),
         axis.ticks.y.left = element_blank())
 mp1 <- ggarrange(mp1.1, mp1.2, mp1.3, nrow = 1, ncol = 3, align = "h",
-                 legend = "bottom", common.legend = T)
+                 legend = "top", common.legend = T)
 # Prep data
 xx <- dd %>% select(Entry, Year, Expt, ExptShort, Location, DTF, DTS, DTM) %>%
   left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
@@ -310,14 +311,14 @@ ggDistroDTF <- function(x) {
     scale_color_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
     scale_y_continuous(limits = c(30,190), breaks = c(50,75,100,125,150,175)) +
     theme_AGL + labs(y = NULL, x = NULL) +
-    theme(plot.margin = unit(c(0,0,0.1,0), "cm"))
+    theme(plot.margin = unit(c(0.1,0,0.3,0), "cm"))
 }
 # Plot A) DTF, DTS and DTM
 mp2.1 <- ggDistroDTF(xx %>% filter(MacroEnv == "Temperate")) + 
-  labs(title = "B)", y = "Days After Planting") +
+  labs(y = "Days After Planting") +#title = "B)", 
   theme(strip.background = element_rect(fill = alpha("darkgreen", 0.3)),
         #plot.margin = unit(c(0,0,0,0.15), "cm"),
-        plot.title = element_text(hjust = -0.11, vjust = -30))
+        plot.title = element_text(hjust = -0.12, vjust = -10))
 mp2.2 <- ggDistroDTF(xx %>% filter(MacroEnv == "South Asia")) +
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
         #plot.margin = unit(c(0,0,0,0), "cm"),
@@ -349,14 +350,14 @@ ggDistroREP <- function(x) {
     scale_color_manual(values = c("steelblue", "purple")) +
     scale_y_continuous(limits = c(25,135), breaks = c(25,50,75,100,125)) +
     theme_AGL + labs(x = NULL, y = NULL) + 
-    theme(plot.margin = unit(c(0,0,0.1,0), "cm"))
+    theme(plot.margin = unit(c(0,0,0.3,0), "cm"))
 }
 # Plot B) REP and VEG
 mp3.1 <- ggDistroREP(xx %>% filter(MacroEnv == "Temperate")) + 
-  labs(title = "C)", y = "Days") +
+  labs(y = "Days") +#title = "C)",
   theme(strip.background = element_rect(fill = alpha("darkgreen", 0.3)),
         #plot.margin = unit(c(0,0,0,0.15), "cm"),
-        plot.title = element_text(hjust = -0.11, vjust = -20))
+        plot.title = element_text(hjust = -0.12, vjust = -10))
 mp3.2 <- ggDistroREP(xx %>% filter(MacroEnv == "South Asia")) + 
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
         #plot.margin = unit(c(0,0,0,0), "cm"),
@@ -375,23 +376,23 @@ mp3 <- ggmatrix(list(mp2.1, mp2.2, mp2.3),
         plot.title = element_text(hjust = -0.04))
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 #
-mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1, align = "v",
-                 legend = "none", common.legend = T, 
-                 heights = c(1.1,1,1))
-ggsave("Figure_02_DataOverview.png", mp, width = 12, height = 12)
+#mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1, align = "v",
+#                 legend = "none", common.legend = T, 
+#                 heights = c(1.1,1,1))
+#ggsave("Figure_02_DataOverview.png", mp, width = 12, height = 12)
 # Save
 ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_2.png", mp2, width = 12, height = 4)
 ggsave("Additional/Temp/Temp_F02_3.png", mp3, width = 12, height = 4)
 # Append A), B) and C)
-#mp1 <- image_read("Additional/Temp/Temp_F02_1.png")  %>% 
-#  image_annotate("A)", size = 60)
-#mp2 <- image_read("Additional/Temp/Temp_F02_2.png") %>% 
-#  image_annotate("B)", size = 60)
-#mp3 <- image_read("Additional/Temp/Temp_F02_3.png") %>% 
-#  image_annotate("C)", size = 60)
-#mp <- image_append(c(mp1, mp2, mp3), stack = T)
-#image_write(mp, "Figure_02_DataOverview.png")
+mp1 <- image_read("Additional/Temp/Temp_F02_1.png")  %>% 
+  image_annotate("A)", size = 60)
+mp2 <- image_read("Additional/Temp/Temp_F02_2.png") %>% 
+  image_annotate("B)", size = 60)
+mp3 <- image_read("Additional/Temp/Temp_F02_3.png") %>% 
+  image_annotate("C)", size = 60)
+mp <- image_append(c(mp1, mp2, mp3), stack = T)
+image_write(mp, "Figure_02_DataOverview.png")
 ```
 
 ```{r echo = F}
