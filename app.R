@@ -173,13 +173,13 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
     mainPanel(
       tabsetPanel(
         tabPanel("Home",
-                 h1("AGILE LDP Phenology App"),
+                 h1("AGILE LDP Phenology App"), hr(),
+                 uiOutput("AgileLogo"), hr(), 
                  p("Author: Derek Wright"),
                  p("Contact: derek.wright@usask.ca"),
                  p("Associated Paper:"),
-                 p(strong("Phenological characterization and modeling of diverse lentil (", em("Lens culinaris"), " Medik.) germplasm grown in multiple environments")),
-                 p("Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett"),
-                 uiOutput("AgileLogo"), hr(), 
+                 p(strong("ASSESSING ADAPTATION AGILITY OF LENTIL (", em("Lens culinaris"), " Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD")),
+                 p("Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett"),
                  p(strong("Project Collaborators:")),
                  p("- Department of Plant Sciences and Crop Development Centre, University of Saskatchewan, Saskatoon, Saskatchewan, Canada"),
                  p("- United States Department of Agriculture Western Region Plant Introduction Station, Pullman, Washington, USA"),
@@ -206,29 +206,31 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
         tabPanel("Phenology", tabsetPanel(
           tabPanel("Trait 1",  
                    radioButtons("GroupByCluster", "Group by Cluster", c(T,F), F, inline = T),
-                   plotlyOutput("Violin",  height = 500) ),
-          tabPanel("Trait 2", plotlyOutput("Violins", height = 500) ),
+                   plotlyOutput("Violin",  height = 500)),
+          tabPanel("Trait 2", plotlyOutput("Violins", height = 500)),
+          tabPanel("Lines 1"),
+          tabPanel("Lines 2"),
           tabPanel("EnvData 1",
                    fluidRow(column(radioButtons("Plot_DTF", "Plot DTF Window", c(T,F), F, inline = T), width = 2),
                             column(radioButtons("Plot_DTS", "Plot DTS Window", c(T,F), F, inline = T), width = 2),
                             column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
                    plotOutput("EnvData", height = 500)),
-          tabPanel("EnvData 2", plotOutput("Phenology") ),
+          tabPanel("EnvData 2", plotOutput("Phenology")),
+          tabPanel("ggridges", plotOutput("ggridges")),
           tabPanel("Map", leafletOutput("Data_Map", height = 500)),
           tabPanel("Corr", 
                    fluidRow(column(selectInput("Trait2", "Trait (x axis)", trts, "DTS"), width = 2),
                             column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3),
                             column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
-                   plotlyOutput("Corr", height = 500) ))
-                   
-        ), #Phenology tab
-        tabPanel("HCPC", tabsetPanel(
+                   plotlyOutput("Corr", height = 500))
+        )), #Phenology tab
+        tabPanel("Clusters", tabsetPanel(
           tabPanel("PCA",
                    radioButtons("PC_Type","Plot", c("PC1 x PC2","PC1 x PC3","PC2 x PC3"), "PC1 x PC2", inline = T),
-                   plotlyOutput("PCA_PC", height = 500) ),
-          tabPanel("Ribbon", plotlyOutput("PCA_Ribbon", height = 500) ),
+                   plotlyOutput("PCA_PC", height = 500)),
+          tabPanel("Ribbon", plotlyOutput("PCA_Ribbon", height = 500)),
           tabPanel("Map", tabsetPanel(
-            tabPanel("Pies", leafletOutput("PCA_Pies", height = 500) ),
+            tabPanel("Pies", leafletOutput("PCA_Pies", height = 500)),
             tabPanel("Points", radioButtons("PCA_Map_Points", "Plot", c("GeoLocated", "All"), inline = T),
                      leafletOutput("PCA_Points", height = 500))
           ) ),
@@ -237,10 +239,10 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                    tabsetPanel(
                      tabPanel("Expt",  plotlyOutput("PCA_Origins_Expt")),
                      tabPanel("Expts", plotOutput("PCA_Origins_Expts"))
-                     
+  
           ) ) ) ), #HCPC tab
         tabPanel("PhotoThermal Model", tabsetPanel(
-          tabPanel("PhotoThermal Plane", br(), plotOutput("Modeling_3D" , height = 500) ),
+          tabPanel("PhotoThermal Plane", br(), plotOutput("Modeling_3D" , height = 500)),
           tabPanel("Obs x Pre", plotlyOutput("Modeling", height = 500)),
           tabPanel("Expt",  plotlyOutput("Modeling_Expt", height = 500)),
           tabPanel("Expts", plotOutput("Modeling_Expts", height = 500)),
@@ -249,28 +251,30 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
             tabPanel("TraitxCoef",
                      radioButtons("Select_abc", "Select Coefficient", c("a","b","c"), "a", inline = T),
                      plotlyOutput("TraitxCoef", height = 500)),
-            tabPanel("cxb",   plotlyOutput("cxb", height = 500)) ) ),
+            tabPanel("cxb",   plotlyOutput("cxb", height = 500))
+            ) ),
           tabPanel("Adaptation",
                    fluidRow(column(selectInput("Ad_Country", "Adaptation Country", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "Canada"), width = 3),
                             column(numericInput("sd_Mult","sd Multiplier",1,0.5,3,0.1), width = 2)),
                    checkboxGroupInput("Ad_Countries", "Countries", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "USA", inline = T),
                    radioButtons("Select_Coef_Ad", "Select Coefficient", c("a","b","c"), "c", inline = T),
                    tabsetPanel(
-                     tabPanel("TraitxCoef",  plotlyOutput("Adapted1", height = 500) ),
-                     tabPanel("cxb", plotlyOutput("Adapted2", height = 500) ),
+                     tabPanel("TraitxCoef",  plotlyOutput("Adapted1", height = 500)),
+                     tabPanel("cxb", plotlyOutput("Adapted2", height = 500)),
                      tabPanel("Table", 
                               downloadButton("Adapted_Table.csv", "Download Selected Table"),
-                              DT::dataTableOutput("Adapted_Table") ) 
+                              DT::dataTableOutput("Adapted_Table")) 
                      ) ),
           tabPanel("Temperature", numericInput("TempIncrease","Temperature Increase",1,0,5,0.1), tabsetPanel(
             tabPanel("Expts",    plotlyOutput("PCA_TempInc_Expts", height = 500)),
             tabPanel("Clusters", plotOutput("PCA_TempInc_Clusters")),
-            tabPanel("Expt", plotlyOutput("PCA_TempInc_Cluster", height = 500)) ) ),
+            tabPanel("Expt", plotlyOutput("PCA_TempInc_Cluster", height = 500)) 
+            ) ),
           tabPanel("Predict DTF", 
                    fluidRow(column(numericInput("Mean_T", "Mean Temperature",13,0,25,0.1),
                                    numericInput("Mean_P", "Mean Photoperiod",12,0,18,0.1), width = 2),
                             column(numericInput("DTF_Min", "Min DTF", 30,30,200,1),
-                                   numericInput("DTF_Max", "Max DTF", 80,30,200,1), width = 2) ),
+                                   numericInput("DTF_Max", "Max DTF", 80,30,200,1), width = 2)),
                    tabsetPanel(
                      tabPanel("Clusters", plotlyOutput("Predict_DTF_Clusters", height = 500)),
                      tabPanel("DTFxCoef", 
@@ -408,6 +412,22 @@ server <- function(input, output) {
                             color = "Black", fill = "Red", size = 3, pch = 23)
     }
     mp
+  })
+  # input <- list(Expts = c("Rosthern, Canada 2016","Rosthern, Canada 2017")
+  observe({
+    output$ggridges <- renderPlot({ 
+      xx <- dd %>% select(Expt, DTF, DTS, DTM) %>% 
+        filter(Expt %in% input$Expts) %>%
+        gather(Trait, Value, DTF, DTS, DTM) %>%
+        mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
+      # Plot
+      mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) + 
+        ggridges::geom_density_ridges() +
+        scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
+        theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
+        labs(y = NULL, x = "Days After Sowing")
+      mp
+    }, height = 50*length(input$Expts))
   })
   # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, Plot_DTF = T, Plot_DTS = F, Plot_DTM = F)
   output$EnvData <- renderPlot({

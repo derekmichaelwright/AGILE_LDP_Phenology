@@ -2245,7 +2245,7 @@ new.lab <- as_labeller(c(PTT_0 = "Sigma(italic(T))(italic(P))",
   Mediterranean = "Mediterranean", Temperate = "Temperate", 
   `South Asia` = "South~Asia"), label_parsed)
 # Plot PTT
-mp3 <- ggplot(xx, aes(x = ExptShort, y = Value)) +
+mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
   geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
   geom_quasirandom(aes(color = Cluster), size = 0.1, alpha = 0.7) + 
   facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
@@ -2255,7 +2255,7 @@ mp3 <- ggplot(xx, aes(x = ExptShort, y = Value)) +
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "B)", y = expression(italic("PTT")), x = NULL)
-ggsave("Additional/Additional_Figure_13_PTT.png", mp, width = 8, height = 10)
+ggsave("Additional/Additional_Figure_13_PTT.png", mp, width = 8, height = 5)
 ```
 
 ```{r echo = F}
@@ -2366,26 +2366,4 @@ ggsave("Figure_07_TempIncrease.png", mp, width = 7, height = 5)
 image_read("Figure_07_TempIncrease.png")
 ```
 
-# Additional Figure 14 Temperature Increase By Cluster
 
-```{r}
-x1 <- read.csv("data/data_Temp_Increase.csv")
-x2 <- select(read.csv("data/data_PCA_Results.csv"), Entry, Cluster)
-xx <- left_join(x1, x2, by = "Entry") %>%
-  left_join(pca, by = "Entry") %>%
-  mutate(Cluster = factor(Cluster)) %>% 
-  filter(ExptShort %in% c("Su17", "It17", "Ba17")) 
-mp <- ggplot(xx, aes(x = Cluster, y = Diff, fill = Cluster)) + 
-  geom_violin(color = NA, alpha = 0.6) +
-  geom_quasirandom(color = "Black", alpha = 0.6) + 
-  facet_grid(Expt ~ ., scales = "free") +
-  theme_AGL + 
-  theme(legend.position = "none") + 
-  scale_fill_manual(name = NULL, values = colors) + 
-  labs(y = "Decrease in days to flower")
-ggsave("Additional/Additional_Figure_14_TempIncreaseByCluster.png", mp, width = 7, height = 6)
-```
-
-```{r echo = F}
-image_read("Additional/Additional_Figure_14_TempIncreaseByCluster.png")
-```

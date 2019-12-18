@@ -3,11 +3,13 @@
 "Algeria","Africa","Northern Africa","Developing","DZ","DZA",2.61732102,28.15893844
 "Argentina","Americas","South America","Developing","AR","ARG",-65.17980881,-35.38135347
 "Bangladesh","Asia","Southern Asia","Developing","BD","BGD",90.23812793,23.86730412
+"Belgium","Europe","Western Europe","Developed","BE","BEL",4.64064572,50.63981435
 "Brazil","Americas","South America","Developing","BR","BRA",-53.09783199,-10.78777567
 "Bulgaria","Europe","Eastern Europe","Developed","BG","BGR",25.21552327,42.76889988
 "Canada","Americas","Northern America","Developed","CA","CAN",-106.622,52.137
 "Chile","Americas","South America","Developing","CL","CHL",-71.38255879,-37.73069754
 "Czech Republic","Europe","Eastern Europe","Developed","CZ","CZE",15.6,49.69
+"Ecuador","Americas","South America","Developing","EC","ECU",-78.75203573,-1.42381949
 "Egypt","Africa","Northern Africa","Developing","EG","EGY",29.8618993,26.49593108
 "Eritrea","Africa","Eastern Africa","Developing","ER","ERI",38.84615444,15.36186881
 "Ethiopia","Africa","Eastern Africa","Developing","ET","ETH",39.6008014,8.62278417
@@ -19,6 +21,7 @@
 "India","Asia","Southern Asia","Developing","IN","IND",79.61197355,22.88578035
 "Iran","Asia","Southern Asia","Developing","IR","IRN",54.41,32.41
 "Israel","Asia","Western Asia","Developing","IL","ISR",35.00444995,31.4611019
+"Italy","Europe","Southern Europe","Developed","IT","ITA",12.07000946,42.79663568
 "Jordan","Asia","Western Asia","Developing","JO","JOR",36.77137251,31.24579389
 "Lebanon","Asia","Western Asia","Developing","LB","LBN",35.88016327,33.92306993
 "Libya","Africa","Northern Africa","Developing","LY","LBY",18.00865782,27.03094247
