@@ -7,7 +7,7 @@ output:
     self_contained: true
     thumbnails: true
     lightbox: true
-    gallery: false
+    gallery: true
     highlight: tango
   github_document: default
 ---
