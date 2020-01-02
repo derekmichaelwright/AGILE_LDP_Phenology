@@ -1,6 +1,6 @@
 ---
 title: "R Vignette"
-subtitle: "ASSESSING ADAPTATION OF LENTIL (*Lens culinaris* Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD"
+subtitle: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod"
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
@@ -21,7 +21,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.width = "100%")
 ```
 
-This vignette contains the `R` code and analysis done for the paper: **ASSESSING ADAPTATION OF LENTIL (*Lens culinaris* Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD** 
+This vignette contains the `R` code and analysis done for the paper: **Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod** 
 
 # Preliminary Steps
 

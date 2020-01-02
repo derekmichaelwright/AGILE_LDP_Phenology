@@ -1,7 +1,15 @@
 ---
-title: "Phenological characterization and modeling of diverse lentil (*Lens culinaris* Medik.) germplasm grown in multiple environments"
+title: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod"
+author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
-output: github_document
+output: 
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}

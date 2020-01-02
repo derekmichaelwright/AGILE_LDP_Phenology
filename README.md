@@ -1,5 +1,5 @@
-Phenological characterization and modeling of diverse lentil (*Lens
-culinaris* Medik.) germplasm grown in multiple environments
+Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
+Panel To Temperature And Photoperiod
 ================
 2020-01-02
 
