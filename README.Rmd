@@ -14,6 +14,8 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 ![](www/Logo_Agile.png)
 
+[View as HTML](https://htmlpreview.github.io/?)
+
 **Project Collaborators**:
 
 - Department of Plant Sciences and Crop Development Centre, University of Saskatchewan, Saskatoon, Saskatchewan, Canada
@@ -44,7 +46,8 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # R Code Vignette
 
-[Phenology_Vignette.pdf][Phenology_Vignette.pdf]
+[Phenology_Vignette.html](https://htmlpreview.github.io/?https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.html)
+[Phenology_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
 
 ![](www/pdf.png)
 
@@ -164,10 +167,6 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ![](Additional/Animation_3D.gif)
 
-# HTML
-
-
-
 # Additional Figures
 
 ## Additional Figure 1
@@ -188,11 +187,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 5
 
-[Additional/Additional_Figure_05_PCA_3D.html][Additional/Additional_Figure_05_PCA_3D.html]
-
-```{r echo = F}
-htmltools::includeHTML("Additional/Additional_Figure_05_PCA_3D.html")
-```
+[Additional/Additional_Figure_05_PCA_3D.html](https://htmlpreview.github.io/?https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Additional_Figure_05_PCA_3D.html)
 
 ## Additional Figure 6
 

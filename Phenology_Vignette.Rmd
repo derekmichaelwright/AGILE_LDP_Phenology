@@ -182,7 +182,7 @@ mp <- ggplot(ff, aes(x = T_mean, y = P_mean)) +
   scale_y_continuous(breaks = 11:16) +
   scale_color_manual(name = "Macro-Environment",
                      values = c("darkgreen","darkorange3","darkblue")) +
-  theme_AGL() + 
+  theme_AGL + 
   theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
   labs(x = expression(paste("Mean temperature (", degree, "C)", sep = "")), 
        y = "Mean photoperiod (hours)")
@@ -242,7 +242,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
   geom_quasirandom(aes(color = MacroEnv), size = 0.1, alpha = 0.5) +
   scale_color_manual(values = c("darkgreen","darkorange3","darkblue")) +
   facet_grid(Trait ~ MacroEnv, scales = "free") + 
-  theme_AGL() + 
+  theme_AGL + 
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   labs(x = NULL, y = NULL)
@@ -273,7 +273,7 @@ ggEnvPlot <- function(x, nr = 2, nc = 3, mybreaks) {
     scale_color_manual(name = NULL, values = c("darkblue", "darkred")) +
     scale_fill_manual(name = NULL, values = "darkgreen") +
     coord_cartesian(ylim=c(0, 40)) +
-    theme_AGL() + 
+    theme_AGL + 
     theme(plot.margin = unit(c(0,0,0,0), "cm"),
           legend.text = element_text(size = 12)) +
     labs(y = NULL, x = NULL) +
@@ -313,7 +313,7 @@ ggDistroDTF <- function(x) {
     facet_wrap(ExptShort ~ ., scales = "free_x", dir = "v", ncol = 3, nrow = 2) + 
     scale_color_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
     scale_y_continuous(limits = c(30,190), breaks = c(50,75,100,125,150,175)) +
-    theme_AGL() + labs(y = NULL, x = NULL) +
+    theme_AGL + labs(y = NULL, x = NULL) +
     theme(plot.margin = unit(c(0.1,0,0.3,0), "cm"))
 }
 # Plot A) DTF, DTS and DTM
@@ -335,7 +335,7 @@ mp2.3 <- ggDistroDTF(xx %>% filter(MacroEnv == "Mediterranean")) +
         axis.ticks.y.left = element_blank())
 mp2 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), nrow = 1, ncol = 3, 
                 ylab = "Days After Planting", xAxisLabels = macroEnvs) +
-  theme_AGL() +
+  theme_AGL +
   theme(plot.margin = unit(c(0,1,0,0), "cm"),
         plot.title = element_text(hjust = -0.04)) 
 mp2 <- ggarrange(mp2.1, mp2.2, mp2.3, nrow = 1, ncol = 3, align = "h", legend = "none")
@@ -352,7 +352,7 @@ ggDistroREP <- function(x) {
     facet_wrap(ExptShort ~ ., scales = "free_x", dir = "v", ncol = 3, nrow = 2) +
     scale_color_manual(values = c("steelblue", "purple")) +
     scale_y_continuous(limits = c(25,135), breaks = c(25,50,75,100,125)) +
-    theme_AGL() + labs(x = NULL, y = NULL) + 
+    theme_AGL + labs(x = NULL, y = NULL) + 
     theme(plot.margin = unit(c(0,0,0.3,0), "cm"))
 }
 # Plot B) REP and VEG
@@ -374,7 +374,7 @@ mp3.3 <- ggDistroREP(xx %>% filter(MacroEnv == "Mediterranean")) +
         axis.ticks.y.left = element_blank())
 mp3 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), 
                 nrow = 1, ncol = 3, ylab = "Days") +
-  theme_AGL() +
+  theme_AGL +
   theme(#plot.margin = unit(c(0,1,0,0), "cm"),
         plot.title = element_text(hjust = -0.04))
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h", legend = "none")
@@ -413,7 +413,7 @@ gg_phenol <- function(x, xE, colnums) {
     geom_line() + geom_point() +
     facet_grid(MacroEnv ~ ExptShort) +
     scale_color_manual(values = mycols[colnums]) +
-    theme_AGL() + 
+    theme_AGL + 
     theme(legend.position = "none") +
     ylim(c(min(x$Value, na.rm = T), max(x$Value, na.rm = T))) +
     labs(x = NULL, y = "Days")
@@ -460,7 +460,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value)) +
   geom_quasirandom(size = 0.1, alpha = 0.5, aes(color = MacroEnv)) +
   facet_grid(Trait ~ MacroEnv, scales = "free") + 
   scale_color_manual(values = c("darkgreen", "darkorange3", "darkblue")) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   labs(x = NULL, y = "Days After Planting")
@@ -497,7 +497,7 @@ mp <- ggplot(xx) +
                     labels = c("Day length", "Temperature") ) +
   scale_fill_manual(name = NULL, values = c("darkgreen", "darkgoldenrod2")) +
   coord_cartesian(ylim = c(0,40)) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "bottom", 
         legend.text = element_text(size = 12),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
@@ -560,7 +560,7 @@ mp <- ggplot(xx, aes(x = Trait, y = Percent, fill = Trait)) +
   facet_grid(. ~ Location + Year) + 
   scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) + 
   scale_y_continuous(limits = c(0,100), expand = c(0,0)) +
-  theme_AGL() + 
+  theme_AGL + 
   theme(legend.position = "none",
         panel.grid.major.x = element_blank() ) + 
   labs(x = NULL, y = "Percent of accessions reaching key phenological time points")
@@ -581,7 +581,7 @@ xx <- dd %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
 ggCorPlot <- function(x, legend.title, colNums) {
   # Plot A)
   r2 <- round(cor(x$DTF, x$DTS, use ="complete", method = "pearson")^2, 2)
-  tp1 <- ggplot(x) + theme_AGL() +
+  tp1 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTF, y = DTS, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
                label = paste("italic(R)^2 == ", r2) ) +
@@ -589,7 +589,7 @@ ggCorPlot <- function(x, legend.title, colNums) {
     scale_shape_manual(name = legend.title, values = c(15,16,17,15,16,17))
   # Plot B)
   r2 <- round(cor(x$DTF, x$DTM, use ="complete.obs", method = "pearson")^2, 2)
-  tp2 <- ggplot(x) + theme_AGL() +
+  tp2 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTF, y = DTM, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
                label = paste("italic(R)^2 == ", r2) ) +
@@ -597,7 +597,7 @@ ggCorPlot <- function(x, legend.title, colNums) {
     scale_shape_manual(name = legend.title, values = c(15,16,17,15,16,17))
   # Plot C)
   r2 <- round(cor(x$DTS, x$DTM, use = "complete", method = "pearson")^2, 2)
-  tp3 <- ggplot(x) + theme_AGL() +
+  tp3 <- ggplot(x) + theme_AGL +
     geom_point(aes(x = DTS, y = DTM, color = Expt, shape = Expt), alpha = 0.8) + 
     geom_label(x = -Inf, y = Inf, hjust = 0, vjust = 1, parse = T,
                label = paste("italic(R)^2 == ", r2) ) +
@@ -885,7 +885,7 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   geom_point(alpha = 0.7, size = 2) +
   scale_color_manual(values = colors[c(1,3,8,5,7,7)]) + 
   scale_shape_manual(values = c(16,18,15,17,13,10)) +
-  theme_AGL()
+  theme_AGL
 ggsave("Additional/Additional_Figure_06_PCA.png", mp, width = 6, height = 4)
 ```
 
@@ -911,7 +911,7 @@ mp <- ggplot(xx, aes(y = DTF2, x = Origin)) +
   geom_quasirandom(aes(color = Cluster)) + 
   facet_grid(Location+Year ~ ., scales = "free_y") +
   scale_color_manual(values = colors) + 
-  theme_AGL() + 
+  theme_AGL + 
   theme(legend.position = "top",
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
@@ -941,7 +941,7 @@ mp <- ggplot(xx, aes(x = Origin, fill = Cluster)) +
   geom_bar(stat = "count") + 
   facet_grid(. ~ Cluster, scales = "free", space = "free") + 
   scale_fill_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
         legend.position = "none") +
   labs(x = NULL)
@@ -1006,7 +1006,7 @@ for(i in 1:324) {
     scale_x_continuous(breaks = c(11,13,15,17,19,21)) +
     scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
     scale_color_manual(name = "Macro-environment", values = myfills) +
-    theme_AGL() + 
+    theme_AGL + 
     labs(title = figlab, y = "1 / DTF", 
          x = expression(paste("Temperature (", degree, "C)", sep = "")))
   # Plot B) 1/f = a + cP
@@ -1020,7 +1020,7 @@ for(i in 1:324) {
     scale_x_continuous(breaks = c(11,12,13,14,15,16)) +
     scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
     scale_color_manual(name = "Macro-environment", values = myfills) +
-    theme_AGL() +
+    theme_AGL +
     labs(title = "", y = NULL,x = "Photoperiod (hours)")
   #
   mp[[i]] <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom") 
@@ -1127,7 +1127,7 @@ mp1 <- ggplot(xx, aes(x = T_mean, y = RDTF)) +
   scale_x_continuous(breaks = c(11,13,15,17,19,21)) +
   scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
   scale_color_manual(name = "Macro-environment", values = myfills) +
-  theme_AGL() + facet_grid(. ~ Name) + 
+  theme_AGL + facet_grid(. ~ Name) + 
   theme(axis.title.y = element_text(size = 9),
         plot.margin = unit(c(0,0,0,0), "cm")) +
   guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -1142,7 +1142,7 @@ mp2 <- ggplot(xx, aes(x = P_mean, y = RDTF)) +
   scale_x_continuous(breaks = c(11,12,13,14,15,16)) +
   scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
   scale_color_manual(name = "Macro-environment", values = myfills) +
-  theme_AGL() + facet_grid(. ~ Name) + 
+  theme_AGL + facet_grid(. ~ Name) + 
   theme(axis.title.y = element_text(size = 9),
         plot.margin = unit(c(0,0,0,0), "cm")) +
   guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -1167,7 +1167,7 @@ mp3 <- ggplot(dd, aes(x = ExptShort, y = DTF2_scaled, group = Name)) +
   geom_vline(xintercept = 12.5, lty = 2) +
   geom_line(data = xx, aes(color = Name), size = 2) + 
   scale_color_manual(name = "Genotype", values = colors[c(1,5,8)]) +
-  theme_AGL() + labs(y = "DTF (scaled 1-5)", x = NULL) +
+  theme_AGL + labs(y = "DTF (scaled 1-5)", x = NULL) +
   theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
         plot.margin = unit(c(0,0,0,0), "cm"),
         axis.title.y = element_text(size = 9),
@@ -1192,6 +1192,12 @@ image_read("Supplemental_Figure_04_Regressions.png")
 # Modeling DTF - functions
 
 ```{r}
+i<-1
+x <- mr %>% filter(Entry == i)
+title <- paste("Entry", i, "| RDTF")
+type <- 2
+mymin <- min(c(mr$Predicted_RDTF, mr$RDTF)) - 0.001
+mymax <- max(c(mr$Predicted_RDTF, mr$RDTF)) + 0.001
 # Create functions
 # Plot Observed vs Predicted
 gg_model_1 <- function(x, title = NULL, type = 1,
@@ -1214,11 +1220,13 @@ gg_model_1 <- function(x, title = NULL, type = 1,
     geom_point(aes(x = get(myx), y = get(myy), color = Expt)) +
     geom_abline() +
     geom_label(x = mymin, y = mymax, hjust = 0, vjust = 1, parse = T,
-               label = paste("italic(R)^2 == ", r2)) +
+               label = paste("italic(R)^2 == ", r2))
+  if(type == 2) { mp <- mp + scale_x_reverse() + scale_y_reverse() }
+  mp <- mp +
     scale_x_continuous(limits = c(mymin, mymax), expand = c(0, 0)) +
     scale_y_continuous(limits = c(mymin, mymax), expand = c(0, 0)) +
     scale_color_manual(name = NULL, values = myPal) +
-    theme_AGL() + guides(colour = guide_legend(override.aes = list(size = 2))) +
+    theme_AGL + guides(colour = guide_legend(override.aes = list(size = 2))) +
     labs(y = "Predicted", x = "Observed")
   if(!is.null(title)) { mp <- mp + labs(title = title) }
   mp
@@ -1251,7 +1259,7 @@ gg_model_2 <- function(x, myX = "DTF", myY = "Predicted_DTF", title = NULL,
     scale_x_continuous(limits = c(min(x[,myX]), max(x[,myX]))) +
     scale_y_continuous(limits = c(min(x[,myX]), max(x[,myX]))) +
     scale_color_manual(values = colors) +
-    theme_AGL() + 
+    theme_AGL + 
     theme(legend.position = legend.pos, legend.margin = unit(c(0,0,0,0), "cm")) +
     guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
     labs(y = "Predicted", x = "Observed")
@@ -1323,20 +1331,22 @@ write.csv(mc, "data/model_T+P_Coefs.csv", row.names = F)
 # Plot Each Entry
 mp <- list()
 for(i in 1:324) {
-  mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"))
+  mp1 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| DTF"),
+           mymin = min(c(mr$Predicted_DTF, mr$DTF), na.rm = T),
+           mymax = max(c(mr$Predicted_DTF, mr$DTF), na.rm = T))
   mp2 <- gg_model_1(mr %>% filter(Entry == i), paste("Entry", i, "| RDTF"), type = 2,
            mymin = min(c(mr$Predicted_RDTF, mr$RDTF)) - 0.001,
            mymax = max(c(mr$Predicted_RDTF, mr$RDTF)) + 0.001)
   mp[[i]] <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
   fname <- paste0("Additional/Entry_Model/Model_Entry_", str_pad(i, 3, pad = "0"), ".png")
-  ggsave(fname, mp[[i]], width = 10, height = 4.25)
+  ggsave(fname, mp[[i]], width = 10, height = 4.5)
 }
 pdf("Additional/pdf_Model.pdf", width = 10, height = 4.5)
 for (i in 1:324) { print(mp[[i]]) }
 dev.off() #dev.set(dev.next())
 # Create animation
 lf <- list.files("Additional/Entry_Model")
-mp <- image_read(paste0("Additional/Entry_Model/", lf))
+mp <- image_read(paste0("Additional/Entry_Model/", lf)) %>% image_scale("25%")
 animation <- image_animate(mp, fps = 5)
 image_write(animation, "Additional/Animation_Model.gif")
 ```
@@ -1516,11 +1526,11 @@ xx <- bind_rows(x1, x2) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
 # Plot
 mp1 <- ggplot(xx%>%filter(Model=="T+P"), aes(x = Cluster, y = Value, color = Cluster)) + 
-  geom_quasirandom() + theme_AGL() +
+  geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
   scale_color_manual(values = colors) + labs(y = NULL)
 mp2 <- ggplot(xx%>%filter(Model=="TxP"), aes(x = Cluster, y = Value, color = Cluster)) + 
-  geom_quasirandom() + theme_AGL() +
+  geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
   scale_color_manual(values = colors) + labs(y = NULL)
 mp <- ggarrange(mp1, mp2, ncol = 2, legend = "none")
@@ -1542,11 +1552,11 @@ xx <- bind_rows(x1, x2) %>% gather(Coef, Value, aP,bP,cP,dP) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
 # Plot
 mp1 <- ggplot(xx%>%filter(Model=="T+P"), aes(x = Cluster, y = Value, color = Cluster)) + 
-  geom_quasirandom() + theme_AGL() +
+  geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
   scale_color_manual(values = colors)
 mp2 <- ggplot(xx%>%filter(Model=="TxP"), aes(x = Cluster, y = Value, color = Cluster)) + 
-  geom_quasirandom() + theme_AGL() +
+  geom_quasirandom() + theme_AGL +
   facet_grid(Coef~Model, scales = "free_y") + 
   scale_color_manual(values = colors)
 mp <- ggarrange(mp1,mp2,ncol=2, legend = "none")
@@ -1574,7 +1584,7 @@ mp1 <- ggplot(xx, aes(x = 1, y = Value)) +
     geom_point(data = x1, size = 2.5, pch = 25, color = "black", fill = "darkblue") +
   geom_text_repel(data = x1, aes(label = Entry)) +
   facet_wrap(.~Trait, scales = "free_y") +
-  theme_AGL() +
+  theme_AGL +
   scale_color_manual(values = colors) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "A)", x = NULL, y = NULL)
@@ -1591,7 +1601,7 @@ mp2 <- ggplot(xx, aes(x = 1, y = Value)) +
   geom_point(data = x1, size = 2.5, pch = 25, color = "black", fill = "darkred") +
   geom_text_repel(data = x1 %>% filter(Trait =="p.value"), aes(label = Entry)) +
   facet_wrap(.~Trait, scales = "free_y") +
-  theme_AGL() +
+  theme_AGL +
   scale_color_manual(values = colors) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "B)", x = NULL, y = NULL)
@@ -1873,7 +1883,7 @@ xx <- bind_rows(x1, x2, x3, x4, x5) %>%
 mp <- ggplot(xx, aes(x = "", y = RR)) + 
   geom_violin() + geom_quasirandom(aes(color = Environments)) +
   facet_grid(. ~ Model) +
-  theme_AGL() + labs(x = NULL)
+  theme_AGL + labs(x = NULL)
 ggsave("Additional/Model/Model_pvalues.png", mp, width = 7, height = 4)
 ```
 
@@ -1929,7 +1939,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value * 10000, shape = Expt)) +
   facet_grid(Constant ~ Name, scales = "free_y") +
   scale_shape_manual(name = NULL, values = c(8,3,4,1,16,11)) +
   guides(shape=guide_legend(nrow = 3, byrow = F)) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
         strip.text.y = element_text(face = "italic"),
         panel.grid.major.x = element_blank(),
@@ -1984,7 +1994,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value * 10000 )) +
   geom_quasirandom(aes(color = Cluster), size = 0.3) + 
   facet_wrap(Trait ~ ., scales = "free") +
   scale_color_manual(values = colors, breaks = 8:1) +
-  theme_AGL() +
+  theme_AGL +
   theme(strip.text = element_text(face = "italic"),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   guides(colour = guide_legend(override.aes = list(size = 2))) +
@@ -2064,7 +2074,7 @@ mp1 <- ggplot(xx, aes(x = Cluster, y = Value * 10000) ) +
   geom_quasirandom(size = 0.3) + 
   geom_text_repel(data = x1, aes(label = Name), size = 3, nudge_x = 0.5) +
   facet_wrap(Constant+Meaning ~ ., nrow = 1, scales = "free") + 
-  theme_AGL() +
+  theme_AGL +
   theme(strip.text = element_text(face = "italic"),
         legend.position = "none") +
   scale_fill_manual(name = NULL, values = colors) +
@@ -2087,7 +2097,7 @@ mp2.1 <- ggplot(x1, aes(x = 1, y = Tb)) +
   facet_grid(. ~ Expt, labeller = label_wrap_gen(width = 17)) +
   scale_y_continuous(breaks = seq(-80,0,20), minor_breaks = seq(-110,0,10)) +
   scale_color_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(axis.text.x        = element_blank(), 
         axis.ticks.x       = element_blank(),
         panel.grid.minor.x = element_blank(),
@@ -2107,7 +2117,7 @@ mp2.2 <- ggplot(x1, aes(x = 1, y = Pc)) +
   geom_text(data = x2, aes(label = Name), size = 3, nudge_y = 1.2) +
   scale_y_continuous(breaks = c(-20,-15,-10,-5,0,5)) +
   scale_color_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(axis.text.x        = element_blank(),
         axis.ticks.x       = element_blank(),
         panel.grid.minor.x = element_blank(),
@@ -2159,7 +2169,7 @@ mp1 <- ggplot(x1, aes(x = DTF_mean, y = a_mean * 10000)) +
   geom_polygon(data = polys, fill = NA, color = "black") +
   geom_point() + geom_text_repel(aes(label = Origin)) +
   scale_x_continuous(breaks = seq(42, 56, 2)) + 
-  theme_AGL() +
+  theme_AGL +
   theme(plot.title = element_text(hjust = -0.085) ) +
   labs(title = "A)",
        y = expression(paste("Genotype constant (", italic(a)," x 10000)")), 
@@ -2172,7 +2182,7 @@ mp2 <- ggplot(x1, aes(x = c_mean * 10000, y = b_mean * 10000)) +
   geom_point() + geom_text_repel(aes(label = Origin)) +
   scale_x_continuous(breaks = seq(18, 24, 1)) +
   scale_y_continuous(breaks = 3:8) +
-  theme_AGL() +
+  theme_AGL +
   theme(plot.title = element_text(hjust = -0.06) ) +
   labs(title = "B)",
        y = expression(paste("Temperature response (", italic(b), " x 10000)")), 
@@ -2212,7 +2222,7 @@ mp1 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
   geom_quasirandom(aes(color = Cluster), size = 0.1, alpha = 0.7) + 
   facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
   scale_color_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
@@ -2234,7 +2244,7 @@ mp2 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
   geom_quasirandom( aes(color = Cluster), size = 0.1, alpha = 0.7) + 
   facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
   scale_color_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
@@ -2275,7 +2285,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
   geom_quasirandom(aes(color = Cluster), size = 0.1, alpha = 0.7) + 
   facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
   scale_color_manual(values = colors) +
-  theme_AGL() +
+  theme_AGL +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
@@ -2378,7 +2388,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Diff)) +
   facet_grid(Increase ~ MacroEnv, scales = "free", labeller = new.lab) + 
   scale_y_continuous(minor_breaks = 0:30, breaks = my_breaks) +
   scale_color_manual(values = colors) +
-  theme_AGL() + 
+  theme_AGL + 
   theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
         panel.grid.major.y = element_line(colour = "grey70", size = 0.5)) +
