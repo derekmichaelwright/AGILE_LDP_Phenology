@@ -3,13 +3,13 @@ title: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Pan
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
-  github_document: default
   rmdformats::readthedown:
     self_contained: true
     thumbnails: true
     lightbox: true
     gallery: false
     highlight: tango
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
