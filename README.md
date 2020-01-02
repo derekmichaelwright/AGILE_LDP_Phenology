@@ -12,7 +12,7 @@ Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
 Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 [View as
-HTML](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/README.html)
+HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 
 ![](www/Logo_Agile.png)
 
@@ -46,7 +46,7 @@ HTML](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/READ
 
 # R Code Vignette
 
-[Phenology\_Vignette.html](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.html)
+[Phenology\_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
 [Phenology\_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
 
@@ -258,7 +258,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 5
 
-[Additional/Additional\_Figure\_05\_PCA\_3D.html](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Additional_Figure_05_PCA_3D.html)
+[Additional/Additional\_Figure\_05\_PCA\_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05_PCA_3D.html)
 
 ## Additional Figure 6
 

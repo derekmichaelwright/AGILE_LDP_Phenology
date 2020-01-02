@@ -20,7 +20,7 @@ Contact: derek.wright@usask.ca
 
 Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett
 
-[View as HTML](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/README.html)
+[View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 
 ![](www/Logo_Agile.png)
 
@@ -47,7 +47,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # R Code Vignette
 
-[Phenology_Vignette.html](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.html)
+[Phenology_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
 [Phenology_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
 
@@ -189,7 +189,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 5
 
-[Additional/Additional_Figure_05_PCA_3D.html](https://rawgit.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Additional_Figure_05_PCA_3D.html)
+[Additional/Additional_Figure_05_PCA_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05_PCA_3D.html)
 
 ## Additional Figure 6
 
