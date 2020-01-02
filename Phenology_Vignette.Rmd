@@ -439,7 +439,8 @@ for(i in 1:324) {
   mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1) %>%
     annotate_figure(top = figlab)
   print(mp)
-  ggsave(paste0("Additional/Entry_Phenology/Phenology_Entry", str_pad(i, 3, "left", "0"), ".png"), 
+  ggsave(paste0("Additional/Entry_Phenology/Phenology_Entry", 
+                str_pad(i, 3, "left", "0"), ".png"), 
          mp, width = 8, height = 6)
 }
 dev.off()#dev.set(dev.next())
@@ -963,11 +964,13 @@ xx <- ldp %>% select(Entry, Name, Lat, Lon) %>% left_join(x1, by = "Entry") %>%
          Lat = ifelse(duplicated(Lat), jitter(Lat, 1, 1), Lat),
          Lon = ifelse(duplicated(Lon), jitter(Lon, 1, 1), Lon), Size = 1)
 # Plot
-invisible(png("Additional/Additional_Figure_09_LDPOriginsByCluster.png", width = 2400, height = 1100, res = 150))
+invisible(png("Additional/Additional_Figure_09_LDPOriginsByCluster.png", 
+              width = 2400, height = 1100, res = 150))
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
-           nameZSize = "Size", symbolSize = 0.5, pch = 20, colourPalette = colors[1:8],
-           xlim = c(-140,110), ylim = c(0,20), addLegend = F, addColourLegend = F, colourLegendTitle = NULL,
+           nameZSize = "Size", symbolSize = 0.5, pch = 20, addLegend = F,
+           colourPalette = colors[1:8], addColourLegend = F,
+           xlim = c(-140,110), ylim = c(0,20), #colourLegendTitle = NULL,
            oceanCol = "grey90", landCol = "white", borderCol = "black")
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
        pch = 16, cex = 2, pt.cex = 4, box.lwd = 2)
@@ -998,7 +1001,8 @@ for(i in 1:324) {
     geom_smooth(data = x1, method = "lm", se = F, color = "black", lty = 3) +
     geom_smooth(data = x2, method = "lm", se = F, color = "black") +
     scale_y_continuous(sec.axis = dup_axis(~ 1/., name = NULL, breaks = c(35,50,100,150)),
-                       trans = "reverse", breaks = c(0.01,0.02,0.03), limits = c(mymax, mymin)) +
+                       trans = "reverse", breaks = c(0.01,0.02,0.03), 
+                       limits = c(mymax, mymin)) +
     scale_x_continuous(breaks = c(11,13,15,17,19,21)) +
     scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
     scale_color_manual(name = "Macro-environment", values = myfills) +
@@ -1011,7 +1015,8 @@ for(i in 1:324) {
     geom_smooth(data = x1, method = "lm", se = F, color = "black", lty = 3) +
     geom_smooth(data = x3, method = "lm", se = F, color = "black") +
     scale_y_continuous(sec.axis = dup_axis(~ 1/., name="DTF", breaks = c(35,50,100,150)),
-                       trans = "reverse", breaks = c(0.01,0.02,0.03), limits = c(mymax, mymin)) +
+                       trans = "reverse", breaks = c(0.01,0.02,0.03), 
+                       limits = c(mymax, mymin)) +
     scale_x_continuous(breaks = c(11,12,13,14,15,16)) +
     scale_shape_manual(name = "Macro-environment", values = c(16,15,17)) +
     scale_color_manual(name = "Macro-environment", values = myfills) +
@@ -1025,6 +1030,12 @@ for(i in 1:324) {
 pdf("Additional/pdf_TP.pdf", width = 8, height = 4)
 for(i in 1:324) { print(mp[[i]]) }
 dev.off() #dev.set(dev.next())
+# Create animation
+xx <- dd %>% filter(ExptShort=="It17") %>% arrange(DTF) %>% pull(Entry)
+lf <- list.files("Additional/Entry_TP")[xx]
+mp <- image_read(paste0("Additional/Entry_TP/", lf))
+animation <- image_animate(mp, fps = 5)
+image_write(animation, "Additional/Animation_TP.gif")
 ```
 
 # PhotoThermal Plane
@@ -1320,9 +1331,14 @@ for(i in 1:324) {
   fname <- paste0("Additional/Entry_Model/Model_Entry_", str_pad(i, 3, pad = "0"), ".png")
   ggsave(fname, mp[[i]], width = 10, height = 4.25)
 }
-pdf("Additional/pdf_Model.pdf", width = 10, height = 4.25)
+pdf("Additional/pdf_Model.pdf", width = 10, height = 4.5)
 for (i in 1:324) { print(mp[[i]]) }
 dev.off() #dev.set(dev.next())
+# Create animation
+lf <- list.files("Additional/Entry_Model")
+mp <- image_read(paste0("Additional/Entry_Model/", lf))
+animation <- image_animate(mp, fps = 5)
+image_write(animation, "Additional/Animation_Model.gif")
 ```
 
 ```{r}
