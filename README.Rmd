@@ -190,7 +190,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 [Additional/Additional_Figure_05_PCA_3D.html][Additional/Additional_Figure_05_PCA_3D.html]
 
-```{r eval = F, echo = F}
+```{r echo = F}
 htmltools::includeHTML("Additional/Additional_Figure_05_PCA_3D.html")
 ```
 
