@@ -3,13 +3,13 @@ title: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Pan
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
+  github_document: default
   rmdformats::readthedown:
     self_contained: true
     thumbnails: true
     lightbox: true
     gallery: false
     highlight: tango
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -20,9 +20,11 @@ Contact: derek.wright@usask.ca
 
 Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett
 
+[View as HTML](https://htmlpreview.github.io/?https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/README.html)
+
 ![](www/Logo_Agile.png)
 
-[View as HTML](https://htmlpreview.github.io/?)
+# Introduction
 
 **Project Collaborators**:
 
@@ -42,15 +44,6 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - GenomePrairie
 - GenomeCanada
 - Saskatchewan Ministry of Agriculture
-
-# Supplemental Folder
-
-- Raw Data
-- Supplemental Tables
-- Supplemental Figures
-- Additional Figures
-- R Code Vignette
-- Shiny App
 
 # R Code Vignette
 

@@ -1,6 +1,7 @@
 Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
 Panel To Temperature And Photoperiod
 ================
+Derek Michael Wright
 2020-01-02
 
 Contact: <derek.wright@usask.ca>
@@ -10,9 +11,12 @@ Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia,
 Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
 Sarker, Albert Vandenberg, and Kirstin E. Bett
 
+[View as
+HTML](https://htmlpreview.github.io/?https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/README.html)
+
 ![](www/Logo_Agile.png)
 
-[View as HTML](https://htmlpreview.github.io/?)
+# Introduction
 
 **Project Collaborators**:
 
@@ -39,15 +43,6 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
   - GenomePrairie
   - GenomeCanada
   - Saskatchewan Ministry of Agriculture
-
-# Supplemental Folder
-
-  - Raw Data
-  - Supplemental Tables
-  - Supplemental Figures
-  - Additional Figures
-  - R Code Vignette
-  - Shiny App
 
 # R Code Vignette
 
