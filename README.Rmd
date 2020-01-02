@@ -33,7 +33,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - GenomeCanada
 - Saskatchewan Ministry of Agriculture
 
-## Supplemental Folder
+# Supplemental Folder
 
 - Raw Data
 - Supplemental Tables
@@ -42,13 +42,188 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - R Code Vignette
 - Shiny App
 
-## R Code Vignette
+# R Code Vignette
 
-`Phenology_Vignette.pdf`
+(`Phenology_Vignette.pdf`)[Phenology_Vignette.pdf]
 
 ![](www/pdf.png)
 
-## Shiny App
+# Shiny App
 
 Download this folder and run `app.R` in `R`
-![](www/screenshot.png)
+
+![](www/shiny.png)
+
+# Figures
+
+## Figure 1
+
+![](Figure_01_FieldTrialInfo.png)
+
+## Figure 2
+
+![](Figure_02_DataOverview.png)
+
+## Figure 3
+
+![](Figure_03_PCA.png)
+
+## Figure 4
+
+![](Figure_04_ModelPrediction.png)
+
+## Figure 5
+
+![](Figure_05_TbPc.png)
+
+## Figure 6
+
+![](Figure_06_OriginCoefficients.png)
+
+## Figure 7
+
+![](Figure_07_TempIncrease.png)
+
+# Supplemental Figures
+
+## Supplemental Figure 1
+
+![](Supplemental_Figure_01_Scaling.png)
+
+## Supplemental Figure 2
+
+![](Supplemental_Figure_02_PercentFlowered.png)
+
+## Supplemental Figure 3
+
+![](Supplemental_Figure_03_Correlations.png)
+
+## Supplemental Figure 4
+
+![](Supplemental_Figure_04_Regressions.png)
+
+## Supplemental Figure 5
+
+![](Supplemental_Figure_05_Models.png)
+
+## Supplemental Figure 6
+
+![](Supplemental_Figure_06_CompareConstants.png)
+
+## Supplemental Figure 7
+
+![](Supplemental_Figure_07_TestModel.png)
+
+## Supplemental Figure 8
+
+![](Supplemental_Figure_08_ConstantsCompare.png)
+
+## Supplemental Figure 9
+
+![](Supplemental_Figure_09_TfPc.png)
+
+## Supplemental Figure 10
+
+![](Supplemental_Figure_10_Tf.png)
+
+## Supplemental Figure 11
+
+![](Supplemental_Figure_11_Pf.png)
+
+# Supplemental Tables
+
+## Supplemental Table 1
+
+```{r}
+xx <- read.csv("Supplemental_Table_01.csv")
+knitr::kable(xx[c(1:5,31:35,101:105,320:324),])
+```
+
+## Supplemental Table 2
+
+```{r}
+xx <- read.csv("Supplemental_Table_02.csv")
+knitr::kable(xx)
+```
+
+## Supplemental Table 3
+
+```{r}
+xx <- read.csv("Supplemental_Table_03.csv")
+knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
+```
+
+## Supplemental Table 4
+
+```{r}
+xx <- read.csv("Supplemental_Table_04.csv")
+knitr::kable(rbind(head(xx), tail(xx)))
+```
+
+# Animations
+
+![](Additional/Animation_3D.gif)
+
+# HTML
+
+
+
+# Additional Figures
+
+## Additional Figure 1
+
+![](Additional/Additional_Figure_01_LDPOriginMap.png)
+
+## Additional Figure 2
+
+![](Additional/Additional_Figure_02_DTFDTSDTM.png)
+
+## Additional Figure 3
+
+![](Additional/Additional_Figure_03_MacroEnvPhenology.png)
+
+## Additional Figure 4
+
+![](Additional/Additional_Figure_04_ggridges.png)
+
+## Additional Figure 5
+
+```{r echo = F}
+htmltools::includeHTML("Additional/Additional_Figure_05_PCA_3D.html")
+```
+
+## Additional Figure 6
+
+![](Additional/Additional_Figure_06_PCA.png)
+
+## Additional Figure 7
+
+![](Additional/Additional_Figure_07_DTFByCluster.png)
+
+## Additional Figure 8
+
+![](Additional/Additional_Figure_08_ClusterOrigins.png)
+
+## Additional Figure 9
+
+![](Additional/Additional_Figure_09_LDPOriginsByCluster.png)
+
+## Additional Figure 10
+
+![](Additional/Additional_Figure_10_TxPRR.png)
+
+## Additional Figure 11
+
+![](Additional/Additional_Figure_11_Coefs.png)
+
+## Additional Figure 12
+
+![](Additional/Additional_Figure_12_CoefsP.png)
+
+## Additional Figure 13
+
+![](Additional/Additional_Figure_13_bP.png)
+
+## Additional Figure 14
+
+![](Additional/Additional_Figure_14_PTT.png)
