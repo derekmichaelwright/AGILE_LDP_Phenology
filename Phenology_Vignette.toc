@@ -20,30 +20,29 @@
 \contentsline {section}{Additional Figures - Entry Regressions}{31}{section*.21}%
 \contentsline {section}{PhotoThermal Plane}{32}{section*.22}%
 \contentsline {section}{Supplemental Figure 4 Regressions}{33}{section*.23}%
-\contentsline {section}{Modeling DTF - functions}{36}{section*.24}%
-\contentsline {section}{Modeling DTF (T + P) - All Site-years}{37}{section*.25}%
-\contentsline {section}{Modeling DTF (T x P) - All Site-years}{40}{section*.26}%
-\contentsline {section}{Supplemental Table 3 Model Constants}{43}{section*.27}%
-\contentsline {section}{Additional Figure 10 significant T x P interactions}{43}{section*.28}%
-\contentsline {section}{Supplemental Figure 5 Model T + P vs T x P}{44}{section*.29}%
-\contentsline {section}{Additional Figure 11 Constants}{45}{section*.30}%
-\contentsline {section}{Additional Figure 12 Coefficient p-values}{46}{section*.31}%
-\contentsline {section}{Additional Figure 13 p-values b c}{47}{section*.32}%
-\contentsline {section}{Modeling DTF (T + P) - Location Out}{48}{section*.33}%
-\contentsline {section}{Figure 4 Test Model}{49}{section*.34}%
-\contentsline {section}{Supplemental Table 4 Test Model}{51}{section*.35}%
-\contentsline {section}{Modeling DTF (T + P) - 3 Best}{52}{section*.36}%
-\contentsline {section}{Modeling DTF (T + P) - 3 Worst}{55}{section*.37}%
-\contentsline {section}{DTF Model correlation coefficients}{58}{section*.38}%
-\contentsline {section}{Supplemental Figure 6 Compare Constants Entry}{59}{section*.39}%
-\contentsline {section}{Supplemental Figure 7 3 best 3 worst}{61}{section*.40}%
-\contentsline {section}{Supplemental Figure 8 Compare Constants All}{63}{section*.41}%
-\contentsline {section}{Base Temperature \& Critical Photoperiod}{64}{section*.42}%
-\contentsline {section}{Figure 5 Tb and Pc}{64}{section*.43}%
-\contentsline {section}{Figure 6 Origin Constants}{67}{section*.44}%
-\contentsline {section}{Supplemental Figure 9 Pc Tf PTT}{68}{section*.45}%
-\contentsline {section}{Additional Figure 13 PTT}{71}{section*.46}%
+\contentsline {section}{Modeling DTF - functions}{37}{section*.24}%
+\contentsline {section}{Modeling DTF (T + P) - All Site-years}{38}{section*.25}%
+\contentsline {section}{Modeling DTF (T x P) - All Site-years}{41}{section*.26}%
+\contentsline {section}{Supplemental Table 3 Model Constants}{44}{section*.27}%
+\contentsline {section}{Additional Figure 10 significant T x P interactions}{44}{section*.28}%
+\contentsline {section}{Supplemental Figure 5 Model T + P vs T x P}{45}{section*.29}%
+\contentsline {section}{Additional Figure 11 Constants}{46}{section*.30}%
+\contentsline {section}{Additional Figure 12 Coefficient p-values}{47}{section*.31}%
+\contentsline {section}{Additional Figure 13 p-values b c}{48}{section*.32}%
+\contentsline {section}{Modeling DTF (T + P) - Location Out}{49}{section*.33}%
+\contentsline {section}{Figure 4 Test Model}{50}{section*.34}%
+\contentsline {section}{Supplemental Table 4 Test Model}{52}{section*.35}%
+\contentsline {section}{Modeling DTF (T + P) - 3 Best}{53}{section*.36}%
+\contentsline {section}{Modeling DTF (T + P) - 3 Worst}{56}{section*.37}%
+\contentsline {section}{DTF Model correlation coefficients}{59}{section*.38}%
+\contentsline {section}{Supplemental Figure 6 Compare Constants Entry}{60}{section*.39}%
+\contentsline {section}{Supplemental Figure 7 3 best 3 worst}{62}{section*.40}%
+\contentsline {section}{Supplemental Figure 8 Compare Constants All}{64}{section*.41}%
+\contentsline {section}{Base Temperature \& Critical Photoperiod}{65}{section*.42}%
+\contentsline {section}{Figure 5 Tb and Pc}{65}{section*.43}%
+\contentsline {section}{Figure 6 Origin Constants}{68}{section*.44}%
+\contentsline {section}{Supplemental Figure 9 Pc Tf PTT}{69}{section*.45}%
+\contentsline {section}{Additional Figure 13 PTT}{72}{section*.46}%
 \contentsline {section}{Supplemental Figure 10 Thermal Sums}{73}{section*.47}%
 \contentsline {section}{Supplemental Figure 11 Photoperiodic Sums}{75}{section*.48}%
 \contentsline {section}{Figure 7 Temperature Increase By MacroEnv}{77}{section*.49}%
-\contentsline {section}{Additional Figure 14 Temperature Increase By Cluster}{78}{section*.50}%

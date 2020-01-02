@@ -1,6 +1,6 @@
 ---
 title: "Vignette"
-subtitle: "Phenological characterization and modeling of diverse lentil (*Lens culinaris* Medik.) germplasm grown in multiple environments"
+subtitle: "ASSESSING ADAPTATION OF LENTIL (*Lens culinaris* Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD"
 author: "Derek M. Wright"
 date: "`r Sys.Date()`"
 output: 
@@ -15,7 +15,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.width = "100%")
 ```
 
-This vignette contains the `R` code and analysis done for the paper: **Phenological characterization and modeling of diverse lentil (*Lens culinaris* Medik.) germplasm grown in multiple environments** 
+This vignette contains the `R` code and analysis done for the paper: **ASSESSING ADAPTATION OF LENTIL (*Lens culinaris* Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD** 
 
 # Preliminary Steps
 
@@ -203,7 +203,8 @@ image_read("Figure_01_FieldTrialInfo.png")
 
 ```{r}
 # Prep data
-x1 <- ldp %>% filter(Origin != "ICARDA") %>% 
+x1 <- ldp %>% filter(Origin != "Unknown") %>%
+  mutate(Origin = recode(Origin, "ICARDA"="Syria", "USDA"="USA")) %>% 
   group_by(Origin) %>% summarise(Count = n()) %>% 
   left_join(select(ct, Origin = Country, Lat, Lon), by = "Origin") %>% 
   ungroup() %>% as.data.frame()
@@ -519,7 +520,7 @@ xx <- dd %>% select(Expt, DTF, DTS, DTM) %>%
   mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
 # Plot
 mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) + 
-  ggridges::geom_density_ridges() +
+  ggridges::geom_density_ridges(alpha = 0.7) +
   scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
   theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
   labs(y = NULL, x = "Days After Sowing")
@@ -823,7 +824,7 @@ ggsave("Additional/Temp/Temp_F03_2.png", mp2, width = 8, height = 1.5 * 6 / 2.5)
 # Plot C)
 xx <- ldp %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
   mutate(test1 = factor(paste(Origin, Cluster)))
-xx <- xx %>% filter(Origin != "ICARDA") %>% 
+xx <- xx %>% filter(!Origin %in% c("ICARDA","USDA","Unknown")) %>% 
   group_by(Origin, Cluster) %>% summarise(Count = n()) %>% 
   spread(Cluster, Count) %>%
   left_join(select(ct, Origin=Country, Lat, Lon), by = "Origin") %>% 
@@ -870,13 +871,17 @@ rgl::writeWebGL(filename = "Additional/Additional_Figure_PCA_3D.html",
 
 ```{r}
 # Prep data
+levs <- c("Africa", "Asia", "Europe", "Americas", "ICARDA", "USDA")
 xx <- read.csv("data/data_PCA_Results.csv") %>% 
-  mutate(Region = ifelse(Origin == "ICARDA", "ICARDA", as.character(Region)))
+  filter(Origin != "Unknown") %>%
+  mutate(Region = as.character(Region), Origin = as.character(Origin),
+         Region = ifelse(Origin %in% levs[5:6], Origin, Region),
+         Region = factor(Region, levels = levs))
 # Plot
 mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   geom_point(alpha = 0.7, size = 2) +
-  scale_color_manual(values = colors[c(1,5,3,8,7)]) + 
-  scale_shape_manual(values = c(16,17,18,15,13)) +
+  scale_color_manual(values = colors[c(1,3,8,5,7,7)]) + 
+  scale_shape_manual(values = c(16,18,15,17,13,10)) +
   theme_AGL
 ggsave("Additional/Additional_Figure_06_PCA.png", mp, width = 6, height = 4)
 ```
@@ -2118,7 +2123,9 @@ mycts <- c("Canada", "USA", "Iran", "Yemen",
 xx <- read.csv("data/model_T+P_Coefs.csv") %>% 
   left_join(select(ldp, Entry, Origin), by = "Entry") %>%
   left_join(select(ct, Origin=Country, SubRegion), by = "Origin") %>%
-  mutate(SubRegion = ifelse(Origin == "ICARDA", "ICARDA", as.character(SubRegion)),
+  filter(Origin != "Unknown") %>%
+  mutate(SubRegion = as.character(SubRegion), Origin = as.character(Origin),
+         SubRegion = ifelse(Origin %in% c("ICARDA","USDA"), Origin, as.character(SubRegion)),
          Origin = ifelse(Origin %in% mycts, Origin, as.character(SubRegion)))
 x1 <- xx %>% 
   left_join(dd %>% filter(ExptShort == "Su17") %>% select(Entry, DTF), by = "Entry") %>%
