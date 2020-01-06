@@ -1,0 +1,27 @@
+<style type="text/css">
+
+body{
+  font-size: 14pt;
+}
+
+#table-of-contents h2{
+    background: url("www/Logo_Agile.png");
+    background-size: contain;
+    background-position: center top;
+    padding-top: 150px !important;
+    background-repeat: no-repeat;
+    background-color:#1E3D2A;
+}
+
+h1,h2,h3,h4,h5,h6,legend{
+    color:#1E3D2A;
+}
+
+#main a {
+    background-image: linear-gradient(180deg,#1E3D2A,#1E3D2A);
+    color:#8b0000;
+}
+
+a:hover{
+
+</style>

@@ -9,6 +9,7 @@ output:
     lightbox: true
     gallery: true
     highlight: tango
+    css: custom.css
   github_document: default
 ---
 
@@ -50,8 +51,6 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 [Phenology_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
 [Phenology_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
-
-![](www/pdf.png)
 
 # Shiny App
 
@@ -166,6 +165,16 @@ knitr::kable(rbind(head(xx), tail(xx)))
 ```
 
 # Animations
+
+## Temperature and Photoperiod Regressions
+
+![](Additional/Animation_TP.gif)
+
+## Model Predictions
+
+![](Additional/Animation_Model.gif)
+
+## Photothermal Planes 
 
 ![](Additional/Animation_3D.gif)
 

@@ -176,9 +176,10 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
       tabsetPanel(
         tabPanel("Home",
                  h1("AGILE LDP Phenology App"), hr(),
-                 p("Author: Derek Wright"),
-                 p("Contact: derek.wright@usask.ca"), hr(),
-                 p(strong("ASSESSING ADAPTATION AGILITY OF LENTIL (", em("Lens culinaris"), " Medik.) DIVERSITY PANEL TO TEMPERATURE AND PHOTOPERIOD")),
+                 p("Author: Derek Michael Wright"),
+                 p("Contact: derek.wright@usask.ca"), 
+                 p("Last Updated: 03-01-2020"), hr(),
+                 p(strong("Assessing Adaptation Of A Lentil (", em("Lens culinaris"), " Medik.) Diversity Panel To Temperature And Photoperiod")),
                  p("Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett"),
                  p(strong("Project Collaborators:")),
                  p("- Department of Plant Sciences and Crop Development Centre, University of Saskatchewan, Saskatoon, Saskatchewan, Canada"),
@@ -195,82 +196,72 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                  p("- GenomePrairie"),
                  p("- GenomeCanada"),
                  p("- Saskatchewan Ministry of Agriculture")
-        ), #Home tab
+        ), # Home tab
         tabPanel("Tables", tabsetPanel(
           tabPanel("LDP", h1("Lentil Diversity Panel"), DT::dataTableOutput("Table_LDP")),
           tabPanel("Field Trials", h1("Field Trial Info"), DT::dataTableOutput("Table_FieldTrials")),
           tabPanel("PCA", h1("PCA and Hierarchical Clustering of DTF"), DT::dataTableOutput("Table_PCA")),
           tabPanel("Coefs", h1("Photothermal Model Coeficients"), DT::dataTableOutput("Table_Coefs")),
           tabPanel("DTF Predictions", h1("Field Trial Info"), DT::dataTableOutput("Table_Model")) 
-          )), #Tables tab
+          )), # Tables tab
         tabPanel("Phenology", tabsetPanel(
-          tabPanel("Trait 1",  
-                   radioButtons("GroupBy", "Group by:", c("None","Cluster","Region"), "None", inline = T),
-                   plotlyOutput("Violin",  height = 500)),
-          tabPanel("Trait 2", plotlyOutput("Violins", height = 500)),
-          tabPanel("Traits 1", selectInput("Traits", "Traits", trts, c("DTF","DTS","DTM"), multiple = T), 
-                   plotlyOutput("Line1")),
-          tabPanel("EnvData 1",
-                   fluidRow(column(radioButtons("Plot_DTF", "Plot DTF Window", c(T,F), F, inline = T), width = 2),
-                            column(radioButtons("Plot_DTS", "Plot DTS Window", c(T,F), F, inline = T), width = 2),
-                            column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
-                   plotOutput("EnvData", height = 500)),
-          tabPanel("EnvData 2", plotOutput("Phenology")),
-          tabPanel("ggridges", plotOutput("ggridges")),
-          tabPanel("Map", leafletOutput("Data_Map", height = 500)),
-          tabPanel("Corr", 
-                   fluidRow(column(selectInput("Trait2", "Trait (x axis)", trts, "DTS"), width = 2),
-                            column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3),
-                            column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
-                   plotlyOutput("Corr", height = 500))
-        )), #Phenology tab
+          tabPanel("Trait", tabsetPanel(
+            tabPanel("Trait Expts", plotlyOutput("Trait_Expts", height = 500)),
+            tabPanel("Trait Expt",  
+                     radioButtons("GroupBy", "Group by:", c("None","Cluster","Region"), "None", inline = T),
+                     plotlyOutput("Trait_Expt",  height = 500)),
+            tabPanel("Trait Map", leafletOutput("Trait_Map", height = 500))
+          )),
+          tabPanel("Traits", tabsetPanel(
+            tabPanel("ggridges", plotOutput("ggridges")),
+            tabPanel("Traits Expt", selectInput("Traits", "Traits", trts, c("DTF","DTS","DTM"), multiple = T),
+                     plotlyOutput("Traits_Expt")),
+            tabPanel("Corr", 
+                     fluidRow(column(selectInput("Trait2", "Trait (x axis)", trts, "DTS"), width = 2),
+                              column(selectInput("Expt2", "Expt (x axis)", names_Expt), width = 3),
+                              column(radioButtons("AddTrendline", "Add Trendline", c(T,F), T, inline = T), width = 2)),
+                     plotlyOutput("Corr", height = 500))
+          )),
+          tabPanel("EnvData", tabsetPanel(
+            tabPanel("EnvData Expts", plotOutput("EnvData_Expts")),
+            tabPanel("EnvData_Expt",
+                     fluidRow(column(radioButtons("Plot_DTF", "Plot DTF Window", c(T,F), F, inline = T), width = 2),
+                              column(radioButtons("Plot_DTS", "Plot DTS Window", c(T,F), F, inline = T), width = 2),
+                              column(radioButtons("Plot_DTM", "Plot DTM Window", c(T,F), F, inline = T), width = 2)),
+                     plotOutput("EnvData_Expt", height = 500))
+          ))
+        )), # Phenology tab
         tabPanel("Clusters", tabsetPanel(
-          tabPanel("PCA",
+          tabPanel("PCs",
                    radioButtons("PC_Type","Plot", c("PC1 x PC2","PC1 x PC3","PC2 x PC3"), "PC1 x PC2", inline = T),
-                   plotlyOutput("PCA_PC", height = 500)),
-          tabPanel("Ribbon", plotlyOutput("PCA_Ribbon", height = 500)),
+                   plotlyOutput("PCs", height = 500)),
+          tabPanel("Ribbon", plotlyOutput("Ribbon", height = 500)),
           tabPanel("Map", tabsetPanel(
-            tabPanel("Pies", leafletOutput("PCA_Pies", height = 500)),
+            tabPanel("Pies", radioButtons("PCA_Map_size", "Pie Size", c("Proportional", "Constant"), inline = T),
+                     leafletOutput("Map_Pies", height = 500)),
             tabPanel("Points", radioButtons("PCA_Map_Points", "Plot", c("GeoLocated", "All"), inline = T),
-                     leafletOutput("PCA_Points", height = 500))
+                     leafletOutput("Map_Points", height = 500))
           ) ),
           tabPanel("Origins",
                    checkboxGroupInput("PCA_Countries", "Countries", unique(ldp$Origin), selected = c("Canada", "India"), inline = T),
                    tabsetPanel(
-                     tabPanel("Expt",  plotlyOutput("PCA_Origins_Expt")),
-                     tabPanel("Expts", plotOutput("PCA_Origins_Expts"))
+                     tabPanel("Expt",  plotlyOutput("Origins_Expt")),
+                     tabPanel("Expts", plotOutput("Origins_Expts"))
   
-          ) ) ) ), #HCPC tab
+          ) ) ) ), # Clusters tab
         tabPanel("PhotoThermal Model", tabsetPanel(
-          tabPanel("PhotoThermal Plane", br(), plotOutput("Modeling_3D" , height = 500)),
-          tabPanel("Obs x Pre", plotlyOutput("Modeling", height = 500)),
-          tabPanel("Expt",  plotlyOutput("Modeling_Expt", height = 500)),
-          tabPanel("Expts", plotOutput("Modeling_Expts", height = 500)),
+          tabPanel("PhotoThermal Plane", br(), plotOutput("PhotoThermal_Plane" , height = 500)),
+          tabPanel("Obs vs Pre", tabsetPanel(
+            tabPanel("All", plotlyOutput("OxP_All", height = 500)),
+            tabPanel("Expt",  plotlyOutput("OxP_Expt", height = 500)),
+            tabPanel("Expts", plotOutput("OxP_Expts", height = 500))
+          )),
           tabPanel("Coefficients", tabsetPanel(
             tabPanel("abc",   plotlyOutput("abc", height = 500)),
             tabPanel("TraitxCoef",
                      radioButtons("Select_abc", "Select Coefficient", c("a","b","c"), "a", inline = T),
                      plotlyOutput("TraitxCoef", height = 500)),
             tabPanel("cxb",   plotlyOutput("cxb", height = 500))
-            ) ),
-          tabPanel("Adaptation",
-                   fluidRow(column(selectInput("Ad_Country", "Adaptation Country", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "Canada"), width = 3),
-                            column(numericInput("sd_Mult","sd Multiplier",1,0.5,3,0.1), width = 2)),
-                   checkboxGroupInput("Ad_Countries", "Countries", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "USA", inline = T),
-                   radioButtons("Select_Coef_Ad", "Select Coefficient", c("a","b","c"), "c", inline = T),
-                   tabsetPanel(
-                     tabPanel("TraitxCoef",  plotlyOutput("Adapted1", height = 500)),
-                     tabPanel("cxb", plotlyOutput("Adapted2", height = 500)),
-                     tabPanel("Table", 
-                              downloadButton("Adapted_Table.csv", "Download Selected Table"),
-                              DT::dataTableOutput("Adapted_Table")) 
-                     ) ),
-          tabPanel("Temperature", 
-                   fluidRow(column(numericInput("TempIncrease","Temperature Increase",1,0,5,0.1), width = 2),
-                            column(numericInput("PhotoIncrease","Photoperiod Increase",1,0,5,0.1), width = 2)), tabsetPanel(
-            tabPanel("Expts",    plotlyOutput("PCA_TempInc_Expts", height = 500)),
-            tabPanel("Clusters", plotOutput("PCA_TempInc_Clusters")),
-            tabPanel("Expt", plotlyOutput("PCA_TempInc_Cluster", height = 500)) 
             ) ),
           tabPanel("Predict DTF", 
                    fluidRow(column(numericInput("Mean_T", "Mean Temperature",13,0,25,0.1),
@@ -286,8 +277,27 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
                      tabPanel("Table", 
                               downloadButton("Adapted_DTF_Table.csv", "Download Selected Table"),
                               DT::dataTableOutput("Adapted_DTF_Table"))
+                   ) ),
+          tabPanel("T+P Increase", 
+                   fluidRow(column(numericInput("TempIncrease","Temperature Increase",1,-10,10,0.1), width = 2),
+                            column(numericInput("PhotoIncrease","Photoperiod Increase",1,-10,10,0.1), width = 2)), tabsetPanel(
+            tabPanel("Expts",    plotlyOutput("T_P_Expts", height = 500)),
+            tabPanel("Clusters", plotOutput("T_P_Clusters")),
+            tabPanel("Expt", plotlyOutput("T_P_Cluster", height = 500)) 
+            ) ),
+          tabPanel("\"Adaptation\"",
+                   fluidRow(column(selectInput("Ad_Country", "Adaptation Country", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "Canada"), width = 3),
+                            column(numericInput("sd_Mult","sd Multiplier",1,0.5,3,0.1), width = 2)),
+                   checkboxGroupInput("Ad_Countries", "Countries", unique(ldp$Origin)[order(unique(ldp$Origin))], selected = "USA", inline = T),
+                   radioButtons("Select_Coef_Ad", "Select Coefficient", c("a","b","c"), "c", inline = T),
+                   tabsetPanel(
+                     tabPanel("TraitxCoef",  plotlyOutput("Adapted1", height = 500)),
+                     tabPanel("cxb", plotlyOutput("Adapted2", height = 500)),
+                     tabPanel("Table", 
+                              downloadButton("Adapted_Table.csv", "Download Selected Table"),
+                              DT::dataTableOutput("Adapted_Table")) 
                    ) )
-        ) )
+        ) ) # PhotoThermal Model tab
     ) ) ) 
 ) #fluidpage
 ##############################################################################
@@ -321,7 +331,7 @@ server <- function(input, output) {
   # - Phenology
   #
   # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, GroupByCluster = T, MyClusters = c("1","2","3","4"), MyRegions = c("Asia","Europe"))
-  output$Violin <- renderPlotly({
+  output$Trait_Expt <- renderPlotly({
     xx <- dd %>% select(Entry, Name, Expt, ExptShort, Origin, Region, SubRegion, Cluster, input$Trait) %>%
       filter(Expt == input$Expt) %>%
       left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
@@ -355,7 +365,7 @@ server <- function(input, output) {
     mp
   })
   # input <- list(Expts = names_Expt, Trait = "DTF", Plot_Entry = "TRUE", Entry = 1, MyClusters = c("1","2","3","4"))
-  output$Violins <- renderPlotly({
+  output$Trait_Expts <- renderPlotly({
     xx <- dd %>% select(Entry, Name, Expt, ExptShort, Origin, Cluster, Region, input$Trait) %>%
       filter(Expt %in% input$Expts) %>%
       left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
@@ -381,7 +391,7 @@ server <- function(input, output) {
     mp
   })
   # input <- list(Traits = c("DTF","DTS","DTM"), Expt = "Rosthern, Canada 2017", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
-  output$Line1 <- renderPlotly({
+  output$Traits_Expt <- renderPlotly({
     xx <- dd %>% filter(Expt == input$Expt) %>%
       gather(Trait, Value, DTE, DTF, DTF2, DTS, DTM, VEG, REP, RDTF, DTF2_scaled, Tb, Tf, Pc, Pf, PTT) %>%
       filter(Trait %in% input$Traits) %>%
@@ -391,7 +401,7 @@ server <- function(input, output) {
       geom_violin() +
       geom_quasirandom(aes(color = Cluster, key1 = Entry, key2 = Name, key3 = Origin)) +
       facet_wrap(.~Trait, scales = "free_y", nrow = 1) + 
-      scale_color_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       labs(x = NULL)
     if(input$Plot_Entry == T) {
       mp <- mp + 
@@ -401,76 +411,8 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
-  output$Data_Map <- renderLeaflet({
-    xx <- dd %>% filter(Expt == input$Expt) %>%
-      gather(Trait, Value, DTE, DTF, DTF2, DTS, DTM, VEG, REP, RDTF, DTF2_scaled, Tb, Tf, Pc, Pf, PTT) %>%
-      filter(Trait == input$Trait) %>%
-      left_join(select(ldp, Entry, Lat=Lat3, Lon=Lon3), by = "Entry") %>%
-      filter(!is.na(Lat), !is.na(Lon)) %>%
-      select(Entry, Name, Origin, Cluster, Lat, Lon, Expt, Trait, Value)
-    xE <- xx %>% filter(Entry == input$Entry)
-    pal <- colorNumeric(c("darkgoldenrod2", "darkblue"), xx$Value)
-    xx <- xx %>% filter(Cluster %in% input$MyClusters)
-    #
-    mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
-      addMinicharts(
-        lat = xx$Lat, lng = xx$Lon, width = 10, fillColor = pal(xx$Value),
-        popup = popupArgs(supValues = xx, showValues = F)
-      ) %>%
-    addLegend("bottomleft", pal = pal, values = xx$Value,
-             title = input$Trait, opacity = 1 )
-    if(input$Plot_Entry == T) {
-      mp <- mp %>% addMinicharts(lat = xE$Lat, lng = xE$Lon, width = 10, fillColor = "Red") 
-    }
-    mp
-  })
-  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Expt2 = "Rosthern, Canada 2017", Trait2 = "DTS", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
-  output$Corr <- renderPlotly({
-    x1 <- dd %>% select(Entry, Name, Expt, Origin, Cluster, input$Trait) %>%
-      filter(Expt %in% input$Expt) 
-    x2 <- dd %>% filter(Expt %in% input$Expt2) %>% select(Entry, input$Trait2)
-    xx <- left_join(x1, x2, by = "Entry") %>% as.data.frame()
-    r2 <- round(cor(xx[,input$Trait2], xx[,input$Trait], method = "pearson", use = "complete"), 3)
-    rmse <- round(modelRMSE(xx[,input$Trait2], xx[,input$Trait]), 1)
-    coefs <- round(lm(xx[,input$Trait2] ~ xx[,input$Trait])$coefficients, 3)
-    mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions), 
-                 aes(y = get(input$Trait2), x = get(input$Trait)))
-    if(input$AddTrendline == T) { mp <- mp + geom_smooth(method = "lm") }
-    mp <- mp +
-      geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
-      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
-      theme_AGL +
-      theme(legend.position = "none") +
-      labs(title = paste(input$Expt, "| RR = ", r2, " | RMSE = ", rmse, " | y = ", coefs[2],"x + ", coefs[1]), 
-           x = paste(input$Expt2, input$Trait2, sep = " - "), 
-           y = paste(input$Expt, input$Trait, sep = " - ") )
-    if(input$Plot_Entry == T) {
-      mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
-                            aes(key1 = Entry, key2 = Name, key3 = Origin),
-                            color = "Black", fill = "Red", size = 3, pch = 23)
-    }
-    mp
-  })
-  # input <- list(Expts = c("Rosthern, Canada 2016","Rosthern, Canada 2017")
-  observe({
-    output$ggridges <- renderPlot({ 
-      xx <- dd %>% select(Expt, Cluster, DTF, DTS, DTM) %>% 
-        filter(Expt %in% input$Expts, Cluster %in% input$MyClusters) %>%
-        gather(Trait, Value, DTF, DTS, DTM) %>%
-        mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
-      # Plot
-      mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions), 
-                   aes(x = Value, y = Expt, fill = Trait)) + 
-        ggridges::geom_density_ridges(alpha = 0.7) +
-        scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
-        theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
-        labs(y = NULL, x = "Days After Sowing")
-      mp
-    }, height = 50*length(input$Expts))
-  })
   # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, Plot_DTF = T, Plot_DTS = F, Plot_DTM = F)
-  output$EnvData <- renderPlot({
+  output$EnvData_Expt <- renderPlot({
     xx <- ee %>% filter(Expt == input$Expt)
     yy <- ff %>% filter(Expt == input$Expt)
     y1 <- select(yy, Expt, Location, Year, min = DTF_min, max = DTF_max) %>%
@@ -521,7 +463,7 @@ server <- function(input, output) {
   })
   # input <- list(Expts = c("Rosthern, Canada 2016", "Rosthern, Canada 2017")
   observe({
-    output$Phenology <- renderPlot({
+    output$EnvData_Expts <- renderPlot({
       # Prep data
       xx <- ee %>% filter(Expt %in% input$Expts)
       yy <- ff %>% filter(Expt %in% input$Expts) %>%
@@ -557,11 +499,79 @@ server <- function(input, output) {
         guides(colour = guide_legend(order = 1), fill = guide_legend(order = 2))
     }, height = 150*length(input$Expts))
   })
+  # input <- list(Expts = c("Rosthern, Canada 2016","Rosthern, Canada 2017")
+  observe({
+    output$ggridges <- renderPlot({ 
+      xx <- dd %>% select(Expt, Cluster, Region, DTF, DTS, DTM) %>% 
+        filter(Expt %in% input$Expts, Cluster %in% input$MyClusters) %>%
+        gather(Trait, Value, DTF, DTS, DTM) %>%
+        mutate(Trait = factor(Trait, levels = c("DTF", "DTS", "DTM")))
+      # Plot
+      mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions), 
+                   aes(x = Value, y = Expt, fill = Trait)) + 
+        ggridges::geom_density_ridges(alpha = 0.7) +
+        scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
+        theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
+        labs(y = NULL, x = "Days After Sowing")
+      mp
+    }, height = 50*length(input$Expts))
+  })
+  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
+  output$Trait_Map <- renderLeaflet({
+    xx <- dd %>% filter(Expt == input$Expt) %>%
+      gather(Trait, Value, DTE, DTF, DTF2, DTS, DTM, VEG, REP, RDTF, DTF2_scaled, Tb, Tf, Pc, Pf, PTT) %>%
+      filter(Trait == input$Trait) %>%
+      left_join(select(ldp, Entry, Lat=Lat3, Lon=Lon3), by = "Entry") %>%
+      filter(!is.na(Lat), !is.na(Lon)) %>%
+      select(Entry, Name, Origin, Cluster, Region, Lat, Lon, Expt, Trait, Value)
+    xE <- xx %>% filter(Entry == input$Entry)
+    pal <- colorNumeric(c("darkgoldenrod2", "darkblue"), xx$Value)
+    xx <- xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions)
+    #
+    mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
+      addMinicharts(
+        lat = xx$Lat, lng = xx$Lon, width = 10, fillColor = pal(xx$Value),
+        popup = popupArgs(supValues = xx, showValues = F)
+      ) %>%
+    addLegend("bottomleft", pal = pal, values = xx$Value,
+             title = input$Trait, opacity = 1 )
+    if(input$Plot_Entry == T) {
+      mp <- mp %>% addMinicharts(lat = xE$Lat, lng = xE$Lon, width = 10, fillColor = "Red") 
+    }
+    mp
+  })
+  # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Expt2 = "Rosthern, Canada 2017", Trait2 = "DTS", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
+  output$Corr <- renderPlotly({
+    x1 <- dd %>% select(Entry, Name, Expt, Origin, Cluster, Region, input$Trait) %>%
+      filter(Expt %in% input$Expt) 
+    x2 <- dd %>% filter(Expt %in% input$Expt2) %>% select(Entry, input$Trait2)
+    xx <- left_join(x1, x2, by = "Entry") %>% as.data.frame()
+    r2 <- round(cor(xx[,input$Trait2], xx[,input$Trait], method = "pearson", use = "complete"), 3)
+    rmse <- round(modelRMSE(xx[,input$Trait2], xx[,input$Trait]), 1)
+    coefs <- round(lm(xx[,input$Trait2] ~ xx[,input$Trait])$coefficients, 3)
+    mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions), 
+                 aes(y = get(input$Trait2), x = get(input$Trait)))
+    if(input$AddTrendline == T) { mp <- mp + geom_smooth(method = "lm") }
+    mp <- mp +
+      geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
+      theme_AGL +
+      theme(legend.position = "none") +
+      labs(title = paste(input$Expt, "| RR = ", r2, " | RMSE = ", rmse, " | y = ", coefs[2],"x + ", coefs[1]), 
+           x = paste(input$Expt2, input$Trait2, sep = " - "), 
+           y = paste(input$Expt, input$Trait, sep = " - ") )
+    if(input$Plot_Entry == T) {
+      mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
+                            aes(key1 = Entry, key2 = Name, key3 = Origin),
+                            color = "Black", fill = "Red", size = 3, pch = 23)
+    }
+    mp
+  })
   #
   # - HCPC
   #
   # input <- list(PC_Type = "PC1 x PC2", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"), MyRegions = c("Asia","Africa"))
-  output$PCA_PC <- renderPlotly({
+  output$PCs <- renderPlotly({
     xx <- pca %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions)
     hulltype <- paste(input$PCx, input$PCy)
     if(input$PC_Type == "PC1 x PC2") { myx <- "PC1"; myy <- "PC2" }
@@ -572,8 +582,8 @@ server <- function(input, output) {
     mp <- ggplot(xx, aes(x = get(myx), y = get(myy), color = Cluster)) +
       geom_polygon(data = polys, alpha = 0.15, aes(fill = Cluster)) +
       geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin)) +
-      scale_color_manual(values = colors) +
-      scale_fill_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
+      scale_fill_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       labs(title = "PCA", x = myx, y = myy)
     if(input$Plot_Entry == T) {
@@ -583,7 +593,7 @@ server <- function(input, output) {
     mp
   })
   # input <- list(Expts = names_Expt, Trait = "DTF", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"), MyRegions = c("Asia","Africa"))
-  output$PCA_Ribbon <- renderPlotly({
+  output$Ribbon <- renderPlotly({
     xx <- dd %>%
       filter(Expt %in% input$Expts, Cluster %in% input$MyClusters, Region %in% input$MyRegions) %>%
       group_by(Expt, ExptShort, Cluster) %>%
@@ -596,8 +606,8 @@ server <- function(input, output) {
                   alpha = 0.1, color = NA) +
       geom_point(aes(y = mean, color = Cluster)) +
       geom_line(aes(y = mean, color = Cluster, group = Cluster), size = 1) +
-      scale_color_manual(values = colors) +
-      scale_fill_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
+      scale_fill_manual(values = colors[as.numeric(input$MyClusters)]) +
       coord_cartesian(ylim = c(0.95,5.05), expand = F) +
       theme_minimal() +
       theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
@@ -612,25 +622,38 @@ server <- function(input, output) {
     }
     mp
   })
-  # 
-  output$PCA_Pies <- renderLeaflet({
+  # input <- list(MyClusters = c("1","2","3","4"))
+  output$Map_Pies <- renderLeaflet({
     pal <- colorFactor(colors, domain = 1:8)
     xx <- ldp %>%
-      mutate(test1 = factor(paste(Origin, Cluster))) %>%
-      group_by(Origin, Cluster) %>% summarise(Count = n()) %>%
+      filter(Cluster %in% input$MyClusters) %>%
+      group_by(Origin, Cluster) %>% 
+      summarise(Count = n()) %>% ungroup()
+    x1 <- xx %>% group_by(Origin) %>% summarise(Total = sum(Count))
+    xx <- xx %>%
       spread(Cluster, Count) %>%
       left_join(select(ct, Origin=Country, Lat, Lon), by = "Origin") %>%
-      ungroup() %>%
+      left_join(x1, by = "Origin") %>%
       filter(!is.na(Lat), !is.na(Lon))
     xx[is.na(xx)] <- 0
-    leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
-      addMinicharts(
-          lat = xx$Lat, lng = xx$Lon, width = 20, height = 20, type = "pie",
-          chartdata = select(xx, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`),
-          colorPalette = pal(1:8) )
+    if(input$PCA_Map_size == "Proportional") {
+      mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
+        addMinicharts(
+          lat = xx$Lat, lng = xx$Lon, width = xx$Total+10, type = "pie",
+          chartdata = select(xx, input$MyClusters),
+          colorPalette = pal(as.numeric(input$MyClusters)) )
+    }
+    if(input$PCA_Map_size == "Constant") {
+      mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
+        addMinicharts(
+          lat = xx$Lat, lng = xx$Lon, width = 20, type = "pie",
+          chartdata = select(xx, input$MyClusters),
+          colorPalette = pal(as.numeric(input$MyClusters)) )
+    }
+    mp
   })
   # input <- list(Plot_Entry = T, Entry = 1, PCA_Map_Points = "All", MyClusters = c("a","2","3","4"))
-  output$PCA_Points <- renderLeaflet({
+  output$Map_Points <- renderLeaflet({
     pal <- colorFactor(colors, domain = 1:8)
     xx <- ldp %>% select(-Lat, -Lon)
     if(input$PCA_Map_Points == "All") {
@@ -638,7 +661,7 @@ server <- function(input, output) {
     } else { xx <- xx %>% rename(Lat=Lat2, Lon=Lon2) %>% select(-Lat3,-Lon3) }
     xx <- xx %>% filter(!is.na(Lat), !is.na(Lon))
     xE <- xx %>% filter(Entry == input$Entry)
-    xx <- xx %>% filter(Cluster %in% input$MyClusters)
+    xx <- xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions)
     #
     mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
       addMinicharts(lng = xx$Lon, lat = xx$Lat, width = 10,
@@ -651,32 +674,8 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expts = c("Rosthern, Canada 2017", "Bhopal, India 2017"), Trait = "DTF", Plot_Entry = T, Entry = 1, PCA_Countries = c("Canada","India"))
-  observe({
-    output$PCA_Origins_Expts <- renderPlot({
-      yy <- input$PCA_Countries
-      xx <- dd %>%
-        filter(Expt %in% input$Expts) %>%
-        mutate(Origin = factor(Origin, levels = unique(Origin)[rev(order(unique(Origin)))])) %>%
-        filter(Origin %in% yy) %>%
-        mutate(Origin = factor(Origin, levels = yy))
-      mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters), 
-                   aes(y = get(input$Trait), x = Origin)) +
-        geom_quasirandom(aes(color = Cluster)) +
-        facet_grid(Expt~., scales = "free_y") +
-        scale_color_manual(values = colors) +
-        theme_AGL +
-        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
-        labs(title = input$Trait, y = NULL, x = NULL)
-      if(input$Plot_Entry == T) {
-        mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
-                              color = "Black", fill = "Red", size = 3, pch = 23)
-      }
-      mp
-    }, height = 250*length(input$Expts) )
-  })
   # input <- list(Expt = "Rosthern, Canada 2017", Trait = "DTF", Plot_Entry = T, Entry = 1, PCA_Countries = c("Canada","India"))
-  output$PCA_Origins_Expt <- renderPlotly({
+  output$Origins_Expt <- renderPlotly({
     yy <- input$PCA_Countries
     xx <- dd %>%
       filter(Expt == input$Expt) %>%
@@ -687,7 +686,7 @@ server <- function(input, output) {
                  aes(y = get(input$Trait), x = Origin)) +
       geom_quasirandom(aes(key1 = Entry, key2 = Name, color = Cluster)) +
       facet_grid(.~Expt, scales = "free_y") +
-      scale_color_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
       labs(y = input$Trait, x = NULL)
@@ -698,11 +697,35 @@ server <- function(input, output) {
     }
     mp
   })
+  # input <- list(Expts = c("Rosthern, Canada 2017", "Bhopal, India 2017"), Trait = "DTF", Plot_Entry = T, Entry = 1, PCA_Countries = c("Canada","India"))
+  observe({
+    output$Origins_Expts <- renderPlot({
+      yy <- input$PCA_Countries
+      xx <- dd %>%
+        filter(Expt %in% input$Expts) %>%
+        mutate(Origin = factor(Origin, levels = unique(Origin)[rev(order(unique(Origin)))])) %>%
+        filter(Origin %in% yy) %>%
+        mutate(Origin = factor(Origin, levels = yy))
+      mp <- ggplot(xx %>% filter(Cluster %in% input$MyClusters), 
+                   aes(y = get(input$Trait), x = Origin)) +
+        geom_quasirandom(aes(color = Cluster)) +
+        facet_grid(Expt~., scales = "free_y") +
+        scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
+        theme_AGL +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+        labs(title = input$Trait, y = NULL, x = NULL)
+      if(input$Plot_Entry == T) {
+        mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
+                              color = "Black", fill = "Red", size = 3, pch = 23)
+      }
+      mp
+    }, height = 250*length(input$Expts) )
+  })
   #
   # -PhotoThermal Model
   #
   # input <- list(Entry = 3)
-  output$Modeling_3D <- renderPlot({
+  output$PhotoThermal_Plane <- renderPlot({
     xx <- rr %>% filter(!is.na(RDTF)) %>%
       left_join(select(ff, Expt, T_mean, P_mean, MacroEnv), by = "Expt")
     #
@@ -734,7 +757,7 @@ server <- function(input, output) {
                           facets = NA, fit = fitpoints))
   })
   # input <- list(Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
-  output$Modeling <- renderPlotly({
+  output$OxP_All <- renderPlotly({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF), Expt %in% input$Expts, Cluster %in% input$MyClusters)
     r2 <- modelR2(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions) %>% pull(DTF),
@@ -758,7 +781,7 @@ server <- function(input, output) {
     mp
   })
   # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
-  output$Modeling_Expt <- renderPlotly({
+  output$OxP_Expt <- renderPlotly({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF), Expt == input$Expt)
     r2 <- modelR2(xx %>% filter(Cluster %in% input$MyClusters, Region %in% input$MyRegions) %>% pull(DTF),
@@ -784,7 +807,7 @@ server <- function(input, output) {
     mp
   })
   # input <- list(Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
-  output$Modeling_Expts <- renderPlot({
+  output$OxP_Expts <- renderPlot({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF))
     mymean <- mean(xx$DTF)
@@ -808,7 +831,7 @@ server <- function(input, output) {
       facet_wrap(Expt~., ncol = 6, labeller = label_wrap_gen(width = 17)) +
       scale_x_continuous(limits = c(30,160)) +
       scale_y_continuous(limits = c(30,160)) +
-      scale_color_manual(name = NULL, values = colors) +
+      scale_color_manual(name = NULL, values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       theme(legend.position = "none") +
       labs(title = paste("1/DTF = a + bT + Pc | RR =", r2), y = "Predicted", x = "Observed")
@@ -833,7 +856,7 @@ server <- function(input, output) {
       facet_wrap(Trait~., nrow = 1, scales = "free") +
       theme_AGL +
       theme(legend.position = "none", strip.text = element_text(face = "italic")) +
-      scale_fill_manual(name = NULL, values = colors) +
+      scale_fill_manual(name = NULL, values = colors[as.numeric(input$MyClusters)]) +
       labs(y = "x 10000", x = "Cluster")
     if(input$Plot_Entry == T) {
       mp <- mp + geom_point(data = xE, color = "Black", fill = "Red", size = 3, pch = 23,
@@ -862,7 +885,7 @@ server <- function(input, output) {
                  aes(y = Coef * 10000, x = Trait)) +
       geom_polygon(data = polys, fill = NA, color = "black") +
       geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
-      scale_color_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL +
       labs(x = paste(input$Expt, input$Trait), y = paste(input$Select_abc, "* 10000"))
     if(input$Plot_Entry == T) {
@@ -888,7 +911,7 @@ server <- function(input, output) {
                  aes(x = c * 10000, y = b * 10000)) +
       geom_polygon(data = polys, fill = NA, color = "black") +
       geom_point(aes(key1 = Entry, key2 = Name, key3 = Origin, color = Cluster)) +
-      scale_color_manual(values = colors) +
+      scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       theme_AGL
     if(input$Plot_Entry == T) {
       mp <- mp + geom_point(data = xx %>% filter(Entry == input$Entry),
@@ -1115,7 +1138,7 @@ server <- function(input, output) {
       }
   )
   # input <- list(TempIncrease = 1, PhotoIncrease = 1, Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
-  output$PCA_TempInc_Expts <- renderPlotly({
+  output$T_P_Expts <- renderPlotly({
     xx <- dd %>%
       select(Entry, Name, Expt, ExptShort, Origin, Cluster, DTF) %>%
       left_join(select(m2, Entry, a, b, c), by = "Entry") %>%
@@ -1150,7 +1173,7 @@ server <- function(input, output) {
   })
   # input <- list(TempIncrease = 1, PhotoIncrease = 1, Expt = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
   observe({
-    output$PCA_TempInc_Clusters <- renderPlot({
+    output$T_P_Clusters <- renderPlot({
       xx <- dd %>%
         select(Entry, Name, Expt, ExptShort, Cluster, DTF) %>%
         left_join(select(m2, Entry, a, b, c), by = "Entry") %>%
@@ -1178,7 +1201,7 @@ server <- function(input, output) {
     }, height = 250*length(input$Expts) )
   })
   # input <- list(TempIncrease = 1, Expt = "Rosthern, Canada 2017", Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
-  output$PCA_TempInc_Cluster <- renderPlotly({
+  output$T_P_Cluster <- renderPlotly({
     xx <- dd %>%
       select(Entry, Name, Expt, ExptShort, Origin, Cluster, DTF) %>%
       left_join(select(m2, Entry, a, b, c), by = "Entry") %>%
