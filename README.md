@@ -236,15 +236,9 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Temperature and Photoperiod Regressions
 
-![](Additional/Animation_TP.gif)
-
 ## Model Predictions
 
-![](Additional/Animation_Model.gif)
-
 ## Photothermal Planes
-
-![](Additional/Animation_3D.gif)
 
 # Additional Figures
 

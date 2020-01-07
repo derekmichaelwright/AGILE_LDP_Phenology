@@ -4,7 +4,7 @@ author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown:
-    self_contained: true
+    self_contained: false
     thumbnails: true
     lightbox: true
     gallery: true
@@ -168,15 +168,9 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Temperature and Photoperiod Regressions
 
-![](Additional/Animation_TP.gif)
-
 ## Model Predictions
 
-![](Additional/Animation_Model.gif)
-
 ## Photothermal Planes 
-
-![](Additional/Animation_3D.gif)
 
 # Additional Figures
 
