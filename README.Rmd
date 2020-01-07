@@ -4,7 +4,7 @@ author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown:
-    self_contained: false
+    self_contained: true
     thumbnails: true
     lightbox: true
     gallery: true
