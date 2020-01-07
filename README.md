@@ -12,7 +12,8 @@ Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
 Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 [View as
-HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
+HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html){:
+.btn}
 
 ![](www/Logo_Agile.png)
 
