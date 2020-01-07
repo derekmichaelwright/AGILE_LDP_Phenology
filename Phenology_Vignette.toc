@@ -1,6 +1,6 @@
 \contentsline {section}{Preliminary Steps}{3}{section*.2}%
 \contentsline {section}{Supplemental table 1}{6}{section*.3}%
-\contentsline {section}{Supplemental table 1}{6}{section*.4}%
+\contentsline {section}{Supplemental table 2}{6}{section*.4}%
 \contentsline {section}{Figure 1 Field Trial Info}{7}{section*.5}%
 \contentsline {section}{Additional Figure 1 LDP Origin Map}{9}{section*.6}%
 \contentsline {section}{Supplemental Figure 1 Scaling}{10}{section*.7}%

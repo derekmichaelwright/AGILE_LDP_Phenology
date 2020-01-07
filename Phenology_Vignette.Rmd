@@ -1,8 +1,6 @@
 ---
 title: "R Vignette"
 subtitle: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod"
-author: "Derek M. Wright"
-date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown:
     self_contained: true
@@ -11,7 +9,6 @@ output:
     highlight: tango
     code_folding: hide
     css: custom.css
-  github_document: default
   html_document:
     toc: yes
     toc_float: true
@@ -26,8 +23,6 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 This vignette contains the `R` code and analysis done for the paper: **Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod** 
 
 Contact: derek.wright@usask.ca
-
-Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 ![](www/Logo_Agile.png)
 
@@ -160,8 +155,6 @@ ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
 
 # Supplemental table 1
 
-
-
 ```{r}
 s1 <- select(ldp, Entry, Name, Origin, Source, Synonyms)
 write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
@@ -171,7 +164,7 @@ write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
 knitr::kable(s1[c(1:5,320:324),])
 ```
 
-# Supplemental table 1
+# Supplemental table 2
 
 ```{r}
 s2 <- select(ff, Location, Year, `Short Name`=ExptShort, Latitude=Lat, Longitude=Lon,
@@ -189,6 +182,8 @@ knitr::kable(s2)
 ```{r echo = F}
 image_read("Figure_01_FieldTrialInfo.png")
 ```
+
+![](Figure_01_FieldTrialInfo.png)
 
 ```{r}
 # Prep data

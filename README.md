@@ -2,7 +2,7 @@ Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
 Panel To Temperature And Photoperiod
 ================
 Derek Michael Wright
-2020-01-02
+2020-01-06
 
 Contact: <derek.wright@usask.ca>
 
@@ -49,8 +49,6 @@ HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 [Phenology\_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
 [Phenology\_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
-
-![](www/pdf.png)
 
 # Shiny App
 
@@ -173,26 +171,26 @@ xx <- read.csv("Supplemental_Table_02.csv")
 knitr::kable(xx)
 ```
 
-| Location            | Year | Short.Name | Planting.Date | Latitude |  Longitude | Temperature..mean. | Photoperiod..mean. | Number.of.Seeds.Sown | Plot.Type           |
-| :------------------ | ---: | :--------- | :------------ | -------: | ---------: | -----------------: | -----------------: | -------------------: | :------------------ |
-| Sutherland, Canada  | 2016 | Su16       | 2016-04-27    | 52.16770 | \-106.5054 |               16.7 |               15.9 |                   60 | three, 1 meter rows |
-| Rosthern, Canada    | 2016 | Ro16       | 2016-05-06    | 52.68920 | \-106.2945 |               17.2 |               16.2 |                   60 | three, 1 meter rows |
-| Marchouch, Morocco  | 2016 | Mo16       | 2016-11-21    | 33.62000 |   \-6.7200 |               12.0 |               10.8 |                   25 | one, 1 meter row    |
-| Cordoba, Spain      | 2016 | Sp16       | 2016-12-13    | 37.90000 |   \-4.8000 |               12.5 |               10.9 |                   25 | one, 1 meter row    |
-| Metaponto, Italy    | 2016 | It16       | 2016-11-29    | 40.39000 |    16.7800 |               10.6 |               10.8 |                   25 | one, 1 meter row    |
-| Bhopal, India       | 2016 | In16       | 2016-12-04    | 23.11000 |    76.8800 |               17.6 |               10.9 |                   25 | one, 1 meter row    |
-| Bardiya, Nepal      | 2016 | Ne16       | 2016-11-14    | 28.25000 |    81.5000 |               19.2 |               11.0 |                   25 | one, 1 meter row    |
-| Jessore, Bangladesh | 2016 | Ba16       | 2016-11-15    | 23.19000 |    89.1900 |               18.6 |               10.8 |                   25 | one, 1 meter row    |
-| Sutherland, Canada  | 2017 | Su17       | 2017-05-04    | 52.16832 | \-106.5108 |               15.7 |               16.1 |                   70 | three, 1 meter rows |
-| Rosthern, Canada    | 2017 | Ro17       | 2017-05-19    | 52.69150 | \-106.2897 |               17.5 |               16.4 |                   70 | three, 1 meter rows |
-| Marchouch, Morocco  | 2017 | Mo17       | 2017-12-21    | 33.62000 |   \-6.7200 |               11.8 |               11.5 |                   50 | two, 1 meter rows   |
-| Cordoba, Spain      | 2017 | Sp17       | 2017-12-14    | 37.90000 |   \-4.8000 |               11.7 |               11.1 |                   50 | two, 1 meter rows   |
-| Metaponto, Italy    | 2017 | It17       | 2017-11-28    | 40.39000 |    16.7800 |               11.2 |               10.8 |                   50 | two, 1 meter rows   |
-| Bhopal, India       | 2017 | In17       | 2017-11-09    | 23.11500 |    76.8850 |               20.6 |               10.7 |                   50 | two, 1 meter rows   |
-| Jessore, Bangladesh | 2017 | Ba17       | 2017-12-03    | 23.19500 |    89.1950 |               21.7 |               11.0 |                   50 | two, 1 meter rows   |
-| Central Ferry, USA  | 2018 | Us18       | 2018-03-29    | 46.65000 | \-117.7600 |               15.8 |               14.3 |                   50 | two, 1 meter rows   |
-| Sutherland, Canada  | 2018 | Su18       | 2018-05-09    | 52.16890 | \-106.5149 |               17.6 |               16.1 |                   70 | three, 1 meter rows |
-| Bardiya, Nepal      | 2017 | Ne17       | 2017-11-03    | 28.42000 |    81.8600 |               19.4 |               10.8 |                   50 | two, 1 meter rows   |
+| Location            | Year | Short.Name | Latitude |  Longitude | Planting.Date | Temperature..mean. | Photoperiod..mean. | Number.of.Seeds.Sown | Plot.Type           |
+| :------------------ | ---: | :--------- | -------: | ---------: | :------------ | -----------------: | -----------------: | -------------------: | :------------------ |
+| Sutherland, Canada  | 2016 | Su16       | 52.16770 | \-106.5054 | 2016-04-27    |               16.7 |               15.9 |                   60 | three, 1 meter rows |
+| Rosthern, Canada    | 2016 | Ro16       | 52.68920 | \-106.2945 | 2016-05-06    |               17.2 |               16.2 |                   60 | three, 1 meter rows |
+| Marchouch, Morocco  | 2016 | Mo16       | 33.62000 |   \-6.7200 | 2016-11-21    |               12.0 |               10.8 |                   25 | one, 1 meter row    |
+| Cordoba, Spain      | 2016 | Sp16       | 37.90000 |   \-4.8000 | 2016-12-13    |               12.5 |               10.9 |                   25 | one, 1 meter row    |
+| Metaponto, Italy    | 2016 | It16       | 40.39000 |    16.7800 | 2016-11-29    |               10.6 |               10.8 |                   25 | one, 1 meter row    |
+| Bhopal, India       | 2016 | In16       | 23.11000 |    76.8800 | 2016-12-04    |               17.6 |               10.9 |                   25 | one, 1 meter row    |
+| Bardiya, Nepal      | 2016 | Ne16       | 28.25000 |    81.5000 | 2016-11-14    |               19.2 |               11.0 |                   25 | one, 1 meter row    |
+| Jessore, Bangladesh | 2016 | Ba16       | 23.19000 |    89.1900 | 2016-11-15    |               18.6 |               10.8 |                   25 | one, 1 meter row    |
+| Sutherland, Canada  | 2017 | Su17       | 52.16832 | \-106.5108 | 2017-05-04    |               15.7 |               16.1 |                   70 | three, 1 meter rows |
+| Rosthern, Canada    | 2017 | Ro17       | 52.69150 | \-106.2897 | 2017-05-19    |               17.5 |               16.4 |                   70 | three, 1 meter rows |
+| Marchouch, Morocco  | 2017 | Mo17       | 33.62000 |   \-6.7200 | 2017-12-21    |               11.8 |               11.5 |                   50 | two, 1 meter rows   |
+| Cordoba, Spain      | 2017 | Sp17       | 37.90000 |   \-4.8000 | 2017-12-14    |               11.7 |               11.1 |                   50 | two, 1 meter rows   |
+| Metaponto, Italy    | 2017 | It17       | 40.39000 |    16.7800 | 2017-11-28    |               11.2 |               10.8 |                   50 | two, 1 meter rows   |
+| Bhopal, India       | 2017 | In17       | 23.11500 |    76.8850 | 2017-11-09    |               20.6 |               10.7 |                   50 | two, 1 meter rows   |
+| Jessore, Bangladesh | 2017 | Ba17       | 23.19500 |    89.1950 | 2017-12-03    |               21.7 |               11.0 |                   50 | two, 1 meter rows   |
+| Central Ferry, USA  | 2018 | Us18       | 46.65000 | \-117.7600 | 2018-03-29    |               15.8 |               14.3 |                   50 | two, 1 meter rows   |
+| Sutherland, Canada  | 2018 | Su18       | 52.16890 | \-106.5149 | 2018-05-09    |               17.6 |               16.1 |                   70 | three, 1 meter rows |
+| Bardiya, Nepal      | 2017 | Ne17       | 28.42000 |    81.8600 | 2017-11-03    |               19.4 |               10.8 |                   50 | two, 1 meter rows   |
 
 ## Supplemental Table 3
 
@@ -235,6 +233,16 @@ knitr::kable(rbind(head(xx), tail(xx)))
 | 216 | Su16                | Ba17                 | Sp17                    | 0.863054 |       291 |
 
 # Animations
+
+## Temperature and Photoperiod Regressions
+
+![](Additional/Animation_TP.gif)
+
+## Model Predictions
+
+![](Additional/Animation_Model.gif)
+
+## Photothermal Planes
 
 ![](Additional/Animation_3D.gif)
 
