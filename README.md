@@ -4,16 +4,15 @@ Panel To Temperature And Photoperiod
 Derek Michael Wright
 2020-01-06
 
+[View as
+HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
+
 Contact: <derek.wright@usask.ca>
 
 Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice
 Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia,
 Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
 Sarker, Albert Vandenberg, and Kirstin E. Bett
-
-[View as
-HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html){:
-.btn}
 
 ![](www/Logo_Agile.png)
 
