@@ -2,7 +2,7 @@ Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
 Panel To Temperature And Photoperiod
 ================
 Derek Michael Wright
-2020-01-06
+2020-01-07
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
