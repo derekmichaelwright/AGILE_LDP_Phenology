@@ -1,6 +1,8 @@
 ---
 title: "R Vignette"
 subtitle: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod"
+author: "Derek Michael Wright"
+date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown:
     self_contained: true
@@ -153,7 +155,9 @@ ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
 - `ff`  = Field Trial Info
 - `ct`  = Country Info
 
-# Supplemental table 1
+# Materials & Methods
+
+## Supplemental table 1
 
 ```{r}
 s1 <- select(ldp, Entry, Name, Origin, Source, Synonyms)
@@ -164,7 +168,7 @@ write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
 knitr::kable(s1[c(1:5,320:324),])
 ```
 
-# Supplemental table 2
+## Supplemental table 2
 
 ```{r}
 s2 <- select(ff, Location, Year, `Short Name`=ExptShort, Latitude=Lat, Longitude=Lon,
@@ -177,7 +181,7 @@ write.csv(s2, "Supplemental_Table_02.csv", row.names = F)
 knitr::kable(s2)
 ```
 
-# Figure 1 Field Trial Info
+## Figure 1 Field Trial Info
 
 ```{r echo = F}
 image_read("Figure_01_FieldTrialInfo.png")
@@ -220,7 +224,7 @@ im <- image_append(c(im1,im2), stack = T)
 image_write(im, "Figure_01_FieldTrialInfo.png")
 ```
 
-# Additional Figure 1 LDP Origin Map
+## Additional Figure 1 LDP Origin Map
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_01_LDPOriginMap.png")
@@ -245,7 +249,7 @@ mapBubbles(dF = x1, nameX = "Lon", nameY = "Lat",
 invisible(dev.off())
 ```
 
-# Supplemental Figure 1 Scaling
+## Supplemental Figure 1 Scaling
 
 ```{r echo = F}
 image_read("Supplemental_Figure_01_Scaling.png")
@@ -272,7 +276,9 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
 ggsave("Supplemental_Figure_01_Scaling.png", mp, width = 8, height = 5)
 ```
 
-# Figure 2 Data Overview
+# Phenology
+
+## Figure 2 Data Overview
 
 ```{r echo = F}
 image_read("Figure_02_DataOverview.png")
@@ -421,7 +427,7 @@ mp <- image_append(c(mp1, mp2, mp3), stack = T)
 image_write(mp, "Figure_02_DataOverview.png")
 ```
 
-# Additional Figures - Entry Phenology
+## Additional Figures - Entry Phenology
 
 ```{r eval = F}
 # Create plotting function
@@ -465,7 +471,7 @@ for(i in 1:324) {
 dev.off()#dev.set(dev.next())
 ```
 
-# Additional Figure 2 DTF DTS DTM
+## Additional Figure 2 DTF DTS DTM
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_02_DTFDTSDTM.png")
@@ -490,7 +496,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value)) +
 ggsave("Additional/Additional_Figure_02_DTFDTSDTM.png", mp, width = 8, height = 6)
 ```
 
-# Additional Figure 3 MacroEnv Phenology
+## Additional Figure 3 MacroEnv Phenology
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_03_MacroEnvPhenology.png")
@@ -533,7 +539,7 @@ mp <- ggplot(xx) +
 ggsave("Additional/Additional_Figure_03_MacroEnvPhenology.png", mp, width = 8, height = 6)
 ```
 
-# Additional Figure 4 ggridges
+## Additional Figure 4 ggridges
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_04_ggridges.png")
@@ -553,7 +559,7 @@ mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) +
 ggsave("Additional/Additional_Figure_04_ggridges.png", mp, width = 6, height = 4)
 ```
 
-# Supplemental Figure 2 Missing Data
+## Supplemental Figure 2 Missing Data
 
 ```{r echo = F}
 image_read("Supplemental_Figure_02_PercentFlowered.png")
@@ -590,7 +596,7 @@ mp <- ggplot(xx, aes(x = Trait, y = Percent, fill = Trait)) +
 ggsave("Supplemental_Figure_02_PercentFlowered.png", width = 10, height = 5)
 ```
 
-# Supplemental Figure 3 Correlation Plots
+## Supplemental Figure 3 Correlation Plots
 
 ```{r echo = F}
 image_read("Supplemental_Figure_03_Correlations.png")
@@ -639,7 +645,7 @@ mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1, common.legend = T, legend = "
 ggsave("Supplemental_Figure_03_Correlations.png", mp, width = 10, height = 8)
 ```
 
-# Additional Figures - Correlations
+## Additional Figures - Correlations
 
 ```{r echo = F}
 image_read("Additional/Corr/Corr_All.png")
@@ -755,7 +761,9 @@ mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"),
 ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6)
 ```
 
-# Figure 3 PCA
+# PCA
+
+## Figure 3 PCA
 
 ```{r echo = F}
 image_read("Figure_03_PCA.png")
@@ -878,7 +886,7 @@ image_write(im, "Figure_03_PCA.png")
 summary(x1$Cluster)
 ```
 
-# Additional Figure 5 Interactive PCA Plot
+## Additional Figure 5 Interactive PCA Plot
 
 ```{r eval = F}
 pca <- read.csv("data/data_PCA_Results.csv") %>% 
@@ -889,7 +897,7 @@ rgl::writeWebGL(filename = "Additional/Additional_Figure_05_PCA_3D.html",
                 width = 650, height = 650)
 ```
 
-# Additional Figure 6 PCA
+## Additional Figure 6 PCA
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_06_PCA.png")
@@ -912,7 +920,7 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
 ggsave("Additional/Additional_Figure_06_PCA.png", mp, width = 6, height = 4)
 ```
 
-# Additional Figure 7 DTF By Cluster
+## Additional Figure 7 DTF By Cluster
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_07_DTFByCluster.png")
@@ -942,7 +950,7 @@ mp <- ggplot(xx, aes(y = DTF2, x = Origin)) +
 ggsave("Additional/Additional_Figure_07_DTFByCluster.png", mp, width = 5, height = 7)
 ```
 
-# Additional Figure 8 Cluster Origins
+## Additional Figure 8 Cluster Origins
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_08_ClusterOrigins.png")
@@ -971,7 +979,7 @@ mp <- ggplot(xx, aes(x = Origin, fill = Cluster)) +
 ggsave("Additional/Additional_Figure_08_ClusterOrigins.png", width = 16, height = 4)
 ```
 
-# Additional Figure 9 LDP Origins By Cluster
+## Additional Figure 9 LDP Origins By Cluster
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_09_LDPOriginsByCluster.png")
@@ -1000,7 +1008,9 @@ legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
 invisible(dev.off())
 ```
 
-# Additional Figures - Entry Regressions
+# Modeling DTF
+
+## Additional Figures - Entry Regressions
 
 ```{r eval = F}
 myfills <- alpha(c("darkgreen", "darkorange3", "darkblue"), 0.5)
@@ -1057,7 +1067,7 @@ animation <- image_animate(mp, fps = 5)
 image_write(animation, "Additional/Animation_TP.gif")
 ```
 
-# PhotoThermal Plane
+## PhotoThermal Plane
 
 ```{r eval = F}
 # Prep data
@@ -1122,7 +1132,7 @@ animation <- image_animate(mp, fps = 10)
 image_write(animation, "Additional/Animation_3D.gif")
 ```
 
-# Supplemental Figure 4 Regressions
+## Supplemental Figure 4 Regressions
 
 ```{r echo = F}
 image_read("Supplemental_Figure_04_Regressions.png")
@@ -1208,7 +1218,7 @@ im <- image_append(c(im1, im2, im3), stack = T)
 image_write(im, "Supplemental_Figure_04_Regressions.png")
 ```
 
-# Modeling DTF - functions
+## Modeling DTF - functions
 
 ```{r}
 # Create functions
@@ -1296,7 +1306,7 @@ $R^2=1-\frac{SS_{residuals}}{SS_{total}}=1-\frac{\sum (x-y)^2}{\sum (x-\bar{x})}
 
 $RMSE=\frac{\sum (y-x)^2}{n}$
 
-# Modeling DTF (T + P) - All Site-years
+## Modeling DTF (T + P) - All Site-years
 
 ```{r eval = F}
 ###########################
@@ -1401,7 +1411,7 @@ ggsave("Additional/Model/Model_3_1.png", mp ,width = 8, height = 3)
 image_read("Additional/Model/Model_3_1.png")
 ```
 
-# Modeling DTF (T x P) - All Site-years
+## Modeling DTF (T x P) - All Site-years
 
 ```{r eval = F}
 ###########################
@@ -1474,7 +1484,7 @@ ggsave("Additional/Model/Model_2_2.png", mp, width = 8, height = 5.5)
 image_read("Additional/Model/Model_2_2.png")
 ```
 
-# Supplemental Table 3 Model Constants
+## Supplemental Table 3 Model Constants
 
 ```{r}
 # Prep data
@@ -1491,7 +1501,7 @@ write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
 knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
 ```
 
-# Additional Figure 10 significant T x P interactions
+## Additional Figure 10 significant T x P interactions
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_10_TxPRR.png")
@@ -1513,7 +1523,7 @@ mp <- ggplot(xx, aes(x = Entry, y = RR, fill = Model)) +
 ggsave("Additional/Additional_Figure_10_TxPRR.png", mp, width = 7, height = 5)
 ```
 
-# Supplemental Figure 5 Model T + P vs T x P
+## Supplemental Figure 5 Model T + P vs T x P
 
 ```{r echo = F}
 image_read("Supplemental_Figure_05_Models.png")
@@ -1533,7 +1543,7 @@ mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
 ggsave("Supplemental_Figure_05_Models.png", mp, width = 12, height = 5)
 ```
 
-# Additional Figure 11 Constants
+## Additional Figure 11 Constants
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_11_Coefs.png")
@@ -1560,7 +1570,7 @@ mp <- ggarrange(mp1, mp2, ncol = 2, legend = "none")
 ggsave("Additional/Additional_Figure_11_Coefs.png", mp, width = 8, height = 5)
 ```
 
-# Additional Figure 12 Coefficient p-values
+## Additional Figure 12 Coefficient p-values
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_12_CoefsP.png")
@@ -1586,7 +1596,7 @@ mp <- ggarrange(mp1,mp2,ncol=2, legend = "none")
 ggsave("Additional/Additional_Figure_12_CoefsP.png", mp, width = 8, height = 5)
 ```
 
-# Additional Figure 13 p-values b c
+## Additional Figure 13 p-values b c
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_13_bP.png")
@@ -1633,7 +1643,7 @@ mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom")
 ggsave("Additional/Additional_Figure_13_bP.png", mp, width = 8, height = 4)
 ```
 
-# Modeling DTF (T + P) - Location Out
+## Modeling DTF (T + P) - Location Out
 
 Train the model without the location used for prediction
 
@@ -1669,7 +1679,7 @@ write.csv(mr, "data/model_Test.csv", row.names = F)
 write.csv(md, "data/model_Test_d.csv", row.names = F)
 ```
 
-# Figure 4 Test Model
+## Figure 4 Test Model
 
 ```{r echo = F}
 image_read("Additional/Model/Model_1_3.png")
@@ -1703,7 +1713,7 @@ ggsave("Additional/Model/Model_2_3.png", mp, width = 8, height = 5.5)
 image_read("Additional/Model/Model_2_3.png")
 ```
 
-# Supplemental Table 4 Test Model
+## Supplemental Table 4 Test Model
 
 ```{r eval = F}
 ####################################
@@ -1757,7 +1767,7 @@ xx <- read.csv("Supplemental_Table_04.csv")
 knitr::kable(rbind(head(xx), tail(xx)))
 ```
 
-# Modeling DTF (T + P) - 3 Best
+## Modeling DTF (T + P) - 3 Best
 
 ```{r echo = F}
 image_read("Additional/Model/Model_1_4.png")
@@ -1828,7 +1838,7 @@ mp <- gg_model_2(xx, title = "3 Best Locations | Su16,Ba17,Sp17 | 291/324")
 ggsave("Additional/Model/Model_2_4.png", mp, width = 8, height = 5.5)
 ```
 
-# Modeling DTF (T + P) - 3 Worst
+## Modeling DTF (T + P) - 3 Worst
 
 ```{r echo = F}
 image_read("Additional/Model/Model_1_5.png")
@@ -1899,7 +1909,7 @@ mp <- gg_model_2(xx, title = "3 Worst Locations | Su18,In16,Sp16 | 159/324")
 ggsave("Additional/Model/Model_2_5.png", mp, width = 8, height = 5.5)
 ```
 
-# DTF Model correlation coefficients
+## DTF Model correlation coefficients
 
 ```{r echo = F}
 image_read("Additional/Model/Model_pvalues.png")
@@ -1923,7 +1933,7 @@ mp <- ggplot(xx, aes(x = "", y = RR)) +
 ggsave("Additional/Model/Model_pvalues.png", mp, width = 7, height = 4)
 ```
 
-# Supplemental Figure 6 Compare Constants Entry
+## Supplemental Figure 6 Compare Constants Entry
 
 ```{r echo = F}
 image_read("Supplemental_Figure_06_CompareConstants.png")
@@ -1985,7 +1995,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value * 10000, shape = Expt)) +
 ggsave("Supplemental_Figure_06_CompareConstants.png", mp, width = 4, height = 5)
 ```
 
-# Supplemental Figure 7 3 best 3 worst
+## Supplemental Figure 7 3 best 3 worst
 
 ```{r echo = F}
 image_read("Supplemental_Figure_07_TestModel.png")
@@ -2005,7 +2015,7 @@ mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
 ggsave("Supplemental_Figure_07_TestModel.png", mp, width = 8, height = 11)
 ```
 
-# Supplemental Figure 8 Compare Constants All
+## Supplemental Figure 8 Compare Constants All
 
 ```{r echo = F}
 image_read("Supplemental_Figure_08_ConstantsCompare.png")
@@ -2040,7 +2050,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value * 10000 )) +
 ggsave("Supplemental_Figure_08_ConstantsCompare.png", mp, width = 6, height = 3)
 ```
 
-# Base Temperature & Critical Photoperiod
+## Base Temperature & Critical Photoperiod
 
 ```{r eval = F}
 # Calculate Tf and Pf
@@ -2084,7 +2094,7 @@ xx <- xx %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
 write.csv(xx,"data/data_Tf_Pf.csv", row.names = F)
 ```
 
-# Figure 5 Tb and Pc
+## Figure 5 Tb and Pc
 
 ```{r echo = F}
 image_read("Figure_05_TbPc.png")
@@ -2164,7 +2174,7 @@ mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "hv",
 ggsave("Figure_05_TbPc.png", mp, width = 8, height = 6)
 ```
 
-# Figure 6 Origin Constants
+## Figure 6 Origin Constants
 
 ```{r echo = F}
 image_read("Figure_06_OriginCoefficients.png")
@@ -2221,7 +2231,7 @@ ggsave("Additional/Temp/Temp_F06_1.png", mp1, width = 8, height = 4)
 ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 8, height = 4)
 ```
 
-# Supplemental Figure 9 Pc Tf PTT
+## Supplemental Figure 9 Pc Tf PTT
 
 ```{r echo = F}
 image_read("Supplemental_Figure_09_TfPc.png")
@@ -2286,7 +2296,7 @@ ggsave("Additional/Temp/Temp_SF09_2.png", mp2, width = 10, height = 13 * 3 / 8.2
 ggsave("Supplemental_Figure_09_TfPc.png", mp, width = 8, height = 10)
 ```
 
-# Additional Figure 14 PTT
+## Additional Figure 14 PTT
 
 ```{r echo = F}
 image_read("Additional/Additional_Figure_14_PTT.png")
@@ -2320,7 +2330,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
 ggsave("Additional/Additional_Figure_14_PTT.png", mp, width = 8, height = 5)
 ```
 
-# Supplemental Figure 10 Thermal Sums
+## Supplemental Figure 10 Thermal Sums
 
 ```{r, echo = F}
 image_read("Supplemental_Figure_10_Tf.png")
@@ -2341,7 +2351,7 @@ mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "botto
 ggsave("Supplemental_Figure_10_Tf.png", mp, width = 8, height = 10)
 ```
 
-# Supplemental Figure 11 Photoperiodic Sums
+## Supplemental Figure 11 Photoperiodic Sums
 
 ```{r echo = F}
 image_read("Supplemental_Figure_11_Pf.png")
@@ -2362,7 +2372,7 @@ mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "botto
 ggsave("Supplemental_Figure_11_Pf.png", mp, width = 8, height = 10)
 ```
 
-# Figure 7 Temperature Increase By MacroEnv
+## Figure 7 Temperature Increase By MacroEnv
 
 ```{r echo = F}
 image_read("Figure_07_TempIncrease.png")

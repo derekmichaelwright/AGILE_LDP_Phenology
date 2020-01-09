@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown:
     self_contained: true
-    thumbnails: true
     lightbox: true
     gallery: true
     highlight: tango
@@ -23,11 +22,19 @@ Contact: derek.wright@usask.ca
 
 Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett
 
+# Contents
+
+- [Shiny App](#shiny_app)
+- [Figures](#figures)
+- [Supplemental Figures](#supplemental_figures)
+- [Additional Figures](#additional_figures)
+- [Animations](#animations)
+
+# AGILE Project
+
 ![](www/Logo_Agile.png)
 
-# Introduction
-
-**Project Collaborators**:
+## Collaborators
 
 - Department of Plant Sciences and Crop Development Centre, University of Saskatchewan, Saskatoon, Saskatchewan, Canada
 - United States Department of Agriculture Western Region Plant Introduction Station, Pullman, Washington, USA
@@ -38,7 +45,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - Local Initiatives for Biodiversity, Research and Development, Pokhara, Nepal
 - Bangladesh Agricultural Research Institute, Jessore, Bangladesh
 
-**Project Sponsors**:
+## Sponsors
 
 - Saskatchewan Pulse Growers Association
 - Western Grains Research Foundation
@@ -164,14 +171,6 @@ xx <- read.csv("Supplemental_Table_04.csv")
 knitr::kable(rbind(head(xx), tail(xx)))
 ```
 
-# Animations
-
-## Temperature and Photoperiod Regressions
-
-## Model Predictions
-
-## Photothermal Planes 
-
 # Additional Figures
 
 ## Additional Figure 1
@@ -229,3 +228,11 @@ knitr::kable(rbind(head(xx), tail(xx)))
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14_PTT.png)
+
+# Animations
+
+## Temperature and Photoperiod Regressions
+
+## Model Predictions
+
+## Photothermal Planes 

@@ -2,7 +2,7 @@ Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
 Panel To Temperature And Photoperiod
 ================
 Derek Michael Wright
-2020-01-07
+2020-01-09
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
@@ -14,11 +14,19 @@ Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia,
 Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
 Sarker, Albert Vandenberg, and Kirstin E. Bett
 
+# Contents
+
+  - [Shiny App](#shiny_app)
+  - [Figures](#figures)
+  - [Supplemental Figures](#supplemental_figures)
+  - [Additional Figures](#additional_figures)
+  - [Animations](#animations)
+
+# AGILE Project
+
 ![](www/Logo_Agile.png)
 
-# Introduction
-
-**Project Collaborators**:
+## Collaborators
 
   - Department of Plant Sciences and Crop Development Centre, University
     of Saskatchewan, Saskatoon, Saskatchewan, Canada
@@ -36,7 +44,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
     Pokhara, Nepal
   - Bangladesh Agricultural Research Institute, Jessore, Bangladesh
 
-**Project Sponsors**:
+## Sponsors
 
   - Saskatchewan Pulse Growers Association
   - Western Grains Research Foundation
@@ -232,14 +240,6 @@ knitr::kable(rbind(head(xx), tail(xx)))
 | 215 | Su17                | Ba17                 | Sp17                    | 0.862977 |       291 |
 | 216 | Su16                | Ba17                 | Sp17                    | 0.863054 |       291 |
 
-# Animations
-
-## Temperature and Photoperiod Regressions
-
-## Model Predictions
-
-## Photothermal Planes
-
 # Additional Figures
 
 ## Additional Figure 1
@@ -297,3 +297,11 @@ knitr::kable(rbind(head(xx), tail(xx)))
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14_PTT.png)
+
+# Animations
+
+## Temperature and Photoperiod Regressions
+
+## Model Predictions
+
+## Photothermal Planes
