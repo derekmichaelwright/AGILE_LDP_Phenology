@@ -4,6 +4,11 @@ subtitle: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity 
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    toc_float: true
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
@@ -11,11 +16,6 @@ output:
     highlight: tango
     code_folding: hide
     css: custom.css
-  html_document:
-    toc: yes
-    toc_float: true
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -28,7 +28,7 @@ Contact: derek.wright@usask.ca
 
 ![](www/Logo_Agile.png)
 
-# Preliminary Steps
+# Data Preparation
 
 Load the nessesary R packages, Prepare the data for analysis.
 

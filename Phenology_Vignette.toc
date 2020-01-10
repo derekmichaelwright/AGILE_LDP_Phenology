@@ -1,49 +1,53 @@
 \contentsline {section}{Preliminary Steps}{3}{section*.2}%
-\contentsline {section}{Supplemental table 1}{6}{section*.3}%
-\contentsline {section}{Supplemental table 2}{6}{section*.4}%
-\contentsline {section}{Figure 1 Field Trial Info}{7}{section*.5}%
-\contentsline {section}{Additional Figure 1 LDP Origin Map}{9}{section*.6}%
-\contentsline {section}{Supplemental Figure 1 Scaling}{10}{section*.7}%
-\contentsline {section}{Figure 2 Data Overview}{11}{section*.8}%
-\contentsline {section}{Additional Figures - Entry Phenology}{14}{section*.9}%
-\contentsline {section}{Additional Figure 2 DTF DTS DTM}{15}{section*.10}%
-\contentsline {section}{Additional Figure 3 MacroEnv Phenology}{16}{section*.11}%
-\contentsline {section}{Additional Figure 4 ggridges}{18}{section*.12}%
-\contentsline {section}{Supplemental Figure 2 Missing Data}{19}{section*.13}%
-\contentsline {section}{Supplemental Figure 3 Correlation Plots}{20}{section*.14}%
-\contentsline {section}{Additional Figures - Correlations}{22}{section*.15}%
-\contentsline {section}{Figure 3 PCA}{25}{section*.16}%
-\contentsline {section}{Additional Figure 5 Interactive PCA Plot}{28}{section*.17}%
-\contentsline {section}{Additional Figure 6 PCA}{29}{section*.18}%
-\contentsline {section}{Additional Figure 7 DTF By Cluster}{30}{section*.19}%
-\contentsline {section}{Additional Figure 8 Cluster Origins}{31}{section*.20}%
-\contentsline {section}{Additional Figure 9 LDP Origins By Cluster}{32}{section*.21}%
-\contentsline {section}{Additional Figures - Entry Regressions}{32}{section*.22}%
-\contentsline {section}{PhotoThermal Plane}{33}{section*.23}%
-\contentsline {section}{Supplemental Figure 4 Regressions}{36}{section*.24}%
-\contentsline {section}{Modeling DTF - functions}{38}{section*.25}%
-\contentsline {section}{Modeling DTF (T + P) - All Site-years}{40}{section*.26}%
-\contentsline {section}{Modeling DTF (T x P) - All Site-years}{44}{section*.27}%
-\contentsline {section}{Supplemental Table 3 Model Constants}{46}{section*.28}%
-\contentsline {section}{Additional Figure 10 significant T x P interactions}{47}{section*.29}%
-\contentsline {section}{Supplemental Figure 5 Model T + P vs T x P}{48}{section*.30}%
-\contentsline {section}{Additional Figure 11 Constants}{49}{section*.31}%
-\contentsline {section}{Additional Figure 12 Coefficient p-values}{50}{section*.32}%
-\contentsline {section}{Additional Figure 13 p-values b c}{51}{section*.33}%
-\contentsline {section}{Modeling DTF (T + P) - Location Out}{52}{section*.34}%
-\contentsline {section}{Figure 4 Test Model}{53}{section*.35}%
-\contentsline {section}{Supplemental Table 4 Test Model}{55}{section*.36}%
-\contentsline {section}{Modeling DTF (T + P) - 3 Best}{57}{section*.37}%
-\contentsline {section}{Modeling DTF (T + P) - 3 Worst}{60}{section*.38}%
-\contentsline {section}{DTF Model correlation coefficients}{63}{section*.39}%
-\contentsline {section}{Supplemental Figure 6 Compare Constants Entry}{64}{section*.40}%
-\contentsline {section}{Supplemental Figure 7 3 best 3 worst}{66}{section*.41}%
-\contentsline {section}{Supplemental Figure 8 Compare Constants All}{67}{section*.42}%
-\contentsline {section}{Base Temperature \& Critical Photoperiod}{68}{section*.43}%
-\contentsline {section}{Figure 5 Tb and Pc}{69}{section*.44}%
-\contentsline {section}{Figure 6 Origin Constants}{71}{section*.45}%
-\contentsline {section}{Supplemental Figure 9 Pc Tf PTT}{73}{section*.46}%
-\contentsline {section}{Additional Figure 14 PTT}{75}{section*.47}%
-\contentsline {section}{Supplemental Figure 10 Thermal Sums}{77}{section*.48}%
-\contentsline {section}{Supplemental Figure 11 Photoperiodic Sums}{79}{section*.49}%
-\contentsline {section}{Figure 7 Temperature Increase By MacroEnv}{80}{section*.50}%
+\contentsline {section}{Materials \& Methods}{5}{section*.3}%
+\contentsline {subsection}{Supplemental table 1}{5}{section*.4}%
+\contentsline {subsection}{Supplemental table 2}{6}{section*.5}%
+\contentsline {subsection}{Figure 1 Field Trial Info}{7}{section*.6}%
+\contentsline {subsection}{Additional Figure 1 LDP Origin Map}{9}{section*.7}%
+\contentsline {subsection}{Supplemental Figure 1 Scaling}{10}{section*.8}%
+\contentsline {section}{Phenology}{11}{section*.9}%
+\contentsline {subsection}{Figure 2 Data Overview}{11}{section*.10}%
+\contentsline {subsection}{Additional Figures - Entry Phenology}{14}{section*.11}%
+\contentsline {subsection}{Additional Figure 2 DTF DTS DTM}{15}{section*.12}%
+\contentsline {subsection}{Additional Figure 3 MacroEnv Phenology}{16}{section*.13}%
+\contentsline {subsection}{Additional Figure 4 ggridges}{18}{section*.14}%
+\contentsline {subsection}{Supplemental Figure 2 Missing Data}{19}{section*.15}%
+\contentsline {subsection}{Supplemental Figure 3 Correlation Plots}{20}{section*.16}%
+\contentsline {subsection}{Additional Figures - Correlations}{22}{section*.17}%
+\contentsline {section}{PCA}{25}{section*.18}%
+\contentsline {subsection}{Figure 3 PCA}{25}{section*.19}%
+\contentsline {subsection}{Additional Figure 5 Interactive PCA Plot}{28}{section*.20}%
+\contentsline {subsection}{Additional Figure 6 PCA}{29}{section*.21}%
+\contentsline {subsection}{Additional Figure 7 DTF By Cluster}{30}{section*.22}%
+\contentsline {subsection}{Additional Figure 8 Cluster Origins}{31}{section*.23}%
+\contentsline {subsection}{Additional Figure 9 LDP Origins By Cluster}{32}{section*.24}%
+\contentsline {section}{Modeling DTF}{32}{section*.25}%
+\contentsline {subsection}{Additional Figures - Entry Regressions}{32}{section*.26}%
+\contentsline {subsection}{PhotoThermal Plane}{33}{section*.27}%
+\contentsline {subsection}{Supplemental Figure 4 Regressions}{36}{section*.28}%
+\contentsline {subsection}{Modeling DTF - functions}{38}{section*.29}%
+\contentsline {subsection}{Modeling DTF (T + P) - All Site-years}{40}{section*.30}%
+\contentsline {subsection}{Modeling DTF (T x P) - All Site-years}{43}{section*.31}%
+\contentsline {subsection}{Supplemental Table 3 Model Constants}{46}{section*.32}%
+\contentsline {subsection}{Additional Figure 10 significant T x P interactions}{47}{section*.33}%
+\contentsline {subsection}{Supplemental Figure 5 Model T + P vs T x P}{48}{section*.34}%
+\contentsline {subsection}{Additional Figure 11 Constants}{49}{section*.35}%
+\contentsline {subsection}{Additional Figure 12 Coefficient p-values}{50}{section*.36}%
+\contentsline {subsection}{Additional Figure 13 p-values b c}{51}{section*.37}%
+\contentsline {subsection}{Modeling DTF (T + P) - Location Out}{52}{section*.38}%
+\contentsline {subsection}{Figure 4 Test Model}{53}{section*.39}%
+\contentsline {subsection}{Supplemental Table 4 Test Model}{55}{section*.40}%
+\contentsline {subsection}{Modeling DTF (T + P) - 3 Best}{57}{section*.41}%
+\contentsline {subsection}{Modeling DTF (T + P) - 3 Worst}{60}{section*.42}%
+\contentsline {subsection}{DTF Model correlation coefficients}{63}{section*.43}%
+\contentsline {subsection}{Supplemental Figure 6 Compare Constants Entry}{64}{section*.44}%
+\contentsline {subsection}{Supplemental Figure 7 3 best 3 worst}{66}{section*.45}%
+\contentsline {subsection}{Supplemental Figure 8 Compare Constants All}{67}{section*.46}%
+\contentsline {subsection}{Base Temperature \& Critical Photoperiod}{68}{section*.47}%
+\contentsline {subsection}{Figure 5 Tb and Pc}{69}{section*.48}%
+\contentsline {subsection}{Figure 6 Origin Constants}{71}{section*.49}%
+\contentsline {subsection}{Supplemental Figure 9 Pc Tf PTT}{73}{section*.50}%
+\contentsline {subsection}{Additional Figure 14 PTT}{75}{section*.51}%
+\contentsline {subsection}{Supplemental Figure 10 Thermal Sums}{77}{section*.52}%
+\contentsline {subsection}{Supplemental Figure 11 Photoperiodic Sums}{79}{section*.53}%
+\contentsline {subsection}{Figure 7 Temperature Increase By MacroEnv}{80}{section*.54}%
