@@ -5,7 +5,7 @@ body{
 }
 
 #sidebar h2{
-    background: url("www/Logo_Agile.png");
+    background: url("Additional/img_Agile.png");
     background-size: contain;
     background-position: center top;
     padding-top: 150px !important;

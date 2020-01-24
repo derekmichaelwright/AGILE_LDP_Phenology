@@ -4,11 +4,6 @@ subtitle: "Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity 
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document:
-    toc: yes
-  html_document:
-    toc: yes
-    toc_float: true
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
@@ -16,23 +11,27 @@ output:
     highlight: tango
     code_folding: hide
     css: custom.css
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.width = "100%")
 ```
 
+![](Additional/img_Agile.png)
+
 This vignette contains the `R` code and analysis done for the paper: **Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity Panel To Temperature And Photoperiod** 
 
 Contact: derek.wright@usask.ca
-
-![](www/Logo_Agile.png)
 
 # Data Preparation
 
 Load the nessesary R packages, Prepare the data for analysis.
 
 ```{r}
+#install.packages(c("tidyverse","scales","rworldmap","ggrepel","magick","GGally",
+#                   "ggbeeswarm","FactoMineR","plot3D","stringr"))
 # Load libraries
 library(tidyverse)  # data wrangling
 library(scales)     # rescale()
@@ -464,7 +463,7 @@ for(i in 1:324) {
   mp <- ggarrange(mp1, mp2, mp3, nrow = 3, ncol = 1) %>%
     annotate_figure(top = figlab)
   print(mp)
-  ggsave(paste0("Additional/Entry_Phenology/Phenology_Entry", 
+  ggsave(paste0("Additional/Entry_Phenology/Phenology_Entry_", 
                 str_pad(i, 3, "left", "0"), ".png"), 
          mp, width = 8, height = 6)
 }
@@ -779,15 +778,15 @@ mypca <- PCA(xx, ncp = 10, graph = F)
 # Heirarcical clustering
 mypcaH <- HCPC(mypca, nb.clust = 8, graph = F)
 perc <- round(mypca[[1]][,2], 1)
-x1 <- mypcaH[[4]]$X %>% 
-  rownames_to_column("Entry") %>%
+x1.1 <- mypcaH[[1]] %>% rownames_to_column("Entry")
+x1.2 <- mypca[[3]]$coord %>% as.data.frame() %>% rownames_to_column("Entry")
+x1 <- left_join(x1.1, x1.2, by = "Entry") %>%
   mutate(Entry = as.numeric(Entry)) %>%
-  rename(PC1=Dim.1, PC2=Dim.2, PC3=Dim.3, PC4=Dim.4, PC5=Dim.5,
-         PC6=Dim.6, PC7=Dim.7, PC8=Dim.8, PC9=Dim.9, PC10=Dim.10,
-         Cluster=clust) %>%
   left_join(select(ldp, Entry, Name, Origin), by = "Entry") %>%
   left_join(select(ct, Origin=Country, Region), by = "Origin") %>%
-  select(Entry, Name, Origin, Region, everything())
+  select(Entry, Name, Origin, Region, Cluster=clust,
+         PC1=Dim.1, PC2=Dim.2, PC3=Dim.3, PC4=Dim.4, PC5=Dim.5,
+         PC6=Dim.6, PC7=Dim.7, PC8=Dim.8, PC9=Dim.9, PC10=Dim.10)
 write.csv(x1, "data/data_PCA_Results.csv", row.names = F)
 # Prep data
 x2 <- dd %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
@@ -882,8 +881,6 @@ im3 <- image_read("Additional/Temp/Temp_F03_3.png") %>%
   image_annotate("C)", size = 60, location = "+0+0")
 im <- image_append(c(im1, im2, im3), stack = T)
 image_write(im, "Figure_03_PCA.png")
-#
-summary(x1$Cluster)
 ```
 
 ## Additional Figure 5 Interactive PCA Plot
@@ -1053,7 +1050,7 @@ for(i in 1:324) {
     labs(title = "", y = NULL,x = "Photoperiod (hours)")
   #
   mp[[i]] <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom") 
-  ggsave(paste0("Additional/Entry_TP/Entry_", str_pad(i, 3, pad = "0"), ".png"), 
+  ggsave(paste0("Additional/Entry_TP/TP_Entry_", str_pad(i, 3, pad = "0"), ".png"), 
          mp[[i]], width = 8, height = 4)
 }
 pdf("Additional/pdf_TP.pdf", width = 8, height = 4)
@@ -1066,6 +1063,8 @@ mp <- image_read(paste0("Additional/Entry_TP/", lf)) %>% image_scale("50%")
 animation <- image_animate(mp, fps = 5)
 image_write(animation, "Additional/Animation_TP.gif")
 ```
+
+![](Additional/Entry_TP/TP_Entry_001.png)
 
 ## PhotoThermal Plane
 
@@ -1131,6 +1130,8 @@ mp <- image_read(paste0("Additional/Entry_3D/", lf))
 animation <- image_animate(mp, fps = 10)
 image_write(animation, "Additional/Animation_3D.gif")
 ```
+
+![](Additional/Entry_3D/3d_Entry_001.png)
 
 ## Supplemental Figure 4 Regressions
 

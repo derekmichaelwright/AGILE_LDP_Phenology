@@ -2,7 +2,7 @@ Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
 Panel To Temperature And Photoperiod
 ================
 Derek Michael Wright
-2020-01-09
+2020-01-22
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
@@ -24,7 +24,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # AGILE Project
 
-![](www/Logo_Agile.png)
+![](Additional/img_Agile.png)
 
 ## Collaborators
 
@@ -62,7 +62,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 Download this folder and run `app.R` in `R`
 
-![](www/shiny.png)
+![](Additional/img_Shiny.png)
 
 # Figures
 
@@ -302,6 +302,24 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Temperature and Photoperiod Regressions
 
+    ## Warning: package 'magick' was built under R version 3.6.2
+
+    ## Linking to ImageMagick 6.9.9.14
+    ## Enabled features: cairo, freetype, fftw, ghostscript, lcms, pango, rsvg, webp
+    ## Disabled features: fontconfig, x11
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.gif)<!-- -->
+
+[pdf of Temperature and Photoperiod Regressions](Additional/pdf_TP.pdf)
+
 ## Model Predictions
 
+![](README_files/figure-gfm/unnamed-chunk-6-1.gif)<!-- -->
+
+[pdf of Model Predictions](Additional/pdf_Model.pdf)
+
 ## Photothermal Planes
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.gif)<!-- -->
+
+[pdf of Photothermal Planes](Additional/pdf_3D.pdf)
