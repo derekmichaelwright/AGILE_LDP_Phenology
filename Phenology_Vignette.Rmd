@@ -1073,12 +1073,9 @@ image_write(animation, "Additional/Animation_TP.gif")
 xx <- rr %>% filter(!is.na(RDTF)) %>%
   left_join(select(ff, Expt, T_mean, P_mean, MacroEnv), by = "Expt")
 # Create plotting function
+x<-xx;i<-1
 gg_PTplane <- function(x, i) {
-  x1 <- x %>% filter(Entry == i) %>% 
-    arrange(MacroEnv) %>% 
-    mutate(myPal = as.character(plyr::mapvalues(MacroEnv, 
-             c("Temperate", "South Asia", "Mediterranean"), 
-             c("darkgreen", "darkorange3", "darkblue") ) ) )
+  x1 <- x %>% filter(Entry == i)
   x <- x1$T_mean
   y <- x1$P_mean
   z <- x1$RDTF
@@ -1094,10 +1091,11 @@ gg_PTplane <- function(x, i) {
     as.character() %>% as.numeric()
   # Plot with regression plane
   par(mar=c(1.5, 2.5, 1.5, 0.5))
-  scatter3D(x, y, z, pch = pchs, cex = 2, zlim = c(0.005,0.03), main = unique(x1$Name),
-    col = alpha(x1$myPal,0.5), colvar = as.numeric(x1$MacroEnv), colkey = F,
+  scatter3D(x, y, z, pch = pchs, cex = 2, main = unique(x1$Name),
+    col = alpha(c("darkgreen", "darkorange3", "darkblue"),0.5),
+    colvar = as.numeric(x1$MacroEnv), colkey = F, col.grid = "gray90", bty = "u",
     theta = 40, phi = 25, ticktype = "detailed", cex.lab = 1, cex.axis = 0.5,
-    xlab = "Temperature", ylab = "Photoperiod", zlab = "1 / DTF", col.grid = "gray90",bty = "u",
+    xlab = "Temperature", ylab = "Photoperiod", zlab = "1 / DTF", zlim = c(0.005,0.03),
     surf = list(x = x.p, y = y.p, z = z.p, col = "black", facets = NA, fit = fitp) )
 }
 # Plot each Entry
