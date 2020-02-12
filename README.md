@@ -1,8 +1,8 @@
-Assessing Adaptation Of A Lentil (*Lens culinaris* Medik.) Diversity
-Panel To Temperature And Photoperiod
+Variable responses of lentil (*Lens culinaris* Medik.) germplasm to
+changes in photoperiod and temperature
 ================
 Derek Michael Wright
-2020-01-09
+2020-02-12
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
@@ -24,7 +24,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # AGILE Project
 
-![](www/Logo_Agile.png)
+![](Additional/img_Agile.png)
 
 ## Collaborators
 
@@ -62,7 +62,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 Download this folder and run `app.R` in `R`
 
-![](www/shiny.png)
+![](Additional/img_Shiny.png)
 
 # Figures
 
@@ -302,6 +302,12 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Temperature and Photoperiod Regressions
 
+[pdf of Temperature and Photoperiod Regressions](Additional/pdf_TP.pdf)
+
 ## Model Predictions
 
+[pdf of Model Predictions](Additional/pdf_Model.pdf)
+
 ## Photothermal Planes
+
+[pdf of Photothermal Planes](Additional/pdf_3D.pdf)
