@@ -32,7 +32,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # AGILE Project
 
-![](Additional/img_Agile.png)
+![](www/Logo_Agile.png)
 
 ## Collaborators
 
@@ -63,7 +63,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 Download this folder and run `app.R` in `R`
 
-![](Additional/img_Shiny.png)
+![](www/shiny.png)
 
 # Figures
 
@@ -233,25 +233,6 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Temperature and Photoperiod Regressions
 
-```{r echo = F, eval = F}
-library(magick)
-image_read("Additional/Animation_TP.gif")
-```
-
-[pdf of Temperature and Photoperiod Regressions](Additional/pdf_TP.pdf)
-
 ## Model Predictions
 
-```{r echo = F, eval = F}
-image_read("Additional/Animation_TP.gif")
-```
-
-[pdf of Model Predictions](Additional/pdf_Model.pdf)
-
 ## Photothermal Planes 
-
-```{r echo = F, eval = F}
-image_read("Additional/Animation_TP.gif")
-```
-
-[pdf of Photothermal Planes](Additional/pdf_3D.pdf)
