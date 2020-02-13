@@ -4,6 +4,8 @@ subtitle: "Variable responses of lentil (*Lens culinaris* Medik.) germplasm to c
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
+  pdf_document:
+    toc: yes
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
@@ -11,8 +13,6 @@ output:
     highlight: tango
     code_folding: hide
     css: custom.css
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
