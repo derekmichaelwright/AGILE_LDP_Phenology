@@ -24,10 +24,10 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # Contents
 
-- [Shiny App](#shiny_app)
+- [Shiny App](#shiny-app)
 - [Figures](#figures)
-- [Supplemental Figures](#supplemental_figures)
-- [Additional Figures](#additional_figures)
+- [Supplemental Figures](#supplemental-figures)
+- [Additional Figures](#additional-figures)
 - [Animations](#animations)
 
 # AGILE Project
@@ -191,7 +191,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 5
 
-[Additional/Additional_Figure_05_PCA_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05_PCA_3D.html)
+[Additional/Additional_Figure_05_PCA_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
 ## Additional Figure 6
 
@@ -227,7 +227,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 14
 
-![](Additional/Additional_Figure.png)
+![](Additional/Additional_Figure_14.png)
 
 # Animations
 

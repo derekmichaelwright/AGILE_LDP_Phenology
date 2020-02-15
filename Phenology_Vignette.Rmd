@@ -243,7 +243,7 @@ x1 <- ldp %>% filter(Origin != "Unknown") %>%
 x1[is.na(x1)] <- 0
 # Plot
 invisible(png("Additional/Additional_Figure_01.png", 
-              width = 1200, height = 685, res = 600)) #res = 150
+              width = 3600, height = 2055, res = 600)) #res = 150
 par(mai = c(0,0,0,0), xaxs = "i",yaxs = "i")
 mapBubbles(dF = x1, nameX = "Lon", nameY = "Lat", 
         nameZSize = "Count", nameZColour = "darkred",
@@ -551,6 +551,7 @@ xx <- dd %>% select(Expt, DTF, DTS, DTM) %>%
 mp <- ggplot(xx, aes(x = Value, y = Expt, fill = Trait)) + 
   ggridges::geom_density_ridges(alpha = 0.7) +
   scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
+  theme_AGL +
   theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
   labs(y = NULL, x = "Days After Sowing")
 ggsave("Additional/Additional_Figure_04.png", mp, width = 6, height = 4, dpi = 600)
@@ -990,7 +991,7 @@ xx <- ldp %>% select(Entry, Name, Lat, Lon) %>% left_join(x1, by = "Entry") %>%
          Lon = ifelse(duplicated(Lon), jitter(Lon, 1, 1), Lon), Size = 1)
 # Plot
 invisible(png("Additional/Additional_Figure_09.png", 
-              width = 2400, height = 1100, res = 600)) #res = 150
+              width = 7200, height = 4400, res = 600)) #res = 150
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
            nameZSize = "Size", symbolSize = 0.5, pch = 20, addLegend = F,
@@ -998,7 +999,7 @@ mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
            xlim = c(-140,110), ylim = c(0,20), 
            oceanCol = "grey90", landCol = "white", borderCol = "black")
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
-       pch = 16, cex = 2, pt.cex = 4, box.lwd = 2)
+       pch = 16, cex = 2, pt.cex = 3, box.lwd = 2)
 invisible(dev.off())
 ```
 

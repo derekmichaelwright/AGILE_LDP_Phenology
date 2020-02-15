@@ -2,7 +2,7 @@ Variable responses of lentil (*Lens culinaris* Medik.) germplasm to
 changes in photoperiod and temperature
 ================
 Derek Michael Wright
-2020-02-12
+2020-02-14
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
@@ -16,10 +16,10 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # Contents
 
-  - [Shiny App](#shiny_app)
+  - [Shiny App](#shiny-app)
   - [Figures](#figures)
-  - [Supplemental Figures](#supplemental_figures)
-  - [Additional Figures](#additional_figures)
+  - [Supplemental Figures](#supplemental-figures)
+  - [Additional Figures](#additional-figures)
   - [Animations](#animations)
 
 # AGILE Project
@@ -68,77 +68,77 @@ Download this folder and run `app.R` in `R`
 
 ## Figure 1
 
-![](Figure_01_FieldTrialInfo.png)
+![](Figure_01.png)
 
 ## Figure 2
 
-![](Figure_02_DataOverview.png)
+![](Figure_02.png)
 
 ## Figure 3
 
-![](Figure_03_PCA.png)
+![](Figure_03.png)
 
 ## Figure 4
 
-![](Figure_04_ModelPrediction.png)
+![](Figure_04.png)
 
 ## Figure 5
 
-![](Figure_05_TbPc.png)
+![](Figure_05.png)
 
 ## Figure 6
 
-![](Figure_06_OriginCoefficients.png)
+![](Figure_06.png)
 
 ## Figure 7
 
-![](Figure_07_TempIncrease.png)
+![](Figure_07.png)
 
 # Supplemental Figures
 
 ## Supplemental Figure 1
 
-![](Supplemental_Figure_01_Scaling.png)
+![](Supplemental_Figure_01.png)
 
 ## Supplemental Figure 2
 
-![](Supplemental_Figure_02_PercentFlowered.png)
+![](Supplemental_Figure_02.png)
 
 ## Supplemental Figure 3
 
-![](Supplemental_Figure_03_Correlations.png)
+![](Supplemental_Figure_03.png)
 
 ## Supplemental Figure 4
 
-![](Supplemental_Figure_04_Regressions.png)
+![](Supplemental_Figure_04.png)
 
 ## Supplemental Figure 5
 
-![](Supplemental_Figure_05_Models.png)
+![](Supplemental_Figure_05.png)
 
 ## Supplemental Figure 6
 
-![](Supplemental_Figure_06_CompareConstants.png)
+![](Supplemental_Figure_06.png)
 
 ## Supplemental Figure 7
 
-![](Supplemental_Figure_07_TestModel.png)
+![](Supplemental_Figure_07.png)
 
 ## Supplemental Figure 8
 
-![](Supplemental_Figure_08_ConstantsCompare.png)
+![](Supplemental_Figure_08.png)
 
 ## Supplemental Figure 9
 
-![](Supplemental_Figure_09_TfPc.png)
+![](Supplemental_Figure_09.png)
 
 ## Supplemental Figure 10
 
-![](Supplemental_Figure_10_Tf.png)
+![](Supplemental_Figure_10.png)
 
 ## Supplemental Figure 11
 
-![](Supplemental_Figure_11_Pf.png)
+![](Supplemental_Figure_11.png)
 
 # Supplemental Tables
 
@@ -170,7 +170,7 @@ knitr::kable(xx[c(1:5,31:35,101:105,320:324),])
 | 321 |   321 | W6 27760 LSP AGL  | USDA     | USDA   |                              |
 | 322 |   322 | W6 27763 LSP AGL  | USDA     | USDA   |                              |
 | 323 |   323 | W6 27766 LSP AGL  | USDA     | USDA   |                              |
-| 324 |   324 | W6 27767 LSP AGL  | USDA     | USDA   |                              |
+| 324 |   324 | W6 27767 LSP AGL  | USDA     | USDA   | *Not Barimasur-4*            |
 
 ## Supplemental Table 2
 
@@ -244,59 +244,59 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ## Additional Figure 1
 
-![](Additional/Additional_Figure_01_LDPOriginMap.png)
+![](Additional/Additional_Figure_01.png)
 
 ## Additional Figure 2
 
-![](Additional/Additional_Figure_02_DTFDTSDTM.png)
+![](Additional/Additional_Figure_02.png)
 
 ## Additional Figure 3
 
-![](Additional/Additional_Figure_03_MacroEnvPhenology.png)
+![](Additional/Additional_Figure_03.png)
 
 ## Additional Figure 4
 
-![](Additional/Additional_Figure_04_ggridges.png)
+![](Additional/Additional_Figure_04.png)
 
 ## Additional Figure 5
 
-[Additional/Additional\_Figure\_05\_PCA\_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05_PCA_3D.html)
+[Additional/Additional\_Figure\_05\_PCA\_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
 ## Additional Figure 6
 
-![](Additional/Additional_Figure_06_PCA.png)
+![](Additional/Additional_Figure_06.png)
 
 ## Additional Figure 7
 
-![](Additional/Additional_Figure_07_DTFByCluster.png)
+![](Additional/Additional_Figure_07.png)
 
 ## Additional Figure 8
 
-![](Additional/Additional_Figure_08_ClusterOrigins.png)
+![](Additional/Additional_Figure_08.png)
 
 ## Additional Figure 9
 
-![](Additional/Additional_Figure_09_LDPOriginsByCluster.png)
+![](Additional/Additional_Figure_09.png)
 
 ## Additional Figure 10
 
-![](Additional/Additional_Figure_10_TxPRR.png)
+![](Additional/Additional_Figure_10.png)
 
 ## Additional Figure 11
 
-![](Additional/Additional_Figure_11_Coefs.png)
+![](Additional/Additional_Figure_11.png)
 
 ## Additional Figure 12
 
-![](Additional/Additional_Figure_12_CoefsP.png)
+![](Additional/Additional_Figure_12.png)
 
 ## Additional Figure 13
 
-![](Additional/Additional_Figure_13_bP.png)
+![](Additional/Additional_Figure_13.png)
 
 ## Additional Figure 14
 
-![](Additional/Additional_Figure_14_PTT.png)
+![](Additional/Additional_Figure_14.png)
 
 # Animations
 
