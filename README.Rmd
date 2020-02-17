@@ -24,6 +24,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # Contents
 
+- [Source Code](#source-code-vignette)
 - [Shiny App](#shiny-app)
 - [Figures](#figures)
 - [Supplemental Figures](#supplemental-figures)
@@ -53,7 +54,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - GenomeCanada
 - Saskatchewan Ministry of Agriculture
 
-# R Code Vignette
+# Source Code Vignette
 
 [Phenology_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
@@ -62,6 +63,8 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 # Shiny App
 
 Download this folder and run `app.R` in `R`
+
+or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ![](Additional/img_Shiny.png)
 
@@ -229,7 +232,9 @@ knitr::kable(rbind(head(xx), tail(xx)))
 
 ![](Additional/Additional_Figure_14.png)
 
-# Animations
+## Phothermal Animation
+
+![](Additional/Animation_3D.gif)
 
 ## Temperature and Photoperiod Regressions
 

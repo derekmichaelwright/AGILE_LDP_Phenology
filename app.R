@@ -58,10 +58,10 @@ traitScale <- function(x, trait) {
   xout
 }
 # Country info
-ct <- read.csv("data/data_Countries.csv")
+ct <- read.csv("data/data_countries.csv")
 # Lentil Diversity Panel metadata
 regions <- c("Africa", "Asia", "Europe", "Americas", "ICARDA", "USDA", "Unknown")
-ldp <- read.csv("data/data_LDP.csv") %>%
+ldp <- read.csv("data/data_ldp.csv") %>%
   left_join(select(ct, Origin=Country, Region, SubRegion), by = "Origin") %>%
   mutate(Region = ifelse(Origin %in% c("ICARDA","USDA","Unknown"), as.character(Origin), as.character(Region)),
          SubRegion = ifelse(Origin %in% c("ICARDA","USDA","Unknown"), as.character(Origin), as.character(SubRegion)),
@@ -73,21 +73,21 @@ ldp <- read.csv("data/data_LDP.csv") %>%
          Lon3 = ifelse(is.na(Lon), ct$Lon[match(Origin, ct$Country)], Lon),
          Lon3 = ifelse(duplicated(Lon3), jitter(Lon3, 1, 0.1), Lon3) )
 # Modeling
-m1 <- read.csv("data/model_T+P_d.csv") %>%
+m1 <- read.csv("data/model_t+p_d.csv") %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
-m2 <- read.csv("data/model_T+P_coefs.csv")
+m2 <- read.csv("data/model_t+p_coefs.csv")
 # PCA results
-pca <- read.csv("data/data_PCA_Results.csv") %>%
+pca <- read.csv("data/data_pca_results.csv") %>%
   mutate(Cluster = factor(Cluster)) %>% select(-Region) %>%
   select(Entry, Name, Origin, Cluster, everything()) %>%
   left_join(select(ldp, Entry, Region), by = "Entry")
 ldp <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry")
 # Tf, Pf, PTT
-ptt <- read.csv("data/data_Tf_Pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
+ptt <- read.csv("data/data_tf_pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Prep raw data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
-rr <- read.csv("data/data_Raw.csv") %>%
+rr <- read.csv("data/data_raw.csv") %>%
   mutate(Rep = factor(Rep), Year = factor(Year), PlantingDate = as.Date(PlantingDate),
          Location    = factor(Location, levels = names_Location),
          Expt        = factor(Expt,     levels = names_Expt),
@@ -108,7 +108,7 @@ dd <- rr %>%
          Location    = factor(Location, levels = names_Location),
          DTF2_scaled = traitScale(., "DTF2"))
 # Prep environmental data
-ee <- read.csv("data/data_Env.csv") %>%
+ee <- read.csv("data/data_env.csv") %>%
   mutate(Date      = as.Date(Date),
          ExptShort = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
          ExptShort = factor(ExptShort, levels = names_ExptShort),
@@ -120,7 +120,7 @@ xx <- dd %>%
   group_by(Expt) %>%
   summarise_at(vars(DTE, DTF, DTS, DTM), funs(min, mean, max), na.rm = T) %>%
   ungroup()
-ff <- read.csv("data/data_Info.csv") %>%
+ff <- read.csv("data/data_info.csv") %>%
   mutate(Start = as.Date(Start), Expt = factor(Expt, levels = names_Expt)) %>%
   left_join(xx, by = "Expt")
 for(i in unique(ee$Expt)) {

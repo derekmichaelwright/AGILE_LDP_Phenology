@@ -93,7 +93,7 @@ traitScale <- function(x, trait) {
 }
 # Prep data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
-rr <- read.csv("data/data_Raw.csv") %>% 
+rr <- read.csv("data/data_raw.csv") %>% 
   mutate(Rep          = factor(Rep), 
          Year         = factor(Year), 
          PlantingDate = as.Date(PlantingDate),
@@ -111,7 +111,7 @@ dd <- rr %>% group_by(Entry, Name, Expt, ExptShort, Location, Year) %>%
                funs(mean), na.rm = T) %>% ungroup() %>%
   mutate(DTF2_scaled = traitScale(., "DTF2"))
 # Prep environmental data
-ee <- read.csv("data/data_Env.csv") %>%
+ee <- read.csv("data/data_env.csv") %>%
   mutate(Date      = as.Date(Date),
          ExptShort = plyr::mapvalues(Expt, names_Expt, names_ExptShort),
          ExptShort = factor(ExptShort, levels = names_ExptShort),
@@ -122,7 +122,7 @@ ee <- read.csv("data/data_Env.csv") %>%
 xx <- dd %>% group_by(Expt) %>%
   summarise_at(vars(DTE, DTF, DTS, DTM), funs(min, mean, max), na.rm = T) %>% 
   ungroup()
-ff <- read.csv("data/data_Info.csv") %>% 
+ff <- read.csv("data/data_info.csv") %>% 
   mutate(Start = as.Date(Start) ) %>%
   left_join(xx, by = "Expt")
 for(i in unique(ee$Expt)) {
@@ -148,9 +148,9 @@ ff <- ff %>% left_join(xx, by = "Expt") %>%
          T_mean    = round(T_mean, 1),
          P_mean    = round(P_mean, 1))
 # Lentil Diversity Panel metadata
-ldp <- read.csv("data/data_LDP.csv")
+ldp <- read.csv("data/data_ldp.csv")
 # Country info
-ct <- read.csv("data/data_Countries.csv") %>% filter(Country %in% ldp$Origin)
+ct <- read.csv("data/data_countries.csv") %>% filter(Country %in% ldp$Origin)
 ```
 
 - `ldp` = Lentil Diversity Panel Metadata
@@ -786,7 +786,7 @@ x1 <- left_join(x1.1, x1.2, by = "Entry") %>%
   select(Entry, Name, Origin, Region, Cluster=clust,
          PC1=Dim.1, PC2=Dim.2, PC3=Dim.3, PC4=Dim.4, PC5=Dim.5,
          PC6=Dim.6, PC7=Dim.7, PC8=Dim.8, PC9=Dim.9, PC10=Dim.10)
-write.csv(x1, "data/data_PCA_Results.csv", row.names = F)
+write.csv(x1, "data/data_pca_results.csv", row.names = F)
 # Prep data
 x2 <- dd %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
   group_by(Expt, ExptShort, Cluster) %>% 
@@ -884,7 +884,7 @@ image_write(im, "Figure_03.png")
 ## Additional Figure 5 Interactive PCA Plot
 
 ```{r eval = F}
-pca <- read.csv("data/data_PCA_Results.csv") %>% 
+pca <- read.csv("data/data_pca_results.csv") %>% 
   mutate(Cluster = factor(Cluster),
          myColors = plyr::mapvalues(Cluster, 1:8, colors))
 rgl::plot3d(pca[,5:7], col = pca$myColors, size = 15)
@@ -901,7 +901,7 @@ image_read("Additional/Additional_Figure_06.png")
 ```{r}
 # Prep data
 levs <- c("Africa", "Asia", "Europe", "Americas", "ICARDA", "USDA")
-xx <- read.csv("data/data_PCA_Results.csv") %>% 
+xx <- read.csv("data/data_pca_results.csv") %>% 
   filter(Origin != "Unknown") %>%
   mutate(Region = as.character(Region), Origin = as.character(Origin),
          Region = ifelse(Origin %in% levs[5:6], Origin, Region),
@@ -923,7 +923,7 @@ image_read("Additional/Additional_Figure_07.png")
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
+x1 <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
 yy <- c("India", "Bangladesh", "Ethiopia", "Pakistan", "Jordan",
         "Iran", "Turkey", "Syria", "Chile", "Spain", "Czech Republic", "Canada" )
 xx <- dd %>% left_join(ldp, by = "Entry") %>%
@@ -953,7 +953,7 @@ image_read("Additional/Additional_Figure_08.png")
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
+pca <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
 xx <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry") %>%
   mutate(test1 = factor(paste(Origin, Cluster)))
 x1 <- xx %>% filter(Origin != "ICARDA") %>% 
@@ -982,7 +982,7 @@ image_read("Additional/Additional_Figure_09.png")
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
+x1 <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
 xx <- ldp %>% select(Entry, Name, Lat, Lon) %>% left_join(x1, by = "Entry") %>%
   left_join(select(ct, Origin=Country, cLat=Lat, cLon=Lon), by = "Origin") %>%
   mutate(Lat = ifelse(is.na(Lat), cLat, Lat),
@@ -1054,12 +1054,6 @@ for(i in 1:324) {
 pdf("Additional/pdf_TP.pdf", width = 8, height = 4)
 for(i in 1:324) { print(mp[[i]]) }
 dev.off() #dev.set(dev.next())
-# Create animation
-xx <- dd %>% filter(ExptShort=="Su16") %>% arrange(DTF) %>% pull(Entry)
-lf <- list.files("Additional/Entry_TP")[xx]
-mp <- image_read(paste0("Additional/Entry_TP/", lf)) %>% image_scale("50%")
-animation <- image_animate(mp, fps = 5)
-image_write(animation, "Additional/Animation_TP.gif")
 ```
 
 ![](Additional/Entry_TP/TP_Entry_001.png)
@@ -1119,7 +1113,7 @@ for (i in c(235, 94, 128)) {
   dev.off()
 }
 # Create animation
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% arrange(b, c)
+xx <- read.csv("data/model_t+p_coefs.csv") %>% arrange(b, c)
 lf <- list.files("Additional/Entry_3D")[xx$Entry]
 mp <- image_read(paste0("Additional/Entry_3D/", lf))
 animation <- image_animate(mp, fps = 10)
@@ -1262,7 +1256,7 @@ gg_model_1 <- function(x, title = NULL, type = 1,
 gg_model_2 <- function(x, myX = "DTF", myY = "Predicted_DTF", title = NULL,
                        x1 = 30, x2 = 30, y1 = 145, y2 = 120, legend.pos = "bottom") {
   # Prep data
-  pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+  pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
     mutate(Cluster = factor(Cluster))
   x <- x %>% 
     filter(!is.na(get(myX))) %>%
@@ -1352,9 +1346,9 @@ for(i in 1:324) {
 mr <- mr %>% mutate(Expt = factor(Expt, levels = names_Expt))
 md <- md %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Save Results
-write.csv(mr, "data/model_T+P.csv",       row.names = F)
-write.csv(md, "data/model_T+P_d.csv",     row.names = F)
-write.csv(mc, "data/model_T+P_Coefs.csv", row.names = F)
+write.csv(mr, "data/model_t+p.csv",       row.names = F)
+write.csv(md, "data/model_t+p_d.csv",     row.names = F)
+write.csv(mc, "data/model_t+p_coefs.csv", row.names = F)
 #
 # Plot Each Entry
 mp <- list()
@@ -1366,22 +1360,17 @@ for(i in 1:324) {
            mymin = min(c(mr$Predicted_RDTF, mr$RDTF)) - 0.001,
            mymax = max(c(mr$Predicted_RDTF, mr$RDTF)) + 0.001)
   mp[[i]] <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
-  fname <- paste0("Additional/Entry_Model/Model_Entry_", str_pad(i, 3, pad = "0"), ".png")
+  fname <- paste0("Additional/entry_model/model_entry_", str_pad(i, 3, pad = "0"), ".png")
   ggsave(fname, mp[[i]], width = 10, height = 4.5, dpi = 600)
 }
-pdf("Additional/pdf_Model.pdf", width = 10, height = 4.5)
+pdf("Additional/pdf_model.pdf", width = 10, height = 4.5)
 for (i in 1:324) { print(mp[[i]]) }
 dev.off() #dev.set(dev.next())
-# Create animation
-lf <- list.files("Additional/Entry_Model")
-mp <- image_read(paste0("Additional/Entry_Model/", lf)) %>% image_scale("25%")
-animation <- image_animate(mp, fps = 5)
-image_write(animation, "Additional/Animation_Model.gif")
 ```
 
 ```{r}
 # Prep data
-xx <- read.csv("data/model_T+P_d.csv") %>% 
+xx <- read.csv("data/model_t+p_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
 mp <- gg_model_1(xx, title = "Model = T + P")
@@ -1458,14 +1447,14 @@ for(i in 1:324) {
 mr <- mr %>% mutate(Expt = factor(Expt, levels = names_Expt))
 md <- md %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Save Results
-write.csv(mr, "data/model_TxP.csv",       row.names = F)
-write.csv(md, "data/model_TxP_d.csv",     row.names = F)
-write.csv(mc, "data/model_TxP_Coefs.csv", row.names = F)
+write.csv(mr, "data/model_txp.csv",       row.names = F)
+write.csv(md, "data/model_txp_d.csv",     row.names = F)
+write.csv(mc, "data/model_txp_coefs.csv", row.names = F)
 ```
 
 ```{r}
 # Prep data
-xx <- read.csv("data/model_TxP_d.csv") %>% 
+xx <- read.csv("data/model_txp_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
 mp <- gg_model_1(xx, title = "Model = T x P")
@@ -1490,8 +1479,8 @@ image_read("Additional/Model/Model_2_2.png")
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/model_T+P_Coefs.csv")
-x2 <- read.csv("data/model_TxP_Coefs.csv")
+x1 <- read.csv("data/model_t+p_coefs.csv")
+x2 <- read.csv("data/model_txp_coefs.csv")
 xx <- bind_rows(x1, x2) %>% arrange(Entry) %>% 
   select(Entry, Name, a, b, c, d, RR, Environments, 
          a_p.value=aP, b_p.value=bP, c_p.value=cP, d_p.value=dP)
@@ -1533,11 +1522,11 @@ image_read("Supplemental_Figure_05.png")
 
 ```{r}
 # Prep data
-xx <- read.csv("data/model_T+P_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
+xx <- read.csv("data/model_t+p_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
 mp1 <- gg_model_1(xx, title = expression(paste("(a) ", italic(" 1 / f = a + bT + cP"))))
 # Prep data
-xx <- read.csv("data/model_TxP_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
+xx <- read.csv("data/model_txp_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
 mp2 <- gg_model_1(xx, title = expression(paste("(b) ", italic(" 1 / f = a + bT + cP + dTP"))))
 # Append
@@ -1553,9 +1542,9 @@ image_read("Additional/Additional_Figure_11.png")
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
-x1 <- read.csv("data/model_T+P_Coefs.csv") %>% mutate(Model = "T+P")
-x2 <- read.csv("data/model_TxP_Coefs.csv") %>% mutate(Model = "TxP")
+pca <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
+x1 <- read.csv("data/model_t+p_coefs.csv") %>% mutate(Model = "T+P")
+x2 <- read.csv("data/model_txp_coefs.csv") %>% mutate(Model = "TxP")
 xx <- bind_rows(x1, x2) %>% 
   gather(Coef, Value, a,b,c,d) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
@@ -1580,9 +1569,9 @@ image_read("Additional/Additional_Figure_12.png")
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
-x1 <- read.csv("data/model_T+P_Coefs.csv") %>% mutate(Model = "T+P")
-x2 <- read.csv("data/model_TxP_Coefs.csv") %>% mutate(Model = "TxP")
+pca <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
+x1 <- read.csv("data/model_t+p_coefs.csv") %>% mutate(Model = "T+P")
+x2 <- read.csv("data/model_txp_coefs.csv") %>% mutate(Model = "TxP")
 xx <- bind_rows(x1, x2) %>% gather(Coef, Value, aP,bP,cP,dP) %>%
   left_join(pca, by = "Entry") %>% mutate(Cluster = factor(Cluster))
 # Plot
@@ -1606,8 +1595,8 @@ image_read("Additional/Additional_Figure_13.png")
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_PCA_Results.csv") %>% mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% 
+pca <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
+xx <- read.csv("data/model_t+p_coefs.csv") %>% 
   mutate(Sig = factor(ifelse(bP > 0.0001, "Sig","Less Sig"))) %>%
   select(Entry, Sig, p.value=bP, b) %>% 
   gather(Trait, Value, p.value, b) %>%
@@ -1624,7 +1613,7 @@ mp1 <- ggplot(xx, aes(x = 1, y = Value)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "(a)", x = NULL, y = NULL)
 # Prep data
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% 
+xx <- read.csv("data/model_t+p_coefs.csv") %>% 
   mutate(Sig = factor(ifelse(cP > 0.000001, "Sig","Less Sig"))) %>%
   select(Entry, Sig, p.value=cP, c) %>% 
   gather(Trait, Value, p.value, c) %>%
@@ -1677,8 +1666,8 @@ for(i in 1:324) {
   }
 }
 # Save Results
-write.csv(mr, "data/model_Test.csv", row.names = F)
-write.csv(md, "data/model_Test_d.csv", row.names = F)
+write.csv(mr, "data/model_test.csv", row.names = F)
+write.csv(md, "data/model_test_d.csv", row.names = F)
 ```
 
 ## Figure 4 Test Model
@@ -1689,7 +1678,7 @@ image_read("Additional/Model/Model_1_3.png")
 
 ```{r}
 # Prep data
-xx <- read.csv("data/model_Test_d.csv") %>% 
+xx <- read.csv("data/model_test_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
 mp <- gg_model_1(xx, title = "Model = T + P | Location Out")
@@ -1821,7 +1810,7 @@ mc <- mc %>% filter(!Entry %in% ents)
 # Save Results
 write.csv(mr, "data/model_3best.csv",        row.names = F)
 write.csv(md, "data/model_3best_d.csv",      row.names = F)
-write.csv(mc, "data/model_3best_Coefs.csv",  row.names = F)
+write.csv(mc, "data/model_3best_coefs.csv",  row.names = F)
 ```
 
 ```{r}
@@ -1890,14 +1879,14 @@ mr <- mr %>% filter(!Entry %in% ents)
 md <- md %>% filter(!Entry %in% ents)
 mc <- mc %>% filter(!Entry %in% ents)
 # Save Results
-write.csv(mr, "data/model_3Worst.csv",        row.names = F)
-write.csv(md, "data/model_3Worst_d.csv",      row.names = F)
-write.csv(mc, "data/model_3Worst_Coefs.csv",  row.names = F)
+write.csv(mr, "data/model_3worst.csv",        row.names = F)
+write.csv(md, "data/model_3worst_d.csv",      row.names = F)
+write.csv(mc, "data/model_3worst_coefs.csv",  row.names = F)
 ```
 
 ```{r}
 # Prep data 
-xx <- read.csv("data/model_3Worst_d.csv") %>% 
+xx <- read.csv("data/model_3worst_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 length(unique(xx$Entry))
 # Plot Observed vs Predicted
@@ -1919,11 +1908,11 @@ image_read("Additional/Model/Model_pvalues.png")
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/model_T+P_Coefs.csv") %>% mutate(Model = "T+P")
-x2 <- read.csv("data/model_TxP_Coefs.csv") %>% mutate(Model = "TxP")
-x3 <- read.csv("data/model_Test_Coefs.csv") %>% mutate(Model = "Test")
-x4 <- read.csv("data/model_3Best_Coefs.csv")  %>% mutate(Model = "3 Best")
-x5 <- read.csv("data/model_3Worst_Coefs.csv")  %>% mutate(Model = "3 Worst")
+x1 <- read.csv("data/model_t+p_coefs.csv") %>% mutate(Model = "T+P")
+x2 <- read.csv("data/model_txp_coefs.csv") %>% mutate(Model = "TxP")
+x3 <- read.csv("data/model_test_coefs.csv") %>% mutate(Model = "Test")
+x4 <- read.csv("data/model_3best_coefs.csv")  %>% mutate(Model = "3 Best")
+x5 <- read.csv("data/model_3worst_coefs.csv")  %>% mutate(Model = "3 Worst")
 xx <- bind_rows(x1, x2, x3, x4, x5) %>% 
   mutate(Model = factor(Model, levels = unique(Model)),
          Environments = factor(Environments))
@@ -1948,13 +1937,13 @@ image_read("Supplemental_Figure_06.png")
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/model_T+P_Coefs.csv") %>% 
+x1 <- read.csv("data/model_t+p_coefs.csv") %>% 
   filter(Entry %in% c(76, 77, 118, 128)) %>% 
   mutate(Expt = "All 18 Site-years")
-x2.1 <- read.csv("data/model_3Best_Coefs.csv") %>% 
+x2.1 <- read.csv("data/model_3best_coefs.csv") %>% 
   filter(Entry %in% c(76, 77, 118, 128)) %>% 
   mutate(Expt = "Su16-Ba17-Sp17")
-x2.2 <- read.csv("data/model_3Worst_Coefs.csv") %>% 
+x2.2 <- read.csv("data/model_3worst_coefs.csv") %>% 
   filter(Entry %in% c(76, 77, 118, 128)) %>% 
   mutate(Expt = "Su18-In16-Sp16")
 # Summerfield et al., 1985
@@ -2009,7 +1998,7 @@ xx <- read.csv("data/model_3best_d.csv") %>%
   mutate(Expt = factor(Expt, levels = names_Expt)) 
 mp1 <- gg_model_2(xx, title = "(a) 3 Best Locations | Su16-Ba17-Sp17 | 291/324")
 # Plot (b)
-xx <- read.csv("data/model_3Worst_d.csv") %>% 
+xx <- read.csv("data/model_3worst_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 mp2 <- gg_model_2(xx, title = "(b) 3 Worst Locations | Su18-In16-Sp16 | 159/324")
 # Append (a) and (b)
@@ -2026,13 +2015,13 @@ image_read("Supplemental_Figure_08.png")
 ```{r}
 # Prep data
 levs <- c("All 18 Site-years", "Su16-Ba17-Sp17", "Su18-In16-Sp16")
-pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-x1 <- read.csv("data/model_T+P_Coefs.csv") %>%
+x1 <- read.csv("data/model_t+p_coefs.csv") %>%
   mutate(Expt = levs[1]) %>% select(-RR)
-x2 <- read.csv("data/model_3Best_Coefs.csv") %>% 
+x2 <- read.csv("data/model_3best_coefs.csv") %>% 
   mutate(Expt = levs[2])
-x3 <- read.csv("data/model_3Worst_Coefs.csv") %>% 
+x3 <- read.csv("data/model_3worst_coefs.csv") %>% 
   mutate(Expt = levs[3])
 xx <- bind_rows(x1, x2,x3) %>% 
   left_join(pca, by = "Entry") %>%
@@ -2056,7 +2045,7 @@ ggsave("Supplemental_Figure_08.png", mp, width = 6, height = 3, dpi = 600)
 
 ```{r eval = F}
 # Calculate Tf and Pf
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% select(-Name) %>%
+xx <- read.csv("data/model_t+p_coefs.csv") %>% select(-Name) %>%
   mutate(predicted_Tf = 1/b, predicted_Pf = 1/c )
 xx <- rr %>% left_join(xx, by = "Entry") %>%
   left_join(select(ff, Expt, T_mean, P_mean), by = "Expt") %>%
@@ -2093,7 +2082,7 @@ xx <- xx %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
                     predicted_Pf, predicted_Tf), funs(mean), na.rm = T) %>%
   ungroup()
 # Save
-write.csv(xx,"data/data_Tf_Pf.csv", row.names = F)
+write.csv(xx,"data/data_tf_pf.csv", row.names = F)
 ```
 
 ## Figure 5 Tb and Pc
@@ -2104,9 +2093,9 @@ image_read("Figure_05.png")
 
 ```{r}
 # Prep data for (a) a, b and c
-pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/model_T+P_Coefs.csv") %>%
+xx <- read.csv("data/model_t+p_coefs.csv") %>%
   left_join(pca, by = "Entry") %>%
   select(Entry, Name, Cluster, a, b, c) %>%
   gather(Constant, Value, 4:ncol(.)) %>%
@@ -2127,7 +2116,7 @@ mp1 <- ggplot(xx, aes(x = Cluster, y = Value * 10000) ) +
   guides(fill = F) +
   labs(y = "x 10000")
 # Prep data
-xx <- read.csv("data/data_Tf_Pf.csv") %>% 
+xx <- read.csv("data/data_tf_pf.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(Expt = factor(Expt, levels = names_Expt)) %>%
   select(Entry, Name, Expt, ExptShort, Cluster, Tb, Pc, predicted_Tf, predicted_Pf)
@@ -2185,7 +2174,7 @@ image_read("Figure_06.png")
 mycts <- c("Canada", "USA", "Iran", "Yemen",
            "India", "Pakistan", "Bangladesh", "Afghanistan",
            "Syria", "Jordan", "Turkey", "Lebanon", "Israel")
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% 
+xx <- read.csv("data/model_t+p_coefs.csv") %>% 
   left_join(select(ldp, Entry, Origin), by = "Entry") %>%
   left_join(select(ct, Origin=Country, SubRegion), by = "Origin") %>%
   filter(Origin != "Unknown") %>%
@@ -2236,7 +2225,7 @@ ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 8, height = 4, dpi = 600)
 mycts <- c("Canada", "USA", "Iran", "Yemen",
            "India", "Pakistan", "Bangladesh", "Afghanistan",
            "Syria", "Jordan", "Turkey", "Lebanon", "Israel")
-xx <- read.csv("data/model_T+P_Coefs.csv") %>% 
+xx <- read.csv("data/model_t+p_coefs.csv") %>% 
   left_join(select(ldp, Entry, Origin), by = "Entry") %>%
   left_join(select(ct, Origin=Country, SubRegion), by = "Origin") %>%
   filter(Origin != "Unknown") %>%
@@ -2290,9 +2279,9 @@ image_read("Supplemental_Figure_09.png")
 
 ```{r}
 # Prep data for (a) Tf
-pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/data_Tf_Pf.csv") %>% 
+xx <- read.csv("data/data_tf_pf.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
 x1 <- xx %>% 
@@ -2355,9 +2344,9 @@ image_read("Additional/Additional_Figure_14.png")
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/data_Tf_Pf.csv") %>% 
+xx <- read.csv("data/data_tf_pf.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs)) %>% 
   select(Entry, Expt, ExptShort, MacroEnv, Cluster, PTT_0, PTT) %>%
@@ -2389,7 +2378,7 @@ image_read("Supplemental_Figure_10.png")
 
 ```{r}
 # Prep data
-xx <- read.csv("data/data_Tf_Pf.csv") %>% #select(-MacroEnv) %>%
+xx <- read.csv("data/data_tf_pf.csv") %>% #select(-MacroEnv) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
 mp1 <- gg_model_2(xx, "Tf", "predicted_Tf", "(a) Thermal sum required for flowering",
@@ -2410,7 +2399,7 @@ image_read("Supplemental_Figure_11.png")
 
 ```{r}
 # Prep data
-xx <- read.csv("data/data_Tf_Pf.csv") %>% #select(-MacroEnv) %>%
+xx <- read.csv("data/data_tf_pf.csv") %>% #select(-MacroEnv) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
 mp1 <- gg_model_2(xx, "Pf", "predicted_Pf", "(a) Photoperiodic sum required for flowering",
@@ -2432,8 +2421,8 @@ image_read("Figure_07.png")
 ```{r}
 # Prep data
 yy <- c("Ro17", "Su17", "Us18", "In17", "Ba17", "Ne17", "Sp17", "Mo17", "It17")
-coefs <- read.csv("data/model_T+P_Coefs.csv")
-pca <- read.csv("data/data_PCA_Results.csv") %>% select(Entry, Cluster) %>%
+coefs <- read.csv("data/model_t+p_coefs.csv")
+pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
 xx <- dd %>% 
   select(Entry, Expt, ExptShort, DTF) %>% 
@@ -2460,7 +2449,7 @@ knitr::kable(x1 %>% group_by(MacroEnv) %>%
 knitr::kable(x2 %>% group_by(MacroEnv) %>% 
                summarise(Min = round(min(Diff),2), Max = round(max(Diff),2)) )
 xx <- bind_rows(x1, x2)
-write.csv(xx, "data/data_Temp_Increase.csv", row.names = F)
+write.csv(xx, "data/data_temp_increase.csv", row.names = F)
 new.lab <- as_labeller(c(T = "italic(T)~+~1.5~degree*C", P = "italic(P)~+~0.1~italic(h)",
     Mediterranean = "Mediterranean", Temperate = "Temperate", 
     `South Asia` = "South~Asia"), label_parsed)
