@@ -1653,9 +1653,7 @@ mp <- gg_model_1(xx, title = "Model = T + P | Location Out")
 ggsave("Additional/Model/Model_1_3.png", mp, width = 7, height = 5, dpi = 600)
 ```
 
-```{r echo = F}
-image_read("Figure_04.png")
-```
+![](Figure_04.png)
 
 ```{r}
 modelR2(xx$DTF, xx$Predicted_DTF)
@@ -1793,13 +1791,9 @@ ggsave("Additional/Model/Model_2_4.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## Modeling DTF (T + P) - 3 Worst
 
-```{r echo = F}
-image_read("Additional/Model/Model_1_5.png")
-```
+![](Additional/Model/Model_1_5.png)
 
-```{r echo = F}
-image_read("Additional/Model/Model_2_5.png")
-```
+![](Additional/Model/Model_2_5.png)
 
 ```{r eval = F}
 ####################################
@@ -1864,9 +1858,7 @@ ggsave("Additional/Model/Model_2_5.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## DTF Model correlation coefficients
 
-```{r echo = F}
-image_read("Additional/Model/Model_pvalues.png")
-```
+![](Additional/Model/Model_pvalues.png)
 
 ```{r}
 # Prep data
@@ -1890,9 +1882,7 @@ ggsave("Additional/Model/Model_pvalues.png", mp, width = 7, height = 4, dpi = 60
 
 ## Supplemental Figure 6 Compare Constants Entry
 
-```{r echo = F}
-image_read("Supplemental_Figure_06.png")
-```
+![](Supplemental_Figure_06.png)
 
 - Entry 76 = ILL 4400 (Syrian Local Large)
 - Entry 77 = ILL 4605 (Precoz)
@@ -1952,9 +1942,7 @@ ggsave("Supplemental_Figure_06.png", mp, width = 4, height = 5, dpi = 600)
 
 ## Supplemental Figure 7 3 best 3 worst
 
-```{r echo = F}
-image_read("Supplemental_Figure_07.png")
-```
+![](Supplemental_Figure_07.png)
 
 ```{r}
 # Plot (a)
@@ -1972,9 +1960,7 @@ ggsave("Supplemental_Figure_07.png", mp, width = 8, height = 11, dpi = 600)
 
 ## Supplemental Figure 8 Compare Constants All
 
-```{r echo = F}
-image_read("Supplemental_Figure_08.png")
-```
+![](Supplemental_Figure_08.png)
 
 ```{r}
 # Prep data
@@ -2052,9 +2038,7 @@ write.csv(xx,"data/data_tf_pf.csv", row.names = F)
 
 ## Figure 5 Tb and Pc
 
-```{r echo = F}
-image_read("Figure_05.png")
-```
+![](Figure_05.png)
 
 ```{r}
 # Prep data for (a) a, b and c
@@ -2130,9 +2114,7 @@ ggsave("Figure_05.png", mp, width = 8, height = 6, dpi = 600)
 
 ## Figure 6 Origin Constants
 
-```{r echo = F}
-image_read("Figure_06.png")
-```
+![](Figure_06.png)
 
 ```{r}
 # Prep data
@@ -2238,9 +2220,7 @@ ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 8, height = 4, dpi = 600)
 
 ## Supplemental Figure 9 Pc Tf PTT
 
-```{r echo = F}
-image_read("Supplemental_Figure_09.png")
-```
+![](Supplemental_Figure_09.png)
 
 ```{r}
 # Prep data for (a) Tf
@@ -2306,9 +2286,7 @@ ggsave("Supplemental_Figure_09.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Additional Figure 14 PTT
 
-```{r echo = F}
-image_read("Additional/Additional_Figure_14.png")
-```
+![](Additional/Additional_Figure_14.png)
 
 ```{r}
 # Prep data
@@ -2341,9 +2319,7 @@ ggsave("Additional/Additional_Figure_14.png", mp, width = 8, height = 5, dpi = 6
 
 ## Supplemental Figure 10 Thermal Sums
 
-```{r, echo = F}
-image_read("Supplemental_Figure_10.png")
-```
+![](Supplemental_Figure_10.png)
 
 ```{r}
 # Prep data
@@ -2362,9 +2338,7 @@ ggsave("Supplemental_Figure_10.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Supplemental Figure 11 Photoperiodic Sums
 
-```{r echo = F}
-image_read("Supplemental_Figure_11.png")
-```
+![](Supplemental_Figure_11.png)
 
 ```{r}
 # Prep data
@@ -2383,9 +2357,7 @@ ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Figure 7 Temperature Increase By MacroEnv
 
-```{r echo = F}
-image_read("Figure_07.png")
-```
+![](Figure_07.png)
 
 ```{r}
 # Prep data
