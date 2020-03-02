@@ -4,6 +4,8 @@ subtitle: "Variable responses of lentil (*Lens culinaris* Medik.) germplasm to c
 author: "Derek Michael Wright"
 date: "`r Sys.Date()`"
 output: 
+  pdf_document:
+    toc: yes
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
@@ -11,8 +13,6 @@ output:
     highlight: tango
     code_folding: hide
     css: custom.css
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -78,7 +78,7 @@ theme_AGL <- theme_bw() +
   theme(strip.background = element_rect(colour = "black", fill = NA, size = 0.5),
         panel.background = element_rect(colour = "black", fill = NA, size = 0.5),
         panel.border     = element_rect(colour = "black", size = 0.5),
-        panel.grid       = element_line(color = alpha("black", 0.1), size = 0.5),
+        panel.grid       = element_line(color  = alpha("black", 0.1), size = 0.5),
         panel.grid.minor.x = element_blank(),
         panel.grid.minor.y = element_blank())
 # Create scaling function
@@ -274,6 +274,7 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
   facet_grid(Trait ~ MacroEnv, scales = "free") + 
   theme_AGL + 
   theme(legend.position = "none",
+        panel.grid.major.x = element_blank(),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   labs(x = NULL, y = NULL)
 ggsave("Supplemental_Figure_01.png", mp, width = 8, height = 5, dpi = 600)
@@ -360,16 +361,19 @@ mp2.2 <- ggDistroDTF(xx %>% filter(MacroEnv == "South Asia")) +
         axis.text.y = element_blank(), 
         axis.ticks.y = element_blank())
 mp2.3 <- ggDistroDTF(xx %>% filter(MacroEnv == "Mediterranean")) +
-  scale_y_continuous(sec.axis = sec_axis(~ ., name = "Days After Planting")) +
+  scale_y_continuous(limits = c(30,190), breaks = c(50,75,100,125,150,175),
+                     sec.axis = sec_axis(~ ., name = "Days After Planting",
+                       breaks = c(50,75,100,125,150,175))) +
   theme(strip.background = element_rect(fill = alpha("darkblue", 0.3)),
         panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_line(),
         axis.text.y.left = element_blank(),
         axis.ticks.y.left = element_blank())
-mp2 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), nrow = 1, ncol = 3, 
-                ylab = "Days After Planting", xAxisLabels = macroEnvs) +
-  theme_AGL +
-  theme(plot.margin = unit(c(0,1,0,0), "cm"),
-        plot.title = element_text(hjust = -0.04)) 
+#mp2 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), nrow = 1, ncol = 3, 
+#                ylab = "Days After Planting", xAxisLabels = macroEnvs) +
+#  theme_AGL +
+#  theme(plot.margin = unit(c(0,1,0,0), "cm"),
+#        plot.title = element_text(hjust = -0.04)) 
 mp2 <- ggarrange(mp2.1, mp2.2, mp2.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 # Prep data
 xx <- dd %>% select(Entry, Name, Expt, ExptShort, Location, Year, VEG, REP) %>%
@@ -399,15 +403,17 @@ mp3.2 <- ggDistroREP(xx %>% filter(MacroEnv == "South Asia")) +
         axis.text.y = element_blank(), 
         axis.ticks.y = element_blank())
 mp3.3 <- ggDistroREP(xx %>% filter(MacroEnv == "Mediterranean")) +
-  scale_y_continuous(sec.axis = sec_axis(~ ., name = "Days")) +
+  scale_y_continuous(limits = c(25,135), breaks = c(25,50,75,100,125),
+                     sec.axis = sec_axis(~ ., name = "Days",
+                       breaks = c(25,50,75,100,125))) +
   theme(strip.background = element_rect(fill = alpha("darkblue", 0.3)),
         panel.grid.major.x = element_blank(),
         axis.text.y.left = element_blank(),
         axis.ticks.y.left = element_blank())
-mp3 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), 
-                nrow = 1, ncol = 3, ylab = "Days") +
-  theme_AGL +
-  theme(plot.title = element_text(hjust = -0.04))
+#mp3 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), 
+#                nrow = 1, ncol = 3, ylab = "Days") +
+#  theme_AGL +
+#  theme(plot.title = element_text(hjust = -0.04))
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 # Save
 ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4, dpi = 600)
@@ -2035,6 +2041,7 @@ mp <- ggplot(xx, aes(x = Expt, y = Value * 10000 )) +
   scale_color_manual(values = colors, breaks = 8:1) +
   theme_AGL +
   theme(strip.text = element_text(face = "italic"),
+        panel.grid.major.x = element_blank(),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   guides(colour = guide_legend(override.aes = list(size = 2))) +
   labs(x = NULL, y = "x 10000")
@@ -2300,7 +2307,9 @@ mp1 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
   facet_grid(Trait ~ MacroEnv, scales = "free", labeller = new.lab) +
   scale_color_manual(values = colors) +
   theme_AGL +
-  theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
+  theme(legend.position = "bottom", 
+        legend.margin = unit(c(0,0,0,0), "cm"),
+        panel.grid.major.x = element_blank(),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
   guides(colour = guide_legend(nrow = 1, override.aes = list(size = 3))) +
   labs(title = "(a) Thermal sum required for flowering", 
@@ -2462,10 +2471,11 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Diff)) +
   facet_grid(Increase ~ MacroEnv, scales = "free", labeller = new.lab) + 
   scale_y_continuous(minor_breaks = 0:30, breaks = my_breaks) +
   scale_color_manual(values = colors) +
-  theme_AGL + 
-  theme(legend.position = "bottom", legend.margin = unit(c(0,0,0,0), "cm"),
+  theme_AGL +
+  theme(legend.position = "bottom", 
+        legend.margin = unit(c(0,0,0,0), "cm"),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
-        panel.grid.major.y = element_line(colour = "grey70", size = 0.5)) +
+        panel.grid.major.x = element_blank()) + 
   guides(colour = guide_legend(nrow = 1, override.aes = list(size=2))) +
   labs(y = "Decrease in days to flower", x = NULL)
 ggsave("Figure_07.png", mp, width = 7, height = 5, dpi = 600)
