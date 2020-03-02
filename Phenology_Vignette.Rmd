@@ -2401,7 +2401,7 @@ my_breaks <- function(x) { if (max(x) < 6) c(0,2.5,5) else seq(0,30,5) }
 mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) + 
   geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
   geom_quasirandom(aes(color = Cluster), size = 0.3) + 
-  facet_grid(Increase ~ MacroEnv, scales = "free", labeller = new.lab) + 
+  facet_grid(Treatment ~ MacroEnv, scales = "free", labeller = new.lab) + 
   scale_y_continuous(minor_breaks = 0:30, breaks = my_breaks) +
   scale_color_manual(values = colors) +
   theme_AGL +

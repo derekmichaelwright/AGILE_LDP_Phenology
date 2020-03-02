@@ -16,7 +16,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
   - [Source Code Vignette](#source-code-vignette)
   - [Shiny App](#shiny-app)
-  - [Raw Data Files](#raw-data)
+  - [Raw Data Files](#raw-data-files)
   - [Figures](#figures)
   - [Supplemental Figures](#supplemental-figures)
   - [Supplemental Tables](#supplemental-tables)
