@@ -337,7 +337,7 @@ ggDistroDTF <- function(x) {
     geom_quasirandom(size = 0.3, aes(color = Trait)) +
     facet_wrap(ExptShort ~ ., scales = "free_x", dir = "v", ncol = 3, nrow = 2) + 
     scale_color_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
-    scale_y_continuous(limits = c(30,190), breaks = c(50,75,100,125,150,175)) +
+    scale_y_continuous(limits = c(30,190), breaks = c(25,50,75,100,125,150,175)) +
     theme_AGL + labs(y = NULL, x = NULL) +
     theme(plot.margin = unit(c(0.1,0,0.3,0), "cm"))
 }
@@ -353,9 +353,9 @@ mp2.2 <- ggDistroDTF(xx %>% filter(MacroEnv == "South Asia")) +
         axis.text.y = element_blank(), 
         axis.ticks.y = element_blank())
 mp2.3 <- ggDistroDTF(xx %>% filter(MacroEnv == "Mediterranean")) +
-  scale_y_continuous(limits = c(30,190), breaks = c(50,75,100,125,150,175),
+  scale_y_continuous(limits = c(30,190), breaks = c(25,50,75,100,125,150,175),
                      sec.axis = sec_axis(~ ., name = "Days After Planting",
-                       breaks = c(50,75,100,125,150,175))) +
+                       breaks = c(25,50,75,100,125,150,175))) +
   theme(strip.background = element_rect(fill = alpha("darkblue", 0.3)),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_line(),
