@@ -334,6 +334,8 @@ Resources of Canada (PGRC), United States Department of Agriculture
 (USDA), International Center for Agricultural Research in the Dry Areas
 (ICARDA).*
 
+<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv>
+
 ## Supplemental Table 2
 
 ``` r
@@ -366,6 +368,8 @@ knitr::kable(xx)
 location information, planting dates, mean temperature and photoperiods
 and details on plot type and number of seeds sown.*
 
+<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv>
+
 ## Supplemental Table 3
 
 ``` r
@@ -386,6 +390,8 @@ knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
 
 *Table S3: Values of the constants derived from equations 1 and 2 using
 data from all site-years, for each of the genotypes used in this study.*
+
+<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv>
 
 ## Supplemental Table 4
 
@@ -413,6 +419,12 @@ knitr::kable(rbind(head(xx), tail(xx)))
 and Mediterranean site-year, used to train the model, with equation 1,
 along with the corresponding coefficient of determination (RR = R2), and
 number of genotypes which flowered in all three site-years.*
+
+<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv>
+
+# Phothermal Animation
+
+![](Additional/Animation_3D.gif)
 
 # Additional Figures
 
@@ -472,9 +484,7 @@ number of genotypes which flowered in all three site-years.*
 
 ![](Additional/Additional_Figure_14.png)
 
-## Phothermal Animation
-
-![](Additional/Animation_3D.gif)
+# PDFs
 
 ## Temperature and Photoperiod Regressions
 
