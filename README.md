@@ -65,6 +65,14 @@ or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
 ![](Additional/img_Shiny.png)
 
+# Raw Data
+
+  - [Raw Phenotype Data
+    (data/data\_raw.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_raw.csv)
+  - [Raw Environmental Data
+    (data/data\_env.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_env.csv)
+  - [(data/)]()
+
 # Figures
 
 ## Figure 1
@@ -421,6 +429,17 @@ along with the corresponding coefficient of determination (RR = R2), and
 number of genotypes which flowered in all three site-years.*
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv>
+
+# Data Results Files
+
+  - [PCA Results
+    (data/data\_pca\_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
+  - [Photothermal Model Results
+    (data/data\_model\_t+p.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t%2Bp.csv)
+  - [Nominal Base Temperature and Photoperiod
+    (data/data\_tb\_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
+  - [Response to Temperature or Photoperiod increases
+    (data/data\_temp\_phtoto\_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
 
 # Phothermal Animation
 

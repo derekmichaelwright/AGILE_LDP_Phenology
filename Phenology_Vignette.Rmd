@@ -2033,7 +2033,7 @@ xx <- xx %>% left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
                     predicted_Pf, predicted_Tf), funs(mean), na.rm = T) %>%
   ungroup()
 # Save
-write.csv(xx,"data/data_tf_pf.csv", row.names = F)
+write.csv(xx,"data/data_tb_pc.csv", row.names = F)
 ```
 
 ## Figure 5 Tb and Pc
@@ -2065,7 +2065,7 @@ mp1 <- ggplot(xx, aes(x = Cluster, y = Value * 10000) ) +
   guides(fill = F) +
   labs(y = "x 10000")
 # Prep data
-xx <- read.csv("data/data_tf_pf.csv") %>% 
+xx <- read.csv("data/data_tb_pc.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(Expt = factor(Expt, levels = names_Expt)) %>%
   select(Entry, Name, Expt, ExptShort, Cluster, Tb, Pc, predicted_Tf, predicted_Pf)
@@ -2226,7 +2226,7 @@ ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 8, height = 4, dpi = 600)
 # Prep data for (a) Tf
 pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/data_tf_pf.csv") %>% 
+xx <- read.csv("data/data_tb_pc.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs))
 x1 <- xx %>% 
@@ -2292,7 +2292,7 @@ ggsave("Supplemental_Figure_09.png", mp, width = 8, height = 10, dpi = 600)
 # Prep data
 pca <- read.csv("data/data_pca_results.csv") %>% select(Entry, Cluster) %>%
   mutate(Cluster = factor(Cluster))
-xx <- read.csv("data/data_tf_pf.csv") %>% 
+xx <- read.csv("data/data_tb_pc.csv") %>% 
   left_join(pca, by = "Entry") %>%
   mutate(MacroEnv = factor(MacroEnv, levels = macroEnvs)) %>% 
   select(Entry, Expt, ExptShort, MacroEnv, Cluster, PTT_0, PTT) %>%
@@ -2323,7 +2323,7 @@ ggsave("Additional/Additional_Figure_14.png", mp, width = 8, height = 5, dpi = 6
 
 ```{r}
 # Prep data
-xx <- read.csv("data/data_tf_pf.csv") %>% #select(-MacroEnv) %>%
+xx <- read.csv("data/data_tb_pc.csv") %>% #select(-MacroEnv) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
 mp1 <- gg_model_2(xx, "Tf", "predicted_Tf", "(a) Thermal sum required for flowering",
@@ -2342,7 +2342,7 @@ ggsave("Supplemental_Figure_10.png", mp, width = 8, height = 10, dpi = 600)
 
 ```{r}
 # Prep data
-xx <- read.csv("data/data_tf_pf.csv") %>% #select(-MacroEnv) %>%
+xx <- read.csv("data/data_tb_pc.csv") %>% #select(-MacroEnv) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
 mp1 <- gg_model_2(xx, "Pf", "predicted_Pf", "(a) Photoperiodic sum required for flowering",
@@ -2372,32 +2372,33 @@ xx <- dd %>%
   left_join(select(ff, Expt, MacroEnv, T_mean, P_mean), by = "Expt")
 # Temp +1
 x1 <- xx %>%
-  mutate(T_mean2 = T_mean + 1.5,
-         DTF_1 = 1 / (a + b * T_mean2 + c * P_mean),
+  mutate(T_mean_1.5 = T_mean + 1.5,
+         DTF_1 = 1 / (a + b * T_mean_1.5 + c * P_mean),
          DTF_0  = 1 / (a + b * T_mean + c * P_mean),
-         Diff = DTF_0 - DTF_1) %>% 
+         Difference = DTF_0 - DTF_1) %>% 
   filter(ExptShort %in% yy)
 x2 <- xx %>%
-  mutate(P_mean2 = P_mean + 0.1,
-         DTF_1 = 1 / (a + b * T_mean + c * P_mean2),
+  mutate(P_mean_0.1 = P_mean + 0.1,
+         DTF_1 = 1 / (a + b * T_mean + c * P_mean_0.1),
          DTF_0  = 1 / (a + b * T_mean + c * P_mean),
-         Diff = DTF_0 - DTF_1) %>% 
+         Difference = DTF_0 - DTF_1) %>% 
   filter(ExptShort %in% yy)
-x1 <- x1 %>% mutate(Increase = "T")
-x2 <- x2 %>% mutate(Increase = "P")
+x1 <- x1 %>% mutate(Treatment = "T + 1.5")
+x2 <- x2 %>% mutate(Treatment = "P + 0.1")
 knitr::kable(x1 %>% group_by(MacroEnv) %>% 
-               summarise(Min = round(min(Diff),2), Max = round(max(Diff),2)) )
+  summarise(Min = round(min(Difference), 2), Max = round(max(Difference), 2)) )
 knitr::kable(x2 %>% group_by(MacroEnv) %>% 
-               summarise(Min = round(min(Diff),2), Max = round(max(Diff),2)) )
-xx <- bind_rows(x1, x2)
-write.csv(xx, "data/data_temp_increase.csv", row.names = F)
-new.lab <- as_labeller(c(T = "italic(T)~+~1.5~degree*C", P = "italic(P)~+~0.1~italic(h)",
-    Mediterranean = "Mediterranean", Temperate = "Temperate", 
-    `South Asia` = "South~Asia"), label_parsed)
+  summarise(Min = round(min(Difference), 2), Max = round(max(Difference), 2)) )
+xx <- bind_rows(x1, x2) %>%
+  select(Expt, ExptShort, MacroEnv, Entry, Name, Cluster, DTF_0, DTF_1, Difference, Treatment)
+write.csv(xx, "data/data_temp_phtoto_increase.csv", row.names = F)
+new.lab <- as_labeller(c(`T + 1.5` = "italic(T)~+~1.5~degree*C", 
+    `P + 0.1` = "italic(P)~+~0.1~italic(h)", Mediterranean = "Mediterranean", 
+    Temperate = "Temperate", `South Asia` = "South~Asia"), label_parsed)
 my_breaks <- function(x) { if (max(x) < 6) c(0,2.5,5) else seq(0,30,5) }
 #my_minor_breaks <- function(x) { if (max(x) < 6) 1:5 else 1:30 }
 # Plot 
-mp <- ggplot(xx, aes(x = ExptShort, y = Diff)) + 
+mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) + 
   geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
   geom_quasirandom(aes(color = Cluster), size = 0.3) + 
   facet_grid(Increase ~ MacroEnv, scales = "free", labeller = new.lab) + 
