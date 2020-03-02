@@ -14,12 +14,15 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # Contents
 
-  - [Source Code](#source-code-vignette)
+  - [Source Code Vignette](#source-code-vignette)
   - [Shiny App](#shiny-app)
+  - [Raw Data Files](#raw-data)
   - [Figures](#figures)
   - [Supplemental Figures](#supplemental-figures)
+  - [Supplemental Tables](#supplemental-tables)
+  - [Data Results Files](#data-results-files)
   - [Additional Figures](#additional-figures)
-  - [Animations](#animations)
+  - [PDFs](#pdfs)
 
 # AGILE Project
 
@@ -65,13 +68,12 @@ or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
 ![](Additional/img_Shiny.png)
 
-# Raw Data
+# Raw Data Files
 
   - [Raw Phenotype Data
     (data/data\_raw.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_raw.csv)
   - [Raw Environmental Data
     (data/data\_env.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_env.csv)
-  - [(data/)]()
 
 # Figures
 
@@ -441,10 +443,6 @@ number of genotypes which flowered in all three site-years.*
   - [Response to Temperature or Photoperiod increases
     (data/data\_temp\_phtoto\_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
 
-# Phothermal Animation
-
-![](Additional/Animation_3D.gif)
-
 # Additional Figures
 
 ## Additional Figure 1
@@ -502,6 +500,10 @@ number of genotypes which flowered in all three site-years.*
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14.png)
+
+## Phothermal Animation
+
+![](Additional/Animation_3D.gif)
 
 # PDFs
 

@@ -22,12 +22,15 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # Contents
 
-- [Source Code](#source-code-vignette)
+- [Source Code Vignette](#source-code-vignette)
 - [Shiny App](#shiny-app)
+- [Raw Data Files](#raw-data)
 - [Figures](#figures)
 - [Supplemental Figures](#supplemental-figures)
+- [Supplemental Tables](#supplemental-tables)
+- [Data Results Files](#data-results-files)
 - [Additional Figures](#additional-figures)
-- [Animations](#animations)
+- [PDFs](#pdfs)
 
 # AGILE Project
 
@@ -66,11 +69,10 @@ or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ![](Additional/img_Shiny.png)
 
-# Raw Data
+# Raw Data Files
 
 - [Raw Phenotype Data (data/data_raw.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_raw.csv)
 - [Raw Environmental Data (data/data_env.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_env.csv)
-- [ (data/)]()
 
 # Figures
 
@@ -237,10 +239,6 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 - [Nominal Base Temperature and Photoperiod (data/data_tb_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
 - [Response to Temperature or Photoperiod increases (data/data_temp_phtoto_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
 
-# Phothermal Animation
-
-![](Additional/Animation_3D.gif)
-
 # Additional Figures
 
 ## Additional Figure 1
@@ -298,6 +296,10 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14.png)
+
+## Phothermal Animation
+
+![](Additional/Animation_3D.gif)
 
 # PDFs
 
