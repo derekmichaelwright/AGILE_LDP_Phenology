@@ -23,8 +23,6 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 This vignette contains the `R` code and analysis done for the paper: **Variable responses of lentil (*Lens culinaris* Medik.) germplasm to changes in photoperiod and temperature"** 
 
-Contact: derek.wright@usask.ca
-
 # Data Preparation
 
 Load the nessesary R packages, Prepare the data for analysis.
@@ -194,7 +192,7 @@ knitr::kable(s2)
 # Prep data
 xx <- ff %>% mutate(Size = 1)
 # Plot (a) Map
-invisible(png("Additional/Temp/Temp_F01_1.png", width = 1200, height = 450, res = 600)) #res = 150
+invisible(png("Additional/Temp/Temp_F01_1.png", width = 4200, height = 1575, res = 600)) #width = 1200, height = 450, res = res = 150
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "MacroEnv",
            nameZSize = "Size", symbolSize = 0.5, pch = 20, fill = F, addLegend = F,
