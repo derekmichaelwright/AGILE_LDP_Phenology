@@ -9,7 +9,7 @@ output:
     lightbox: true
     gallery: true
     highlight: tango
-    code_folding: hide
+    code_folding: show
     css: custom.css
   pdf_document:
     toc: yes
@@ -181,7 +181,8 @@ write.csv(s2, "Supplemental_Table_02.csv", row.names = F)
 ```
 
 ```{r echo = F}
-knitr::kable(s2)
+str(s2)
+#knitr::kable(s2)
 ```
 
 ## Figure 1 Field Trial Info
@@ -192,7 +193,7 @@ knitr::kable(s2)
 # Prep data
 xx <- ff %>% mutate(Size = 1)
 # Plot (a) Map
-invisible(png("Additional/Temp/Temp_F01_1.png", width = 4200, height = 1575, res = 600)) #width = 1200, height = 450, res = res = 150
+invisible(png("Additional/Temp/Temp_F01_1.png", width = 4200, height = 1575, res = 600))
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "MacroEnv",
            nameZSize = "Size", symbolSize = 0.5, pch = 20, fill = F, addLegend = F,
@@ -359,11 +360,7 @@ mp2.3 <- ggDistroDTF(xx %>% filter(MacroEnv == "Mediterranean")) +
         panel.grid.minor.x = element_line(),
         axis.text.y.left = element_blank(),
         axis.ticks.y.left = element_blank())
-#mp2 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), nrow = 1, ncol = 3, 
-#                ylab = "Days After Planting", xAxisLabels = macroEnvs) +
-#  theme_AGL +
-#  theme(plot.margin = unit(c(0,1,0,0), "cm"),
-#        plot.title = element_text(hjust = -0.04)) 
+# Append
 mp2 <- ggarrange(mp2.1, mp2.2, mp2.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 # Prep data
 xx <- dd %>% select(Entry, Name, Expt, ExptShort, Location, Year, VEG, REP) %>%
@@ -400,10 +397,7 @@ mp3.3 <- ggDistroREP(xx %>% filter(MacroEnv == "Mediterranean")) +
         panel.grid.major.x = element_blank(),
         axis.text.y.left = element_blank(),
         axis.ticks.y.left = element_blank())
-#mp3 <- ggmatrix(list(mp2.1, mp2.2, mp2.3), 
-#                nrow = 1, ncol = 3, ylab = "Days") +
-#  theme_AGL +
-#  theme(plot.title = element_text(hjust = -0.04))
+# Append
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 # Save
 ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4, dpi = 600)
@@ -695,7 +689,8 @@ for(i in 1:length(names_Expt)) {
         lower  = list(continuous = wrap(my_lower, cols = "black")),
         title  = i) + 
     theme(strip.background = element_rect(fill = "White"))
-  ggsave(paste0("Additional/Corr/Corr_", str_pad(i,2,"left","0"), "_", names_Expt[i], ".png"), 
+  ggsave(paste0("Additional/Corr/Corr_", str_pad(i, 2, "left", "0"), 
+                "_", names_Expt[i], ".png"), 
          mp, width = 6, height = 6, dpi = 600)
 }
 # Plot (a) Temperate
@@ -833,8 +828,8 @@ mp2 <- ggplot(x2, aes(x = ExptShort, y = mean, group = Cluster)) +
         legend.position = "none", panel.grid = element_blank()) + 
   labs(y = "DTF (scaled 1-5)", x = NULL)
 #
-ggsave("Additional/Temp/Temp_F03_1.png", mp1, width = 8, height =   1 * 6 / 2.5, dpi = 600)
-ggsave("Additional/Temp/Temp_F03_2.png", mp2, width = 8, height = 1.5 * 6 / 2.5, dpi = 600)
+ggsave("Additional/Temp/Temp_F03_1.png", mp1, width = 8, height =   1*6/2.5, dpi = 600)
+ggsave("Additional/Temp/Temp_F03_2.png", mp2, width = 8, height = 1.5*6/2.5, dpi = 600)
 # Plot (c)
 xx <- ldp %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
   mutate(test1 = factor(paste(Origin, Cluster)))
@@ -844,7 +839,7 @@ xx <- xx %>% filter(!Origin %in% c("ICARDA","USDA","Unknown")) %>%
   left_join(select(ct, Origin=Country, Lat, Lon), by = "Origin") %>% 
   ungroup() %>% as.data.frame()
 xx[is.na(xx)] <- 0 
-invisible(png("Additional/Temp/Temp_F03_3.png", width = 4800, height = 2200, res = 600)) #2400, 1100, res = 150
+invisible(png("Additional/Temp/Temp_F03_3.png", width = 4800, height = 2200, res = 600))
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
 mapPies(dF = xx, nameX = "Lon", nameY = "Lat", zColours = colors,
         nameZs = c("1","2","3","4","5","6","7","8"), lwd = 1,
@@ -1152,7 +1147,7 @@ mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
 ggsave("Additional/Temp/Temp_SF04_1.png", mp, width = 6, height = 3.75, dpi = 600)
 # Append (c)s
 im1 <- image_read("Additional/Temp/3D_Entry_094.png")
-im2 <- image_read("Additional/Temp/3D_Entry_235.png") #3D_Entry_076.png
+im2 <- image_read("Additional/Temp/3D_Entry_235.png")
 im3 <- image_read("Additional/Temp/3D_Entry_128.png")
 im <- image_append(c(im1, im2, im3)) %>% image_scale("3600x")
 image_write(im, "Additional/Temp/Temp_SF04_2.png")
@@ -1456,7 +1451,8 @@ write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
 ```
 
 ```{r echo = F}
-knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
+str(xx)
+#knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
 ```
 
 ## Additional Figure 10 significant T x P interactions
@@ -1486,13 +1482,17 @@ ggsave("Additional/Additional_Figure_10.png", mp, width = 7, height = 5, dpi = 6
 
 ```{r}
 # Prep data
-xx <- read.csv("data/model_t+p_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
+xx <- read.csv("data/model_t+p_d.csv") %>% 
+  mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
-mp1 <- gg_model_1(xx, title = expression(paste("(a) ", italic(" 1 / f = a + bT + cP"))))
+mp1 <- gg_model_1(xx, 
+  title = expression(paste("(a) ", italic(" 1 / f = a + bT + cP"))))
 # Prep data
-xx <- read.csv("data/model_txp_d.csv") %>% mutate(Expt = factor(Expt, levels = names_Expt))
+xx <- read.csv("data/model_txp_d.csv") %>% 
+  mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot Observed vs Predicted
-mp2 <- gg_model_1(xx, title = expression(paste("(b) ", italic(" 1 / f = a + bT + cP + dTP"))))
+mp2 <- gg_model_1(xx, 
+  title = expression(paste("(b) ", italic(" 1 / f = a + bT + cP + dTP"))))
 # Append
 mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
 ggsave("Supplemental_Figure_05.png", mp, width = 12, height = 5, dpi = 600)
@@ -2124,7 +2124,8 @@ xx <- read.csv("data/model_t+p_coefs.csv") %>%
   left_join(select(ct, Origin=Country, SubRegion), by = "Origin") %>%
   filter(Origin != "Unknown") %>%
   mutate(SubRegion = as.character(SubRegion), Origin = as.character(Origin),
-         SubRegion = ifelse(Origin %in% c("ICARDA","USDA"), Origin, as.character(SubRegion)),
+         SubRegion = ifelse(Origin %in% c("ICARDA", "USDA"), 
+                            Origin, as.character(SubRegion)),
          Origin = ifelse(Origin %in% mycts, Origin, as.character(SubRegion)))
 x1 <- xx %>% 
   left_join(dd %>% filter(ExptShort == "Su17") %>% select(Entry, DTF), by = "Entry") %>%
@@ -2175,7 +2176,8 @@ xx <- read.csv("data/model_t+p_coefs.csv") %>%
   left_join(select(ct, Origin=Country, SubRegion), by = "Origin") %>%
   filter(Origin != "Unknown") %>%
   mutate(SubRegion = as.character(SubRegion), Origin = as.character(Origin),
-         SubRegion = ifelse(Origin %in% c("ICARDA","USDA"), Origin, as.character(SubRegion)),
+         SubRegion = ifelse(Origin %in% c("ICARDA", "USDA"), 
+                            Origin, as.character(SubRegion)),
          Origin = ifelse(Origin %in% mycts, Origin, as.character(SubRegion)))
 x1 <- xx %>% 
   left_join(dd %>% filter(ExptShort == "Su17") %>% select(Entry, DTF), by = "Entry") %>%
@@ -2277,8 +2279,10 @@ mp2 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
 # Append (a), (b) and (c)
 mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
 # Save
-ggsave("Additional/Temp/Temp_SF09_1.png", mp1, width = 10, height = 13 * 3 / 8.2, dpi = 600)
-ggsave("Additional/Temp/Temp_SF09_2.png", mp2, width = 10, height = 13 * 3 / 8.2, dpi = 600)
+ggsave("Additional/Temp/Temp_SF09_1.png", mp1, 
+       width = 10, height = 13 * 3 / 8.2, dpi = 600)
+ggsave("Additional/Temp/Temp_SF09_2.png", mp2, 
+       width = 10, height = 13 * 3 / 8.2, dpi = 600)
 ggsave("Supplemental_Figure_09.png", mp, width = 8, height = 10, dpi = 600)
 ```
 
@@ -2388,7 +2392,8 @@ knitr::kable(x1 %>% group_by(MacroEnv) %>%
 knitr::kable(x2 %>% group_by(MacroEnv) %>% 
   summarise(Min = round(min(Difference), 2), Max = round(max(Difference), 2)) )
 xx <- bind_rows(x1, x2) %>%
-  select(Expt, ExptShort, MacroEnv, Entry, Name, Cluster, DTF_0, DTF_1, Difference, Treatment)
+  select(Expt, ExptShort, MacroEnv, Entry, Name, Cluster, 
+         DTF_0, DTF_1, Difference, Treatment)
 write.csv(xx, "data/data_temp_phtoto_increase.csv", row.names = F)
 new.lab <- as_labeller(c(`T + 1.5` = "italic(T)~+~1.5~degree*C", 
     `P + 0.1` = "italic(P)~+~0.1~italic(h)", Mediterranean = "Mediterranean", 
