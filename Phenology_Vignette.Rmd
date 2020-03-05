@@ -212,7 +212,7 @@ mp <- ggplot(ff, aes(x = T_mean, y = P_mean)) +
   theme_AGL + 
   theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
   labs(x = expression(paste("Mean temperature (", degree, "C)", sep = "")), 
-       y = "Mean photoperiod (hours)")
+       y = expression(paste("Mean photoperiod (", italic("h"),")", sep = "")))
 ggsave("Additional/Temp/Temp_F01_2.png", mp, width = 7, height = 3.25, dpi = 600)
 # Labels were added to "Additional/Temp/Temp_F1_1.png" in image editing software
 # Append (a) and (b)
@@ -306,7 +306,7 @@ ggEnvPlot <- function(x, nr = 2, nc = 3, mybreaks) {
 }
 # Plot (a) T and P
 mp1.1 <- ggEnvPlot(ee %>% filter(MacroEnv == "Temperate"), mybreaks = c(25,50,75)) +
-  labs(y = expression(paste(degree, "Celcius"))) + 
+  labs(y = expression(paste("Degrees Celcius (", degree, "C)"))) + 
   theme(strip.background = element_rect(alpha("darkgreen", 0.3)),
         plot.margin = unit(c(0,0,0,0.155), "cm"),
         plot.title = element_text(hjust = -0.12, vjust = -10))
@@ -317,7 +317,8 @@ mp1.2 <- ggEnvPlot(ee %>% filter(MacroEnv == "South Asia"), mybreaks = c(25,75,1
         axis.ticks.y = element_blank())
 mp1.3 <- ggEnvPlot(ee %>% filter(MacroEnv == "Mediterranean"), mybreaks = c(50,100,150)) +
   scale_y_continuous(sec.axis = sec_axis(~ (16.62 - 9.11) * . / (40 - 0) + 9.11,
-                       name = "Hours", breaks = c(10, 12, 14, 16))) +
+                     name = expression(paste("Hours (", italic("h"), ")")), 
+                     breaks = c(10, 12, 14, 16))) +
   theme(strip.background = element_rect(fill = alpha("darkblue", 0.3)),
         plot.margin = unit(c(0,0.17,0,0), "cm"),
         axis.text.y.left = element_blank(),
