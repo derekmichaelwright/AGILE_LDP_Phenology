@@ -83,7 +83,7 @@ pca <- read.csv("data/data_pca_results.csv") %>%
   left_join(select(ldp, Entry, Region), by = "Entry")
 ldp <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry")
 # Tf, Pf, PTT
-ptt <- read.csv("data/data_tf_pf.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
+ptt <- read.csv("data/data_tb_pc.csv") %>% select(Entry, Expt, Tb, Pc, Tf, Pf, PTT) %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Prep raw data
 # Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
