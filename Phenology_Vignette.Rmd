@@ -220,7 +220,7 @@ im1 <- image_read("Additional/Temp/Temp_F01_1_1.png") %>%
   image_annotate("(a)", size = 35)
 im2 <- image_read("Additional/Temp/Temp_F01_2.png") %>% image_scale("1200x") %>%
   image_annotate("(b)", size = 35)
-im <- image_append(c(im1,im2), stack = T)
+im <- image_append(c(im1, im2), stack = T)
 image_write(im, "Figure_01.png")
 ```
 
@@ -308,8 +308,7 @@ ggEnvPlot <- function(x, nr = 2, nc = 3, mybreaks) {
 mp1.1 <- ggEnvPlot(ee %>% filter(MacroEnv == "Temperate"), mybreaks = c(25,50,75)) +
   labs(y = expression(paste("Degrees Celcius (", degree, "C)"))) + 
   theme(strip.background = element_rect(alpha("darkgreen", 0.3)),
-        plot.margin = unit(c(0,0,0,0.155), "cm"),
-        plot.title = element_text(hjust = -0.12, vjust = -10))
+        plot.margin = unit(c(0,0,0,0.155), "cm"))
 mp1.2 <- ggEnvPlot(ee %>% filter(MacroEnv == "South Asia"), mybreaks = c(25,75,125)) +
   labs(x = "Days After Planting") +
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
@@ -344,8 +343,7 @@ ggDistroDTF <- function(x) {
 mp2.1 <- ggDistroDTF(xx %>% filter(MacroEnv == "Temperate")) + 
   labs(y = "Days After Planting") + 
   theme(strip.background = element_rect(fill = alpha("darkgreen", 0.3)),
-        panel.grid.major.x = element_blank(),
-        plot.title = element_text(hjust = -0.12, vjust = -10))
+        panel.grid.major.x = element_blank())
 mp2.2 <- ggDistroDTF(xx %>% filter(MacroEnv == "South Asia")) +
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
         panel.grid.major.x = element_blank(),
@@ -382,8 +380,7 @@ ggDistroREP <- function(x) {
 mp3.1 <- ggDistroREP(xx %>% filter(MacroEnv == "Temperate")) + 
   labs(y = "Days") +
   theme(strip.background = element_rect(fill = alpha("darkgreen", 0.3)),
-        panel.grid.major.x = element_blank(),
-        plot.title = element_text(hjust = -0.12, vjust = -10))
+        panel.grid.major.x = element_blank())
 mp3.2 <- ggDistroREP(xx %>% filter(MacroEnv == "South Asia")) + 
   theme(strip.background = element_rect(fill = alpha("darkgoldenrod2", 0.3)),
         panel.grid.major.x = element_blank(),
@@ -2393,7 +2390,8 @@ knitr::kable(x2 %>% group_by(MacroEnv) %>%
   summarise(Min = round(min(Difference), 2), Max = round(max(Difference), 2)) )
 xx <- bind_rows(x1, x2) %>%
   select(Expt, ExptShort, MacroEnv, Entry, Name, Cluster, 
-         DTF_0, DTF_1, Difference, Treatment)
+         DTF_0, DTF_1, Difference, Treatment) %>%
+  mutate(Treatment = factor(Treatment, levels = c("T + 1.5", "P + 0.1")))
 write.csv(xx, "data/data_temp_phtoto_increase.csv", row.names = F)
 new.lab <- as_labeller(c(`T + 1.5` = "italic(T)~+~1.5~degree*C", 
     `P + 0.1` = "italic(P)~+~0.1~h", Mediterranean = "Mediterranean", 

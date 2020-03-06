@@ -24,7 +24,6 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 - [Source Code Vignette](#source-code-vignette)
 - [Shiny App](#shiny-app)
-- [Raw Data Files](#raw-data-files)
 - [Figures](#figures)
 - [Supplemental Figures](#supplemental-figures)
 - [Supplemental Tables](#supplemental-tables)
@@ -68,11 +67,6 @@ Download this folder and run `app.R` in `R`
 or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ![](Additional/img_Shiny.png)
-
-# Raw Data Files
-
-- [Raw Phenotype Data (data/data_raw.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_raw.csv)
-- [Raw Environmental Data (data/data_env.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_env.csv)
 
 # Figures
 

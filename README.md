@@ -2,7 +2,7 @@ Variable responses of lentil (*Lens culinaris* Medik.) germplasm to
 changes in photoperiod and temperature
 ================
 Derek Michael Wright <derek.wright@usask.ca>
-2020-03-04
+2020-03-06
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
@@ -16,7 +16,6 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
   - [Source Code Vignette](#source-code-vignette)
   - [Shiny App](#shiny-app)
-  - [Raw Data Files](#raw-data-files)
   - [Figures](#figures)
   - [Supplemental Figures](#supplemental-figures)
   - [Supplemental Tables](#supplemental-tables)
@@ -67,13 +66,6 @@ Download this folder and run `app.R` in `R`
 or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
 ![](Additional/img_Shiny.png)
-
-# Raw Data Files
-
-  - [Raw Phenotype Data
-    (data/data\_raw.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_raw.csv)
-  - [Raw Environmental Data
-    (data/data\_env.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_env.csv)
 
 # Figures
 
