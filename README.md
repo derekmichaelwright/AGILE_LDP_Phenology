@@ -2,7 +2,7 @@ Variable responses of lentil (*Lens culinaris* Medik.) germplasm to
 changes in photoperiod and temperature
 ================
 Derek Michael Wright <derek.wright@usask.ca>
-2020-03-06
+2020-03-08
 
 [View as
 HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
