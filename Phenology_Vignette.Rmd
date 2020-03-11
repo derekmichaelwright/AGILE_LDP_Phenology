@@ -90,7 +90,9 @@ traitScale <- function(x, trait) {
   xout
 }
 # Prep data
-# Note: DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
+# Notes: 
+# - DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
+# - 
 rr <- read.csv("data/data_raw.csv") %>% 
   mutate(Rep          = factor(Rep), 
          Year         = factor(Year), 
@@ -397,9 +399,9 @@ mp3.3 <- ggDistroREP(xx %>% filter(MacroEnv == "Mediterranean")) +
 # Append
 mp3 <- ggarrange(mp3.1, mp3.2, mp3.3, nrow = 1, ncol = 3, align = "h", legend = "none")
 # Save
-ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4, dpi = 600)
-ggsave("Additional/Temp/Temp_F02_2.png", mp2, width = 12, height = 4, dpi = 600)
-ggsave("Additional/Temp/Temp_F02_3.png", mp3, width = 12, height = 4, dpi = 600)
+ggsave("Additional/Temp/Temp_F02_1.png", mp1, width = 12, height = 4, dpi = 500)
+ggsave("Additional/Temp/Temp_F02_2.png", mp2, width = 12, height = 4, dpi = 500)
+ggsave("Additional/Temp/Temp_F02_3.png", mp3, width = 12, height = 4, dpi = 500)
 # Append (a), (b) and (c)
 mp1 <- image_read("Additional/Temp/Temp_F02_1.png")  %>% 
   image_annotate("(a)", size = 150)
