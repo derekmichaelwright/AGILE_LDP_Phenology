@@ -1,9 +1,11 @@
 ---
 title: "R Vignette"
-subtitle: "Variable responses of lentil (*Lens culinaris* Medik.) germplasm to changes in photoperiod and temperature"
+subtitle: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "`r Sys.Date()`"
 output: 
+  pdf_document:
+    toc: yes
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
@@ -11,8 +13,6 @@ output:
     highlight: tango
     code_folding: show
     css: custom.css
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 ![](Additional/img_Agile.png)
 
-This vignette contains the `R` code and analysis done for the paper: **Variable responses of lentil (*Lens culinaris* Medik.) germplasm to changes in photoperiod and temperature"** 
+This vignette contains the `R` code and analysis done for the paper: **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)** 
 
 # Data Preparation
 
@@ -92,7 +92,7 @@ traitScale <- function(x, trait) {
 # Prep data
 # Notes: 
 # - DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
-# - 
+#
 rr <- read.csv("data/data_raw.csv") %>% 
   mutate(Rep          = factor(Rep), 
          Year         = factor(Year), 
@@ -1234,7 +1234,7 @@ gg_model_2 <- function(x, myX = "DTF", myY = "Predicted_DTF", title = NULL,
     left_join(pca, by = "Entry")
   xf <- x %>% group_by(Expt) %>% 
     summarise(Mean = mean(DTF)) %>% ungroup() %>%
-    mutate(r2 = NA, RMSE = NA)
+    mutate(r2 = NULL, RMSE = NULL)
   for(i in 1:nrow(xf)) {
     xi <- x %>% filter(Expt == xf$Expt[i])
     xf[i,"r2"]   <- round(modelR2(x = xi[,myX],   y = xi[,myY]), 2)
