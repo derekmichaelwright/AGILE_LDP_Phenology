@@ -3,13 +3,13 @@ title: "Understanding photothermal interactions can help expand production range
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "`r Sys.Date()`"
 output: 
-  github_document: default
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
