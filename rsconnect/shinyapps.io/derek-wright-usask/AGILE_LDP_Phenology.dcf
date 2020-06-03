@@ -5,9 +5,9 @@ account: derek-wright-usask
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1815655
-bundleId: 3121514
+bundleId: 3225892
 url: https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
-when: 1588959216.16518
+when: 1591228285.09045
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: custom.css|Figure_01.png|Figure_02.png|Figure_03.png|Figure_04.png|Figure_05.png|Figure_06.png|Figure_07.png|Phenology_Vignette.html|Phenology_Vignette.pdf|Phenology_Vignette.Rmd|README.md|README.Rmd|Supplemental_Figure_01.png|Supplemental_Figure_02.png|Supplemental_Figure_03.png|Supplemental_Figure_04.png|Supplemental_Figure_05.png|Supplemental_Figure_06.png|Supplemental_Figure_07.png|Supplemental_Figure_08.png|Supplemental_Figure_09.png|Supplemental_Figure_10.png|Supplemental_Figure_11.png|Supplemental_Table_01.csv|Supplemental_Table_02.csv|Supplemental_Table_03.csv|Supplemental_Table_04.csv|Additional
+ignoredFiles: custom.css|Figure_01.png|Figure_02.png|Figure_03.png|Figure_04.png|Figure_05.png|Figure_06.png|Figure_07.png|Phenology_Vignette.html|Phenology_Vignette.pdf|Phenology_Vignette.Rmd|README.html|README.md|README.Rmd|Supplemental_Figure_01.png|Supplemental_Figure_02.png|Supplemental_Figure_03.png|Supplemental_Figure_04.png|Supplemental_Figure_05.png|Supplemental_Figure_06.png|Supplemental_Figure_07.png|Supplemental_Figure_08.png|Supplemental_Figure_09.png|Supplemental_Figure_10.png|Supplemental_Figure_11.png|Supplemental_Table_01.csv|Supplemental_Table_02.csv|Supplemental_Table_03.csv|Supplemental_Table_04.csv|Additional

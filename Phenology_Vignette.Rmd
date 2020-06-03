@@ -1,18 +1,22 @@
 ---
 title: "R Vignette"
-subtitle: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "`r Sys.Date()`"
-output: 
+output:
+  html_document:
+    df_print: paged
+    toc: yes
   pdf_document:
     toc: yes
   rmdformats::readthedown:
-    self_contained: true
-    lightbox: true
-    gallery: true
-    highlight: tango
     code_folding: show
     css: custom.css
+    gallery: yes
+    highlight: tango
+    lightbox: yes
+    self_contained: yes
+subtitle: Understanding photothermal interactions can help expand production range
+  and increase genetic diversity of lentil (*Lens culinaris* Medik.)
 ---
 
 ```{r setup, include=FALSE}
@@ -686,7 +690,7 @@ for(i in 1:length(names_Expt)) {
         upper  = list(continuous = my_upper), 
         diag   = list(continuous = my_middle),
         lower  = list(continuous = wrap(my_lower, cols = "black")),
-        title  = i) + 
+        title  = names_Expt[i]) + 
     theme(strip.background = element_rect(fill = "White"))
   ggsave(paste0("Additional/Corr/Corr_", str_pad(i, 2, "left", "0"), 
                 "_", names_Expt[i], ".png"), 

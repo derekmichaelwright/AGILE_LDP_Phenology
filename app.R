@@ -145,7 +145,7 @@ ff <- ff %>% left_join(tt, by = "Expt") %>%
          MacroEnv  = factor(MacroEnv,  levels = me),
          Expt      = factor(Expt,      levels = names_Expt),
          T_mean = round(T_mean, 1),
-         P_mean = round(P_mean, 1))
+         P_mean = round(P_mean, 1)) %>% arrange(ExptShort)
 # ggplot theme
 theme_AGL <- theme_bw() + theme(strip.background = element_rect(fill = "White"))
 #
@@ -400,6 +400,7 @@ server <- function(input, output) {
       geom_quasirandom(aes(color = Cluster, key1 = Entry, key2 = Name, key3 = Origin)) +
       facet_wrap(.~Trait, scales = "free_y", nrow = 1) + 
       scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
+      theme_AGL +
       labs(x = NULL)
     if(input$Plot_Entry == T) {
       mp <- mp + 
@@ -509,6 +510,7 @@ server <- function(input, output) {
                    aes(x = Value, y = Expt, fill = Trait)) + 
         ggridges::geom_density_ridges(alpha = 0.7) +
         scale_fill_manual(values = c("darkgreen", "darkred", "darkgoldenrod2")) +
+        theme_AGL +
         theme(legend.position = "top", legend.margin = unit(c(0,0,0,0), "cm")) +
         labs(y = NULL, x = "Days After Sowing")
       mp
@@ -607,7 +609,7 @@ server <- function(input, output) {
       scale_color_manual(values = colors[as.numeric(input$MyClusters)]) +
       scale_fill_manual(values = colors[as.numeric(input$MyClusters)]) +
       coord_cartesian(ylim = c(0.95,5.05), expand = F) +
-      theme_minimal() +
+      theme_AGL +
       theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
             strip.placement = "outside",
             axis.line = element_line(), axis.ticks = element_line()) +
