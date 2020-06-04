@@ -1,13 +1,8 @@
 ---
 title: "R Vignette"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
-date: "`r Sys.Date()`"
+date: "01-05-2020"
 output:
-  html_document:
-    df_print: paged
-    toc: yes
-  pdf_document:
-    toc: yes
   rmdformats::readthedown:
     code_folding: show
     css: custom.css
@@ -15,6 +10,11 @@ output:
     highlight: tango
     lightbox: yes
     self_contained: yes
+  pdf_document:
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
 subtitle: Understanding photothermal interactions can help expand production range
   and increase genetic diversity of lentil (*Lens culinaris* Medik.)
 ---
