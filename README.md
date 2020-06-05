@@ -73,8 +73,8 @@ or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
 ![](Figure_01.png)
 
-*Fig 1: Growing Environments. (a) Locations of field trials conducted in
-the summer and winter of 2016, 2017 and 2018, along with (b) mean
+*Figure 1: Growing Environments. (a) Locations of field trials conducted
+in the summer and winter of 2016, 2017 and 2018, along with (b) mean
 temperature and photoperiod of each field trial: Rosthern, Canada 2016
 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16,
 Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and
@@ -87,7 +87,7 @@ Nepal 2016 and 2017 (Ne16, Ne17).*
 
 ![](Figure_02.png)
 
-*Fig. 2: Variations in temperature, day length and phenological traits
+*Figure 2: Variations in temperature, day length and phenological traits
 across contrasting environment for a lentil (Lens culinaris Medik.)
 diversity panel. (a) Daily mean temperature (red line) and day length
 (blue line) from seeding to full maturity of all genotypes. The shaded
@@ -101,33 +101,33 @@ periods (REP) of 324 genotypes across 18 site-years. Rosthern, Canada
 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16,
 Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and
 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17),
-Bardiya, Nepal 2016 and 2017 (Ne16, Ne17). *
+Bardiya, Nepal 2016 and 2017 (Ne16, Ne17).*
 
 ## Figure 3
 
 ![](Figure_03.png)
 
-*Fig. 3: Clustering of a lentil (Lens culinaris Medik.) diversity panel
-based days from sowing to flower (DTF). (a) Principal Component Analysis
-on DTF, scaled from 1-5, and hierarchical k-means clustering into eight
-groups. (b) Mean scaled DTF (1-5) for each cluster group across all
-field trials: Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland,
-Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018
-(Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco
-2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17),
-Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and
-2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17). Shaded
-areas represent one standard deviation from the mean. Dashed, vertical
-bars separate temperate, South Asian and Mediterranean
-macro-environments. (c) Composition of cluster groups in genotypes by
-country of origin. Pie size is relative to the number of genotypes
-originating from that country.*
+*Figure 3: Clustering of a lentil (Lens culinaris Medik.) diversity
+panel based days from sowing to flower (DTF). (a) Principal Component
+Analysis on DTF, scaled from 1-5, and hierarchical k-means clustering
+into eight groups. (b) Mean scaled DTF (1-5) for each cluster group
+across all field trials: Rosthern, Canada 2016 and 2017 (Ro16, Ro17),
+Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central
+Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17),
+Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and
+2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore,
+Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017
+(Ne16, Ne17). Shaded areas represent one standard deviation from the
+mean. Dashed, vertical bars separate temperate, South Asian and
+Mediterranean macro-environments. (c) Composition of cluster groups in
+genotypes by country of origin. Pie size is relative to the number of
+genotypes originating from that country.*
 
 ## Figure 4
 
 ![](Figure_04.png)
 
-*Fig. 4: Comparison of observed and predicted values for days from
+*Figure 4: Comparison of observed and predicted values for days from
 sowing to flowering (DTF) for a lentil (Lens culinaris Medik.) diversity
 panel calculated using equation 1. For each site-year, the model was
 retrained after removing all observations from that location, regardless
@@ -138,19 +138,20 @@ of determination, RMSE = root-mean-square error.*
 
 ![](Figure_05.png)
 
-*Fig. 5: Photothermal constants along with nominal base temperatures and
-photoperiods for a lentil (Lens culinaris Medik.) diversity panel. (a)
-Distribution of a, b and c constants calculated from equation 1 among
-cluster groups. Estimates of: (b) nominal base temperature (Tb), and (c)
-nominal base photoperiod (Pc) based on equations 2 and 3, respectively,
-using the mean temperature (T) and photoperiod (P) from Sutherland,
-Canada 2017, Jessore, Bangladesh 2017 and Metaponto, Italy 2017. *
+*Figure 5: Photothermal constants along with nominal base temperatures
+and photoperiods for a lentil (Lens culinaris Medik.) diversity panel.
+(a) Distribution of a, b and c constants calculated from equation 1
+among cluster groups. Estimates of: (b) nominal base temperature (Tb),
+and (c) nominal base photoperiod (Pc) based on equations 2 and 3,
+respectively, using the mean temperature (T) and photoperiod (P) from
+Sutherland, Canada 2017, Jessore, Bangladesh 2017 and Metaponto, Italy
+2017.*
 
 ## Figure 6
 
 ![](Figure_06.png)
 
-*Fig. 6: Photothermal responses of lentil (Lens culinaris Medik.)
+*Figure 6: Photothermal responses of lentil (Lens culinaris Medik.)
 adapted to regions outside the center of origin. (a) Comparison of days
 from sowing to flowering in Sutherland, Canada 2017 and the genotype
 constant a (x 104) derived from equation 1. (b) Comparison of
@@ -162,7 +163,7 @@ the region where the crop was domesticated.*
 
 ![](Figure_07.png)
 
-*Fig. 7: Predicted decrease in days from sowing to flowering for a
+*Figure 7: Predicted decrease in days from sowing to flowering for a
 lentil (Lens culinaris Medik.) diversity panel based on a mean
 temperature (T) or photoperiod (P) increases of 1.5oC or 0.1h using
 equation 1 in the selected locations: Rosthern, Canada 2017 (Ro17),
@@ -177,7 +178,7 @@ Metaponto, Italy 2017 (It17).*
 
 ![](Supplemental_Figure_01.png)
 
-*Fig. S1: Distribution of days from sowing to flowering for raw data
+*Figure S1: Distribution of days from sowing to flowering for raw data
 (top) and scaled data (1-5) (bottom) for all 18 field trials: Rosthern,
 Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and
 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto,
@@ -191,15 +192,15 @@ not flower were given a scaled value of 5.*
 
 ![](Supplemental_Figure_02.png)
 
-*Fig. S2: Percentage of lentil genotypes reaching key phenological time
-points in South Asian locations. Days from sowing to: flowering (DTF),
-swollen pods (DTS) and maturity (DTM).*
+*Figure S2: Percentage of lentil genotypes reaching key phenological
+time points in South Asian locations. Days from sowing to: flowering
+(DTF), swollen pods (DTS) and maturity (DTM).*
 
 ## Supplemental Figure 3
 
 ![](Supplemental_Figure_03.png)
 
-*Fig. S3: Correlations along with the corresponding correlation
+*Figure S3: Correlations along with the corresponding correlation
 coefficients (R2) between days from sowing to: flowering (DTF), swollen
 pod (DTS) and maturity (DTM), in temperate (top), South Asian (middle)
 and Mediterranean (bottom) locations.*
@@ -208,7 +209,7 @@ and Mediterranean (bottom) locations.*
 
 ![](Supplemental_Figure_04.png)
 
-*Fig. S4: Effects of mean temperature and photoperiod on the rate of
+*Figure S4: Effects of mean temperature and photoperiod on the rate of
 progress towards flowering (1 / DTF) in three contrasting selected
 genotypes. (a) Effect of temperature on 1 / DTF, (b) effect of
 photoperiod on 1 / DTF, and (c) effect of temperature and photoperiod on
@@ -227,27 +228,27 @@ late maturing, Canadian cultivar.*
 
 ![](Supplemental_Figure_05.png)
 
-*Fig. S5: Comparison of observed and predicted values for days from
+*Figure S5: Comparison of observed and predicted values for days from
 sowing to flowering using (a) equation 1 and (b) equation 2.*
 
 ## Supplemental Figure 6
 
 ![](Supplemental_Figure_06.png)
 
-*Fig. S6: Comparison of a, b, and c constants calculated using equation
-1, in the current study using all site-years, the three best site-years
-for predicting DTF, Sutherland, Canada 2016 (Su16), Jessore, Bangladesh
-2017 (Ba17) and Cordoba, Spain 2017 (Sp17), the three worst site-years
-for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016
-(In16) and Cordoba, Spain 2016 (Sp16), from Roberts et al., (1988) and
-from Summerfield et al., (1985) with (+V) and without (-V) a seed
-vernalization treatment.*
+*Figure S6: Comparison of a, b, and c constants calculated using
+equation 1, in the current study using all site-years, the three best
+site-years for predicting DTF, Sutherland, Canada 2016 (Su16), Jessore,
+Bangladesh 2017 (Ba17) and Cordoba, Spain 2017 (Sp17), the three worst
+site-years for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal,
+India 2016 (In16) and Cordoba, Spain 2016 (Sp16), from Roberts et al.,
+(1988) and from Summerfield et al., (1985) with (+V) and without (-V) a
+seed vernalization treatment.*
 
 ## Supplemental Figure 7
 
 ![](Supplemental_Figure_07.png)
 
-*Fig. S7: Comparison of observed and predicted values, along with the
+*Figure S7: Comparison of observed and predicted values, along with the
 coefficient of determination (R2) and root-mean-square error (RMSE), for
 days from sowing to flowering, calculated using equation 1, with (a) the
 3 best site-years for training the model and (b) the 3 worst years for
@@ -262,18 +263,18 @@ of 324 genotypes used in this study.*
 
 ![](Supplemental_Figure_08.png)
 
-*Fig. S8: Comparison of a, b, and c constants calculated using equation
-1 using all site-years, the three best site-years for predicting DTF,
-Sutherland, Canada 2016 (Su16), Jessore, Bangladesh 2017 (Ba17) and
-Cordoba, Spain 2017 (Sp17), and the three worst site-years for
-predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016
+*Figure S8: Comparison of a, b, and c constants calculated using
+equation 1 using all site-years, the three best site-years for
+predicting DTF, Sutherland, Canada 2016 (Su16), Jessore, Bangladesh 2017
+(Ba17) and Cordoba, Spain 2017 (Sp17), and the three worst site-years
+for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016
 (In16) and Cordoba, Spain 2016 (Sp16).*
 
 ## Supplemental Figure 9
 
 ![](Supplemental_Figure_09.png)
 
-*Fig. S9: (a) Thermal sum required for flowering (Tf), using a base
+*Figure S9: (a) Thermal sum required for flowering (Tf), using a base
 temperature (Tb) of 0°C, 5°C and calculated using equation 3, across all
 site-years. (b) Photoperiodic sum required for flowering (Pf), using a
 critical photoperiod (Pc) of 0h, 5h and calculated using equation 4,
@@ -289,7 +290,7 @@ Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017
 
 ![](Supplemental_Figure_10.png)
 
-*Fig. S10: Comparison of observed vs predicted values, along with the
+*Figure S10: Comparison of observed vs predicted values, along with the
 coefficient of determination (R2) and root-mean-square error (RMSE), for
 (a) thermal sum required for flowering and (b) days from sowing to
 flowering, calculated using equation 5.*
@@ -298,7 +299,7 @@ flowering, calculated using equation 5.*
 
 ![](Supplemental_Figure_11.png)
 
-*Fig. S11: Comparison of observed vs predicted values, along with the
+*Figure S11: Comparison of observed vs predicted values, along with the
 coefficient of determination (R2) and root-mean-square error (RMSE) for
 (a) photoperiodic sum required for flowering and (b) days from sowing to
 flowering, calculated using equation 6.*
