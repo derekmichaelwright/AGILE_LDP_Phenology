@@ -200,6 +200,7 @@ ui <- fluidPage(theme = shinytheme("yeti"), br(),
           tabPanel("LDP", h1("Lentil Diversity Panel"), DT::dataTableOutput("Table_LDP")),
           tabPanel("Field Trials", h1("Field Trial Info"), DT::dataTableOutput("Table_FieldTrials")),
           tabPanel("PCA", h1("PCA and Hierarchical Clustering of DTF"), DT::dataTableOutput("Table_PCA")),
+          tabPanel("Data", h1("Phenology Data"), DT::dataTableOutput("Table_Data")),
           tabPanel("Coefs", h1("Photothermal Model Coeficients"), DT::dataTableOutput("Table_Coefs")),
           tabPanel("DTF Predictions", h1("Field Trial Info"), DT::dataTableOutput("Table_Model")) 
           )), # Tables tab
@@ -318,6 +319,12 @@ server <- function(input, output) {
   output$Table_LDP <- DT::renderDataTable(ldp %>% select(-Lat2, -Lat3, -Lon2, -Lon3, -Cluster), options = list(pageLength = 324))
   #
   output$Table_FieldTrials <- DT::renderDataTable(ff %>% select(ExptShort, Expt, MacroEnv, Start, End, Days, T_mean, P_mean, Lat, Lon), options = list(pageLength = 18))
+  #
+  output$Table_Data <- DT::renderDataTable({
+    dd %>% select(Entry, Name, Expt, Origin, Region, Cluster, DTE, DTF, DTS, DTM, VEG, REP, Tb, Tf, Pc, Pf, PTT, DTF2) %>%
+      filter(Expt %in% input$Expts, Cluster %in% input$MyClusters, Region %in% input$MyRegions) %>%
+      mutate_at(vars(DTE, DTF, DTS, DTM, VEG, REP, Tb, Tf, Pc, Pf, PTT, DTF2), funs(round(.,1)))
+  })
   #
   output$Table_PCA <- DT::renderDataTable(pca, options = list(pageLength = 324))
   #
