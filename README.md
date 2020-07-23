@@ -314,7 +314,7 @@ knitr::kable(xx[c(1:5,31:35,101:105,320:324),])
 ```
 
 |     | Entry | Name              | Origin   | Source | Synonyms                     |
-| --- | ----: | :---------------- | :------- | :----- | :--------------------------- |
+| :-- | ----: | :---------------- | :------- | :----- | :--------------------------- |
 | 1   |     1 | CDC Asterix AGL   | Canada   | USASK  |                              |
 | 2   |     2 | CDC Rosie AGL     | Canada   | USASK  |                              |
 | 3   |     3 | 3156-11 AGL       | Canada   | USASK  |                              |
@@ -387,7 +387,7 @@ knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
 ```
 
 |     | Entry | Name             |           a |           b |           c |           d |        RR | Environments | a\_p.value | b\_p.value | c\_p.value | d\_p.value |
-| --- | ----: | :--------------- | ----------: | ----------: | ----------: | ----------: | --------: | -----------: | ---------: | ---------: | ---------: | ---------: |
+| :-- | ----: | :--------------- | ----------: | ----------: | ----------: | ----------: | --------: | -----------: | ---------: | ---------: | ---------: | ---------: |
 | 1   |     1 | CDC Asterix AGL  | \-0.0187717 |   0.0003372 |   0.0020456 |          NA | 0.8978347 |           16 |  0.0000000 |  0.0000001 |  0.0000000 |         NA |
 | 2   |     1 | CDC Asterix AGL  |   0.0072693 | \-0.0012017 | \-0.0003174 |   0.0001397 | 0.8992827 |           16 |  0.6202032 |  0.1688352 |  0.8110850 |  0.0793975 |
 | 61  |    31 | CN 105777 AGL    | \-0.0203402 |   0.0006260 |   0.0020791 |          NA | 0.8417776 |           18 |  0.0000000 |  0.0000000 |  0.0000000 |         NA |
@@ -410,7 +410,7 @@ knitr::kable(rbind(head(xx), tail(xx)))
 ```
 
 |     | Temperate\_Location | SouthAsian\_Location | Mediterranean\_Location |       RR | Genotypes |
-| --- | :------------------ | :------------------- | :---------------------- | -------: | --------: |
+| :-- | :------------------ | :------------------- | :---------------------- | -------: | --------: |
 | 1   | Ro17                | In16                 | Sp16                    | 0.461770 |       159 |
 | 2   | Su18                | In16                 | Sp16                    | 0.462242 |       159 |
 | 3   | Ro16                | In16                 | Sp16                    | 0.466809 |       159 |
@@ -462,9 +462,13 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 5
 
-[Additional/Additional\_Figure\_05\_PCA\_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+[Additional/Additional\_Figure\_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+
+![](Additional/Additional_Figure_05.png)
 
 ## Additional Figure 6
+
+[Additional/Additional\_Figure\_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -477,6 +481,8 @@ number of genotypes which flowered in all three site-years.*
 ![](Additional/Additional_Figure_08.png)
 
 ## Additional Figure 9
+
+[Additional/Additional\_Figure\_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
 
 ![](Additional/Additional_Figure_09.png)
 

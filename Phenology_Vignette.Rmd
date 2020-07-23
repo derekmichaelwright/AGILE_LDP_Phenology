@@ -1,5 +1,6 @@
 ---
 title: "R Vignette"
+subtitle: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "01-05-2020"
 output:
@@ -15,8 +16,6 @@ output:
   html_document:
     df_print: paged
     toc: yes
-subtitle: Understanding photothermal interactions can help expand production range
-  and increase genetic diversity of lentil (*Lens culinaris* Medik.)
 ---
 
 ```{r setup, include=FALSE}
@@ -27,25 +26,32 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 This vignette contains the `R` code and analysis done for the paper: **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)** 
 
+\pagebreak
+
 # Data Preparation
 
 Load the nessesary R packages, Prepare the data for analysis.
 
 ```{r}
-#install.packages(c("tidyverse","scales","rworldmap","ggrepel","magick","GGally",
-#                   "ggbeeswarm","FactoMineR","plot3D","stringr"))
+#install.packages(c("tidyverse","scales","rworldmap","ggrepel","magick",
+#                   "GGally","ggbeeswarm","FactoMineR","plot3D","stringr",
+#                   "htmlwidgets","plotly","leaflet","leaflet.minicharts"))
 # Load libraries
-library(tidyverse)  # data wrangling
-library(scales)     # rescale()
-library(rworldmap)  # mapBubbles()
-library(ggrepel)    # geom_text_repel() + geom_label_repel()
-library(magick)     # image editing
-library(GGally)     # ggpairs() + ggmatrix()
-library(ggpubr)     # ggarrange()
-library(ggbeeswarm) # geom_quasirandom()
-library(FactoMineR) # PCA() & HCPC()
-library(plot3D)     # 3D plots
-library(stringr)    # str_pad()
+library(tidyverse)   # data wrangling
+library(scales)      # rescale()
+library(rworldmap)   # mapBubbles()
+library(ggrepel)     # geom_text_repel() + geom_label_repel()
+library(magick)      # image editing
+library(GGally)      # ggpairs() + ggmatrix()
+library(ggpubr)      # ggarrange()
+library(ggbeeswarm)  # geom_quasirandom()
+library(FactoMineR)  # PCA() & HCPC()
+library(plot3D)      # 3D plots
+library(stringr)     # str_pad()
+library(htmlwidgets) # saveWidget()
+library(plotly)      # plot_ly()
+library(leaflet)     # leaflet()
+library(leaflet.minicharts) # addMinicharts()
 # General color palettes 
 colors <- c("darkred",   "darkorange3", "darkgoldenrod2", "deeppink3", 
             "steelblue", "darkorchid4", "cornsilk4",      "darkgreen") 
@@ -278,6 +284,9 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Value)) +
   labs(x = NULL, y = NULL)
 ggsave("Supplemental_Figure_01.png", mp, width = 8, height = 5, dpi = 600)
 ```
+
+
+\pagebreak
 
 # Phenology
 
@@ -742,6 +751,8 @@ mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"),
 ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6, dpi = 600)
 ```
 
+\pagebreak
+
 # PCA
 
 ## Figure 3 PCA
@@ -758,29 +769,30 @@ mypca <- PCA(xx, ncp = 10, graph = F)
 # Heirarcical clustering
 mypcaH <- HCPC(mypca, nb.clust = 8, graph = F)
 perc <- round(mypca[[1]][,2], 1)
-x1.1 <- mypcaH[[1]] %>% rownames_to_column("Entry")
-x1.2 <- mypca[[3]]$coord %>% as.data.frame() %>% rownames_to_column("Entry")
-x1 <- left_join(x1.1, x1.2, by = "Entry") %>%
+x1 <- mypcaH[[1]] %>% rownames_to_column("Entry")
+x2 <- mypca[[3]]$coord %>% as.data.frame() %>% rownames_to_column("Entry")
+pca <- left_join(x1, x2, by = "Entry") %>%
   mutate(Entry = as.numeric(Entry)) %>%
   left_join(select(ldp, Entry, Name, Origin), by = "Entry") %>%
   left_join(select(ct, Origin=Country, Region), by = "Origin") %>%
   select(Entry, Name, Origin, Region, Cluster=clust,
          PC1=Dim.1, PC2=Dim.2, PC3=Dim.3, PC4=Dim.4, PC5=Dim.5,
          PC6=Dim.6, PC7=Dim.7, PC8=Dim.8, PC9=Dim.9, PC10=Dim.10)
-write.csv(x1, "data/data_pca_results.csv", row.names = F)
+# Save data
+write.csv(pca, "data/data_pca_results.csv", row.names = F)
 # Prep data
-x2 <- dd %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
+x2 <- dd %>% left_join(select(pca, Entry, Cluster), by = "Entry") %>%
   group_by(Expt, ExptShort, Cluster) %>% 
   summarise(mean = mean(DTF2_scaled, na.rm = T), sd = sd(DTF2_scaled, na.rm = T)) %>%
   ungroup() %>%
-  mutate(ClusterNum = plyr::mapvalues(Cluster, as.character(1:8), summary(x1$Cluster)))
-x3 <- x1 %>% count(Cluster) %>% 
+  mutate(ClusterNum = plyr::mapvalues(Cluster, as.character(1:8), summary(pca$Cluster)))
+x3 <- pca %>% count(Cluster) %>% 
   mutate(Cluster = factor(Cluster, levels = rev(levels(Cluster))), y = n/2)
 for(i in 2:nrow(x3)) { x3$y[i] <- sum(x3$n[1:(i-1)]) + (x3$n[i]/2) }
 # Plot (a) PCA 1v2
 find_hull <- function(df) df[chull(df[,"PC1"], df[,"PC2"]), ]
-polys <- plyr::ddply(x1, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
-mp1.1 <- ggplot(x1) +
+polys <- plyr::ddply(pca, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
+mp1.1 <- ggplot(pca) +
   geom_polygon(data = polys, alpha = 0.15, aes(x = PC1, y = PC2, fill = Cluster)) +
   geom_point(aes(x = PC1, y = PC2, colour = Cluster)) +
   scale_fill_manual(values = colors) +
@@ -791,8 +803,8 @@ mp1.1 <- ggplot(x1) +
        y = paste0("PC2 (", perc[2], "%)"))
 # Plot (a) PCA 1v3
 find_hull <- function(df) df[chull(df[,"PC1"], df[,"PC3"]), ]
-polys <- plyr::ddply(x1, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
-mp1.2 <- ggplot(x1) +
+polys <- plyr::ddply(pca, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
+mp1.2 <- ggplot(pca) +
   geom_polygon(data = polys, alpha = 0.15, aes(x = PC1, y = PC3, fill = Cluster)) +
   geom_point(aes(x = PC1, y = PC3, colour = Cluster)) +
   scale_fill_manual(values = colors) +
@@ -803,8 +815,8 @@ mp1.2 <- ggplot(x1) +
        y = paste0("PC3 (", perc[3], "%)"))
 # Plot (a) PCA 2v3
 find_hull <- function(df) df[chull(df[,"PC2"], df[,"PC3"]), ]
-polys <- plyr::ddply(x1, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
-mp1.3 <- ggplot(x1) +
+polys <- plyr::ddply(pca, "Cluster", find_hull) %>% mutate(Cluster = factor(Cluster))
+mp1.3 <- ggplot(pca) +
   geom_polygon(data = polys, alpha = 0.15, aes(x = PC2, y = PC3, fill = Cluster)) +
   geom_point(aes(x = PC2, y = PC3, colour = Cluster)) +
   scale_fill_manual(values = colors) +
@@ -834,7 +846,7 @@ mp2 <- ggplot(x2, aes(x = ExptShort, y = mean, group = Cluster)) +
 ggsave("Additional/Temp/Temp_F03_1.png", mp1, width = 8, height =   1*6/2.5, dpi = 600)
 ggsave("Additional/Temp/Temp_F03_2.png", mp2, width = 8, height = 1.5*6/2.5, dpi = 600)
 # Plot (c)
-xx <- ldp %>% left_join(select(x1, Entry, Cluster), by = "Entry") %>%
+xx <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry") %>%
   mutate(test1 = factor(paste(Origin, Cluster)))
 xx <- xx %>% filter(!Origin %in% c("ICARDA","USDA","Unknown")) %>% 
   group_by(Origin, Cluster) %>% summarise(Count = n()) %>% 
@@ -862,18 +874,35 @@ im <- image_append(c(im1, im2, im3), stack = T)
 image_write(im, "Figure_03.png")
 ```
 
-## Additional Figure 5 Interactive PCA Plot
+## Additional Figure 5 PCA Plot
 
-```{r eval = F}
-pca <- read.csv("data/data_pca_results.csv") %>% 
+[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+
+![](Additional/Additional_Figure_05.png)
+
+```{r}
+# Prep data
+xx <- read.csv("data/data_pca_results.csv") %>% 
   mutate(Cluster = factor(Cluster),
-         myColors = plyr::mapvalues(Cluster, 1:8, colors))
-rgl::plot3d(pca[,5:7], col = pca$myColors, size = 15)
-rgl::writeWebGL(filename = "Additional/Additional_Figure_05.html", 
-                width = 650, height = 650)
+         myColors = plyr::mapvalues(Cluster, 1:8, colors),
+         PC2 = PC2*3, PC3 = PC3*3)
+# Plot png
+mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Cluster)) +
+  geom_point() +
+  scale_color_manual(values = colors) +
+  theme_AGL +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_blank())
+ggsave("Additional/Additional_Figure_05.png", mp, width = 6, height = 4, dpi = 600)
+# Plot html
+mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors) %>%
+  add_markers()
+saveWidget(mp, file=normalizePath("Additional/Additional_Figure_05.html"))
 ```
 
-## Additional Figure 6 PCA
+## Additional Figure 6 PCA by Region
+
+[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -882,10 +911,11 @@ rgl::writeWebGL(filename = "Additional/Additional_Figure_05.html",
 levs <- c("Africa", "Asia", "Europe", "Americas", "ICARDA", "USDA")
 xx <- read.csv("data/data_pca_results.csv") %>% 
   filter(Origin != "Unknown") %>%
-  mutate(Region = as.character(Region), Origin = as.character(Origin),
+  mutate(Cluster = factor(Cluster),
+         Region = as.character(Region), Origin = as.character(Origin),
          Region = ifelse(Origin %in% levs[5:6], Origin, Region),
          Region = factor(Region, levels = levs))
-# Plot
+# Plot png
 mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   geom_point(alpha = 0.7, size = 2) +
   scale_color_manual(values = colors[c(1,3,8,5,7,7)]) + 
@@ -894,6 +924,11 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.major.y = element_blank())
 ggsave("Additional/Additional_Figure_06.png", mp, width = 6, height = 4, dpi = 600)
+# Plot html
+mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Region, 
+              colors = colors[c(1,3,8,5,7,7)]) %>%
+  add_markers() 
+saveWidget(mp, file=normalizePath("Additional/Additional_Figure_06.html"))
 ```
 
 ## Additional Figure 7 DTF By Cluster
@@ -903,14 +938,14 @@ ggsave("Additional/Additional_Figure_06.png", mp, width = 6, height = 4, dpi = 6
 ```{r}
 # Prep data
 x1 <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
-yy <- c("India", "Bangladesh", "Ethiopia", "Pakistan", "Jordan",
+x2 <- c("India", "Bangladesh", "Ethiopia", "Pakistan", "Jordan",
         "Iran", "Turkey", "Syria", "Chile", "Spain", "Czech Republic", "Canada" )
 xx <- dd %>% left_join(ldp, by = "Entry") %>%
   filter(ExptShort %in% c("Ro17", "Ba17", "Ne17", "It17"), Origin != "Unknown") %>% 
   left_join(select(x1, Entry, Cluster), by = "Entry") %>%
   mutate(Origin = factor(Origin, levels = unique(Origin)[rev(order(unique(Origin)))])) %>%
-  filter(Origin %in% yy) %>%
-  mutate(Origin = factor(Origin, levels = yy))
+  filter(Origin %in% x2) %>%
+  mutate(Origin = factor(Origin, levels = x2))
 # Plot
 mp <- ggplot(xx, aes(y = DTF2, x = Origin)) + 
   geom_quasirandom(aes(color = Cluster)) + 
@@ -931,8 +966,8 @@ ggsave("Additional/Additional_Figure_07.png", mp, width = 5, height = 7, dpi = 6
 
 ```{r}
 # Prep data
-pca <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
-xx <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry") %>%
+xx <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
+xx <- ldp %>% left_join(select(xx, Entry, Cluster), by = "Entry") %>%
   mutate(test1 = factor(paste(Origin, Cluster)))
 x1 <- xx %>% filter(Origin != "ICARDA") %>% 
   group_by(Origin, Cluster) %>% summarise(Count = n()) %>% 
@@ -955,18 +990,21 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9 LDP Origins By Cluster
 
+[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+
 ![](Additional/Additional_Figure_09.png)
 
 ```{r}
 # Prep data
-x1 <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
-xx <- ldp %>% select(Entry, Name, Lat, Lon) %>% left_join(x1, by = "Entry") %>%
+xx <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
+xx <- ldp %>% select(Entry, Name, Lat, Lon, Origin) %>% 
+  left_join(select(xx, Entry, Cluster), by = "Entry") %>%
   left_join(select(ct, Origin=Country, cLat=Lat, cLon=Lon), by = "Origin") %>%
   mutate(Lat = ifelse(is.na(Lat), cLat, Lat),
          Lon = ifelse(is.na(Lon), cLon, Lon),
          Lat = ifelse(duplicated(Lat), jitter(Lat, 1, 1), Lat),
          Lon = ifelse(duplicated(Lon), jitter(Lon, 1, 1), Lon), Size = 1)
-# Plot
+# Plot png
 invisible(png("Additional/Additional_Figure_09.png", 
               width = 7200, height = 4400, res = 600)) #res = 150
 par(mai = c(0,0,0,0), xaxs = "i", yaxs = "i")
@@ -976,9 +1014,21 @@ mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
            xlim = c(-140,110), ylim = c(0,20), 
            oceanCol = "grey90", landCol = "white", borderCol = "black")
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
-       pch = 16, cex = 2, pt.cex = 3, box.lwd = 2)
+       pch = 16, cex = 1.75, pt.cex = 3, box.lwd = 2)
 invisible(dev.off())
+# Plot html
+pal <- colorFactor(colors, domain = 1:8)
+mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
+      addMinicharts(lat = xx$Lat, lng = xx$Lon, width = 10,
+                    fillColor = pal(xx$Cluster),
+                    #colorPalette = xx$Cluster,
+                    popup = popupArgs(supValues = xx[,1:6], showValues = F)) %>%
+    addLegend("bottomleft", pal = pal, values = 1:8,
+             title = "Cluster", opacity = 1 )
+saveWidget(mp, file=normalizePath("Additional/Additional_Figure_09.html"))
 ```
+
+\pagebreak
 
 # Modeling DTF
 

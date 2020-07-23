@@ -3,13 +3,13 @@ title: "Understanding photothermal interactions can help expand production range
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "01-05-2020"
 output: 
+  github_document: default
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
     gallery: true
     highlight: tango
     css: custom.css
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -253,9 +253,13 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 
 ## Additional Figure 5
 
-[Additional/Additional_Figure_05_PCA_3D.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+[Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+
+![](Additional/Additional_Figure_05.png)
 
 ## Additional Figure 6
+
+[Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -268,6 +272,8 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 ![](Additional/Additional_Figure_08.png)
 
 ## Additional Figure 9
+
+[Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
 
 ![](Additional/Additional_Figure_09.png)
 
