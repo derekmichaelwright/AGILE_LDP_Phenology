@@ -482,8 +482,6 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 9
 
-[Additional/Additional\_Figure\_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
-
 ![](Additional/Additional_Figure_09.png)
 
 ## Additional Figure 10

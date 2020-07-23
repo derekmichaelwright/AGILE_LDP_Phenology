@@ -4,6 +4,8 @@ subtitle: "Understanding photothermal interactions can help expand production ra
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "01-05-2020"
 output:
+  pdf_document:
+    toc: yes
   rmdformats::readthedown:
     code_folding: show
     css: custom.css
@@ -11,8 +13,6 @@ output:
     highlight: tango
     lightbox: yes
     self_contained: yes
-  pdf_document:
-    toc: yes
   html_document:
     df_print: paged
     toc: yes
@@ -48,10 +48,8 @@ library(ggbeeswarm)  # geom_quasirandom()
 library(FactoMineR)  # PCA() & HCPC()
 library(plot3D)      # 3D plots
 library(stringr)     # str_pad()
-library(htmlwidgets) # saveWidget()
 library(plotly)      # plot_ly()
-library(leaflet)     # leaflet()
-library(leaflet.minicharts) # addMinicharts()
+library(htmlwidgets) # saveWidget()
 # General color palettes 
 colors <- c("darkred",   "darkorange3", "darkgoldenrod2", "deeppink3", 
             "steelblue", "darkorchid4", "cornsilk4",      "darkgreen") 
@@ -169,6 +167,8 @@ ct <- read.csv("data/data_countries.csv") %>% filter(Country %in% ldp$Origin)
 - `ee`  = Environmental Data
 - `ff`  = Field Trial Info
 - `ct`  = Country Info
+
+\pagebreak
 
 # Materials & Methods
 
@@ -895,7 +895,8 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Cluster)) +
         panel.grid.major.y = element_blank())
 ggsave("Additional/Additional_Figure_05.png", mp, width = 6, height = 4, dpi = 600)
 # Plot html
-mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors) %>%
+mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors,
+              text = ~paste(Entry, Name, sep = " | ")) %>%
   add_markers()
 saveWidget(mp, file=normalizePath("Additional/Additional_Figure_05.html"))
 ```
@@ -926,7 +927,8 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
 ggsave("Additional/Additional_Figure_06.png", mp, width = 6, height = 4, dpi = 600)
 # Plot html
 mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Region, 
-              colors = colors[c(1,3,8,5,7,7)]) %>%
+              colors = colors[c(1,3,8,5,7,7)], 
+              text = ~paste(Entry, Name, sep = " | ")) %>%
   add_markers() 
 saveWidget(mp, file=normalizePath("Additional/Additional_Figure_06.html"))
 ```
@@ -990,8 +992,6 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9 LDP Origins By Cluster
 
-[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
-
 ![](Additional/Additional_Figure_09.png)
 
 ```{r}
@@ -1016,16 +1016,6 @@ mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
        pch = 16, cex = 1.75, pt.cex = 3, box.lwd = 2)
 invisible(dev.off())
-# Plot html
-pal <- colorFactor(colors, domain = 1:8)
-mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
-      addMinicharts(lat = xx$Lat, lng = xx$Lon, width = 10,
-                    fillColor = pal(xx$Cluster),
-                    #colorPalette = xx$Cluster,
-                    popup = popupArgs(supValues = xx[,1:6], showValues = F)) %>%
-    addLegend("bottomleft", pal = pal, values = 1:8,
-             title = "Cluster", opacity = 1 )
-saveWidget(mp, file=normalizePath("Additional/Additional_Figure_09.html"))
 ```
 
 \pagebreak
