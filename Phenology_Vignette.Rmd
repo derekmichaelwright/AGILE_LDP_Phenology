@@ -4,8 +4,6 @@ subtitle: "Understanding photothermal interactions can help expand production ra
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "01-05-2020"
 output:
-  pdf_document:
-    toc: yes
   rmdformats::readthedown:
     code_folding: show
     css: custom.css
@@ -13,6 +11,8 @@ output:
     highlight: tango
     lightbox: yes
     self_contained: yes
+  pdf_document:
+    toc: yes
   html_document:
     df_print: paged
     toc: yes
@@ -915,7 +915,8 @@ xx <- read.csv("data/data_pca_results.csv") %>%
   mutate(Cluster = factor(Cluster),
          Region = as.character(Region), Origin = as.character(Origin),
          Region = ifelse(Origin %in% levs[5:6], Origin, Region),
-         Region = factor(Region, levels = levs))
+         Region = factor(Region, levels = levs),
+         PC2 = PC2*3, PC3 = PC3*3)
 # Plot png
 mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Region, shape = Region)) +
   geom_point(alpha = 0.7, size = 2) +
