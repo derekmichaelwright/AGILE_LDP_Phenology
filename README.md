@@ -310,11 +310,6 @@ flowering, calculated using equation 6.*
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv>
 
-``` r
-xx <- read.csv("Supplemental_Table_01.csv")
-DT::datatable(xx[c(1:5,31:35,101:105,320:324),])
-```
-
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 *Table S1: Genotype entry number, name, common synonyms, origin and
@@ -328,11 +323,6 @@ Resources of Canada (PGRC), United States Department of Agriculture
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv>
 
-``` r
-xx <- read.csv("Supplemental_Table_02.csv")
-DT::datatable(xx)
-```
-
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 *Table S2: Details of the field trials used in this study, including
@@ -343,11 +333,6 @@ and details on plot type and number of seeds sown.*
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv>
 
-``` r
-xx <- read.csv("Supplemental_Table_03.csv")
-DT::datatable(xx[c(1:2,61:62,201:202,647:648),])
-```
-
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 *Table S3: Values of the constants derived from equations 1 and 2 using
@@ -356,11 +341,6 @@ data from all site-years, for each of the genotypes used in this study.*
 ## Supplemental Table 4
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv>
-
-``` r
-xx <- read.csv("Supplemental_Table_04.csv")
-DT::datatable(rbind(head(xx), tail(xx)))
-```
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
@@ -420,6 +400,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 9
 
+[Additional/Additional\_Figure\_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+
 ![](Additional/Additional_Figure_09.png)
 
 ## Additional Figure 10
@@ -444,7 +426,7 @@ number of genotypes which flowered in all three site-years.*
 
 ## Phothermal Animation
 
-![](Additional/Animation_3D.gif)
+![](README_files/figure-gfm/unnamed-chunk-5-1.gif)<!-- -->
 
 # PDFs
 
