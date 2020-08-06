@@ -22,11 +22,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.width = "100%")
 ```
 
-![](Additional/img_Agile.png)
+# Introduction
 
 This vignette contains the `R` code and analysis done for the paper: **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)** 
 
-\pagebreak
+This work done as part of the AGILE project at the University of Saskatchewan.
+
+![](Additional/img_Agile.png)
 
 # Data Preparation
 
@@ -49,6 +51,8 @@ library(FactoMineR)  # PCA() & HCPC()
 library(plot3D)      # 3D plots
 library(stringr)     # str_pad()
 library(plotly)      # plot_ly()
+library(leaflet)     # leaflet()
+library(leaflet.minicharts) # addMinicharts()
 library(htmlwidgets) # saveWidget()
 # General color palettes 
 colors <- c("darkred",   "darkorange3", "darkgoldenrod2", "deeppink3", 
@@ -172,29 +176,22 @@ ct <- read.csv("data/data_countries.csv") %>% filter(Country %in% ldp$Origin)
 
 # Materials & Methods
 
-## Supplemental table 1
+## Supplemental Table 1
 
 ```{r}
 s1 <- select(ldp, Entry, Name, Origin, Source, Synonyms)
 write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
+str(s1)
 ```
 
-```{r echo = F}
-knitr::kable(s1[c(1:5,320:324),])
-```
-
-## Supplemental table 2
+## Supplemental Table 2
 
 ```{r}
 s2 <- select(ff, Location, Year, `Short Name`=ExptShort, Latitude=Lat, Longitude=Lon,
   `Planting Date`=Start, `Temperature (mean)`=T_mean, `Photoperiod (mean)`=P_mean, 
   `Number of Seeds Sown`=Number_of_Seeds_Sown, `Plot Type`=Plot_Type)
 write.csv(s2, "Supplemental_Table_02.csv", row.names = F)
-```
-
-```{r echo = F}
 str(s2)
-#knitr::kable(s2)
 ```
 
 ## Figure 1 Field Trial Info
@@ -846,8 +843,7 @@ mp2 <- ggplot(x2, aes(x = ExptShort, y = mean, group = Cluster)) +
 ggsave("Additional/Temp/Temp_F03_1.png", mp1, width = 8, height =   1*6/2.5, dpi = 600)
 ggsave("Additional/Temp/Temp_F03_2.png", mp2, width = 8, height = 1.5*6/2.5, dpi = 600)
 # Plot (c)
-xx <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry") %>%
-  mutate(test1 = factor(paste(Origin, Cluster)))
+xx <- ldp %>% left_join(select(pca, Entry, Cluster), by = "Entry")
 xx <- xx %>% filter(!Origin %in% c("ICARDA","USDA","Unknown")) %>% 
   group_by(Origin, Cluster) %>% summarise(Count = n()) %>% 
   spread(Cluster, Count) %>%
@@ -876,7 +872,7 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5 PCA Plot
 
-[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+[View as an Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
 ![](Additional/Additional_Figure_05.png)
 
@@ -903,7 +899,7 @@ saveWidget(mp, file=normalizePath("Additional/Additional_Figure_05.html"))
 
 ## Additional Figure 6 PCA by Region
 
-[Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
+[View as an Interactive Plot](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -970,8 +966,7 @@ ggsave("Additional/Additional_Figure_07.png", mp, width = 5, height = 7, dpi = 6
 ```{r}
 # Prep data
 xx <- read.csv("data/data_pca_results.csv") %>% mutate(Cluster = factor(Cluster))
-xx <- ldp %>% left_join(select(xx, Entry, Cluster), by = "Entry") %>%
-  mutate(test1 = factor(paste(Origin, Cluster)))
+xx <- ldp %>% left_join(select(xx, Entry, Cluster), by = "Entry")
 x1 <- xx %>% filter(Origin != "ICARDA") %>% 
   group_by(Origin, Cluster) %>% summarise(Count = n()) %>% 
   spread(Cluster, Count) %>%
@@ -1017,6 +1012,16 @@ mapBubbles(dF = xx, nameX = "Lon", nameY = "Lat", nameZColour = "Cluster",
 legend(-139.5, 15.5, title = "Cluster", legend = 1:8, col = colors,
        pch = 16, cex = 1.75, pt.cex = 3, box.lwd = 2)
 invisible(dev.off())
+# Plot html
+library(leaflet); library(leaflet.minicharts)
+pal <- colorFactor(colors, domain = 1:8)
+mp <- leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>%
+  addMinicharts(lng = xx$Lon, lat = xx$Lat, width = 10,
+                fillColor = pal(xx$Cluster),
+                popup = popupArgs(supValues = xx, showValues = F) ) %>%
+  addLegend("bottomleft", pal = pal, values = xx$Cluster,
+            title = "Cluster", opacity = 1 )
+saveWidget(mp, file=normalizePath("Additional/Additional_Figure_09.html"))
 ```
 
 \pagebreak
@@ -1492,11 +1497,7 @@ xx <- bind_rows(x1, x2) %>% arrange(Entry) %>%
          a_p.value=aP, b_p.value=bP, c_p.value=cP, d_p.value=dP)
 # Save
 write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
-```
-
-```{r echo = F}
 str(xx)
-#knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
 ```
 
 ## Additional Figure 10 significant T x P interactions
@@ -1505,6 +1506,10 @@ str(xx)
 
 ```{r}
 # Prep data
+x1 <- read.csv("data/model_t+p_coefs.csv")
+x2 <- read.csv("data/model_txp_coefs.csv")
+xx <- bind_rows(x1, x2) %>% arrange(Entry) %>% 
+  select(Entry, Name, a, b, c, d, RR)
 ents <- x2 %>% filter(dP < 0.05) %>% pull(Entry)
 xx <- xx %>% filter(Entry %in% ents)
 xx <- xx %>% arrange(RR) %>% 
@@ -1761,7 +1766,7 @@ write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
 
 ```{r echo = F}
 xx <- read.csv("Supplemental_Table_04.csv")
-knitr::kable(rbind(head(xx), tail(xx)))
+str(xx)
 ```
 
 ## Modeling DTF (T + P) - 3 Best

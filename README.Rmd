@@ -3,13 +3,15 @@ title: "Understanding photothermal interactions can help expand production range
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "01-05-2020"
 output: 
+  github_document: default
+  pdf_document:
+    toc: yes
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
     gallery: true
     highlight: tango
     css: custom.css
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -45,6 +47,8 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - International Center for Agriculture Research in the Dry Areas, New Delhi, India
 - Local Initiatives for Biodiversity, Research and Development, Pokhara, Nepal
 - Bangladesh Agricultural Research Institute, Jessore, Bangladesh
+
+\pagebreak
 
 ## Sponsors
 
@@ -184,47 +188,47 @@ or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ## Supplemental Table 1
 
-```{r}
+https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv
+
+```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_01.csv")
-knitr::kable(xx[c(1:5,31:35,101:105,320:324),])
+DT::datatable(xx)
 ```
 
 *Table S1: Genotype entry number, name, common synonyms, origin and source of lentil genotypes used in this study. These genotypes are gathered from the University of Saskatchewan (USASK), Plant Gene Resources of Canada (PGRC), United States Department of Agriculture (USDA), International Center for Agricultural Research in the Dry Areas (ICARDA).*
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv
-
 ## Supplemental Table 2
 
-```{r}
+https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv
+
+```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_02.csv")
-knitr::kable(xx)
+DT::datatable(xx)
 ```
 
 *Table S2: Details of the field trials used in this study, including location information, planting dates, mean temperature and photoperiods and details on plot type and number of seeds sown.*
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv
-
 ## Supplemental Table 3
 
-```{r}
+https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv
+
+```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_03.csv")
-knitr::kable(xx[c(1:2,61:62,201:202,647:648),])
+DT::datatable(xx)
 ```
 
 *Table S3: Values of the constants derived from equations 1 and 2 using data from all site-years, for each of the genotypes used in this study.*
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv
-
 ## Supplemental Table 4
 
-```{r}
+https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv
+
+```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_04.csv")
-knitr::kable(rbind(head(xx), tail(xx)))
+DT::datatable(xx)
 ```
 
 *Table S4: All possible combinations of a single temperate, South Asian, and Mediterranean site-year, used to train the model, with equation 1, along with the corresponding coefficient of determination (RR = R2), and number of genotypes which flowered in all three site-years.*
-
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv
 
 # Data Results Files
 
@@ -273,6 +277,8 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 
 ## Additional Figure 9
 
+[Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+
 ![](Additional/Additional_Figure_09.png)
 
 ## Additional Figure 10
@@ -297,31 +303,20 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplement
 
 ## Phothermal Animation
 
-![](Additional/Animation_3D.gif)
+```{r echo = F, eval = T}
+magick::image_read("Additional/Animation_3D.gif")
+```
 
 # PDFs
 
 ## Temperature and Photoperiod Regressions
 
-```{r echo = F, eval = F}
-library(magick)
-image_read("Additional/Animation_TP.gif")
-```
-
 [pdf of Temperature and Photoperiod Regressions](Additional/pdf_TP.pdf)
 
 ## Model Predictions
 
-```{r echo = F, eval = F}
-image_read("Additional/Animation_TP.gif")
-```
-
 [pdf of Model Predictions](Additional/pdf_Model.pdf)
 
 ## Photothermal Planes 
-
-```{r echo = F, eval = F}
-image_read("Additional/Animation_TP.gif")
-```
 
 [pdf of Photothermal Planes](Additional/pdf_3D.pdf)
