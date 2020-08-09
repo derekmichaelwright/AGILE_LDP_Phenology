@@ -22,6 +22,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.width = "100%")
 ```
 
+\pagebreak
+
 # Introduction
 
 This vignette contains the `R` code and analysis done for the paper: **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)** 
@@ -30,14 +32,16 @@ This work done as part of the AGILE project at the University of Saskatchewan.
 
 ![](Additional/img_Agile.png)
 
+\pagebreak
+
 # Data Preparation
 
 Load the nessesary R packages, Prepare the data for analysis.
 
 ```{r}
 #install.packages(c("tidyverse","scales","rworldmap","ggrepel","magick",
-#                   "GGally","ggbeeswarm","FactoMineR","plot3D","stringr",
-#                   "htmlwidgets","plotly","leaflet","leaflet.minicharts"))
+#                   "GGally","ggpubr,"ggbeeswarm","FactoMineR","plot3D","stringr",
+#                   "plotly","leaflet","leaflet.minicharts","htmlwidgets"))
 # Load libraries
 library(tidyverse)   # data wrangling
 library(scales)      # rescale()
@@ -89,7 +93,7 @@ theme_AGL <- theme_bw() +
         panel.background = element_rect(colour = "black", fill = NA, size = 0.5),
         panel.border     = element_rect(colour = "black", size = 0.5),
         panel.grid       = element_line(color  = alpha("black", 0.1), size = 0.5),
-        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.x = element_blank(), 
         panel.grid.minor.y = element_blank())
 # Create scaling function
 traitScale <- function(x, trait) {
@@ -104,7 +108,6 @@ traitScale <- function(x, trait) {
 # Prep data
 # Notes: 
 # - DTF2 = non-flowering genotypes <- group_by(Expt) %>% max(DTF)
-#
 rr <- read.csv("data/data_raw.csv") %>% 
   mutate(Rep          = factor(Rep), 
          Year         = factor(Year), 

@@ -9,14 +9,16 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+\pagebreak
 
 [View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 
@@ -47,8 +49,6 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 - International Center for Agriculture Research in the Dry Areas, New Delhi, India
 - Local Initiatives for Biodiversity, Research and Development, Pokhara, Nepal
 - Bangladesh Agricultural Research Institute, Jessore, Bangladesh
-
-\pagebreak
 
 ## Sponsors
 
