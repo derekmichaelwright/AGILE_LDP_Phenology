@@ -9,9 +9,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
-  github_document: default
   pdf_document:
     toc: yes
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -26,6 +26,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # Contents
 
+- [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data)
 - [Source Code Vignette](#source-code-vignette)
 - [Shiny App](#shiny-app)
 - [Figures](#figures)
@@ -66,7 +67,7 @@ Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sr
 
 # Shiny App
 
-Download this folder and run `app.R` in `R`
+Download this repository and run `app.R` in `R`
 
 or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
