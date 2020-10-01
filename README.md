@@ -14,7 +14,6 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # Contents
 
-  - [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data)
   - [Source Code Vignette](#source-code-vignette)
   - [Shiny App](#shiny-app)
   - [Figures](#figures)
@@ -62,7 +61,7 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
 
 # Shiny App
 
-Download this repository and run `app.R` in `R`
+Download this folder and run `app.R` in `R`
 
 or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
