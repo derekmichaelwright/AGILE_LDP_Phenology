@@ -4,17 +4,28 @@ and increase genetic diversity of lentil (*Lens culinaris* Medik.)
 Derek Michael Wright <derek.wright@usask.ca>
 01-05-2020
 
-[View as
-HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
+-----
 
-Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice
+[Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice
 Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia,
 Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
-Sarker, Albert Vandenberg, and Kirstin E. Bett
+Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) Understanding
+photothermal interactions can help expand production range and increase
+genetic diversity of lentil (*Lens culinaris* Medik.). *Plants, People,
+Planet*.](https://www.biorxiv.org/content/10.1101/2020.07.18.207761v1.abstract)
+
+-----
+
+[View as
+pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf)
+
+[Source Code Vignette
+(Phenology\_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
+
+[Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data)
 
 # Contents
 
-  - [Source Code Vignette](#source-code-vignette)
   - [Shiny App](#shiny-app)
   - [Figures](#figures)
   - [Supplemental Figures](#supplemental-figures)
@@ -53,19 +64,17 @@ Sarker, Albert Vandenberg, and Kirstin E. Bett
   - GenomeCanada
   - Saskatchewan Ministry of Agriculture
 
-# Source Code Vignette
-
-[Phenology\_Vignette.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
-
-[Phenology\_Vignette.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Phenology_Vignette.pdf)
+-----
 
 # Shiny App
 
-Download this folder and run `app.R` in `R`
+Download this repository and run `app.R` in `R`
 
 or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
 
 ![](Additional/img_Shiny.png)
+
+-----
 
 # Figures
 
@@ -82,6 +91,8 @@ Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and
 Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017
 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya,
 Nepal 2016 and 2017 (Ne16, Ne17).*
+
+-----
 
 ## Figure 2
 
@@ -103,6 +114,8 @@ Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and
 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17),
 Bardiya, Nepal 2016 and 2017 (Ne16, Ne17).*
 
+-----
+
 ## Figure 3
 
 ![](Figure_03.png)
@@ -123,6 +136,8 @@ Mediterranean macro-environments. (c) Composition of cluster groups in
 genotypes by country of origin. Pie size is relative to the number of
 genotypes originating from that country.*
 
+-----
+
 ## Figure 4
 
 ![](Figure_04.png)
@@ -133,6 +148,8 @@ panel calculated using equation 1. For each site-year, the model was
 retrained after removing all observations from that location, regardless
 of year before predicting results from that location. R2 = coefficient
 of determination, RMSE = root-mean-square error.*
+
+-----
 
 ## Figure 5
 
@@ -147,6 +164,8 @@ respectively, using the mean temperature (T) and photoperiod (P) from
 Sutherland, Canada 2017, Jessore, Bangladesh 2017 and Metaponto, Italy
 2017.*
 
+-----
+
 ## Figure 6
 
 ![](Figure_06.png)
@@ -158,6 +177,8 @@ constant a (x 104) derived from equation 1. (b) Comparison of
 temperature response (b x 104) and photoperiod response (c x 104)
 derived from equation 1. Polygons represent the variation inherent in
 the region where the crop was domesticated.*
+
+-----
 
 ## Figure 7
 
@@ -171,6 +192,8 @@ Sutherland, Canada 2017 (Su17), Central Ferry, USA 2018 (Us18), Bhopal,
 India 2017 (In17), Jessore, Bangladesh 2017 (Ba17), Bardiya, Nepal 2017
 (Ne17), Marchouch, Morocco 2017 (Mo17), Cordoba, Spain 2017 (Sp17) and
 Metaponto, Italy 2017 (It17).*
+
+-----
 
 # Supplemental Figures
 
@@ -188,6 +211,8 @@ Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017
 Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17). Genotypes which did
 not flower were given a scaled value of 5.*
 
+-----
+
 ## Supplemental Figure 2
 
 ![](Supplemental_Figure_02.png)
@@ -195,6 +220,8 @@ not flower were given a scaled value of 5.*
 *Figure S2: Percentage of lentil genotypes reaching key phenological
 time points in South Asian locations. Days from sowing to: flowering
 (DTF), swollen pods (DTS) and maturity (DTM).*
+
+-----
 
 ## Supplemental Figure 3
 
@@ -204,6 +231,8 @@ time points in South Asian locations. Days from sowing to: flowering
 coefficients (R2) between days from sowing to: flowering (DTF), swollen
 pod (DTS) and maturity (DTM), in temperate (top), South Asian (middle)
 and Mediterranean (bottom) locations.*
+
+-----
 
 ## Supplemental Figure 4
 
@@ -224,12 +253,16 @@ respectively. ILL 5888 is an early maturing, genotype from Bangladesh.
 PI 420925 LSP is a landrace from Jordan with medium maturity. Laird is a
 late maturing, Canadian cultivar.*
 
+-----
+
 ## Supplemental Figure 5
 
 ![](Supplemental_Figure_05.png)
 
 *Figure S5: Comparison of observed and predicted values for days from
 sowing to flowering using (a) equation 1 and (b) equation 2.*
+
+-----
 
 ## Supplemental Figure 6
 
@@ -243,6 +276,8 @@ site-years for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal,
 India 2016 (In16) and Cordoba, Spain 2016 (Sp16), from Roberts et al.,
 (1988) and from Summerfield et al., (1985) with (+V) and without (-V) a
 seed vernalization treatment.*
+
+-----
 
 ## Supplemental Figure 7
 
@@ -259,6 +294,8 @@ only be made with genotypes that flowered in all three locations,
 therefore, predictions in (a) are based on 291 and in (b) based on 159
 of 324 genotypes used in this study.*
 
+-----
+
 ## Supplemental Figure 8
 
 ![](Supplemental_Figure_08.png)
@@ -269,6 +306,8 @@ predicting DTF, Sutherland, Canada 2016 (Su16), Jessore, Bangladesh 2017
 (Ba17) and Cordoba, Spain 2017 (Sp17), and the three worst site-years
 for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016
 (In16) and Cordoba, Spain 2016 (Sp16).*
+
+-----
 
 ## Supplemental Figure 9
 
@@ -286,6 +325,8 @@ Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and
 Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017
 (Ne16, Ne17).*
 
+-----
+
 ## Supplemental Figure 10
 
 ![](Supplemental_Figure_10.png)
@@ -294,6 +335,8 @@ Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017
 coefficient of determination (R2) and root-mean-square error (RMSE), for
 (a) thermal sum required for flowering and (b) days from sowing to
 flowering, calculated using equation 5.*
+
+-----
 
 ## Supplemental Figure 11
 
@@ -304,11 +347,13 @@ coefficient of determination (R2) and root-mean-square error (RMSE) for
 (a) photoperiodic sum required for flowering and (b) days from sowing to
 flowering, calculated using equation 6.*
 
+-----
+
 # Supplemental Tables
 
 ## Supplemental Table 1
 
-<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv>
+[Supplemental\_Table\_01.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv)
 
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
@@ -318,6 +363,8 @@ gathered from the University of Saskatchewan (USASK), Plant Gene
 Resources of Canada (PGRC), United States Department of Agriculture
 (USDA), International Center for Agricultural Research in the Dry Areas
 (ICARDA).*
+
+-----
 
 ## Supplemental Table 2
 
@@ -329,6 +376,8 @@ Resources of Canada (PGRC), United States Department of Agriculture
 location information, planting dates, mean temperature and photoperiods
 and details on plot type and number of seeds sown.*
 
+-----
+
 ## Supplemental Table 3
 
 <https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv>
@@ -337,6 +386,8 @@ and details on plot type and number of seeds sown.*
 
 *Table S3: Values of the constants derived from equations 1 and 2 using
 data from all site-years, for each of the genotypes used in this study.*
+
+-----
 
 ## Supplemental Table 4
 
@@ -349,6 +400,8 @@ and Mediterranean site-year, used to train the model, with equation 1,
 along with the corresponding coefficient of determination (RR = R2), and
 number of genotypes which flowered in all three site-years.*
 
+-----
+
 # Data Results Files
 
   - [PCA Results
@@ -360,23 +413,33 @@ number of genotypes which flowered in all three site-years.*
   - [Response to Temperature or Photoperiod increases
     (data/data\_temp\_phtoto\_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
 
+-----
+
 # Additional Figures
 
 ## Additional Figure 1
 
 ![](Additional/Additional_Figure_01.png)
 
+-----
+
 ## Additional Figure 2
 
 ![](Additional/Additional_Figure_02.png)
+
+-----
 
 ## Additional Figure 3
 
 ![](Additional/Additional_Figure_03.png)
 
+-----
+
 ## Additional Figure 4
 
 ![](Additional/Additional_Figure_04.png)
+
+-----
 
 ## Additional Figure 5
 
@@ -384,19 +447,27 @@ number of genotypes which flowered in all three site-years.*
 
 ![](Additional/Additional_Figure_05.png)
 
+-----
+
 ## Additional Figure 6
 
 [Additional/Additional\_Figure\_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png)
 
+-----
+
 ## Additional Figure 7
 
 ![](Additional/Additional_Figure_07.png)
 
+-----
+
 ## Additional Figure 8
 
 ![](Additional/Additional_Figure_08.png)
+
+-----
 
 ## Additional Figure 9
 
@@ -404,40 +475,70 @@ number of genotypes which flowered in all three site-years.*
 
 ![](Additional/Additional_Figure_09.png)
 
+-----
+
 ## Additional Figure 10
 
 ![](Additional/Additional_Figure_10.png)
+
+-----
 
 ## Additional Figure 11
 
 ![](Additional/Additional_Figure_11.png)
 
+-----
+
 ## Additional Figure 12
 
 ![](Additional/Additional_Figure_12.png)
+
+-----
 
 ## Additional Figure 13
 
 ![](Additional/Additional_Figure_13.png)
 
+-----
+
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14.png)
 
+-----
+
 ## Phothermal Animation
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.gif)<!-- -->
+[Additional/Animation\_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.gif)<!-- -->
+
+-----
 
 # PDFs
 
+## Entry Phenology
+
+[pdf\_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
+
+-----
+
 ## Temperature and Photoperiod Regressions
 
-[pdf of Temperature and Photoperiod Regressions](Additional/pdf_TP.pdf)
+[pdf\_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
+
+-----
 
 ## Model Predictions
 
-[pdf of Model Predictions](Additional/pdf_Model.pdf)
+[pdf\_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
+
+-----
 
 ## Photothermal Planes
 
-[pdf of Photothermal Planes](Additional/pdf_3D.pdf)
+[pdf\_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+
+-----
+
+© Derek Michael Wright 2020
