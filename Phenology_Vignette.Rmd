@@ -901,6 +901,11 @@ image_write(im, "Figure_03.png")
 
 [data/data_pca_results.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
 
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_pca_results.csv")
+DT::datatable(xx)
+```
+
 ---
 
 ## Additional Figure 5: PCA Plot
@@ -1465,13 +1470,18 @@ for (i in 1:324) { print(mp[[i]]) }
 dev.off()
 ```
 
+[Additional/pdf_model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/pdf_model.pdf)
+
+[data/model_t+p_coefs.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/model_t+p_coefs.csv)
+
 [data/model_t+p.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p.csv)
 
 [data/model_t+p_d.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_d.csv)
 
-[data/model_t+p_coefs.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/model_t+p_coefs.csv)
-
-[Additional/pdf_model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/pdf_model.pdf)
+```{r echo = F, eval = T}
+xx <- read.csv("data/model_t+p_coefs.csv")
+DT::datatable(xx)
+```
 
 ---
 
@@ -1567,6 +1577,11 @@ write.csv(mc, "data/model_txp_coefs.csv", row.names = F)
 [data/model_txp_d.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_txp_d.csv)
 
 [data/model_txp_coefs.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_txp_coefs.csv)
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/model_txp_coefs.csv")
+DT::datatable(xx)
+```
 
 ---
 
@@ -1820,6 +1835,11 @@ write.csv(md, "data/model_test_d.csv", row.names = F)
 [data/model_test.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
 
 [data/model_test_d.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/model_test_d.csv")
+DT::datatable(xx)
+```
 
 ---
 
@@ -2278,6 +2298,11 @@ write.csv(xx,"data/data_tb_pc.csv", row.names = F)
 
 [data/data_tb_pc.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
 
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_tb_pc.csv")
+DT::datatable(xx)
+```
+
 ---
 
 ## Figure 5: Tb and Pc
@@ -2603,7 +2628,7 @@ xx <- bind_rows(x1, x2) %>%
   select(Expt, ExptShort, MacroEnv, Entry, Name, Cluster, 
          DTF_0, DTF_1, Difference, Treatment) %>%
   mutate(Treatment = factor(Treatment, levels = c("T + 1.5", "P + 0.1")))
-write.csv(xx, "data/data_temp_phtoto_increase.csv", row.names = F)
+write.csv(xx, "data/data_temp_photo_increase.csv", row.names = F)
 new.lab <- as_labeller(c(`T + 1.5` = "italic(T)~+~1.5~degree*C", 
     `P + 0.1` = "italic(P)~+~0.1~h", Mediterranean = "Mediterranean", 
     Temperate = "Temperate", `South Asia` = "South~Asia"), label_parsed)
@@ -2626,7 +2651,12 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) +
 ggsave("Figure_07.png", mp, width = 7, height = 5, dpi = 600)
 ```
 
-[data/data_temp_phtoto_increase.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
+[data/data_temp_photo_increase.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_temp_photo_increase.csv")
+DT::datatable(xx)
+```
 
 ---
 

@@ -368,7 +368,7 @@ Resources of Canada (PGRC), United States Department of Agriculture
 
 ## Supplemental Table 2
 
-<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv>
+[Supplemental\_Table\_02.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv)
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -380,7 +380,7 @@ and details on plot type and number of seeds sown.*
 
 ## Supplemental Table 3
 
-<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv>
+[Supplemental\_Table\_03.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv)
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -391,7 +391,7 @@ data from all site-years, for each of the genotypes used in this study.*
 
 ## Supplemental Table 4
 
-<https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv>
+[Supplemental\_Table\_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
@@ -404,14 +404,33 @@ number of genotypes which flowered in all three site-years.*
 
 # Data Results Files
 
-  - [PCA Results
-    (data/data\_pca\_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
-  - [Photothermal Model Results
-    (data/data\_model\_t+p.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t%2Bp.csv)
-  - [Nominal Base Temperature and Photoperiod
-    (data/data\_tb\_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
-  - [Response to Temperature or Photoperiod increases
-    (data/data\_temp\_phtoto\_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_phtoto_increase.csv)
+## PCA
+
+[PCA Results
+(data/data\_pca\_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## PhotoThermal Model
+
+[Photothermal Model Results
+(data/data\_model\_t+p\_coefs.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_coefs.csv)
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+## Base Temperature and Photoperiod
+
+[Nominal Base Temperature and Photoperiod
+(data/data\_tb\_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+## Climate Change
+
+[Response to Temperature or Photoperiod increases
+(data/data\_temp\_photo\_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 -----
 
@@ -511,7 +530,7 @@ number of genotypes which flowered in all three site-years.*
 
 [Additional/Animation\_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.gif)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.gif)<!-- -->
 
 -----
 
