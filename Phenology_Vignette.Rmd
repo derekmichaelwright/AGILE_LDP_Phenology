@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 # Introduction
 
-This vignette contains the `R` code and analysis done for the paper: **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)** 
+This vignette contains the `R` code and analysis done for the paper: [**Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158) 
 
 This work done as part of the AGILE project at the University of Saskatchewan.
 

@@ -9,10 +9,11 @@ Derek Michael Wright <derek.wright@usask.ca>
 [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice
 Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia,
 Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
-Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) Understanding
+Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding
 photothermal interactions can help expand production range and increase
-genetic diversity of lentil (*Lens culinaris* Medik.). *Plants, People,
-Planet*.](https://www.biorxiv.org/content/10.1101/2020.07.18.207761v1.abstract)
+genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants,
+People,
+Planet*.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158)
 
 -----
 
@@ -464,6 +465,14 @@ number of genotypes which flowered in all three site-years.*
 
 [Additional/Additional\_Figure\_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
+    ## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+    ## Please use `arrange()` instead.
+    ## See vignette('programming') for more help
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_warnings()` to see where this warning was generated.
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
 ![](Additional/Additional_Figure_05.png)
 
 -----
@@ -471,6 +480,8 @@ number of genotypes which flowered in all three site-years.*
 ## Additional Figure 6
 
 [Additional/Additional\_Figure\_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
+
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -491,6 +502,8 @@ number of genotypes which flowered in all three site-years.*
 ## Additional Figure 9
 
 [Additional/Additional\_Figure\_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ![](Additional/Additional_Figure_09.png)
 

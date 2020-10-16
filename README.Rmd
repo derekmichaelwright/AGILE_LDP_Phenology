@@ -9,9 +9,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-[Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.). *Plants, People, Planet*.](https://www.biorxiv.org/content/10.1101/2020.07.18.207761v1.abstract)
+[Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158)
 
 ---
 
@@ -369,6 +369,7 @@ DT::datatable(xx)
 
 ```{r echo = F, eval = T}
 load("Additional/Additional_Figure_05.RData")
+mp
 ```
 
 ![](Additional/Additional_Figure_05.png)
@@ -383,6 +384,7 @@ load("Additional/Additional_Figure_05.RData")
 
 ```{r echo = F, eval = T}
 load("Additional/Additional_Figure_06.RData")
+mp
 ```
 
 ![](Additional/Additional_Figure_06.png)
@@ -407,6 +409,7 @@ load("Additional/Additional_Figure_06.RData")
 
 ```{r echo = F, eval = T}
 load("Additional/Additional_Figure_09.RData")
+mp
 ```
 
 ![](Additional/Additional_Figure_09.png)
