@@ -768,7 +768,7 @@ server <- function(input, output) {
               surf = list(x = x.pred, y = y.pred, z = z.pred, col = "black",
                           facets = NA, fit = fitpoints))
   })
-  # input <- list(Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
+  # input <- list(Expts = names_Expt, Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"))
   output$OxP_All <- renderPlotly({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF), Expt %in% input$Expts, Cluster %in% input$MyClusters)
@@ -792,7 +792,7 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
+  # input <- list(Expt = "Rosthern, Canada 2016", Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"), MyRegions = c("Asia","Africa"))
   output$OxP_Expt <- renderPlotly({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF), Expt == input$Expt)
@@ -818,7 +818,7 @@ server <- function(input, output) {
     }
     mp
   })
-  # input <- list(Plot_Entry = T, Entry = 1, MyClusters = c("a","2","3","4"))
+  # input <- list(Plot_Entry = T, Entry = 1, MyClusters = c("1","2","3","4"), MyRegions = c("Asia","Africa"))
   output$OxP_Expts <- renderPlot({
     xx <- m1 %>% left_join(select(pca, Entry, Origin, Region, Cluster), by = "Entry") %>%
       filter(!is.na(DTF))
@@ -826,12 +826,11 @@ server <- function(input, output) {
     r2  <- 1 - (sum((xx$DTF - xx$Predicted_DTF)^2) / (sum((xx$DTF - mymean)^2)))
     r2 <- round(r2, 3)
     x1 <- xx %>% group_by(Expt) %>%
-      summarise(Mean = mean(DTF)) %>% ungroup() %>%
-      mutate(r2 = NA)
+      summarise(Mean = mean(DTF)) %>% ungroup()
     #
     for(i in 1:nrow(x1)) {
       xi <- xx %>% filter(Expt == x1$Expt[i], Cluster %in% input$MyClusters, Region %in% input$MyRegions)
-      x1[i,"r2"]<-round(1 - (sum((xi$DTF - xi$Predicted_DTF)^2) /
+      x1[i,"r2"] <- round(1 - (sum((xi$DTF - xi$Predicted_DTF)^2) /
                                sum((xi$DTF - x1$Mean[i])^2)), 2)
     }
     #
