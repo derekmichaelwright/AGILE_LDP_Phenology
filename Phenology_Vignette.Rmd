@@ -2,7 +2,7 @@
 title: "R Vignette"
 subtitle: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
-date: "01-05-2020"
+date: "15-10-2020"
 output:
   rmdformats::readthedown:
     code_folding: show
@@ -939,13 +939,9 @@ ggsave("Additional/Additional_Figure_05.png", mp, width = 6, height = 4, dpi = 6
 # Plot html
 mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors,
               text = ~paste(Entry, Name, sep = " | ")) %>% add_markers()
-saveWidget(mp, file=normalizePath("Additional/Additional_Figure_05.html"),
+saveWidget(mp, file="Additional/Additional_Figure_05.html",
            knitrOptions = list(fig.width = 4, fig.height = 6))
 mp
-```
-
-```{r echo = F}
-save(mp, file = "Additional/Additional_Figure_05.RData")
 ```
 
 ---
@@ -979,12 +975,8 @@ mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Region,
               colors = colors[c(1,3,8,5,7,7)], 
               text = ~paste(Entry, Name, sep = " | ")) %>%
   add_markers() 
-saveWidget(mp, file=normalizePath("Additional/Additional_Figure_06.html"))
+saveWidget(mp, file="Additional/Additional_Figure_06.html")
 mp
-```
-
-```{r echo = F}
-save(mp, file = "Additional/Additional_Figure_06.RData")
 ```
 
 ---
@@ -1091,12 +1083,8 @@ mp <- leaflet() %>%
                    popup = paste(xx$Entry,"|",xx$Name)) %>%
   addLegend("bottomleft", pal = pal, values = xx$Cluster,
             title = "Cluster", opacity = 1)
-saveWidget(mp, file=normalizePath("Additional/Additional_Figure_09.html"))
+saveWidget(mp, file="Additional/Additional_Figure_09.html")
 mp
-```
-
-```{r echo = F}
-save(mp, file = "Additional/Additional_Figure_09.RData")
 ```
 
 ---
