@@ -511,6 +511,32 @@ number of genotypes which flowered in all three site-years.*
 
 ------------------------------------------------------------------------
 
+## Phenology + EnvData
+
+![](Additional/Expt/2_Temperate.png)
+
+![](Additional/Expt/2_SouthAsia.png)
+
+![](Additional/Expt/2_Mediterranean.png)
+
+------------------------------------------------------------------------
+
+## Correlations
+
+![](Additional/Corr/Corr_Temperate.png)
+
+![](Additional/Corr/Corr_SouthAsia.png)
+
+![](Additional/Corr/Corr_Mediterranean.png)
+
+------------------------------------------------------------------------
+
+## PCA Animation
+
+[Additional/Animation\_PCA.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif)
+
+------------------------------------------------------------------------
+
 ## Phothermal Animation
 
 [Additional/Animation\_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)

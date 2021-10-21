@@ -9,9 +9,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -428,6 +428,32 @@ DT::datatable(xx)
 ## Additional Figure 14
 
 ![](Additional/Additional_Figure_14.png)
+
+---
+
+## Phenology + EnvData
+
+![](Additional/Expt/2_Temperate.png)
+
+![](Additional/Expt/2_SouthAsia.png)
+
+![](Additional/Expt/2_Mediterranean.png)
+
+---
+
+## Correlations
+
+![](Additional/Corr/Corr_Temperate.png)
+
+![](Additional/Corr/Corr_SouthAsia.png)
+
+![](Additional/Corr/Corr_Mediterranean.png)
+
+---
+
+## PCA Animation
+
+[Additional/Animation_PCA.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif)
 
 ---
 
