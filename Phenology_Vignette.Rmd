@@ -36,7 +36,7 @@ Load the nessesary R packages, Prepare the data for analysis.
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/data_ldp.csv",
-  button_label = "data_ldp.csv",
+  button_label = "data/data_ldp.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -44,7 +44,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_countries.csv",
-  button_label = "data_countries.csv",
+  button_label = "data/data_countries.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -52,7 +52,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_raw.csv",
-  button_label = "data_raw.csv",
+  button_label = "data/data_raw.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -60,7 +60,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_env.csv",
-  button_label = "data_env.csv",
+  button_label = "data/data_env.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -68,7 +68,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_info.csv",
-  button_label = "data_info.csv",
+  button_label = "data/data_info.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -501,15 +501,21 @@ image_write(mp, "Figure_02.png")
 
 ## Additional Figures: Entry Phenology
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology
-
 ```{r echo = F}
 downloadthis::download_link(
   link = "Additional/pdf_Phenology.pdf",
-  button_label = "pdf_Phenology.pdf",
+  button_label = "Additional/pdf_Phenology.pdf",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology",
+  button_label = "Additional/Entry_Phenology/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
   self_contained = FALSE
 )
 ```
@@ -915,7 +921,7 @@ my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...)
 # Plot Correlations for each Expt
 for(i in 1:length(names_Expt)) {
   mp <- ggpairs(xx %>% filter(Expt == names_Expt[i]), 
-               columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+               columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
         upper  = list(continuous = my_upper), 
         diag   = list(continuous = my_middle),
         lower  = list(continuous = wrap(my_lower, cols = "black")),
@@ -926,7 +932,7 @@ for(i in 1:length(names_Expt)) {
          mp, width = 6, height = 6, dpi = 600)
 }
 # Plot (a) Temperate
-mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
                aes(color = Expt, fill = Expt),
         upper=list(continuous = my_upper),
         diag =list(continuous = wrap(my_middle, cols = colors_Expt[1:6])),
@@ -937,7 +943,7 @@ mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_Temperate.png", mp1, width = 6, height = 6, dpi = 600)
 # Plot (b) South Asia
-mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
                aes(color = Expt, fill = Expt),
         upper  = list(continuous = my_upper),
         diag   = list(continuous = wrap(my_middle, cols = colors_Expt[7:12])),
@@ -948,7 +954,7 @@ mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_SouthAsia.png", mp2, width = 6, height = 6, dpi = 600)
 # Plot (c) Mediterranean
-mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
                aes(color = Expt, fill = Expt),
         upper  = list(continuous = my_upper),
         diag   = list(continuous = wrap(my_middle, cols = colors_Expt[13:18])),
@@ -959,7 +965,7 @@ mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_Mediterranean.png", mp3, width = 6, height = 6, dpi = 600)
 # Plot All
-mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
+mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
         aes(color = ExptShort, fill = ExptShort),
         upper  = list(continuous = my_upper), 
         diag   = list(continuous = my_middle),
@@ -980,7 +986,7 @@ ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6, dpi = 600)
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/data_pca_results.csv",
-  button_label = "data_pca_results.csv",
+  button_label = "data/data_pca_results.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1119,9 +1125,24 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5: PCA Plot
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif
-
-https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html
+```{r echo = F}
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif",
+  button_label = "Additional/Animation_PCA.gif",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html",
+  button_label = "Additional/Additional_Figure_05.html",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
+  self_contained = FALSE
+)
+```
 
 ![](Additional/Additional_Figure_05.png)
 
@@ -1180,7 +1201,16 @@ image_write(animation, "Additional/Animation_PCA.gif")
 
 ## Additional Figure 6: PCA by Region
 
-https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html
+```{r echo = F}
+downloadthis::download_link(
+  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html",
+  button_label = "Additional/Additional_Figure_06.html",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
+  self_contained = FALSE
+)
+```
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -1283,7 +1313,16 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9: LDP Origins By Cluster
 
-https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html
+```{r echo = F}
+downloadthis::download_link(
+  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html",
+  button_label = "Additional/Additional_Figure_09.html",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
+  self_contained = FALSE
+)
+```
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -1329,8 +1368,6 @@ mp
 
 ## Additional Figures: Entry Regressions
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP
-
 ```{r echo = F}
 downloadthis::download_link(
   link = "Additional/pdf_TP.pdf",
@@ -1338,6 +1375,14 @@ downloadthis::download_link(
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP",
+  button_label = "Additional/Entry_TP/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
   self_contained = FALSE
 )
 ```
@@ -1396,17 +1441,29 @@ dev.off()
 
 ## Additional Figures: PhotoThermal Plane
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D
-
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif
-
 ```{r echo = F}
+downloadthis::download_link(
+  link = "Ahttps://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif",
+  button_label = "Additional/Animation_3D.gif",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
+  self_contained = FALSE
+)
 downloadthis::download_link(
   link = "Additional/pdf_3D.pdf",
   button_label = "Additional/pdf_3D.pdf",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D",
+  button_label = "Additional/Entry_3D/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
   self_contained = FALSE
 )
 ```
@@ -1663,8 +1720,6 @@ $RMSE=\frac{\sum (y-x)^2}{n}$
 
 ## Modeling DTF (T + P) - All Site-years
 
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model
-
 ```{r echo = F}
 downloadthis::download_link(
   link = "Additional/pdf_model.pdf",
@@ -1672,6 +1727,14 @@ downloadthis::download_link(
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model",
+  button_label = "Additional/Entry_Model/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-bar-chart",
   self_contained = FALSE
 )
 downloadthis::download_link(
@@ -1812,7 +1875,7 @@ ggsave("Additional/Model/Model_3_1.png", mp ,width = 8, height = 3, dpi = 600)
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/model_txp.csv",
-  button_label = "model_txp.csv",
+  button_label = "data/model_txp.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1820,7 +1883,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_txp_d.csv",
-  button_label = "model_txp_d.csv",
+  button_label = "data/model_txp_d.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1828,7 +1891,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_txp_coefs.csv",
-  button_label = "model_txp_coefs.csv",
+  button_label = "data/model_txp_coefs.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2118,7 +2181,7 @@ Train the model without the location used for prediction
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/model_test.csv",
-  button_label = "model_test.csv",
+  button_label = "data/model_test.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2126,7 +2189,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_test_d.csv",
-  button_label = "model_test_d.csv",
+  button_label = "data/model_test_d.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2218,7 +2281,21 @@ ggsave("Additional/Model/Model_2_3.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## Supplemental Table 4: Test Model
 
-[Supplemental_Table_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
+```{r echo = F}
+downloadthis::download_link(
+  link = "Supplemental_Table_04.csv",
+  button_label = "Supplemental_Table_04.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
+
+```{r echo = F}
+xx <- read.csv("Supplemental_Table_04.csv")
+DT::datatable(xx)
+```
 
 ```{r eval = F}
 ####################################
@@ -2268,14 +2345,36 @@ for(t in names_ExptShort[1:6]) { # Temperate site-years
 write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
 ```
 
-```{r echo = F}
-xx <- read.csv("Supplemental_Table_04.csv")
-DT::datatable(xx)
-```
-
 ---
 
 ## Modeling DTF (T + P) - 3 Best
+
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/model_3best.csv",
+  button_label = "data/model_3best.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+downloadthis::download_link(
+  link = "data/model_3best_d.csv",
+  button_label = "data/model_3best_d.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+downloadthis::download_link(
+  link = "data/model_3best_coefs.csv",
+  button_label = "data/model_3best_coefs.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
 
 ```{r eval = F}
 ####################################
@@ -2324,12 +2423,6 @@ write.csv(md, "data/model_3best_d.csv",      row.names = F)
 write.csv(mc, "data/model_3best_coefs.csv",  row.names = F)
 ```
 
-[data/model_3best.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3best.csv)
-
-[data/model_3best_d.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3best_d.csv)
-
-[data/model_3best_coefs.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3best_coefs.csv)
-
 ---
 
 ![](Additional/Model/Model_1_4.png)
@@ -2357,6 +2450,33 @@ ggsave("Additional/Model/Model_2_4.png", mp, width = 8, height = 5.5, dpi = 600)
 ---
 
 ## Modeling DTF (T + P) - 3 Worst
+
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/model_3worst.csv",
+  button_label = "data/model_3worst.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+downloadthis::download_link(
+  link = "data/model_3worst_d.csv",
+  button_label = "data/model_3worst_d.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+downloadthis::download_link(
+  link = "data/model_3worst_coefs.csv",
+  button_label = "data/model_3worst_coefs.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
 
 ```{r eval = F}
 ####################################
@@ -2406,12 +2526,6 @@ write.csv(mr, "data/model_3worst.csv",        row.names = F)
 write.csv(md, "data/model_3worst_d.csv",      row.names = F)
 write.csv(mc, "data/model_3worst_coefs.csv",  row.names = F)
 ```
-
-[data/model_3worst.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3worst.csv)
-
-[data/model_3worst_d.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3worst_d.csv)
-
-[data/model_3worst_coefs.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_3worst_coefs.csv)
 
 ---
 
@@ -2586,6 +2700,22 @@ ggsave("Supplemental_Figure_08.png", mp, width = 6, height = 3, dpi = 600)
 
 ## Base Temperature & Critical Photoperiod
 
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/data_tb_pc.csv",
+  button_label = "data/data_tb_pc.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_tb_pc.csv")
+DT::datatable(xx)
+```
+
 ```{r eval = F}
 # Calculate Tf and Pf
 xx <- read.csv("data/model_t+p_coefs.csv") %>% select(-Name) %>%
@@ -2627,13 +2757,6 @@ xx <- xx %>%
   ungroup()
 # Save
 write.csv(xx,"data/data_tb_pc.csv", row.names = F)
-```
-
-[data/data_tb_pc.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
-
-```{r echo = F, eval = T}
-xx <- read.csv("data/data_tb_pc.csv")
-DT::datatable(xx)
 ```
 
 ---
@@ -2925,6 +3048,22 @@ ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Figure 7: Temperature Increase By MacroEnv
 
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/data_temp_photo_increase.csv",
+  button_label = "data/data_temp_photo_increase.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_temp_photo_increase.csv")
+DT::datatable(xx)
+```
+
 ![](Figure_07.png)
 
 ```{r}
@@ -2985,13 +3124,6 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) +
 ggsave("Figure_07.png", mp, width = 7, height = 5, dpi = 600)
 ```
 
-[data/data_temp_photo_increase.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
-
-```{r echo = F, eval = T}
-xx <- read.csv("data/data_temp_photo_increase.csv")
-DT::datatable(xx)
-```
-
 ---
 
-&copy; Derek Michael Wright 2020
+&copy; Derek Michael Wright
