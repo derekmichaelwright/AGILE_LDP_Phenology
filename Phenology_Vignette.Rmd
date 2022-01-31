@@ -21,7 +21,22 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 # Introduction
 
-This vignette contains the `R` code and analysis done for the paper: [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158) 
+This vignette contains the `R` code and analysis done for the paper: 
+
+Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.
+
+```{r echo = F}
+downloadthis::download_link(
+  link = "https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158",
+  button_label = "Plants, People, Planet. 00:1-11",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "far fa-newspaper",
+  self_contained = F
+)
+``` 
+
+---
 
 This work done as part of the AGILE project at the University of Saskatchewan.
 
