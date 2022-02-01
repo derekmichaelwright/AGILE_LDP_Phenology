@@ -530,7 +530,7 @@ downloadthis::download_link(
   button_label = "Additional/Entry_Phenology/",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
@@ -1146,7 +1146,7 @@ downloadthis::download_link(
   button_label = "Additional/Animation_PCA.gif",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 downloadthis::download_link(
@@ -1154,10 +1154,12 @@ downloadthis::download_link(
   button_label = "Additional/Additional_Figure_05.html",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
+
+<br>
 
 ![](Additional/Additional_Figure_05.png)
 
@@ -1177,8 +1179,7 @@ ggsave("Additional/Additional_Figure_05.png", mp, width = 6, height = 4, dpi = 6
 # Plot html
 mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors,
               text = ~paste(Entry, Name, sep = " | ")) %>% add_markers()
-saveWidget(mp, file="Additional/Additional_Figure_05.html",
-           knitrOptions = list(fig.width = 4, fig.height = 6))
+saveWidget(mp, file="Additional/Additional_Figure_05.html")
 mp
 ```
 
@@ -1222,10 +1223,12 @@ downloadthis::download_link(
   button_label = "Additional/Additional_Figure_06.html",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
+
+<br>
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -1334,10 +1337,12 @@ downloadthis::download_link(
   button_label = "Additional/Additional_Figure_09.html",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
+
+<br>
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -1397,7 +1402,7 @@ downloadthis::download_link(
   button_label = "Additional/Entry_TP/",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
@@ -1462,7 +1467,7 @@ downloadthis::download_link(
   button_label = "Additional/Animation_3D.gif",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 downloadthis::download_link(
@@ -1478,7 +1483,7 @@ downloadthis::download_link(
   button_label = "Additional/Entry_3D/",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
@@ -1749,9 +1754,14 @@ downloadthis::download_link(
   button_label = "Additional/Entry_Model/",
   button_type = "success",
   has_icon = TRUE,
-  icon = "fa fa-bar-chart",
+  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
+```
+
+<br>
+
+```{r echo = F}
 downloadthis::download_link(
   link = "data/model_t+p_coefs.csv",
   button_label = "data/model_t+p_coefs.csv",
@@ -2035,7 +2045,6 @@ xx <- bind_rows(x1, x2) %>%
   arrange(Entry) %>% 
   select(Entry, Name, a, b, c, d, RR)
 entries <- x2 %>% filter(dP < 0.05) %>% pull(Entry)
-length(entries)
 xx <- xx %>% filter(Entry %in% entries)
 xx <- xx %>% 
   arrange(RR) %>% 
