@@ -3,15 +3,15 @@ title: "Understanding photothermal interactions can help expand production range
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output: 
-  github_document: default
-  pdf_document:
-    toc: yes
   rmdformats::readthedown:
     self_contained: true
     lightbox: true
     gallery: true
     highlight: tango
     css: custom.css
+  pdf_document:
+    toc: yes
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -26,7 +26,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-[View as pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf)
+[View as pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf) 
+
+[View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 
 [Source Code Vignette (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 

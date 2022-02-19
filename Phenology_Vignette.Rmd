@@ -21,22 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 # Introduction
 
-This vignette contains the `R` code and analysis done for the paper: 
-
-Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.
-
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158",
-  button_label = "Plants, People, Planet. 00:1-11",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "far fa-newspaper",
-  self_contained = F
-)
-``` 
-
----
+This vignette contains the `R` code and analysis done for the paper: [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Sripada Udupa, Eleonora Barilli, Diego Rubiales, Tania Gioia, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158) 
 
 This work done as part of the AGILE project at the University of Saskatchewan.
 
@@ -51,7 +36,7 @@ Load the nessesary R packages, Prepare the data for analysis.
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/data_ldp.csv",
-  button_label = "data/data_ldp.csv",
+  button_label = "data_ldp.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -59,7 +44,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_countries.csv",
-  button_label = "data/data_countries.csv",
+  button_label = "data_countries.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -67,7 +52,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_raw.csv",
-  button_label = "data/data_raw.csv",
+  button_label = "data_raw.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -75,7 +60,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_env.csv",
-  button_label = "data/data_env.csv",
+  button_label = "data_env.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -83,7 +68,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/data_info.csv",
-  button_label = "data/data_info.csv",
+  button_label = "data_info.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -257,6 +242,8 @@ write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
 DT::datatable(s1)
 ```
 
+*Table S1: Genotype entry number, name, common synonyms, origin and source of lentil genotypes used in this study. These genotypes are gathered from the University of Saskatchewan (USASK), Plant Gene Resources of Canada (PGRC), United States Department of Agriculture (USDA), International Center for Agricultural Research in the Dry Areas (ICARDA).*
+
 ---
 
 ## Supplemental Table 2: Field Trial Info
@@ -281,6 +268,8 @@ write.csv(s2, "Supplemental_Table_02.csv", row.names = F)
 DT::datatable(s2)
 ```
 
+*Table S2: Details of the field trials used in this study, including location information, planting dates, mean temperature and photoperiods and details on plot type and number of seeds sown.*
+
 ```{r}
 xx <- ee %>% 
   select(ExptShort, Temp_min, Temp_max, DayLength) %>%
@@ -297,6 +286,8 @@ knitr::kable(xx)
 ## Figure 1: Field Trial Info
 
 ![](Figure_01.png)
+
+*Figure 1: Growing Environments. (a) Locations of field trials conducted in the summer and winter of 2016, 2017 and 2018, along with (b) mean temperature and photoperiod of each field trial: Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17).*
 
 ```{r}
 # Plot (a) Map
@@ -362,6 +353,8 @@ invisible(dev.off())
 
 ![](Supplemental_Figure_01.png)
 
+*Figure S1: Distribution of days from sowing to flowering for raw data (top) and scaled data (1-5) (bottom) for all 18 field trials: Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17). Genotypes which did not flower were given a scaled value of 5.*
+
 ```{r}
 # Prep data
 levs <- c("Days from sowing to flower (days)", "Scaled (1-5)")
@@ -391,6 +384,8 @@ ggsave("Supplemental_Figure_01.png", mp, width = 8, height = 5, dpi = 600)
 ## Figure 2: Data Overview
 
 ![](Figure_02.png)
+
+*Figure 2: Variations in temperature, day length and phenological traits across contrasting environment for a lentil (Lens culinaris Medik.) diversity panel. (a) Daily mean temperature (red line) and day length (blue line) from seeding to full maturity of all genotypes. The shaded ribbon represents the daily minimum and maximum temperature. The shaded area between the vertical bars corresponds to the windows of flowering. (b) Distribution of mean days from sowing to: flowering (DTF), swollen pods (DTS) and maturity (DTM), and (c) vegetative (VEG) and reproductive periods (REP) of 324 genotypes across 18 site-years. Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17).*
 
 ```{r}
 # Create plot function
@@ -516,21 +511,21 @@ image_write(mp, "Figure_02.png")
 
 ## Additional Figures: Entry Phenology
 
-```{r echo = F}
+```{r eval = T, echo = F}
 downloadthis::download_link(
-  link = "Additional/pdf_Phenology.pdf",
-  button_label = "Additional/pdf_Phenology.pdf",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology",
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/",
   button_label = "Additional/Entry_Phenology/",
   button_type = "success",
   has_icon = TRUE,
   icon = "fas fa-chart-bar",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "Additional/pdf_Phenology.pdf",
+  button_label = "pdf_Phenology.pdf",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-file-pdf",
   self_contained = FALSE
 )
 ```
@@ -742,6 +737,8 @@ ggsave("Additional/Additional_Figure_04.png", mp, width = 6, height = 4, dpi = 6
 
 ![](Supplemental_Figure_02.png)
 
+*Figure S2: Percentage of lentil genotypes reaching key phenological time points in South Asian locations. Days from sowing to: flowering (DTF), swollen pods (DTS) and maturity (DTM).*
+
 ```{r}
 # Prep data
 xx <- dd %>% 
@@ -778,6 +775,8 @@ ggsave("Supplemental_Figure_02.png", width = 10, height = 5, dpi = 600)
 ## Supplemental Figure 3: Correlation Plots
 
 ![](Supplemental_Figure_03.png)
+
+*Figure S3: Correlations along with the corresponding correlation coefficients (R2) between days from sowing to: flowering (DTF), swollen pod (DTS) and maturity (DTM), in temperate (top), South Asian (middle) and Mediterranean (bottom) locations.*
 
 ```{r eval = F}
 # Prep data
@@ -936,7 +935,7 @@ my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...)
 # Plot Correlations for each Expt
 for(i in 1:length(names_Expt)) {
   mp <- ggpairs(xx %>% filter(Expt == names_Expt[i]), 
-               columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
+               columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
         upper  = list(continuous = my_upper), 
         diag   = list(continuous = my_middle),
         lower  = list(continuous = wrap(my_lower, cols = "black")),
@@ -947,7 +946,7 @@ for(i in 1:length(names_Expt)) {
          mp, width = 6, height = 6, dpi = 600)
 }
 # Plot (a) Temperate
-mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
+mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
                aes(color = Expt, fill = Expt),
         upper=list(continuous = my_upper),
         diag =list(continuous = wrap(my_middle, cols = colors_Expt[1:6])),
@@ -958,7 +957,7 @@ mp1 <- ggpairs(x1, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_Temperate.png", mp1, width = 6, height = 6, dpi = 600)
 # Plot (b) South Asia
-mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
+mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
                aes(color = Expt, fill = Expt),
         upper  = list(continuous = my_upper),
         diag   = list(continuous = wrap(my_middle, cols = colors_Expt[7:12])),
@@ -969,7 +968,7 @@ mp2 <- ggpairs(x2, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_SouthAsia.png", mp2, width = 6, height = 6, dpi = 600)
 # Plot (c) Mediterranean
-mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
+mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
                aes(color = Expt, fill = Expt),
         upper  = list(continuous = my_upper),
         diag   = list(continuous = wrap(my_middle, cols = colors_Expt[13:18])),
@@ -980,7 +979,7 @@ mp3 <- ggpairs(x3, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"),
         legend.position = "bottom")
 ggsave("Additional/Corr/Corr_Mediterranean.png", mp3, width = 6, height = 6, dpi = 600)
 # Plot All
-mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "VEG", "REP"), 
+mp4 <- ggpairs(xx, columns = c("DTE", "DTF", "DTS", "DTM", "REP"), 
         aes(color = ExptShort, fill = ExptShort),
         upper  = list(continuous = my_upper), 
         diag   = list(continuous = my_middle),
@@ -1001,7 +1000,7 @@ ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6, dpi = 600)
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/data_pca_results.csv",
-  button_label = "data/data_pca_results.csv",
+  button_label = "data_pca_results.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1015,6 +1014,8 @@ DT::datatable(xx)
 ```
 
 ![](Figure_03.png)
+
+*Figure 3: Clustering of a lentil (Lens culinaris Medik.) diversity panel based days from sowing to flower (DTF). (a) Principal Component Analysis on DTF, scaled from 1-5, and hierarchical k-means clustering into eight groups. (b) Mean scaled DTF (1-5) for each cluster group across all field trials: Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17). Shaded areas represent one standard deviation from the mean. Dashed, vertical bars separate temperate, South Asian and Mediterranean macro-environments. (c) Composition of cluster groups in genotypes by country of origin. Pie size is relative to the number of genotypes originating from that country.*
 
 ```{r eval = F}
 # Prep data
@@ -1140,7 +1141,7 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5: PCA Plot
 
-```{r echo = F}
+```{r eval = T, echo = F}
 downloadthis::download_link(
   link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif",
   button_label = "Additional/Animation_PCA.gif",
@@ -1158,8 +1159,6 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-
-<br>
 
 ![](Additional/Additional_Figure_05.png)
 
@@ -1217,7 +1216,7 @@ image_write(animation, "Additional/Animation_PCA.gif")
 
 ## Additional Figure 6: PCA by Region
 
-```{r echo = F}
+```{r eval = T, echo = F}
 downloadthis::download_link(
   link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html",
   button_label = "Additional/Additional_Figure_06.html",
@@ -1227,8 +1226,6 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-
-<br>
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -1331,7 +1328,7 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9: LDP Origins By Cluster
 
-```{r echo = F}
+```{r eval = T, echo = F}
 downloadthis::download_link(
   link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html",
   button_label = "Additional/Additional_Figure_09.html",
@@ -1341,8 +1338,6 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-
-<br>
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -1388,21 +1383,23 @@ mp
 
 ## Additional Figures: Entry Regressions
 
-```{r echo = F}
+https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP
+
+```{r eval = T, echo = F}
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP/",
+  button_label = "Additional/Entry_TP/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fas fa-chart-bar",
+  self_contained = FALSE
+)
 downloadthis::download_link(
   link = "Additional/pdf_TP.pdf",
   button_label = "pdf_TP.pdf",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP",
-  button_label = "Additional/Entry_TP/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
@@ -1463,7 +1460,15 @@ dev.off()
 
 ```{r echo = F}
 downloadthis::download_link(
-  link = "Ahttps://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif",
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D/",
+  button_label = "Additional/Entry_3D/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fas fa-chart-bar",
+  self_contained = FALSE
+)
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif",
   button_label = "Additional/Animation_3D.gif",
   button_type = "success",
   has_icon = TRUE,
@@ -1476,14 +1481,6 @@ downloadthis::download_link(
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D",
-  button_label = "Additional/Entry_3D/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
 ```
@@ -1554,6 +1551,8 @@ image_write(animation, "Additional/Animation_3D.gif")
 ## Supplemental Figure 4: Regressions
 
 ![](Supplemental_Figure_04.png)
+
+*Figure S4: Effects of mean temperature and photoperiod on the rate of progress towards flowering (1 / DTF) in three contrasting selected genotypes. (a) Effect of temperature on 1 / DTF, (b) effect of photoperiod on 1 / DTF, and (c) effect of temperature and photoperiod on 1 / DTF modelled using equation 1. For (a) and (b), solid lines represent regressions among locations of relatively constant photoperiod or temperature, respectively, while dotted lines indicate a break in the assumption of constant photoperiod or temperature, respectively, across environments (see Figure 1). (d) Scaled DTF (1-5) of each genotype (grey lines) across all site-years with ILL5888, PI 420925 LSP and Laird highlighted according to their corresponding cluster group, 1, 5 and 8 respectively. ILL 5888 is an early maturing, genotype from Bangladesh. PI 420925 LSP is a landrace from Jordan with medium maturity. Laird is a late maturing, Canadian cultivar.*
 
 ```{r}
 # Prep data
@@ -1742,6 +1741,14 @@ $RMSE=\frac{\sum (y-x)^2}{n}$
 
 ```{r echo = F}
 downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/",
+  button_label = "Additional/Entry_Model/",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fas fa-chart-bar",
+  self_contained = FALSE
+)
+downloadthis::download_link(
   link = "Additional/pdf_model.pdf",
   button_label = "Additional/pdf_model.pdf",
   button_type = "success",
@@ -1749,19 +1756,6 @@ downloadthis::download_link(
   icon = "fa fa-file-pdf",
   self_contained = FALSE
 )
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model",
-  button_label = "Additional/Entry_Model/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-bar",
-  self_contained = FALSE
-)
-```
-
-<br>
-
-```{r echo = F}
 downloadthis::download_link(
   link = "data/model_t+p_coefs.csv",
   button_label = "data/model_t+p_coefs.csv",
@@ -1900,7 +1894,7 @@ ggsave("Additional/Model/Model_3_1.png", mp ,width = 8, height = 3, dpi = 600)
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/model_txp.csv",
-  button_label = "data/model_txp.csv",
+  button_label = "model_txp.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1908,7 +1902,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_txp_d.csv",
-  button_label = "data/model_txp_d.csv",
+  button_label = "model_txp_d.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -1916,7 +1910,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_txp_coefs.csv",
-  button_label = "data/model_txp_coefs.csv",
+  button_label = "model_txp_coefs.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2031,6 +2025,8 @@ write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
 DT::datatable(xx)
 ```
 
+*Table S3: Values of the constants derived from equations 1 and 2 using data from all site-years, for each of the genotypes used in this study.*
+
 ---
 
 ## Additional Figure 10: significant T x P interactions
@@ -2057,6 +2053,8 @@ mp <- ggplot(xx, aes(x = Entry, y = RR, fill = Model)) +
   theme_AGL + 
   theme(legend.position = "top") 
 ggsave("Additional/Additional_Figure_10.png", mp, width = 7, height = 5, dpi = 600)
+#
+length(entries)
 ```
 
 ---
@@ -2064,6 +2062,8 @@ ggsave("Additional/Additional_Figure_10.png", mp, width = 7, height = 5, dpi = 6
 ## Supplemental Figure 5: Model T + P vs. T x P
 
 ![](Supplemental_Figure_05.png)
+
+*Figure S5: Comparison of observed and predicted values for days from sowing to flowering using (a) equation 1 and (b) equation 2.*
 
 ```{r}
 # Prep data
@@ -2205,7 +2205,7 @@ Train the model without the location used for prediction
 ```{r echo = F}
 downloadthis::download_link(
   link = "data/model_test.csv",
-  button_label = "data/model_test.csv",
+  button_label = "model_test.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2213,7 +2213,7 @@ downloadthis::download_link(
 )
 downloadthis::download_link(
   link = "data/model_test_d.csv",
-  button_label = "data/model_test_d.csv",
+  button_label = "model_test_d.csv",
   button_type = "success",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -2267,6 +2267,8 @@ write.csv(md, "data/model_test_d.csv", row.names = F)
 
 ![](Figure_04.png)
 
+*Figure 4: Comparison of observed and predicted values for days from sowing to flowering (DTF) for a lentil (Lens culinaris Medik.) diversity panel calculated using equation 1. For each site-year, the model was retrained after removing all observations from that location, regardless of year before predicting results from that location. R2 = coefficient of determination, RMSE = root-mean-square error.*
+
 ```{r}
 # Prep data
 xx <- read.csv("data/model_test_d.csv") %>% 
@@ -2316,11 +2318,6 @@ downloadthis::download_link(
 )
 ```
 
-```{r echo = F}
-xx <- read.csv("Supplemental_Table_04.csv")
-DT::datatable(xx)
-```
-
 ```{r eval = F}
 ####################################
 # 1/f = a + bT + cP (3 Locations) #
@@ -2368,6 +2365,13 @@ for(t in names_ExptShort[1:6]) { # Temperate site-years
 # Save
 write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
 ```
+
+```{r echo = F}
+xx <- read.csv("Supplemental_Table_04.csv")
+DT::datatable(xx)
+```
+
+*Table S4: All possible combinations of a single temperate, South Asian, and Mediterranean site-year, used to train the model, with equation 1, along with the corresponding coefficient of determination (RR = R2), and number of genotypes which flowered in all three site-years.*
 
 ---
 
@@ -2455,10 +2459,11 @@ write.csv(mc, "data/model_3best_coefs.csv",  row.names = F)
 # Prep data 
 xx <- read.csv("data/model_3best_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
-length(unique(xx$Entry))
 # Plot Observed vs Predicted
 mp <- ggModel1(xx, title = "3 Best Locations | Su16,Ba17,Sp17 | 291/324")
 ggsave("Additional/Model/Model_1_4.png", mp, width = 7, height = 5, dpi = 600)
+#
+length(unique(xx$Entry))
 ```
 
 ---
@@ -2559,10 +2564,11 @@ write.csv(mc, "data/model_3worst_coefs.csv",  row.names = F)
 # Prep data 
 xx <- read.csv("data/model_3worst_d.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
-length(unique(xx$Entry))
 # Plot Observed vs Predicted
 mp <- ggModel1(xx, title = "3 Worst Locations | Su18,In16,Sp16 | 159/324")
 ggsave("Additional/Model/Model_1_5.png", mp, width = 7, height = 5, dpi = 600)
+#
+length(unique(xx$Entry))
 ```
 
 ---
@@ -2607,6 +2613,8 @@ ggsave("Additional/Model/Model_pvalues.png", mp, width = 7, height = 4, dpi = 60
 ## Supplemental Figure 6: Compare Constants Entry
 
 ![](Supplemental_Figure_06.png)
+
+*Figure S6: Comparison of a, b, and c constants calculated using equation 1, in the current study using all site-years, the three best site-years for predicting DTF, Sutherland, Canada 2016 (Su16), Jessore, Bangladesh 2017 (Ba17) and Cordoba, Spain 2017 (Sp17), the three worst site-years for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016 (In16) and Cordoba, Spain 2016 (Sp16), from Roberts et al., (1988) and from Summerfield et al., (1985) with (+V) and without (-V) a seed vernalization treatment.*
 
 - Entry 76 = ILL 4400 (Syrian Local Large)
 - Entry 77 = ILL 4605 (Precoz)
@@ -2669,6 +2677,8 @@ ggsave("Supplemental_Figure_06.png", mp, width = 4, height = 5, dpi = 600)
 
 ![](Supplemental_Figure_07.png)
 
+*Figure S7: Comparison of observed and predicted values, along with the coefficient of determination (R2) and root-mean-square error (RMSE), for days from sowing to flowering, calculated using equation 1, with (a) the 3 best site-years for training the model and (b) the 3 worst years for training the model (see Table S4). Sutherland, Canada 2016 and 2018 (Su16, Su18), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 (In16) and Jessore, Bangladesh 2017 (Ba17). Predictions of DTF can only be made with genotypes that flowered in all three locations, therefore, predictions in (a) are based on 291 and in (b) based on 159 of 324 genotypes used in this study.*
+
 ```{r}
 # Plot (a)
 xx <- read.csv("data/model_3best_d.csv") %>% 
@@ -2688,6 +2698,8 @@ ggsave("Supplemental_Figure_07.png", mp, width = 8, height = 11, dpi = 600)
 ## Supplemental Figure 8: Compare Constants All
 
 ![](Supplemental_Figure_08.png)
+
+*Figure S8: Comparison of a, b, and c constants calculated using equation 1 using all site-years, the three best site-years for predicting DTF, Sutherland, Canada 2016 (Su16), Jessore, Bangladesh 2017 (Ba17) and Cordoba, Spain 2017 (Sp17), and the three worst site-years for predicting DTF, Sutherland, Canada 2018 (Su18), Bhopal, India 2016 (In16) and Cordoba, Spain 2016 (Sp16).*
 
 ```{r}
 # Prep data
@@ -2789,6 +2801,8 @@ write.csv(xx,"data/data_tb_pc.csv", row.names = F)
 
 ![](Figure_05.png)
 
+*Figure 5: Photothermal constants along with nominal base temperatures and photoperiods for a lentil (Lens culinaris Medik.) diversity panel. (a) Distribution of a, b and c constants calculated from equation 1 among cluster groups. Estimates of: (b) nominal base temperature (Tb), and (c) nominal base photoperiod (Pc) based on equations 2 and 3, respectively, using the mean temperature (T) and photoperiod (P) from Sutherland, Canada 2017, Jessore, Bangladesh 2017 and Metaponto, Italy 2017.*
+
 ```{r}
 # Prep data for (a) a, b and c
 pca <- read.csv("data/data_pca_results.csv") %>% 
@@ -2870,6 +2884,8 @@ ggsave("Figure_05.png", mp, width = 8, height = 6, dpi = 600)
 
 ![](Figure_06.png)
 
+*Figure 6: Photothermal responses of lentil (Lens culinaris Medik.) adapted to regions outside the center of origin. (a) Comparison of days from sowing to flowering in Sutherland, Canada 2017 and the genotype constant a (x 104) derived from equation 1. (b) Comparison of temperature response (b x 104) and photoperiod response (c x 104) derived from equation 1. Polygons represent the variation inherent in the region where the crop was domesticated.*
+
 ```{r}
 # Prep data
 mycts <- c("Canada", "USA", "Iran", "Yemen",
@@ -2929,6 +2945,8 @@ ggsave("Additional/Temp/Temp_F06_2.png", mp2, width = 8, height = 4, dpi = 600)
 ## Supplemental Figure 9: Pc Tf PTT
 
 ![](Supplemental_Figure_09.png)
+
+*Figure S9: (a) Thermal sum required for flowering (Tf), using a base temperature (Tb) of 0°C, 5°C and calculated using equation 3, across all site-years. (b) Photoperiodic sum required for flowering (Pf), using a critical photoperiod (Pc) of 0h, 5h and calculated using equation 4, across all site-years. Rosthern, Canada 2016 and 2017 (Ro16, Ro17), Sutherland, Canada 2016, 2017 and 2018 (Su16, Su17, Su18), Central Ferry, USA 2018 (Us18), Metaponto, Italy 2016 and 2017 (It16, It17), Marchouch, Morocco 2016 and 2017 (Mo16, Mo17), Cordoba, Spain 2016 and 2017 (Sp16, Sp17), Bhopal, India 2016 and 2017 (In16, In17), Jessore, Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017 (Ne16, Ne17).*
 
 ```{r}
 # Prep data for (a) Tf
@@ -3036,14 +3054,20 @@ ggsave("Additional/Additional_Figure_14.png", mp, width = 8, height = 5, dpi = 6
 
 ![](Supplemental_Figure_10.png)
 
+*Figure S10: Comparison of observed vs predicted values, along with the coefficient of determination (R2) and root-mean-square error (RMSE), for (a) thermal sum required for flowering and (b) days from sowing to flowering, calculated using equation 5.*
+
 ```{r}
 # Prep data
 xx <- read.csv("data/data_tb_pc.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
-mp1 <- ggModel2(xx, "Tf", "predicted_Tf", "(a) Thermal sum required for flowering", 200, 200, 6600, 5500)
+mp1 <- ggModel2(xx, "Tf", "predicted_Tf", 
+                "(a) Thermal sum required for flowering", 
+                200, 200, 6600, 5500)
 # Plot (b)
-mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Tf", "(b) Days from sowing to flower", 30, 30, 145, 125)
+mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Tf", 
+                "(b) Days from sowing to flower", 
+                30, 30, 145, 125)
 # Append (a) and (b)
 mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom")
 ggsave("Supplemental_Figure_10.png", mp, width = 8, height = 10, dpi = 600)
@@ -3055,14 +3079,20 @@ ggsave("Supplemental_Figure_10.png", mp, width = 8, height = 10, dpi = 600)
 
 ![](Supplemental_Figure_11.png)
 
+*Figure S11: Comparison of observed vs predicted values, along with the coefficient of determination (R2) and root-mean-square error (RMSE) for (a) photoperiodic sum required for flowering and (b) days from sowing to flowering, calculated using equation 6.*
+
 ```{r}
 # Prep data
 xx <- read.csv("data/data_tb_pc.csv") %>% 
   mutate(Expt = factor(Expt, levels = names_Expt))
 # Plot (a)
-mp1 <- ggModel2(xx, "Pf", "predicted_Pf", "(a) Photoperiodic sum required for flowering", 190, 190, 1350, 1150)
+mp1 <- ggModel2(xx, "Pf", "predicted_Pf", 
+                "(a) Photoperiodic sum required for flowering", 
+                190, 190, 1350, 1150)
 # Plot (b)
-mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Pf", "(b) Days from sowing to flower", 30, 30, 145, 125)
+mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Pf", 
+                "(b) Days from sowing to flower", 
+                30, 30, 145, 125)
 # Append (a) and (b)
 mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom")
 ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
@@ -3072,23 +3102,9 @@ ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Figure 7: Temperature Increase By MacroEnv
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_temp_photo_increase.csv",
-  button_label = "data/data_temp_photo_increase.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
-
-```{r echo = F, eval = T}
-xx <- read.csv("data/data_temp_photo_increase.csv")
-DT::datatable(xx)
-```
-
 ![](Figure_07.png)
+
+*Figure 7: Predicted decrease in days from sowing to flowering for a lentil (Lens culinaris Medik.) diversity panel based on a mean temperature (T) or photoperiod (P) increases of 1.5oC or 0.1h using equation 1 in the selected locations: Rosthern, Canada 2017 (Ro17), Sutherland, Canada 2017 (Su17), Central Ferry, USA 2018 (Us18), Bhopal, India 2017 (In17), Jessore, Bangladesh 2017 (Ba17), Bardiya, Nepal 2017 (Ne17), Marchouch, Morocco 2017 (Mo17), Cordoba, Spain 2017 (Sp17) and Metaponto, Italy 2017 (It17).*
 
 ```{r}
 # Prep data
@@ -3148,6 +3164,22 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) +
 ggsave("Figure_07.png", mp, width = 7, height = 5, dpi = 600)
 ```
 
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/data_temp_photo_increase.csv",
+  button_label = "data/data_temp_photo_increase.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
+
+```{r echo = F, eval = T}
+xx <- read.csv("data/data_temp_photo_increase.csv")
+DT::datatable(xx)
+```
+
 ---
 
-&copy; Derek Michael Wright
+&copy; Derek Michael Wright 2020

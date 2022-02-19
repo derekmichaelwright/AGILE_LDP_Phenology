@@ -20,6 +20,9 @@ People, Planet*.
 [View as
 pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf)
 
+[View as
+HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
+
 [Source Code Vignette
 (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
 
@@ -356,8 +359,6 @@ flowering, calculated using equation 6.*
 
 [Supplemental_Table_01.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv)
 
-![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
-
 *Table S1: Genotype entry number, name, common synonyms, origin and
 source of lentil genotypes used in this study. These genotypes are
 gathered from the University of Saskatchewan (USASK), Plant Gene
@@ -371,8 +372,6 @@ Resources of Canada (PGRC), United States Department of Agriculture
 
 [Supplemental_Table_02.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv)
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
 *Table S2: Details of the field trials used in this study, including
 location information, planting dates, mean temperature and photoperiods
 and details on plot type and number of seeds sown.*
@@ -383,8 +382,6 @@ and details on plot type and number of seeds sown.*
 
 [Supplemental_Table_03.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv)
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
 *Table S3: Values of the constants derived from equations 1 and 2 using
 data from all site-years, for each of the genotypes used in this study.*
 
@@ -393,8 +390,6 @@ data from all site-years, for each of the genotypes used in this study.*
 ## Supplemental Table 4
 
 [Supplemental_Table_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
-
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 *Table S4: All possible combinations of a single temperate, South Asian,
 and Mediterranean site-year, used to train the model, with equation 1,
@@ -410,28 +405,20 @@ number of genotypes which flowered in all three site-years.*
 [PCA Results
 (data/data_pca_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
-
 ## PhotoThermal Model
 
 [Photothermal Model Results
 (data/data_model_t+p_coefs.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_coefs.csv)
-
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Base Temperature and Photoperiod
 
 [Nominal Base Temperature and Photoperiod
 (data/data_tb_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
-
 ## Climate Change
 
 [Response to Temperature or Photoperiod increases
 (data/data_temp_photo_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
-
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
