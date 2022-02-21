@@ -236,13 +236,16 @@ downloadthis::download_link(
 )
 ```
 
+*Table S1: Genotype entry number, name, common synonyms, origin and source of lentil genotypes used in this study. These genotypes are gathered from the University of Saskatchewan (USASK), Plant Gene Resources of Canada (PGRC), United States Department of Agriculture (USDA), International Center for Agricultural Research in the Dry Areas (ICARDA).*
+
+```{r echo = F}
+DT::datatable(read.csv("Supplemental_Table_01.csv"))
+```
+
 ```{r}
 s1 <- select(ldp, Entry, Name, Origin, Source, Synonyms)
 write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
-DT::datatable(s1)
 ```
-
-*Table S1: Genotype entry number, name, common synonyms, origin and source of lentil genotypes used in this study. These genotypes are gathered from the University of Saskatchewan (USASK), Plant Gene Resources of Canada (PGRC), United States Department of Agriculture (USDA), International Center for Agricultural Research in the Dry Areas (ICARDA).*
 
 ---
 
@@ -259,16 +262,19 @@ downloadthis::download_link(
 )
 ```
 
+*Table S2: Details of the field trials used in this study, including location information, planting dates, mean temperature and photoperiods and details on plot type and number of seeds sown.*
+
+```{r echo = F}
+DT::datatable(read.csv("Supplemental_Table_02.csv"))
+```
+
 ```{r}
 s2 <- ff %>%
   select(Location, Year, `Short Name`=ExptShort, Latitude=Lat, Longitude=Lon,
          `Planting Date`=Start, `Temperature (mean)`=T_mean, `Photoperiod (mean)`=P_mean, 
          `Number of Seeds Sown`=Number_of_Seeds_Sown, `Plot Type`=Plot_Type)
 write.csv(s2, "Supplemental_Table_02.csv", row.names = F)
-DT::datatable(s2)
 ```
-
-*Table S2: Details of the field trials used in this study, including location information, planting dates, mean temperature and photoperiods and details on plot type and number of seeds sown.*
 
 ```{r}
 xx <- ee %>% 
@@ -830,17 +836,11 @@ ggsave("Supplemental_Figure_03.png", mp, width = 10, height = 8, dpi = 600)
 
 ![](Additional/Corr/Corr_All.png)
 
-![](Additional/Corr/Corr_All.png)
-
 ![](Additional/Corr/Corr_Temperate.png)
 
 ![](Additional/Corr/Corr_SouthAsia.png)
 
 ![](Additional/Corr/Corr_Mediterranean.png)
-
-![](Additional/Corr/Corr_All.png)
-
-![](Additional/Corr/Corr_All.png)
 
 ![](Additional/Corr/Corr_01_Ro16.png)
 
@@ -891,7 +891,8 @@ my_lower <- function(data, mapping, cols = colors_Expt, ...) {
   ggplot(data = data, mapping = mapping) +
     geom_point(alpha = 0.5, size = 0.3, aes(color = Expt)) +
     scale_color_manual(values = cols) +
-    theme_bw()
+    theme_bw() +
+    theme(axis.text = element_text(size = 7.5))
 }
 my_middle <- function(data, mapping, cols = colors_Expt, ...) {
   ggplot(data = data, mapping = mapping) + 
@@ -899,7 +900,8 @@ my_middle <- function(data, mapping, cols = colors_Expt, ...) {
     scale_color_manual(name = NULL, values = cols) +
     scale_fill_manual(name = NULL, values = cols) +
     guides(color = F, fill = guide_legend(nrow = 3, byrow = T)) +
-    theme_bw()
+    theme_bw() +
+    theme(axis.text = element_text(size = 7.5))
 }
 # See: https://github.com/ggobi/ggally/issues/139
 my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...) {
@@ -928,8 +930,7 @@ my_upper <- function(data, mapping, color = I("black"), sizeRange = c(1,5), ...)
   p <- p +
     theme(panel.background = element_rect(fill = corCol),
           panel.grid.major = element_blank(), 
-          #panel.grid.minor = element_blank(),
-          axis.text = element_text(size = 5))
+          panel.grid.minor = element_blank())
   p
 }
 # Plot Correlations for each Expt
@@ -1009,8 +1010,7 @@ downloadthis::download_link(
 ```
 
 ```{r echo = F, eval = T}
-xx <- read.csv("data/data_pca_results.csv")
-DT::datatable(xx)
+DT::datatable(read.csv("data/data_pca_results.csv"))
 ```
 
 ![](Figure_03.png)
@@ -1141,15 +1141,7 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5: PCA Plot
 
-```{r eval = T, echo = F}
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif",
-  button_label = "Additional/Animation_PCA.gif",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-bar",
-  self_contained = FALSE
-)
+```{r echo = F}
 downloadthis::download_link(
   link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html",
   button_label = "Additional/Additional_Figure_05.html",
@@ -1158,7 +1150,21 @@ downloadthis::download_link(
   icon = "fas fa-chart-bar",
   self_contained = FALSE
 )
+downloadthis::download_link(
+  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif",
+  button_label = "Additional/Animation_PCA.gif",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fas fa-chart-bar",
+  self_contained = FALSE
+)
 ```
+
+<iframe
+  src="Additional/Additional_Figure_05.html"
+  style="width:100%; height:600px;"
+  data-external="1"
+></iframe>
 
 ![](Additional/Additional_Figure_05.png)
 
@@ -1177,9 +1183,9 @@ mp <- ggplot(xx, aes(x = PC1, y = PC2, color = Cluster)) +
 ggsave("Additional/Additional_Figure_05.png", mp, width = 6, height = 4, dpi = 600)
 # Plot html
 mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Cluster, colors = colors,
-              text = ~paste(Entry, Name, sep = " | ")) %>% add_markers()
+              text = ~paste(Entry, "|", Name, "\nOrigin:", Origin)) %>% 
+  add_markers()
 saveWidget(mp, file="Additional/Additional_Figure_05.html")
-mp
 ```
 
 ```{r eval = F}
@@ -1216,7 +1222,7 @@ image_write(animation, "Additional/Animation_PCA.gif")
 
 ## Additional Figure 6: PCA by Region
 
-```{r eval = T, echo = F}
+```{r echo = F}
 downloadthis::download_link(
   link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html",
   button_label = "Additional/Additional_Figure_06.html",
@@ -1226,6 +1232,12 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
+
+<iframe
+  src="Additional/Additional_Figure_06.html"
+  style="width:100%; height:600px;"
+  data-external="1"
+></iframe>
 
 ![](Additional/Additional_Figure_06.png)
 
@@ -1252,10 +1264,10 @@ ggsave("Additional/Additional_Figure_06.png", mp, width = 6, height = 4, dpi = 6
 # Plot html
 mp <- plot_ly(xx, x = ~PC1, y = ~PC2, z = ~PC3, color = ~Region, 
               colors = colors[c(1,3,8,5,7,7)], 
-              text = ~paste(Entry, Name, sep = " | ")) %>%
+              text = ~paste(Entry, "|", Name, "\nOrigin:", Origin,
+                            "\nCluster:", Cluster)) %>%
   add_markers() 
 saveWidget(mp, file="Additional/Additional_Figure_06.html")
-mp
 ```
 
 ---
@@ -1328,7 +1340,7 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9: LDP Origins By Cluster
 
-```{r eval = T, echo = F}
+```{r echo = F}
 downloadthis::download_link(
   link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html",
   button_label = "Additional/Additional_Figure_09.html",
@@ -1338,6 +1350,11 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
+
+<iframe
+  src="Additional/Additional_Figure_09.html"
+  style="width:100%; height:600px;"
+></iframe>
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -1370,11 +1387,10 @@ mp <- leaflet() %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   addCircles(lng = xx$Lon, lat = xx$Lat, weight = 10,
                    color = pal(xx$Cluster), opacity = 1, fillOpacity = 1,
-                   popup = paste(xx$Entry,"|",xx$Name)) %>%
+                   popup = paste(xx$Entry,"|",xx$Name,"\nCluster:",xx$Cluster)) %>%
   addLegend("bottomleft", pal = pal, values = xx$Cluster,
             title = "Cluster", opacity = 1)
 saveWidget(mp, file="Additional/Additional_Figure_09.html")
-mp
 ```
 
 ---
@@ -1382,8 +1398,6 @@ mp
 # Modeling DTF
 
 ## Additional Figures: Entry Regressions
-
-https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP
 
 ```{r eval = T, echo = F}
 downloadthis::download_link(
@@ -1756,6 +1770,11 @@ downloadthis::download_link(
   icon = "fa fa-file-pdf",
   self_contained = FALSE
 )
+```
+
+<br>
+
+```{r echo = F}
 downloadthis::download_link(
   link = "data/model_t+p_coefs.csv",
   button_label = "data/model_t+p_coefs.csv",
@@ -1783,8 +1802,7 @@ downloadthis::download_link(
 ```
 
 ```{r echo = F, eval = T}
-xx <- read.csv("data/model_t+p_coefs.csv")
-DT::datatable(xx)
+DT::datatable(read.csv("data/model_t+p_coefs.csv"))
 ```
 
 ```{r eval = F}
@@ -1919,8 +1937,7 @@ downloadthis::download_link(
 ```
 
 ```{r echo = F, eval = T}
-xx <- read.csv("data/model_txp_coefs.csv")
-DT::datatable(xx)
+DT::datatable(read.csv("data/model_txp_coefs.csv"))
 ```
 
 ```{r eval = F}
@@ -2012,6 +2029,12 @@ downloadthis::download_link(
 )
 ```
 
+*Table S3: Values of the constants derived from equations 1 and 2 using data from all site-years, for each of the genotypes used in this study.*
+
+```{r echo = F}
+DT::datatable(read.csv("Supplemental_Table_03.csv"))
+```
+
 ```{r}
 # Prep data
 x1 <- read.csv("data/model_t+p_coefs.csv")
@@ -2022,10 +2045,7 @@ xx <- bind_rows(x1, x2) %>%
          a_p.value=aP, b_p.value=bP, c_p.value=cP, d_p.value=dP)
 # Save
 write.csv(xx, "Supplemental_Table_03.csv", na = "", row.names = F)
-DT::datatable(xx)
 ```
-
-*Table S3: Values of the constants derived from equations 1 and 2 using data from all site-years, for each of the genotypes used in this study.*
 
 ---
 
@@ -2222,8 +2242,7 @@ downloadthis::download_link(
 ```
 
 ```{r echo = F, eval = T}
-xx <- read.csv("data/model_test_d.csv")
-DT::datatable(xx)
+DT::datatable(read.csv("data/model_test_d.csv"))
 ```
 
 ```{r eval = F}
@@ -2318,6 +2337,12 @@ downloadthis::download_link(
 )
 ```
 
+*Table S4: All possible combinations of a single temperate, South Asian, and Mediterranean site-year, used to train the model, with equation 1, along with the corresponding coefficient of determination (RR = R2), and number of genotypes which flowered in all three site-years.*
+
+```{r echo = F}
+DT::datatable(read.csv("Supplemental_Table_04.csv"))
+```
+
 ```{r eval = F}
 ####################################
 # 1/f = a + bT + cP (3 Locations) #
@@ -2365,13 +2390,6 @@ for(t in names_ExptShort[1:6]) { # Temperate site-years
 # Save
 write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
 ```
-
-```{r echo = F}
-xx <- read.csv("Supplemental_Table_04.csv")
-DT::datatable(xx)
-```
-
-*Table S4: All possible combinations of a single temperate, South Asian, and Mediterranean site-year, used to train the model, with equation 1, along with the corresponding coefficient of determination (RR = R2), and number of genotypes which flowered in all three site-years.*
 
 ---
 
@@ -2748,8 +2766,7 @@ downloadthis::download_link(
 ```
 
 ```{r echo = F, eval = T}
-xx <- read.csv("data/data_tb_pc.csv")
-DT::datatable(xx)
+DT::datatable(read.csv("data/data_tb_pc.csv"))
 ```
 
 ```{r eval = F}
@@ -3102,6 +3119,21 @@ ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
 
 ## Figure 7: Temperature Increase By MacroEnv
 
+```{r echo = F}
+downloadthis::download_link(
+  link = "data/data_temp_photo_increase.csv",
+  button_label = "data/data_temp_photo_increase.csv",
+  button_type = "success",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = F
+)
+```
+
+```{r echo = F, eval = T}
+DT::datatable(read.csv("data/data_temp_photo_increase.csv"))
+```
+
 ![](Figure_07.png)
 
 *Figure 7: Predicted decrease in days from sowing to flowering for a lentil (Lens culinaris Medik.) diversity panel based on a mean temperature (T) or photoperiod (P) increases of 1.5oC or 0.1h using equation 1 in the selected locations: Rosthern, Canada 2017 (Ro17), Sutherland, Canada 2017 (Su17), Central Ferry, USA 2018 (Us18), Bhopal, India 2017 (In17), Jessore, Bangladesh 2017 (Ba17), Bardiya, Nepal 2017 (Ne17), Marchouch, Morocco 2017 (Mo17), Cordoba, Spain 2017 (Sp17) and Metaponto, Italy 2017 (It17).*
@@ -3164,22 +3196,6 @@ mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) +
 ggsave("Figure_07.png", mp, width = 7, height = 5, dpi = 600)
 ```
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_temp_photo_increase.csv",
-  button_label = "data/data_temp_photo_increase.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
-
-```{r echo = F, eval = T}
-xx <- read.csv("data/data_temp_photo_increase.csv")
-DT::datatable(xx)
-```
-
 ---
 
-&copy; Derek Michael Wright 2020
+&copy; Derek Michael Wright

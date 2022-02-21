@@ -9,9 +9,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -138,6 +138,8 @@ or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 *Figure 7: Predicted decrease in days from sowing to flowering for a lentil (Lens culinaris Medik.) diversity panel based on a mean temperature (T) or photoperiod (P) increases of 1.5oC or 0.1h using equation 1 in the selected locations: Rosthern, Canada 2017 (Ro17), Sutherland, Canada 2017 (Su17), Central Ferry, USA 2018 (Us18), Bhopal, India 2017 (In17), Jessore, Bangladesh 2017 (Ba17), Bardiya, Nepal 2017 (Ne17), Marchouch, Morocco 2017 (Mo17), Cordoba, Spain 2017 (Sp17) and Metaponto, Italy 2017 (It17).*
 
 ---
+
+\pagebreak
 
 # Supplemental Figures
 
@@ -439,11 +441,15 @@ DT::datatable(xx)
 
 ![](Additional/Expt/2_SouthAsia.png)
 
+\pagebreak
+
 ![](Additional/Expt/2_Mediterranean.png)
 
 ---
 
 ## Correlations
+
+![](Additional/Corr/Corr_All.png)
 
 ![](Additional/Corr/Corr_Temperate.png)
 
@@ -451,7 +457,45 @@ DT::datatable(xx)
 
 ![](Additional/Corr/Corr_Mediterranean.png)
 
+![](Additional/Corr/Corr_01_Ro16.png)
+
+![](Additional/Corr/Corr_02_Ro17.png)
+
+![](Additional/Corr/Corr_03_Su16.png)
+
+![](Additional/Corr/Corr_04_Su17.png)
+
+![](Additional/Corr/Corr_05_Su18.png)
+
+![](Additional/Corr/Corr_06_Us18.png)
+
+![](Additional/Corr/Corr_07_In16.png)
+
+![](Additional/Corr/Corr_08_In17.png)
+
+![](Additional/Corr/Corr_09_Ba16.png)
+
+![](Additional/Corr/Corr_10_Ba17.png)
+
+![](Additional/Corr/Corr_11_Ne16.png)
+
+![](Additional/Corr/Corr_12_Ne17.png)
+
+![](Additional/Corr/Corr_13_Sp16.png)
+
+![](Additional/Corr/Corr_14_Sp17.png)
+
+![](Additional/Corr/Corr_15_Mo16.png)
+
+![](Additional/Corr/Corr_16_Mo17.png)
+
+![](Additional/Corr/Corr_17_It16.png)
+
+![](Additional/Corr/Corr_18_It17.png)
+
 ---
+
+\pagebreak
 
 ## PCA Animation
 
@@ -465,31 +509,29 @@ DT::datatable(xx)
 
 ---
 
-\pagebreak
-
 # PDFs
 
 ## Entry Phenology
 
-[pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
+[Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
 
 ---
 
 ## Temperature and Photoperiod Regressions
 
-[pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
+[Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
 
 ---
 
 ## Model Predictions
 
-[pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
+[Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
 
 ---
 
 ## Photothermal Planes 
 
-[pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+[Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
 
 ---
 
