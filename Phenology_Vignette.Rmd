@@ -2807,6 +2807,12 @@ for(i in 1:nrow(xx)) {
 }
 xx <- xx %>% 
   left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
+  select(Plot, Entry, Name, Rep, Expt, ExptShort, MacroEnv,
+                    DTF, Tb, Pc, Tf_0, Tf_5, Tf, Pf_0, Pf_7, Pf, PTT, PTT_0,
+                    predicted_DTF_Tf, predicted_DTF_Pf,
+                    predicted_Pf, predicted_Tf)
+write.csv(xx,"data/data_tb_pc_raw.csv", row.names = F)
+xx <- xx %>% 
   group_by(Entry, Name, Expt, ExptShort, MacroEnv) %>% 
   summarise_at(vars(DTF, Tb, Pc, Tf_0, Tf_5, Tf, Pf_0, Pf_7, Pf, PTT, PTT_0,
                     predicted_DTF_Tf, predicted_DTF_Pf,
@@ -3182,7 +3188,6 @@ new.lab <- as_labeller(c(`T + 1.5` = "italic(T)~+~1.5~degree*C",
     `P + 0.1` = "italic(P)~+~0.1~h", Mediterranean = "Mediterranean", 
     Temperate = "Temperate", `South Asia` = "South~Asia"), label_parsed)
 my_breaks <- function(x) { if (max(x) < 6) c(0,2.5,5) else seq(0,30,5) }
-#my_minor_breaks <- function(x) { if (max(x) < 6) 1:5 else 1:30 }
 # Plot 
 mp <- ggplot(xx, aes(x = ExptShort, y = Difference)) + 
   geom_violin(fill = "grey", alpha = 0.3, color = NA) + 
