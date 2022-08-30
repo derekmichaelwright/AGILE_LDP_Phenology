@@ -438,7 +438,8 @@ mp1.3 <- ggEnvPlot(ee %>% filter(MacroEnv == "Mediterranean"), c(50, 100, 150)) 
         plot.margin = unit(c(0,0.17,0,0), "cm"),
         axis.text.y.left = element_blank(), axis.ticks.y.left = element_blank())
 mp1 <- ggarrange(mp1.1, mp1.2, mp1.3, nrow = 1, ncol = 3, align = "h",
-                 legend = "top", common.legend = T)
+                 legend = "top", common.legend = T) +
+  bgcolor("white")
 # Prep data
 xx <- dd %>% select(Entry, Year, Expt, ExptShort, Location, DTF, DTS, DTM) %>%
   left_join(select(ff, Expt, MacroEnv), by = "Expt") %>%
@@ -1615,7 +1616,8 @@ mp2 <- ggplot(xx, aes(x = P_mean, y = RDTF)) +
   guides(colour = guide_legend(override.aes = list(size = 3))) +
   labs(y = "1 / DTF",x = "Photoperiod (h)")
 # Append (a) and (b)
-mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom") 
+mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 ggsave("Additional/Temp/Temp_SF04_1.png", mp, width = 6, height = 3.75, dpi = 600)
 # Append (c)s
 im1 <- image_read("Additional/Temp/3D_Entry_094.png")
@@ -2101,7 +2103,8 @@ xx <- read.csv("data/model_txp_d.csv") %>%
 # Plot Observed vs Predicted
 mp2 <- ggModel1(xx, title = expression(paste("(b) ", italic(" 1 / f = a + bT + cP + dTP"))))
 # Append
-mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right")
+mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "right") +
+  bgcolor("white")
 ggsave("Supplemental_Figure_05.png", mp, width = 12, height = 5, dpi = 600)
 ```
 
@@ -2216,7 +2219,8 @@ mp2 <- ggplot(xx, aes(x = 1, y = Value)) +
   theme(panel.grid.major.x = element_blank()) +
   labs(title = "(b)", x = NULL, y = NULL)
 # Append (a) and (b)
-mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom")
+mp <- ggarrange(mp1, mp2, ncol = 2, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 ggsave("Additional/Additional_Figure_13.png", mp, width = 8, height = 4, dpi = 600)
 ```
 
@@ -2711,7 +2715,8 @@ xx <- read.csv("data/model_3worst_d.csv") %>%
   mutate(Expt = factor(Expt, levels = names_Expt))
 mp2 <- ggModel2(xx, title = "(b) 3 Worst Locations | Su18-In16-Sp16 | 159/324")
 # Append (a) and (b)
-mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
+mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 ggsave("Supplemental_Figure_07.png", mp, width = 8, height = 11, dpi = 600)
 ```
 
@@ -2901,7 +2906,8 @@ mp2 <- ggarrange(mp2.1, mp2.2, nrow = 1, ncol = 2, common.legend = T, legend = "
                  labels = c("(b)","(c)"), font.label = list(face = "plain"))
 #
 mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "hv", 
-                labels = c("(a)",""), font.label = list(face = "plain")) #heights = 
+                labels = c("(a)",""), font.label = list(face = "plain")) +
+  bgcolor("white") 
 ggsave("Figure_05.png", mp, width = 8, height = 6, dpi = 600)
 ```
 
@@ -3032,7 +3038,8 @@ mp2 <- ggplot(x1, aes(x = ExptShort, y = Value)) +
        y = expression(italic("P")[italic("f")]), x = NULL)
 
 # Append (a), (b) and (c)
-mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom")
+mp <- ggarrange(mp1, mp2, ncol = 1, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 # Save
 ggsave("Additional/Temp/Temp_SF09_1.png", mp1, width = 8, height = 6, dpi = 600)
 ggsave("Additional/Temp/Temp_SF09_2.png", mp2, width = 8, height = 6, dpi = 600)
@@ -3096,7 +3103,8 @@ mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Tf",
                 "(b) Days from sowing to flower", 
                 30, 30, 145, 125)
 # Append (a) and (b)
-mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom")
+mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 ggsave("Supplemental_Figure_10.png", mp, width = 8, height = 10, dpi = 600)
 ```
 
@@ -3121,7 +3129,8 @@ mp2 <- ggModel2(xx, "DTF", "predicted_DTF_Pf",
                 "(b) Days from sowing to flower", 
                 30, 30, 145, 125)
 # Append (a) and (b)
-mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom")
+mp <- ggarrange(mp1, mp2, nrow = 2, ncol = 1, common.legend = T, legend = "bottom") +
+  bgcolor("white")
 ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600)
 ```
 
