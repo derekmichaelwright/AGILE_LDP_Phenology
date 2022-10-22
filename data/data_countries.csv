@@ -1,45 +1,46 @@
-"Country","Region","SubRegion","DVDDVG","ISO2","ISO3","Lon","Lat"
-"Afghanistan","Asia","Southern Asia","Developing","AF","AFG",66.00473115,33.83523216
-"Algeria","Africa","Northern Africa","Developing","DZ","DZA",2.61732102,28.15893844
-"Argentina","Americas","South America","Developing","AR","ARG",-65.17980881,-35.38135347
-"Bangladesh","Asia","Southern Asia","Developing","BD","BGD",90.23812793,23.86730412
-"Belgium","Europe","Western Europe","Developed","BE","BEL",4.64064572,50.63981435
-"Brazil","Americas","South America","Developing","BR","BRA",-53.09783199,-10.78777567
-"Bulgaria","Europe","Eastern Europe","Developed","BG","BGR",25.21552327,42.76889988
-"Canada","Americas","Northern America","Developed","CA","CAN",-106.622,52.137
-"Chile","Americas","South America","Developing","CL","CHL",-71.38255879,-37.73069754
-"Czech Republic","Europe","Eastern Europe","Developed","CZ","CZE",15.6,49.69
-"Ecuador","Americas","South America","Developing","EC","ECU",-78.75203573,-1.42381949
-"Egypt","Africa","Northern Africa","Developing","EG","EGY",29.8618993,26.49593108
-"Eritrea","Africa","Eastern Africa","Developing","ER","ERI",38.84615444,15.36186881
-"Ethiopia","Africa","Eastern Africa","Developing","ET","ETH",39.6008014,8.62278417
-"France","Europe","Western Europe","Developed","FR","FRA",2.53618475,46.18700581
-"Germany","Europe","Western Europe","Developed","DE","DEU",10.38577693,51.10697903
-"Greece","Europe","Southern Europe","Developed","GR","GRC",22.95556207,39.07466973
-"Guatemala","Americas","Central America","Developing","GT","GTM",-90.36482288,15.69404158
-"Hungary","Europe","Eastern Europe","Developed","HU","HUN",19.39559381,47.16277712
-"India","Asia","Southern Asia","Developing","IN","IND",79.61197355,22.88578035
-"Iran","Asia","Southern Asia","Developing","IR","IRN",54.41,32.41
-"Israel","Asia","Western Asia","Developing","IL","ISR",35.00444995,31.4611019
-"Italy","Europe","Southern Europe","Developed","IT","ITA",12.07000946,42.79663568
-"Jordan","Asia","Western Asia","Developing","JO","JOR",36.77137251,31.24579389
-"Lebanon","Asia","Western Asia","Developing","LB","LBN",35.88016327,33.92306993
-"Libya","Africa","Northern Africa","Developing","LY","LBY",18.00865782,27.03094247
-"Mexico","Americas","Central America","Developing","MX","MEX",-102.52345042,23.94753932
-"Morocco","Africa","Northern Africa","Developing","MA","MAR",-8.45616045,29.83762793
-"Netherlands","Europe","Western Europe","Developed","NL","NLD",5.2814735,52.10080804
-"Pakistan","Asia","Southern Asia","Developing","PK","PAK",69.33958027,29.94975221
-"Peru","Americas","South America","Developing","PE","PER",-74.38242889,-9.15280281
-"Portugal","Europe","Southern Europe","Developed","PT","PRT",-8.50105506,39.59550247
-"Russia","Europe","Eastern Europe","Developed","RU","RUS",51.31,58.9
-"Serbia","Europe","Southern Europe","Developed","RS","SRB",20.83,43.95
-"Spain","Europe","Southern Europe","Developed","ES","ESP",-3.64754874,40.24448626
-"Syria","Asia","Western Asia","Developing","SY","SYR",38.59,35.24
-"Tajikistan","Asia","Central Asia","Developing","TJ","TJK",71.01363312,38.53045125
-"Tunisia","Africa","Northern Africa","Developing","TN","TUN",9.55288287,34.11956663
-"Turkey","Asia","Western Asia","Developing","TR","TUR",35.16895529,39.06160342
-"Ukraine","Europe","Eastern Europe","Developed","UA","UKR",31.38325794,48.99656784
-"USA","Americas","Northern America","Developed","US","USA",-101.5,39
-"Uzbekistan","Asia","Central Asia","Developing","UZ","UZB",63.14001799,41.75554081
-"Yemen","Asia","Western Asia","Developing","YE","YEM",47.58676005,15.90927655
-"Macedonia","Europe","Southern Europe","Developed","Macedonia","Republic of Macedonia",21.72,41.64
+Country,Region,SubRegion,DVDDVG,Type,ISO2,ISO3,Lon,Lat
+Afghanistan,Asia,Southern Asia,Developing,Mediterranean,AF,AFG,66.00473115,33.83523216
+Algeria,Africa,Northern Africa,Developing,Mediterranean,DZ,DZA,2.61732102,28.15893844
+Argentina,Americas,South America,Developing,Latin America,AR,ARG,-65.17980881,-35.38135347
+Bangladesh,Asia,Southern Asia,Developing,S. Asian,BD,BGD,90.23812793,23.86730412
+Belgium,Europe,Western Europe,Developed,Temperate,BE,BEL,4.64064572,50.63981435
+Brazil,Americas,South America,Developing,Latin America,BR,BRA,-53.09783199,-10.78777567
+Bulgaria,Europe,Eastern Europe,Developed,Mediterranean,BG,BGR,25.21552327,42.76889988
+Canada,Americas,Northern America,Developed,Temperate,CA,CAN,-106.622,52.137
+Chile,Americas,South America,Developing,Latin America,CL,CHL,-71.38255879,-37.73069754
+Czech Republic,Europe,Eastern Europe,Developed,Temperate,CZ,CZE,15.6,49.69
+Ecuador,Americas,South America,Developing,Latin America,EC,ECU,-78.75203573,-1.42381949
+Egypt,Africa,Northern Africa,Developing,Mediterranean,EG,EGY,29.8618993,26.49593108
+Eritrea,Africa,Eastern Africa,Developing,Mediterranean,ER,ERI,38.84615444,15.36186881
+Ethiopia,Africa,Eastern Africa,Developing,Mediterranean,ET,ETH,39.6008014,8.62278417
+France,Europe,Western Europe,Developed,Mediterranean,FR,FRA,2.53618475,46.18700581
+Germany,Europe,Western Europe,Developed,Temperate,DE,DEU,10.38577693,51.10697903
+Greece,Europe,Southern Europe,Developed,Mediterranean,GR,GRC,22.95556207,39.07466973
+Guatemala,Americas,Central America,Developing,Latin America,GT,GTM,-90.36482288,15.69404158
+Hungary,Europe,Eastern Europe,Developed,Mediterranean,HU,HUN,19.39559381,47.16277712
+India,Asia,Southern Asia,Developing,S. Asian,IN,IND,79.61197355,22.88578035
+Iran,Asia,Southern Asia,Developing,Mediterranean,IR,IRN,54.41,32.41
+Israel,Asia,Western Asia,Developing,Mediterranean,IL,ISR,35.00444995,31.4611019
+Italy,Europe,Southern Europe,Developed,Mediterranean,IT,ITA,12.07000946,42.79663568
+Jordan,Asia,Western Asia,Developing,Mediterranean,JO,JOR,36.77137251,31.24579389
+Lebanon,Asia,Western Asia,Developing,Mediterranean,LB,LBN,35.88016327,33.92306993
+Libya,Africa,Northern Africa,Developing,Mediterranean,LY,LBY,18.00865782,27.03094247
+Mexico,Americas,Central America,Developing,Latin America,MX,MEX,-102.5234504,23.94753932
+Morocco,Africa,Northern Africa,Developing,Mediterranean,MA,MAR,-8.45616045,29.83762793
+Netherlands,Europe,Western Europe,Developed,Temperate,NL,NLD,5.2814735,52.10080804
+Pakistan,Asia,Southern Asia,Developing,S. Asian,PK,PAK,69.33958027,29.94975221
+Peru,Americas,South America,Developing,Latin America,PE,PER,-74.38242889,-9.15280281
+Portugal,Europe,Southern Europe,Developed,Mediterranean,PT,PRT,-8.50105506,39.59550247
+Russia,Europe,Eastern Europe,Developed,Temperate,RU,RUS,51.31,58.9
+Serbia,Europe,Southern Europe,Developed,Mediterranean,RS,SRB,20.83,43.95
+Spain,Europe,Southern Europe,Developed,Mediterranean,ES,ESP,-3.64754874,40.24448626
+Syria,Asia,Western Asia,Developing,Mediterranean,SY,SYR,38.59,35.24
+Tajikistan,Asia,Central Asia,Developing,Mediterranean,TJ,TJK,71.01363312,38.53045125
+Tunisia,Africa,Northern Africa,Developing,Mediterranean,TN,TUN,9.55288287,34.11956663
+Turkey,Asia,Western Asia,Developing,Mediterranean,TR,TUR,35.16895529,39.06160342
+Ukraine,Europe,Eastern Europe,Developed,Temperate,UA,UKR,31.38325794,48.99656784
+USA,Americas,Northern America,Developed,Temperate,US,USA,-101.5,39
+Uzbekistan,Asia,Central Asia,Developing,Mediterranean,UZ,UZB,63.14001799,41.75554081
+Yemen,Asia,Western Asia,Developing,Mediterranean,YE,YEM,47.58676005,15.90927655
+Macedonia,Europe,Southern Europe,Developed,Mediterranean,Macedonia,Republic of Macedonia,21.72,41.64
+ICARDA,,,,,,,,
