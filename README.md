@@ -40,6 +40,7 @@ HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 -   [Data Results Files](#data-results-files)
 -   [Additional Figures](#additional-figures)
 -   [PDFs](#pdfs)
+-   [Additional Research](#additional-research)
 
 # AGILE Project
 
@@ -610,6 +611,29 @@ number of genotypes which flowered in all three site-years.*
 ## Photothermal Planes
 
 [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+
+------------------------------------------------------------------------
+
+# Additional Research
+
+## Nepal
+
+[Sandesh Neupane, Rajeev Dhakal, Derek M Wright, Deny K. Shrestha,
+Bishnu Dhakal and Kirstin E. Bett. (2021) **Strategic Identification of
+New Genetic Diversity to Expand Lentil (*Lens culinaris* Medik.)
+Production (Using Nepal as an Example)**. *Agronomy*. 11(10):
+1933.](https://www.mdpi.com/2073-4395/11/10/1933/htm)
+
+[Source Code Vignette
+(Phenology_Vignette_Nepal.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette_Nepal.html)
+
+![](Nepal/Nepal_Figure_01.png)
+
+![](Nepal/Nepal_Figure_02.png)
+
+![](Nepal/Nepal_Figure_03.png)
+
+![](Nepal/Nepal_Figure_04.png)
 
 ------------------------------------------------------------------------
 
