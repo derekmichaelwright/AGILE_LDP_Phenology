@@ -6,15 +6,14 @@ Derek Michael Wright <derek.wright@usask.ca>
 
 ------------------------------------------------------------------------
 
-[Derek M Wright, Sandesh Neupane, Taryn Heidecker, Teketel A Haile,
-Clarice J Coyne, Rebecca J McGee, Sripada Udupa, Fatima Henkrar,
-Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo,
-Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul
-Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020)
-**Understanding photothermal interactions can help expand production
-range and increase genetic diversity of lentil (*Lens culinaris*
-Medik.)**. *Plants, People, Planet*.
-00:1-11.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158)
+[Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice
+Coyne, Rebecca McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli,
+Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario,
+Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish
+Sarker, Albert Vandenberg, and Kirstin Bett. (2020) **Understanding
+photothermal interactions can help expand production range and increase
+genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants,
+People, Planet*. 00:1-11.](https://doi.org/10.1002/ppp3.10158)
 
 ------------------------------------------------------------------------
 
@@ -40,7 +39,6 @@ HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 -   [Data Results Files](#data-results-files)
 -   [Additional Figures](#additional-figures)
 -   [PDFs](#pdfs)
--   [Additional Research](#additional-research)
 
 # AGILE Project
 
@@ -611,29 +609,6 @@ number of genotypes which flowered in all three site-years.*
 ## Photothermal Planes
 
 [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
-
-------------------------------------------------------------------------
-
-# Additional Research
-
-## Nepal
-
-[Sandesh Neupane, Rajeev Dhakal, Derek M Wright, Deny K. Shrestha,
-Bishnu Dhakal and Kirstin E. Bett. (2021) **Strategic Identification of
-New Genetic Diversity to Expand Lentil (*Lens culinaris* Medik.)
-Production (Using Nepal as an Example)**. *Agronomy*. 11(10):
-1933.](https://www.mdpi.com/2073-4395/11/10/1933/htm)
-
-[Source Code Vignette
-(Phenology_Vignette_Nepal.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette_Nepal.html)
-
-![](Nepal/Nepal_Figure_01.png)
-
-![](Nepal/Nepal_Figure_02.png)
-
-![](Nepal/Nepal_Figure_03.png)
-
-![](Nepal/Nepal_Figure_04.png)
 
 ------------------------------------------------------------------------
 

@@ -21,13 +21,13 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 # Introduction
 
-This vignette contains some of the <i class="fab fa-r-project"></i> code and analysis to go along with the paper: 
+This vignette contains some of the `r shiny::icon("r-project")` code and analysis to go along with the paper: 
 
-`r shiny::icon("newspaper")` [Sandesh Neupane, Rajeev Dhakal, Derek M Wright, Deny K. Shrestha, Bishnu Dhakal and Kirstin E. Bett. (2021) **Strategic Identification of New Genetic Diversity to Expand Lentil (*Lens culinaris* Medik.) Production (Using Nepal as an Example)**. *Agronomy*. 11(10): 1933.](https://www.mdpi.com/2073-4395/11/10/1933/htm)
+`r shiny::icon("newspaper")` [Sandesh Neupane, Rajeev Dhakal, Derek Wright, Deny Shrestha, Bishnu Dhakal and Kirstin Bett. (2021) **Strategic Identification of New Genetic Diversity to Expand Lentil (*Lens culinaris* Medik.) Production (Using Nepal as an Example)**. *Agronomy*. 11(10): 1933.](https://www.mdpi.com/2073-4395/11/10/1933/htm)
 
 which is a follow-up to:
 
-`r shiny::icon("newspaper")` [Derek M Wright, Sandesh Neupane, Taryn Heidecker, Teketel A Haile, Clarice J Coyne, Rebecca J McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin E. Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158)
+`r shiny::icon("newspaper")` [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Rebecca McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158)
 
 `r shiny::icon("github")` https://github.com/derekmichaelwright/AGILE_LDP_Phenology
 
