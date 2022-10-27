@@ -4,7 +4,7 @@ author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output: 
   rmdformats::readthedown:
-    self_contained: true
+    self_contained: false
     lightbox: true
     gallery: true
     highlight: tango
