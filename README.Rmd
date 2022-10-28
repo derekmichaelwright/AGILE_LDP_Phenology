@@ -1,5 +1,6 @@
 ---
 title: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
+subtitle: "*Plants, People, Planet*. 00:1-11."
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output: 
@@ -9,9 +10,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
