@@ -32,43 +32,43 @@ HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
 
 # Contents
 
--   [Shiny App](#shiny-app)
--   [Figures](#figures)
--   [Supplemental Figures](#supplemental-figures)
--   [Supplemental Tables](#supplemental-tables)
--   [Data Results Files](#data-results-files)
--   [Additional Figures](#additional-figures)
--   [PDFs](#pdfs)
+- [Shiny App](#shiny-app)
+- [Figures](#figures)
+- [Supplemental Figures](#supplemental-figures)
+- [Supplemental Tables](#supplemental-tables)
+- [Data Results Files](#data-results-files)
+- [Additional Figures](#additional-figures)
+- [PDFs](#pdfs)
 
 # AGILE Project
 
-![](Additional/img_Agile.png)
+<img src="Additional/img_Agile.png" style="width:70.0%" />
 
 ## Collaborators
 
--   Department of Plant Sciences and Crop Development Centre, University
-    of Saskatchewan, Saskatoon, Saskatchewan, Canada
--   United States Department of Agriculture Western Region Plant
-    Introduction Station, Pullman, Washington, USA
--   International Center for Agriculture Research in the Dry Areas,
-    Rabat, Morocco
--   Institute for Sustainable Agriculture, Spanish National Research
-    Council, Cordoba, Spain
--   School of Agriculture, Forestry, Food and Environmental Sciences,
-    University of Basilicata, Potenza, Italy
--   International Center for Agriculture Research in the Dry Areas, New
-    Delhi, India
--   Local Initiatives for Biodiversity, Research and Development,
-    Pokhara, Nepal
--   Bangladesh Agricultural Research Institute, Jessore, Bangladesh
+- Department of Plant Sciences and Crop Development Centre, University
+  of Saskatchewan, Saskatoon, Saskatchewan, Canada
+- United States Department of Agriculture Western Region Plant
+  Introduction Station, Pullman, Washington, USA
+- International Center for Agriculture Research in the Dry Areas, Rabat,
+  Morocco
+- Institute for Sustainable Agriculture, Spanish National Research
+  Council, Cordoba, Spain
+- School of Agriculture, Forestry, Food and Environmental Sciences,
+  University of Basilicata, Potenza, Italy
+- International Center for Agriculture Research in the Dry Areas, New
+  Delhi, India
+- Local Initiatives for Biodiversity, Research and Development, Pokhara,
+  Nepal
+- Bangladesh Agricultural Research Institute, Jessore, Bangladesh
 
 ## Sponsors
 
--   Saskatchewan Pulse Growers Association
--   Western Grains Research Foundation
--   GenomePrairie
--   GenomeCanada
--   Saskatchewan Ministry of Agriculture
+- Saskatchewan Pulse Growers Association
+- Western Grains Research Foundation
+- GenomePrairie
+- GenomeCanada
+- Saskatchewan Ministry of Agriculture
 
 ------------------------------------------------------------------------
 
@@ -333,14 +333,14 @@ Bangladesh 2016 and 2017 (Ba16, Ba17), Bardiya, Nepal 2016 and 2017
 
 ------------------------------------------------------------------------
 
-## Supplemental Figure 10
-
-![](Supplemental_Figure_10.png)
-
 *Figure S10: Comparison of observed vs predicted values, along with the
 coefficient of determination (R2) and root-mean-square error (RMSE), for
 (a) thermal sum required for flowering and (b) days from sowing to
 flowering, calculated using equation 5.*
+
+## Supplemental Figure 10
+
+![](Supplemental_Figure_10.png)
 
 ------------------------------------------------------------------------
 
@@ -434,13 +434,13 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 2
 
-![](Additional/Additional_Figure_02.png)
+<img src="Additional/Additional_Figure_02.png" style="width:75.0%" />
 
 ------------------------------------------------------------------------
 
 ## Additional Figure 3
 
-![](Additional/Additional_Figure_03.png)
+<img src="Additional/Additional_Figure_03.png" style="width:75.0%" />
 
 ------------------------------------------------------------------------
 
@@ -454,7 +454,7 @@ number of genotypes which flowered in all three site-years.*
 
 [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
-![](Additional/Additional_Figure_05.png)
+<img src="Additional/Additional_Figure_05.png" style="width:75.0%" />
 
 ------------------------------------------------------------------------
 
@@ -462,13 +462,13 @@ number of genotypes which flowered in all three site-years.*
 
 [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
-![](Additional/Additional_Figure_06.png)
+<img src="Additional/Additional_Figure_06.png" style="width:75.0%" />
 
 ------------------------------------------------------------------------
 
 ## Additional Figure 7
 
-![](Additional/Additional_Figure_07.png)
+<img src="Additional/Additional_Figure_07.png" style="width:60.0%" />
 
 ------------------------------------------------------------------------
 
@@ -488,19 +488,19 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 10
 
-![](Additional/Additional_Figure_10.png)
+<img src="Additional/Additional_Figure_10.png" style="width:65.0%" />
 
 ------------------------------------------------------------------------
 
 ## Additional Figure 11
 
-![](Additional/Additional_Figure_11.png)
+<img src="Additional/Additional_Figure_11.png" style="width:85.0%" />
 
 ------------------------------------------------------------------------
 
 ## Additional Figure 12
 
-![](Additional/Additional_Figure_12.png)
+<img src="Additional/Additional_Figure_12.png" style="width:85.0%" />
 
 ------------------------------------------------------------------------
 
@@ -520,9 +520,9 @@ number of genotypes which flowered in all three site-years.*
 
 ![](Additional/Expt/2_Temperate.png)
 
-![](Additional/Expt/2_SouthAsia.png)
+<img src="Additional/Expt/2_SouthAsia.png" style="width:95.0%" />
 
-![](Additional/Expt/2_Mediterranean.png)
+<img src="Additional/Expt/2_Mediterranean.png" style="width:95.0%" />
 
 ------------------------------------------------------------------------
 
@@ -530,45 +530,87 @@ number of genotypes which flowered in all three site-years.*
 
 ![](Additional/Corr/Corr_All.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_Temperate.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_SouthAsia.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_Mediterranean.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_01_Ro16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_02_Ro17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_03_Su16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_04_Su17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_05_Su18.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_06_Us18.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_07_In16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_08_In17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_09_Ba16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_10_Ba17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_11_Ne16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_12_Ne17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_13_Sp16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_14_Sp17.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_15_Mo16.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_16_Mo17.png)
 
+------------------------------------------------------------------------
+
 ![](Additional/Corr/Corr_17_It16.png)
+
+------------------------------------------------------------------------
 
 ![](Additional/Corr/Corr_18_It17.png)
 

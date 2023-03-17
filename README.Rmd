@@ -19,8 +19,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-\pagebreak
-
 ---
 
 [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Rebecca McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://doi.org/10.1002/ppp3.10158)
@@ -49,7 +47,7 @@ https://github.com/derekmichaelwright/AGILE_LDP_Phenology
 
 # AGILE Project
 
-![](Additional/img_Agile.png)
+![](Additional/img_Agile.png){width=70%}
 
 ## Collaborators
 
@@ -224,19 +222,15 @@ or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ---
 
+*Figure S10: Comparison of observed vs predicted values, along with the coefficient of determination (R2) and root-mean-square error (RMSE), for (a) thermal sum required for flowering and (b) days from sowing to flowering, calculated using equation 5.*
+
 \pagebreak
 
 ## Supplemental Figure 10
 
 ![](Supplemental_Figure_10.png)
 
-\pagebreak
-
-*Figure S10: Comparison of observed vs predicted values, along with the coefficient of determination (R2) and root-mean-square error (RMSE), for (a) thermal sum required for flowering and (b) days from sowing to flowering, calculated using equation 5.*
-
 ---
-
-\pagebreak
 
 ## Supplemental Figure 11
 
@@ -352,13 +346,13 @@ DT::datatable(xx)
 
 ## Additional Figure 2
 
-![](Additional/Additional_Figure_02.png)
+![](Additional/Additional_Figure_02.png){width=75%}
 
 ---
 
 ## Additional Figure 3
 
-![](Additional/Additional_Figure_03.png)
+![](Additional/Additional_Figure_03.png){width=75%}
 
 ---
 
@@ -374,23 +368,21 @@ DT::datatable(xx)
 
 [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
-![](Additional/Additional_Figure_05.png)
+![](Additional/Additional_Figure_05.png){width=75%}
 
 ---
-
-\pagebreak
 
 ## Additional Figure 6
 
 [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
-![](Additional/Additional_Figure_06.png)
+![](Additional/Additional_Figure_06.png){width=75%}
 
 ---
 
 ## Additional Figure 7
 
-![](Additional/Additional_Figure_07.png)
+![](Additional/Additional_Figure_07.png){width=60%}
 
 ---
 
@@ -410,19 +402,19 @@ DT::datatable(xx)
 
 ## Additional Figure 10
 
-![](Additional/Additional_Figure_10.png)
+![](Additional/Additional_Figure_10.png){width=65%}
 
 ---
 
 ## Additional Figure 11
 
-![](Additional/Additional_Figure_11.png)
+![](Additional/Additional_Figure_11.png){width=85%}
 
 ---
 
 ## Additional Figure 12
 
-![](Additional/Additional_Figure_12.png)
+![](Additional/Additional_Figure_12.png){width=85%}
 
 ---
 
@@ -442,11 +434,11 @@ DT::datatable(xx)
 
 ![](Additional/Expt/2_Temperate.png)
 
-![](Additional/Expt/2_SouthAsia.png)
-
 \pagebreak
 
-![](Additional/Expt/2_Mediterranean.png)
+![](Additional/Expt/2_SouthAsia.png){width=95%}
+
+![](Additional/Expt/2_Mediterranean.png){width=95%}
 
 ---
 
@@ -454,45 +446,87 @@ DT::datatable(xx)
 
 ![](Additional/Corr/Corr_All.png)
 
+---
+
 ![](Additional/Corr/Corr_Temperate.png)
+
+---
 
 ![](Additional/Corr/Corr_SouthAsia.png)
 
+---
+
 ![](Additional/Corr/Corr_Mediterranean.png)
+
+---
 
 ![](Additional/Corr/Corr_01_Ro16.png)
 
+---
+
 ![](Additional/Corr/Corr_02_Ro17.png)
+
+---
 
 ![](Additional/Corr/Corr_03_Su16.png)
 
+---
+
 ![](Additional/Corr/Corr_04_Su17.png)
+
+---
 
 ![](Additional/Corr/Corr_05_Su18.png)
 
+---
+
 ![](Additional/Corr/Corr_06_Us18.png)
+
+---
 
 ![](Additional/Corr/Corr_07_In16.png)
 
+---
+
 ![](Additional/Corr/Corr_08_In17.png)
+
+---
 
 ![](Additional/Corr/Corr_09_Ba16.png)
 
+---
+
 ![](Additional/Corr/Corr_10_Ba17.png)
+
+---
 
 ![](Additional/Corr/Corr_11_Ne16.png)
 
+---
+
 ![](Additional/Corr/Corr_12_Ne17.png)
+
+---
 
 ![](Additional/Corr/Corr_13_Sp16.png)
 
+---
+
 ![](Additional/Corr/Corr_14_Sp17.png)
+
+---
 
 ![](Additional/Corr/Corr_15_Mo16.png)
 
+---
+
 ![](Additional/Corr/Corr_16_Mo17.png)
 
+---
+
 ![](Additional/Corr/Corr_17_It16.png)
+
+---
 
 ![](Additional/Corr/Corr_18_It17.png)
 
