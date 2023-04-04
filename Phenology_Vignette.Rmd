@@ -1,6 +1,6 @@
 ---
 title: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
-subtitle: "*Plants, People, Planet*. 00:1-11."
+subtitle: "*Plants, People, Planet*. (2020) 00:1-11. doi.org/10.1002/ppp3.10158"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output:
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 This vignette contains the `r shiny::icon("r-project")` code and analysis done for the paper: 
 
-`r shiny::icon("newspaper")` [Derek Wright, Sandesh Neupane, Taryn Heidecker, Teketel Haile, Clarice Coyne, Rebecca McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg, and Kirstin Bett. (2020) **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. 00:1-11.](https://doi.org/10.1002/ppp3.10158)
+`r shiny::icon("newspaper")` [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2020**) 00:1-11. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
 
 `r shiny::icon("github")` https://github.com/derekmichaelwright/AGILE_LDP_Phenology
 
@@ -37,48 +37,15 @@ This work done as part of the AGILE project at the University of Saskatchewan.
 
 Load the nessesary R packages, Prepare the data for analysis.
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_ldp.csv",
-  button_label = "data_ldp.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/data_countries.csv",
-  button_label = "data_countries.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/data_raw.csv",
-  button_label = "data_raw.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/data_env.csv",
-  button_label = "data_env.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/data_info.csv",
-  button_label = "data_info.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/data_ldp.csv](data/data_ldp.csv)
+
+`r shiny::icon("save")` [data/data_countries.csv](data/data_countries.csv)
+
+`r shiny::icon("save")` [data/data_raw.csv](data/data_raw.csv)
+
+`r shiny::icon("save")` [data/data_env.csv](data/data_env.csv)
+
+`r shiny::icon("save")` [data/data_info.csv](data/data_info.csv)
 
 ```{r}
 #install.packages(c("tidyverse","scales","rworldmap","ggrepel","magick",
@@ -229,16 +196,7 @@ ff <- ff %>%
 
 ## Supplemental Table 1: LDP
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "Supplemental_Table_01.csv",
-  button_label = "Supplemental_Table_01.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [Supplemental_Table_01.csv](Supplemental_Table_01.csv)
 
 *Table S1: Genotype entry number, name, common synonyms, origin and source of lentil genotypes used in this study. These genotypes are gathered from the University of Saskatchewan (USASK), Plant Gene Resources of Canada (PGRC), United States Department of Agriculture (USDA), International Center for Agricultural Research in the Dry Areas (ICARDA).*
 
@@ -255,16 +213,7 @@ write.csv(s1, "Supplemental_Table_01.csv", row.names = F)
 
 ## Supplemental Table 2: Field Trial Info
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "Supplemental_Table_02.csv",
-  button_label = "Supplemental_Table_02.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [Supplemental_Table_02.csv](Supplemental_Table_02.csv)
 
 *Table S2: Details of the field trials used in this study, including location information, planting dates, mean temperature and photoperiods and details on plot type and number of seeds sown.*
 
@@ -530,24 +479,9 @@ image_write(mp, "Figure_02.png")
 
 ## Additional Figures: Entry Phenology
 
-```{r eval = T, echo = F}
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/",
-  button_label = "Additional/Entry_Phenology/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "Additional/pdf_Phenology.pdf",
-  button_label = "pdf_Phenology.pdf",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Entry_Phenology/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/)
+
+`r shiny::icon("file-pdf")` [Additional/pdf_Phenology.pdf](Additional/pdf_Phenology.pdf)
 
 ```{r eval = F}
 # Create plotting function
@@ -1011,16 +945,7 @@ ggsave("Additional/Corr/Corr_All.png", mp4, width = 6, height = 6, dpi = 600)
 
 ## Figure 3: PCA Clusters
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_pca_results.csv",
-  button_label = "data_pca_results.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/data_pca_results.csv](data/data_pca_results.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/data_pca_results.csv"))
@@ -1155,24 +1080,9 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5: PCA Plot
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html",
-  button_label = "Additional/Additional_Figure_05.html",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif",
-  button_label = "Additional/Animation_PCA.gif",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Additional_Figure_05.html](Additional/Additional_Figure_05.html)
+
+`r shiny::icon("chart-line")` [Additional/Animation_PCA.gif](Additional/Animation_PCA.gif)
 
 <iframe
   src="Additional/Additional_Figure_05.html"
@@ -1242,16 +1152,7 @@ image_write(animation, "Additional/Animation_PCA.gif")
 
 ## Additional Figure 6: PCA by Region
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html",
-  button_label = "Additional/Additional_Figure_06.html",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Additional_Figure_06.html](Additional/Additional_Figure_06.html)
 
 <iframe
   src="Additional/Additional_Figure_06.html"
@@ -1362,16 +1263,7 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9: LDP Origins By Cluster
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html",
-  button_label = "Additional/Additional_Figure_09.html",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Additional_Figure_09.html](Additional/Additional_Figure_09.html)
 
 <iframe
   src="Additional/Additional_Figure_09.html"
@@ -1423,24 +1315,9 @@ saveWidget(mp, file="Additional/Additional_Figure_09.html")
 
 ## Additional Figures: Entry Regressions
 
-```{r eval = T, echo = F}
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP/",
-  button_label = "Additional/Entry_TP/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "Additional/pdf_TP.pdf",
-  button_label = "pdf_TP.pdf",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Entry_TP/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP/)
+
+`r shiny::icon("file-pdf")` [Additional/pdf_TP.pdf](Additional/pdf_TP.pdf)
 
 ```{r eval = F}
 myfills <- alpha(c("darkgreen", "darkorange3", "darkblue"), 0.5)
@@ -1497,32 +1374,11 @@ dev.off()
 
 ## Additional Figures: PhotoThermal Plane
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D/",
-  button_label = "Additional/Entry_3D/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif",
-  button_label = "Additional/Animation_3D.gif",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "Additional/pdf_3D.pdf",
-  button_label = "Additional/pdf_3D.pdf",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Entry_3D/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D/)
+
+`r shiny::icon("chart-line")` [Additional/Animation_3D.gif](Additional/Animation_3D.gif)
+
+`r shiny::icon("file-pdf")` [Additional/pdf_3D.pdf](Additional/pdf_3D.pdf)
 
 ![](Additional/Animation_3D.gif)
 
@@ -1783,53 +1639,15 @@ $RMSE=\frac{\sum (y-x)^2}{n}$
 
 ## Modeling DTF (T + P) - All Site-years
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/",
-  button_label = "Additional/Entry_Model/",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fas fa-chart-line",
-  self_contained = FALSE
-)
-downloadthis::download_link(
-  link = "Additional/pdf_model.pdf",
-  button_label = "Additional/pdf_model.pdf",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-file-pdf",
-  self_contained = FALSE
-)
-```
+`r shiny::icon("chart-line")` [Additional/Entry_Model/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/)
 
-<br>
+`r shiny::icon("file-pdf")` [Additional/pdf_model.pdf](Additional/pdf_model.pdf)
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/model_t+p_coefs.csv",
-  button_label = "data/model_t+p_coefs.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_t+p.csv",
-  button_label = "data/model_t+p.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_t+p_d.csv",
-  button_label = "data/model_t+p_d.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/model_t+p_coefs.csv](data/model_t+p_coefs.csv)
+
+`r shiny::icon("save")` [data/model_t+p.csv](data/model_t+p.csv)
+
+`r shiny::icon("save")` [data/model_t+p_d.csv](data/model_t+p_d.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/model_t+p_coefs.csv"))
@@ -1939,32 +1757,11 @@ ggsave("Additional/Model/Model_3_1.png", mp, width = 8, height = 3, dpi = 600)
 
 ## Modeling DTF (T x P) - All Site-years
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/model_txp.csv",
-  button_label = "model_txp.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_txp_d.csv",
-  button_label = "model_txp_d.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_txp_coefs.csv",
-  button_label = "model_txp_coefs.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/model_txp.csv](data/model_txp.csv)
+
+`r shiny::icon("save")` [data/model_txp_d.csv](data/model_txp_d.csv)
+
+`r shiny::icon("save")` [data/model_txp_coefs.csv](data/model_txp_coefs.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/model_txp_coefs.csv"))
@@ -2048,16 +1845,7 @@ ggsave("Additional/Model/Model_2_2.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## Supplemental Table 3: Model Constants
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "Supplemental_Table_03.csv",
-  button_label = "Supplemental_Table_03.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [Supplemental_Table_03.csv](Supplemental_Table_03.csv)
 
 *Table S3: Values of the constants derived from equations 1 and 2 using data from all site-years, for each of the genotypes used in this study.*
 
@@ -2264,24 +2052,9 @@ ggsave("Additional/Additional_Figure_13.png", mp, width = 8, height = 4, dpi = 6
 
 Train the model without the location used for prediction
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/model_test.csv",
-  button_label = "model_test.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_test_d.csv",
-  button_label = "model_test_d.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/model_test.csv](data/model_test.csv)
+
+`r shiny::icon("save")` [data/model_test_d.csv](data/model_test_d.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/model_test_d.csv"))
@@ -2368,16 +2141,7 @@ ggsave("Additional/Model/Model_2_3.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## Supplemental Table 4: Test Model
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "Supplemental_Table_04.csv",
-  button_label = "Supplemental_Table_04.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [Supplemental_Table_04.csv](Supplemental_Table_04.csv)
 
 *Table S4: All possible combinations of a single temperate, South Asian, and Mediterranean site-year, used to train the model, with equation 1, along with the corresponding coefficient of determination (RR = R2), and number of genotypes which flowered in all three site-years.*
 
@@ -2437,32 +2201,11 @@ write.csv(mt %>% arrange(RR), "Supplemental_Table_04.csv", row.names = F)
 
 ## Modeling DTF (T + P) - 3 Best
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/model_3best.csv",
-  button_label = "data/model_3best.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_3best_d.csv",
-  button_label = "data/model_3best_d.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_3best_coefs.csv",
-  button_label = "data/model_3best_coefs.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/model_3best.csv](data/model_3best.csv)
+
+`r shiny::icon("save")` [data/model_3best_d.csv](data/model_3best_d.csv)
+
+`r shiny::icon("save")` [data/model_3best_coefs.csv](data/model_3best_coefs.csv)
 
 ```{r eval = F}
 ####################################
@@ -2540,32 +2283,11 @@ ggsave("Additional/Model/Model_2_4.png", mp, width = 8, height = 5.5, dpi = 600)
 
 ## Modeling DTF (T + P) - 3 Worst
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/model_3worst.csv",
-  button_label = "data/model_3worst.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_3worst_d.csv",
-  button_label = "data/model_3worst_d.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-downloadthis::download_link(
-  link = "data/model_3worst_coefs.csv",
-  button_label = "data/model_3worst_coefs.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/model_3worst.csv](data/model_3worst.csv)
+
+`r shiny::icon("save")` [data/model_3worst_d.csv](data/model_3worst_d.csv)
+
+`r shiny::icon("save")` [data/model_3worst_coefs.csv](data/model_3worst_coefs.csv)
 
 ```{r eval = F}
 ####################################
@@ -2796,16 +2518,7 @@ ggsave("Supplemental_Figure_08.png", mp, width = 6, height = 3, dpi = 600)
 
 ## Base Temperature & Critical Photoperiod
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_tb_pc.csv",
-  button_label = "data/data_tb_pc.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/data_tb_pc.csv](data/data_tb_pc.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/data_tb_pc.csv"))
@@ -3171,16 +2884,7 @@ ggsave("Supplemental_Figure_11.png", mp, width = 8, height = 10, dpi = 600, bg =
 
 ## Figure 7: Temperature Increase By MacroEnv
 
-```{r echo = F}
-downloadthis::download_link(
-  link = "data/data_temp_photo_increase.csv",
-  button_label = "data/data_temp_photo_increase.csv",
-  button_type = "success",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = F
-)
-```
+`r shiny::icon("save")` [data/data_temp_photo_increase.csv](data/data_temp_photo_increase.csv)
 
 ```{r echo = F, eval = T}
 DT::datatable(read.csv("data/data_temp_photo_increase.csv"))
