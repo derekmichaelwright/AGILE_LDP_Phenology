@@ -1,6 +1,6 @@
 ---
 title: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
-subtitle: "*Plants, People, Planet*. (2020) 00:1-11. doi.org/10.1002/ppp3.10158"
+subtitle: "*Plants, People, Planet*. (2021) 3(2): 171-181. doi.org/10.1002/ppp3.10158"
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output: 
@@ -10,9 +10,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
-  github_document: default
   pdf_document:
     toc: yes
+  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-> [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2020**) 00:1-11. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
+> [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**) 3(2): 171-181. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
 
 ---
 
