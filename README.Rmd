@@ -242,7 +242,7 @@ or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
 
 ## Supplemental Table 1
 
-> [Supplemental_Table_01.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv)
+> - [Supplemental_Table_01.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_01.csv")
@@ -255,7 +255,7 @@ DT::datatable(xx)
 
 ## Supplemental Table 2
 
-> [Supplemental_Table_02.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv)
+> - [Supplemental_Table_02.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_02.csv")
@@ -268,7 +268,7 @@ DT::datatable(xx)
 
 ## Supplemental Table 3
 
-> [Supplemental_Table_03.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv)
+> - [Supplemental_Table_03.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_03.csv")
@@ -281,7 +281,7 @@ DT::datatable(xx)
 
 ## Supplemental Table 4
 
-> [Supplemental_Table_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
+> - [Supplemental_Table_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("Supplemental_Table_04.csv")
@@ -296,7 +296,7 @@ DT::datatable(xx)
 
 ## PCA
 
-> [PCA Results (data/data_pca_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
+> - [PCA Results (data/data_pca_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("data/data_pca_results.csv")
@@ -305,7 +305,7 @@ DT::datatable(xx)
 
 ## PhotoThermal Model
 
-> [Photothermal Model Results (data/data_model_t+p_coefs.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_coefs.csv)
+> - [Photothermal Model Results (data/data_model_t+p_coefs.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_coefs.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("data/model_t+p_coefs.csv")
@@ -314,7 +314,7 @@ DT::datatable(xx)
 
 ## Base Temperature and Photoperiod
 
-> [Nominal Base Temperature and Photoperiod (data/data_tb_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
+> - [Nominal Base Temperature and Photoperiod (data/data_tb_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("data/data_tb_pc.csv")
@@ -323,7 +323,7 @@ DT::datatable(xx)
 
 ## Climate Change
 
-> [Response to Temperature or Photoperiod increases (data/data_temp_photo_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
+> - [Response to Temperature or Photoperiod increases (data/data_temp_photo_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
 
 ```{r echo = F, eval = T}
 xx <- read.csv("data/data_temp_photo_increase.csv")
@@ -362,7 +362,7 @@ DT::datatable(xx)
 
 ## Additional Figure 5
 
-> [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+> - [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
 
 ![](Additional/Additional_Figure_05.png){width=75%}
 
@@ -370,7 +370,7 @@ DT::datatable(xx)
 
 ## Additional Figure 6
 
-> [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
+> - [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
 
 ![](Additional/Additional_Figure_06.png){width=75%}
 
@@ -390,7 +390,7 @@ DT::datatable(xx)
 
 ## Additional Figure 9
 
-> [Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+> - [Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -538,7 +538,7 @@ DT::datatable(xx)
 
 ## Phothermal Animation
 
-> [Additional/Animation_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
+> - [Additional/Animation_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
 
 ---
 
@@ -546,25 +546,25 @@ DT::datatable(xx)
 
 ## Entry Phenology
 
-> [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
+> - [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
 
 ---
 
 ## Temperature and Photoperiod Regressions
 
-> [Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
+> - [Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
 
 ---
 
 ## Model Predictions
 
-> [Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
+> - [Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
 
 ---
 
 ## Photothermal Planes 
 
-> [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+> - [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
 
 ---
 
