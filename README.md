@@ -6,27 +6,28 @@ Derek Michael Wright <derek.wright@usask.ca>
 
 ------------------------------------------------------------------------
 
-> [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile,
-> Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa,
-> Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia,
-> Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker,
-> Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg &
-> Kirstin E. Bett. **Understanding photothermal interactions can help
-> expand production range and increase genetic diversity of lentil
-> (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**)
-> 3(2): 171-181.
-> doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
+> <a href="https://doi.org/10.1002/ppp3.10158" target="_blank">Derek M.
+> Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal
+> Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar,
+> Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo,
+> Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul
+> Anwar, Debashish Sarker, Albert Vandenberg &amp; Kirstin E. Bett.
+> <strong>Understanding photothermal interactions can help expand
+> production range and increase genetic diversity of lentil (<em>Lens
+> culinaris</em> Medik.)</strong>. <em>Plants, People, Planet</em>.
+> (<strong>2021</strong>) 3(2): 171-181. doi.org/10.1002/ppp3.10158</a>
 
 ------------------------------------------------------------------------
 
-> - <https://github.com/derekmichaelwright/AGILE_LDP_Phenology>
-> - [View as
->   pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf)
-> - [View as
->   HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
-> - [Source Code Vignette
->   (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
-> - [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data)
+> - <a href="https://github.com/derekmichaelwright/AGILE_LDP_Phenology"
+>   target="_blank">https://github.com/derekmichaelwright/AGILE_LDP_Phenology</a>
+> - [View as pdf](README.pdf)
+> - <a href="README.html" target="_blank">View as HTML</a>
+> - <a href="Phenology_Vignette.html" target="_blank">Source Code Vignette
+>   (Phenology_Vignette.html)</a>
+> - <a
+>   href="https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data"
+>   target="_blank">Data</a>
 
 # Contents
 
@@ -72,9 +73,15 @@ Derek Michael Wright <derek.wright@usask.ca>
 
 # Shiny App
 
-Download this repository and run `app.R` in `R`
+Download this repository and run `app_AGILE_LDP_Phenology.R` or
+`app_AGILE_Predict_DTF.R` in `R`
 
-or visit <https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/>
+or visit the `shinyapps.oi` links below:
+
+> - <a href="https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/"
+>   target="_blank">app_AGILE_LDP_Phenology.R</a>
+> - <a href="https://derek-wright-usask.shinyapps.io/AGILE_Predict_DTF/"
+>   target="_blank">app_AGILE_Predict_DTF.R</a>
 
 ![](Additional/img_Shiny.png)
 
@@ -357,7 +364,7 @@ flowering, calculated using equation 6.*
 
 ## Supplemental Table 1
 
-> - [Supplemental_Table_01.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_01.csv)
+> - [Supplemental_Table_01.csv](Supplemental_Table_01.csv)
 
 *Table S1: Genotype entry number, name, common synonyms, origin and
 source of lentil genotypes used in this study. These genotypes are
@@ -370,7 +377,7 @@ Resources of Canada (PGRC), United States Department of Agriculture
 
 ## Supplemental Table 2
 
-> - [Supplemental_Table_02.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_02.csv)
+> - [Supplemental_Table_02.csv](Supplemental_Table_02.csv)
 
 *Table S2: Details of the field trials used in this study, including
 location information, planting dates, mean temperature and photoperiods
@@ -380,7 +387,7 @@ and details on plot type and number of seeds sown.*
 
 ## Supplemental Table 3
 
-> - [Supplemental_Table_03.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_03.csv)
+> - [Supplemental_Table_03.csv](Supplemental_Table_03.csv)
 
 *Table S3: Values of the constants derived from equations 1 and 2 using
 data from all site-years, for each of the genotypes used in this study.*
@@ -389,7 +396,7 @@ data from all site-years, for each of the genotypes used in this study.*
 
 ## Supplemental Table 4
 
-> - [Supplemental_Table_04.csv](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Supplemental_Table_04.csv)
+> - [Supplemental_Table_04.csv](Supplemental_Table_04.csv)
 
 *Table S4: All possible combinations of a single temperate, South Asian,
 and Mediterranean site-year, used to train the model, with equation 1,
@@ -402,23 +409,22 @@ number of genotypes which flowered in all three site-years.*
 
 ## PCA
 
-> - [PCA Results
->   (data/data_pca_results.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_pca_results.csv)
+> - [PCA Results (data/data_pca_results.csv)](data/data_pca_results.csv)
 
 ## PhotoThermal Model
 
 > - [Photothermal Model Results
->   (data/data_model_t+p_coefs.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/model_t+p_coefs.csv)
+>   (data/data_model_t+p_coefs.csv)](data/model_t+p_coefs.csv)
 
 ## Base Temperature and Photoperiod
 
 > - [Nominal Base Temperature and Photoperiod
->   (data/data_tb_pc.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_tb_pc.csv)
+>   (data/data_tb_pc.csv)](data/data_tb_pc.csv)
 
 ## Climate Change
 
 > - [Response to Temperature or Photoperiod increases
->   (data/data_temp_photo_increase.csv)](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/data/data_temp_photo_increase.csv)
+>   (data/data_temp_photo_increase.csv)](data/data_temp_photo_increase.csv)
 
 ------------------------------------------------------------------------
 
@@ -450,7 +456,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 5
 
-> - [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html)
+> - <a href="Additional/Additional_Figure_05.html"
+>   target="_blank">Additional/Additional_Figure_05.html</a>
 
 <img src="Additional/Additional_Figure_05.png" style="width:75.0%" />
 
@@ -458,7 +465,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 6
 
-> - [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html)
+> - <a href="Additional/Additional_Figure_06.html"
+>   target="_blank">Additional/Additional_Figure_06.html</a>
 
 <img src="Additional/Additional_Figure_06.png" style="width:75.0%" />
 
@@ -478,7 +486,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 9
 
-> - [Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html)
+> - <a href="Additional/Additional_Figure_09.html"
+>   target="_blank">Additional/Additional_Figure_09.html</a>
 
 ![](Additional/Additional_Figure_09.png)
 
@@ -616,13 +625,15 @@ number of genotypes which flowered in all three site-years.*
 
 ## PCA Animation
 
-> [Additional/Animation_PCA.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_PCA.gif)
+> <a href="Additional/Animation_PCA.gif"
+> target="_blank">Additional/Animation_PCA.gif</a>
 
 ------------------------------------------------------------------------
 
 ## Phothermal Animation
 
-> - [Additional/Animation_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
+> - <a href="Additional/Animation_3D.gif"
+>   target="_blank">Additional/Animation_3D.gif</a>
 
 ------------------------------------------------------------------------
 
@@ -630,25 +641,29 @@ number of genotypes which flowered in all three site-years.*
 
 ## Entry Phenology
 
-> - [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
+> - <a href="Additional/pdf_Phenology.pdf"
+>   target="_blank">Additional/pdf_Phenology.pdf</a>
 
 ------------------------------------------------------------------------
 
 ## Temperature and Photoperiod Regressions
 
-> - [Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
+> - <a href="Additional/pdf_TP.pdf"
+>   target="_blank">Additional/pdf_TP.pdf</a>
 
 ------------------------------------------------------------------------
 
 ## Model Predictions
 
-> - [Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
+> - <a href="Additional/pdf_Model.pdf"
+>   target="_blank">Additional/pdf_Model.pdf</a>
 
 ------------------------------------------------------------------------
 
 ## Photothermal Planes
 
-> - [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+> - <a href="Additional/pdf_3D.pdf"
+>   target="_blank">Additional/pdf_3D.pdf</a>
 
 ------------------------------------------------------------------------
 

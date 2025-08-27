@@ -1,6 +1,6 @@
 ---
 title: "Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)"
-subtitle: "*Plants, People, Planet*. (2021) 3(2): 171-181. doi.org/10.1002/ppp3.10158"
+subtitle: "*Plants, People, Planet*. (2021) 3(2): 171-181."
 author: "Derek Michael Wright <derek.wright@usask.ca>"
 date: "15-10-2020"
 output:
@@ -475,7 +475,7 @@ image_write(mp, "Figure_02.png")
 ## Additional Figures: Entry Phenology
 
 > - `r shiny::icon("chart-line")` [Additional/Entry_Phenology/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/){target="_blank"}
-> - `r shiny::icon("file-pdf")` [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/pdf_Phenology.pdf)
+> - `r shiny::icon("file-pdf")` [Additional/pdf_Phenology.pdf](Additional/pdf_Phenology.pdf)
 
 ```{r eval = F}
 # Create plotting function
@@ -1630,7 +1630,7 @@ $RMSE=\frac{\sum (y-x)^2}{n}$
 ## Modeling DTF (T + P) - All Site-years
 
 > - `r shiny::icon("chart-line")` [Additional/Entry_Model/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/){target="_blank"}
-> - `r shiny::icon("file-pdf")` [Additional/pdf_model.pdf](Additional/pdf_model.pdf)
+> - `r shiny::icon("file-pdf")` [Additional/pdf_Model.pdf](Additional/pdf_Model.pdf)
 > - `r shiny::icon("save")` [data/model_t+p_coefs.csv](data/model_t+p_coefs.csv)
 > - `r shiny::icon("save")` [data/model_t+p.csv](data/model_t+p.csv)
 > - `r shiny::icon("save")` [data/model_t+p_d.csv](data/model_t+p_d.csv)
@@ -1700,7 +1700,7 @@ for(i in 1:324) {
   fname <- paste0("Additional/entry_model/model_entry_", str_pad(i, 3, pad = "0"), ".png")
   ggsave(fname, mp[[i]], width = 10, height = 4.5, dpi = 600)
 }
-pdf("Additional/pdf_model.pdf", width = 10, height = 4.5)
+pdf("Additional/pdf_Model.pdf", width = 10, height = 4.5)
 for (i in 1:324) { print(mp[[i]]) }
 dev.off()
 ```
