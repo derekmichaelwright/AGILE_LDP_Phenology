@@ -23,8 +23,8 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F, comment = NA, out.w
 
 This vignette contains the `r shiny::icon("r-project")` code and analysis done for the paper: 
 
-> - `r shiny::icon("newspaper")` [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**) 3(2): 171-181. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
-> - `r shiny::icon("github")` https://github.com/derekmichaelwright/AGILE_LDP_Phenology
+> - `r shiny::icon("newspaper")` [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**) 3(2): 171-181. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158){target="_blank"}
+> - `r shiny::icon("github")` [https://github.com/derekmichaelwright/AGILE_LDP_Phenology](https://github.com/derekmichaelwright/AGILE_LDP_Phenology){target="_blank"}
 
 This work done as part of the AGILE project at the University of Saskatchewan.
 
@@ -474,8 +474,8 @@ image_write(mp, "Figure_02.png")
 
 ## Additional Figures: Entry Phenology
 
-> - `r shiny::icon("chart-line")` [Additional/Entry_Phenology/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/)
-> - `r shiny::icon("file-pdf")` [Additional/pdf_Phenology.pdf](Additional/pdf_Phenology.pdf)
+> - `r shiny::icon("chart-line")` [Additional/Entry_Phenology/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Phenology/){target="_blank"}
+> - `r shiny::icon("file-pdf")` [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/pdf_Phenology.pdf)
 
 ```{r eval = F}
 # Create plotting function
@@ -1074,8 +1074,8 @@ image_write(im, "Figure_03.png")
 
 ## Additional Figure 5: PCA Plot
 
-> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_05.html](Additional/Additional_Figure_05.html)
-> - `r shiny::icon("chart-line")` [Additional/Animation_PCA.gif](Additional/Animation_PCA.gif)
+> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_05.html](Additional/Additional_Figure_05.html){target="_blank"}
+> - `r shiny::icon("chart-line")` [Additional/Animation_PCA.gif](Additional/Animation_PCA.gif){target="_blank"}
 
 <iframe
   src="Additional/Additional_Figure_05.html"
@@ -1145,7 +1145,7 @@ image_write(animation, "Additional/Animation_PCA.gif")
 
 ## Additional Figure 6: PCA by Region
 
-> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_06.html](Additional/Additional_Figure_06.html)
+> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_06.html](Additional/Additional_Figure_06.html){target="_blank"}
 
 <iframe
   src="Additional/Additional_Figure_06.html"
@@ -1256,7 +1256,7 @@ ggsave("Additional/Additional_Figure_08.png", width = 16, height = 4, dpi = 600)
 
 ## Additional Figure 9: LDP Origins By Cluster
 
-> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_09.html](Additional/Additional_Figure_09.html)
+> - `r shiny::icon("chart-line")` [Additional/Additional_Figure_09.html](Additional/Additional_Figure_09.html){target="_blank"}
 
 <iframe
   src="Additional/Additional_Figure_09.html"
@@ -1308,7 +1308,7 @@ saveWidget(mp, file="Additional/Additional_Figure_09.html")
 
 ## Additional Figures: Entry Regressions
 
-> - `r shiny::icon("chart-line")` [Additional/Entry_TP/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP/)
+> - `r shiny::icon("chart-line")` [Additional/Entry_TP/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_TP/){target="_blank"}
 > - `r shiny::icon("file-pdf")` [Additional/pdf_TP.pdf](Additional/pdf_TP.pdf)
 
 ```{r eval = F}
@@ -1366,8 +1366,8 @@ dev.off()
 
 ## Additional Figures: PhotoThermal Plane
 
-> - `r shiny::icon("chart-line")` [Additional/Entry_3D/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D/)
-> - `r shiny::icon("chart-line")` [Additional/Animation_3D.gif](Additional/Animation_3D.gif)
+> - `r shiny::icon("chart-line")` [Additional/Entry_3D/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_3D/){target="_blank"}
+> - `r shiny::icon("chart-line")` [Additional/Animation_3D.gif](Additional/Animation_3D.gif){target="_blank"}
 > - `r shiny::icon("file-pdf")` [Additional/pdf_3D.pdf](Additional/pdf_3D.pdf)
 
 ![](Additional/Animation_3D.gif)
@@ -1629,7 +1629,7 @@ $RMSE=\frac{\sum (y-x)^2}{n}$
 
 ## Modeling DTF (T + P) - All Site-years
 
-> - `r shiny::icon("chart-line")` [Additional/Entry_Model/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/)
+> - `r shiny::icon("chart-line")` [Additional/Entry_Model/](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/Additional/Entry_Model/){target="_blank"}
 > - `r shiny::icon("file-pdf")` [Additional/pdf_model.pdf](Additional/pdf_model.pdf)
 > - `r shiny::icon("save")` [data/model_t+p_coefs.csv](data/model_t+p_coefs.csv)
 > - `r shiny::icon("save")` [data/model_t+p.csv](data/model_t+p.csv)

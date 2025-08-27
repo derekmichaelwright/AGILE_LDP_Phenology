@@ -21,15 +21,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-> [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**) 3(2): 171-181. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158)
+> [Derek M. Wright, Sandesh Neupane, Taryn Heidecker, Teketel A. Haile, Crystal Chan, Clarice J. Coyne, Rebecca J. McGee, Sripada Udupa, Fatima Henkrar, Eleonora Barilli, Diego Rubiales, Tania Gioia, Giuseppina Logozzo, Stefania Marzario, Reena Mehra, Ashutosh Sarker, Rajeev Dhakal, Babul Anwar, Debashish Sarker, Albert Vandenberg & Kirstin E. Bett. **Understanding photothermal interactions can help expand production range and increase genetic diversity of lentil (*Lens culinaris* Medik.)**. *Plants, People, Planet*. (**2021**) 3(2): 171-181. doi.org/10.1002/ppp3.10158](https://doi.org/10.1002/ppp3.10158){target="_blank"}
 
 ---
 
-> - https://github.com/derekmichaelwright/AGILE_LDP_Phenology
-> - [View as pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf) 
-> - [View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html)
-> - [Source Code Vignette (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html)
-> - [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data)
+> - [https://github.com/derekmichaelwright/AGILE_LDP_Phenology](https://github.com/derekmichaelwright/AGILE_LDP_Phenology){target="_blank"}
+> - [View as pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/README.pdf){target="_blank"} 
+> - [View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html){target="_blank"}
+> - [Source Code Vignette (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html){target="_blank"}
+> - [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data){target="_blank"}
 
 # Contents
 
@@ -70,7 +70,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Download this repository and run `app.R` in `R`
 
-or visit https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/
+or visit [https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/](https://derek-wright-usask.shinyapps.io/AGILE_LDP_Phenology/){target="_blank"}
 
 ![](Additional/img_Shiny.png)
 
@@ -538,7 +538,7 @@ DT::datatable(xx)
 
 ## Phothermal Animation
 
-> - [Additional/Animation_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif)
+> - [Additional/Animation_3D.gif](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/blob/master/Additional/Animation_3D.gif){target="_blank"}
 
 ---
 
@@ -546,25 +546,25 @@ DT::datatable(xx)
 
 ## Entry Phenology
 
-> - [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf)
+> - [Additional/pdf_Phenology.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Phenology.pdf){target="_blank"}
 
 ---
 
 ## Temperature and Photoperiod Regressions
 
-> - [Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf)
+> - [Additional/pdf_TP.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_TP.pdf){target="_blank"}
 
 ---
 
 ## Model Predictions
 
-> - [Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf)
+> - [Additional/pdf_Model.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_Model.pdf){target="_blank"}
 
 ---
 
 ## Photothermal Planes 
 
-> - [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf)
+> - [Additional/pdf_3D.pdf](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/raw/master/Additional/pdf_3D.pdf){target="_blank"}
 
 ---
 
