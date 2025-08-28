@@ -10,9 +10,9 @@ output:
     gallery: true
     highlight: tango
     css: custom.css
+  github_document: default
   pdf_document:
     toc: yes
-  github_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -27,8 +27,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 > - [https://github.com/derekmichaelwright/AGILE_LDP_Phenology](https://github.com/derekmichaelwright/AGILE_LDP_Phenology){target="_blank"}
 > - [View as pdf](README.pdf) 
-> - [View as HTML](README.html){target="_blank"}
-> - [Source Code Vignette (Phenology_Vignette.html)](Phenology_Vignette.html){target="_blank"}
+> - [View as HTML](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html){target="_blank"}
+> - [Source Code Vignette (Phenology_Vignette.html)](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html){target="_blank"}
 > - [Data](https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data){target="_blank"}
 
 # Contents
@@ -365,7 +365,7 @@ DT::datatable(xx)
 
 ## Additional Figure 5
 
-> - [Additional/Additional_Figure_05.html](Additional/Additional_Figure_05.html){target="_blank"}
+> - [Additional/Additional_Figure_05.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html){target="_blank"}
 
 ![](Additional/Additional_Figure_05.png){width=75%}
 
@@ -373,7 +373,7 @@ DT::datatable(xx)
 
 ## Additional Figure 6
 
-> - [Additional/Additional_Figure_06.html](Additional/Additional_Figure_06.html){target="_blank"}
+> - [Additional/Additional_Figure_06.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html){target="_blank"}
 
 ![](Additional/Additional_Figure_06.png){width=75%}
 
@@ -393,7 +393,7 @@ DT::datatable(xx)
 
 ## Additional Figure 9
 
-> - [Additional/Additional_Figure_09.html](Additional/Additional_Figure_09.html){target="_blank"}
+> - [Additional/Additional_Figure_09.html](https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html){target="_blank"}
 
 ![](Additional/Additional_Figure_09.png)
 

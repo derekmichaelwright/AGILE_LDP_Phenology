@@ -22,9 +22,12 @@ Derek Michael Wright <derek.wright@usask.ca>
 > - <a href="https://github.com/derekmichaelwright/AGILE_LDP_Phenology"
 >   target="_blank">https://github.com/derekmichaelwright/AGILE_LDP_Phenology</a>
 > - [View as pdf](README.pdf)
-> - <a href="README.html" target="_blank">View as HTML</a>
-> - <a href="Phenology_Vignette.html" target="_blank">Source Code Vignette
->   (Phenology_Vignette.html)</a>
+> - <a
+>   href="https://derekmichaelwright.github.io/AGILE_LDP_Phenology/README.html"
+>   target="_blank">View as HTML</a>
+> - <a
+>   href="https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Phenology_Vignette.html"
+>   target="_blank">Source Code Vignette (Phenology_Vignette.html)</a>
 > - <a
 >   href="https://github.com/derekmichaelwright/AGILE_LDP_Phenology/tree/master/data"
 >   target="_blank">Data</a>
@@ -456,7 +459,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 5
 
-> - <a href="Additional/Additional_Figure_05.html"
+> - <a
+>   href="https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_05.html"
 >   target="_blank">Additional/Additional_Figure_05.html</a>
 
 <img src="Additional/Additional_Figure_05.png" style="width:75.0%" />
@@ -465,7 +469,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 6
 
-> - <a href="Additional/Additional_Figure_06.html"
+> - <a
+>   href="https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_06.html"
 >   target="_blank">Additional/Additional_Figure_06.html</a>
 
 <img src="Additional/Additional_Figure_06.png" style="width:75.0%" />
@@ -486,7 +491,8 @@ number of genotypes which flowered in all three site-years.*
 
 ## Additional Figure 9
 
-> - <a href="Additional/Additional_Figure_09.html"
+> - <a
+>   href="https://derekmichaelwright.github.io/AGILE_LDP_Phenology/Additional/Additional_Figure_09.html"
 >   target="_blank">Additional/Additional_Figure_09.html</a>
 
 ![](Additional/Additional_Figure_09.png)
